@@ -51,6 +51,7 @@
 
     <dependencyManagement>
         <dependencies>
+            <!-- Apache Commons -->
             <dependency>
                 <groupId>commons-beanutils</groupId>
                 <artifactId>commons-beanutils</artifactId>
@@ -69,8 +70,6 @@
                 <version>1.8.0.7</version>
             </dependency>
 
-
-            
             <!-- Hibernate -->
             <dependency>
                 <groupId>org.hibernate</groupId>
