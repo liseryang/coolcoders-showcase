@@ -10,14 +10,12 @@
     <packaging>jar</packaging>
     <name>Showcase Dao</name>
 
-    <build>
-
-    </build>
-
-    <properties>
-    </properties>
-
     <dependencies>
+        <dependency>
+            <groupId>${project.groupId}</groupId>
+            <artifactId>model</artifactId>
+        </dependency>
+        
         <dependency>
             <groupId>org.hibernate</groupId>
             <artifactId>hibernate-envers</artifactId>
