@@ -4,6 +4,7 @@ class Category {
 
   String name
 
+  static belongsTo = User
   static hasMany = [users: User]
 
   static constraints = {
