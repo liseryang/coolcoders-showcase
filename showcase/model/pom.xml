@@ -7,26 +7,12 @@
         <version>1.0-SNAPSHOT</version>
     </parent>
     <artifactId>model</artifactId>
-    <packaging>jar</packaging>
+    <packaging>pom</packaging>
     <name>Showcase Model</name>
 
-    <build>
+    <modules>
+        <module>model-hibernate</module>
+        <module>model-jpa</module>
+    </modules>
 
-    </build>
-
-    <properties>
-    </properties>
-
-    <dependencies>
-        <dependency>
-            <groupId>org.hibernate</groupId>
-            <artifactId>hibernate-annotations</artifactId>
-        </dependency>
-
-        <!-- Test Dependencies -->
-        <dependency>
-            <groupId>junit</groupId>
-            <artifactId>junit</artifactId>
-        </dependency>
-    </dependencies>
 </project>

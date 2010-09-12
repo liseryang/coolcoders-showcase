@@ -3,12 +3,12 @@
     <modelVersion>4.0.0</modelVersion>
     <parent>
         <groupId>net.cool-coders.showcase</groupId>
-        <artifactId>web</artifactId>
+        <artifactId>showcase</artifactId>
         <version>1.0-SNAPSHOT</version>
     </parent>
-    <artifactId>jsf-icefaces-spring</artifactId>
-    <packaging>war</packaging>
-    <name>Showcase Web Jsf Icefaces Spring</name>
+    <artifactId>model-hibernate</artifactId>
+    <packaging>jar</packaging>
+    <name>Showcase Model Hibernate</name>
 
     <build>
 
@@ -19,22 +19,19 @@
 
     <dependencies>
         <dependency>
-            <groupId>org.springframework</groupId>
-            <artifactId>spring-context-support</artifactId>
+            <groupId>org.hibernate</groupId>
+            <artifactId>hibernate-annotations</artifactId>
         </dependency>
         <dependency>
-            <groupId>org.springframework</groupId>
-            <artifactId>spring-web</artifactId>
+            <groupId>org.hibernate</groupId>
+            <artifactId>hibernate-search</artifactId>
+            <optional>true</optional>
         </dependency>
-
+        
         <!-- Test Dependencies -->
         <dependency>
             <groupId>junit</groupId>
             <artifactId>junit</artifactId>
-        </dependency>
-        <dependency>
-            <groupId>org.springframework</groupId>
-            <artifactId>spring-test</artifactId>
         </dependency>
     </dependencies>
 </project>
