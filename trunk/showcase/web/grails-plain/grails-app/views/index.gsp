@@ -1,1 +1,1 @@
-${response.sendRedirect(createLink(controller:'login').toString())}
+${response.sendRedirect(createLink(controller:'login',action:'index').toString())}

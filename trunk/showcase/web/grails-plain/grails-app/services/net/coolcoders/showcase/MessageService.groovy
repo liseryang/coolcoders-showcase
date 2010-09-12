@@ -6,18 +6,7 @@ class MessageService {
 
   def findAllMessagesOfFollowing(User userInstance, int offset) {
     log.debug("Loading all messages of  users followed by user $userInstance")
-    if (userInstance.following) {
-      def c = Message.createCriteria()
-      def results = c.list {
-        'in'('user', userInstance.following)
-        maxResults(offset)
-        order("created", "desc")
-      }
-      return results
-    }
-    else {
-      return []
-    }
+    return Message.executeQuery("SELECT DISTINCT message FROM User as user LEFT JOIN user.following as followingUser LEFT JOIN followingUser.messages as message WHERE user.id=:userId OR message.user.id=:userId ORDER BY message.created DESC", ["userId": userInstance.id,max:10, offset:offset])
 
   }
 }

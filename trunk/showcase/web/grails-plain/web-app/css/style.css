@@ -460,6 +460,16 @@ td.errors input {
     padding-left:5px;
 }
 
+.lazyFriends {
+    margin-left:200px;
+    margin-right:200px;
+    margin-top: 100px;
+    border:1px solid black;
+    padding:10px;
+    background-color:#7fff00;
+    text-align:center;
+}
+
 .noFriends {
     margin-left:200px;
     margin-right:200px;
@@ -468,6 +478,26 @@ td.errors input {
     padding:10px;
     background-color:#e9967a;
     text-align:center;
+}
 
+#messageList table {
+margin-top:20px;
+}
+
+#messageList td {
+    padding:10px;
+    background-color:#dcdcdc;
+    border:1px black dashed;
+}
+
+.messageDate {
+    width:100px;
+}
+
+.messageUser {
+    width:150px;
+}
+.messageContent {
+    width:400px;
 }
 
