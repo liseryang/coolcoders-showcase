@@ -43,6 +43,7 @@
               <g:message code="login.help.message"/>
               <pre>
                 abaumgartner / test123
+                anerlich/test123
                 jmihelko / test123
                 pschneider-manzell / test123
               </pre>
