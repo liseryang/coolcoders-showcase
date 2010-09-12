@@ -26,19 +26,19 @@ class BootStrap {
 
   private void createCategories() {
 
-    Category jee5 = new Category(name:"JEE5").save()
+    Category jee5 = new Category(name: "JEE5").save()
     log.debug("Created category $jee5")
 
-    Category jee6 = new Category(name:"JEE6").save()
+    Category jee6 = new Category(name: "JEE6").save()
     log.debug("Created category $jee6")
 
-     Category grails = new Category(name:"Grails").save()
+    Category grails = new Category(name: "Grails").save()
     log.debug("Created category $grails")
 
-    Category wicket = new Category(name:"Wicket").save()
+    Category wicket = new Category(name: "Wicket").save()
     log.debug("Created category $wicket")
 
-    Category gwt = new Category(name:"GWT").save()
+    Category gwt = new Category(name: "GWT").save()
     log.debug("Created category $gwt")
   }
 
@@ -64,6 +64,6 @@ class BootStrap {
   }
 
   void createDummyMessagesForUser(User user) {
-    log.debug("Creating dummy messaged for user $user")
+    log.debug("Creating dummy messages for user $user")
   }
 }
