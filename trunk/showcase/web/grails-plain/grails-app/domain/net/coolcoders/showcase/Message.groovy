@@ -12,4 +12,8 @@ class Message {
     content(blank: false, maxSize: 140)
   }
 
+  String toString() {
+    "${user?.username} ($created): $content"
+  }
+
 }

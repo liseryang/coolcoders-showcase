@@ -1,6 +1,7 @@
 import net.coolcoders.showcase.User
 import net.coolcoders.showcase.Gender
 import net.coolcoders.showcase.Category
+import net.coolcoders.showcase.Message
 
 class BootStrap {
 
@@ -56,14 +57,24 @@ class BootStrap {
     User anerlich = new User(username: "anerlich", password: "test123", email: "anerlich@coolcoders.net", gender: Gender.MALE).save()
     log.debug("Created user $anerlich")
 
-    createDummyMessagesForUser(pschneidermanzell)
-    createDummyMessagesForUser(abaumgartner)
-    createDummyMessagesForUser(jmihelko)
-    createDummyMessagesForUser(anerlich)
+    abaumgartner.addToFollowing(pschneidermanzell)
+    jmihelko.addToFollowing(anerlich)
+    anerlich.addToFollowing(abaumgartner)
+
+
+    createDummyMessagesForUser(abaumgartner,100)
+    createDummyMessagesForUser(jmihelko,50)
+    createDummyMessagesForUser(anerlich,10)
 
   }
 
-  void createDummyMessagesForUser(User user) {
-    log.debug("Creating dummy messages for user $user")
+  void createDummyMessagesForUser(User userInstance, int count) {
+    log.debug("Creating dummy messages for user $userInstance")
+    for (i in 1..count) {
+      String messageContent = "Test message number $i"
+      Message messageInstance = new Message(content: messageContent, user: userInstance).save()
+      userInstance.addToMessages(messageInstance)
+      log.debug("Created message $messageInstance")
+    }
   }
 }
