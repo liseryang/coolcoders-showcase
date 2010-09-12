@@ -10,7 +10,7 @@ class MessageController {
       offset = params.offset as int
     }
     def currentUser = User.get(session.currentUser.id)
-    def messages = messageService.findAllMessagesOfFollowings(currentUser,offset)
+    def messages = messageService.findAllMessagesOfFollowing(currentUser,offset)
     [messages: messages,currentUser:currentUser]
   }
 }

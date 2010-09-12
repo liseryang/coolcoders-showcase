@@ -13,13 +13,13 @@
 
 </g:if>
 <g:else>
-  <g:if test="${currentUser.follows}">
+  <g:if test="${currentUser.following}">
     <div class="lazyFriends"><g:message code="message.list.lazyfriends"/></div>
   </g:if>
   <g:else>
     <div class="noFriends">
       <p><g:message code="message.list.findsomefriends"/></p>
-      <g:link controller="user" action="follows"><g:message code="default.findnewfriends.label"/></g:link>
+      <g:link controller="user" action="following"><g:message code="default.findnewfriends.label"/></g:link>
     </div>
 
   </g:else>
