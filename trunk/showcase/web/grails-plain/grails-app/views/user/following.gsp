@@ -15,10 +15,14 @@
     <thead>
     <tr>
       <th>
-        <g:message code="user.username.label"/>
+        <g:link action="following" params="${[sort:'username',order:nextSortOrder]}">
+          <g:message code="user.username.label"/>
+        </g:link>
       </th>
       <th>
-        <g:message code="user.post.count.label"/>
+        <g:link action="following" params="${[sort:'messageCount',order:nextSortOrder]}">
+          <g:message code="user.post.count.label"/>
+        </g:link>
       </th>
       <th>
         <g:message code="default.actions.label"/>
