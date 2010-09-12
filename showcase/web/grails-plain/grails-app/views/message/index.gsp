@@ -33,9 +33,16 @@
         </tr>
       </g:each>
     </table>
+    <div>
+      <div style="text-align:center">
+        <g:if test="${prevPageAvailable}"><g:link action="index" params="${[offset:offset-pageSize]}"><g:message code="paging.prev"/></g:link></g:if>
+        <g:if test="${nextPageAvailable}"><g:link action="index" params="${[offset:offset+pageSize]}"><g:message code="paging.next"/></g:link></g:if>
+
+      </div>
+    </div>
   </div>
   <div>
-    <g:link action="following" controller="user"><g:message code="default.viewfriends.label"/> </g:link> 
+    <g:link action="following" controller="user"><g:message code="default.viewfriends.label"/></g:link>
   </div>
 </g:if>
 <g:else>

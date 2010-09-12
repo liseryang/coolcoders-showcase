@@ -3,16 +3,16 @@ package net.coolcoders.showcase
 class MessageService {
 
   static transactional = true
+  private static final String LOAD_ALL_MESSAGES_BASE_HQL = "FROM Message as message, User as user LEFT JOIN user.following as followedUser WHERE user.id=:userId AND (message.user.id=:userId OR message.user = followedUser )"
 
-  def findAllMessagesOfFollowing(User userInstance, int offset) {
+  def findAllMessagesOfFollowing(User userInstance, int offset, int pageSize) {
     log.debug("Loading all messages of  users followed by user $userInstance")
-    if (userInstance.following) {
-      def result = Message.executeQuery("SELECT DISTINCT message FROM Message as message WHERE user.id=:userId AND (message.user.id=:userId OR message.user in user.following) ORDER BY message.created DESC", ["userId": userInstance.id, max: 10, offset: offset])
-      return result
-    }
-    else {
-      def result = Message.executeQuery("SELECT DISTINCT message FROM Message as message WHERE user.id=:userId AND message.user.id=:userId ORDER BY message.created DESC", ["userId": userInstance.id, max: 10, offset: offset])
-      return result
-    }
+    def result = Message.executeQuery("SELECT DISTINCT message " + LOAD_ALL_MESSAGES_BASE_HQL + " ORDER BY message.created DESC", ["userId": userInstance.id, max: pageSize, offset: offset])
+    return result
+  }
+
+  def countAllMessagesOfFollowing(User userInstance) {
+    def result = Message.executeQuery("SELECT COUNT(DISTINCT message.id) " + LOAD_ALL_MESSAGES_BASE_HQL, ["userId": userInstance.id])
+    return result[0]
   }
 }
