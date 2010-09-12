@@ -48,6 +48,7 @@
                 pschneider-manzell / test123
               </pre>
             </div>
+            <g:link controller="register"><g:message code="default.register.label"/></g:link>
           </td>
         </tr>
       </table>

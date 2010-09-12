@@ -375,6 +375,17 @@ h2 {
     padding-left: 25px;
 }
 
+.menuButton a.register {
+    background: url(../images/user_add.png) center left no-repeat;
+    color: #333;
+    padding-left: 25px;
+}
+.menuButton a.profile {
+    background: url(../images/user_edit.png) center left no-repeat;
+    color: #333;
+    padding-left: 25px;
+}
+
 /* ACTION BUTTONS */
 
 .buttons {
