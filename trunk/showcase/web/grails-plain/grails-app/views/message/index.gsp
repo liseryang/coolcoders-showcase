@@ -22,19 +22,21 @@
       <g:each in="${messages}" var="messageInstance">
         <tr>
           <td class="messageDate">
-            <g:formatDate date="${messageInstance.created}" style="SHORT" type="datetime"/>
+            <g:formatDate date="${messageInstance?.created}" style="SHORT" type="datetime"/>
           </td>
           <td class="messageUser">
-            ${messageInstance.user.username}
+            ${messageInstance?.user?.username}
           </td>
           <td class="messageContent">
-            ${messageInstance.content}
+            ${messageInstance?.content}
           </td>
         </tr>
       </g:each>
     </table>
   </div>
-
+  <div>
+    <g:link action="following" controller="user"><g:message code="default.viewfriends.label"/> </g:link> 
+  </div>
 </g:if>
 <g:else>
   <g:if test="${currentUser.following}">

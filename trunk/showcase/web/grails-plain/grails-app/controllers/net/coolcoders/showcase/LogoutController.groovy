@@ -6,4 +6,7 @@ class LogoutController {
     session.invalidate()
     redirect(uri:"/")
    }
+
 }
+
+

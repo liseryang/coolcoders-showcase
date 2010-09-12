@@ -1,18 +1,22 @@
 import net.coolcoders.showcase.User
 import net.coolcoders.showcase.Gender
+import net.coolcoders.showcase.Category
 
 class BootStrap {
 
   def init = { servletContext ->
     environments {
       production {
-        createDummyUsers()
+        createCategories()
+        createUsers()
       }
       development {
-        createDummyUsers()
+        createCategories()
+        createUsers()
       }
       test {
-        createDummyUsers()
+        createCategories()
+        createUsers()
       }
     }
 
@@ -20,8 +24,26 @@ class BootStrap {
   def destroy = {
   }
 
+  private void createCategories() {
 
-  private void createDummyUsers() {
+    Category jee5 = new Category(name:"JEE5").save()
+    log.debug("Created category $jee5")
+
+    Category jee6 = new Category(name:"JEE6").save()
+    log.debug("Created category $jee6")
+
+     Category grails = new Category(name:"Grails").save()
+    log.debug("Created category $grails")
+
+    Category wicket = new Category(name:"Wicket").save()
+    log.debug("Created category $wicket")
+
+    Category gwt = new Category(name:"GWT").save()
+    log.debug("Created category $gwt")
+  }
+
+
+  private void createUsers() {
     User pschneidermanzell = new User(username: "pschneider-manzell", password: "test123", email: "pschneider-manzell@coolcoders.net", gender: Gender.MALE).save()
     log.debug("Created user $pschneidermanzell")
 

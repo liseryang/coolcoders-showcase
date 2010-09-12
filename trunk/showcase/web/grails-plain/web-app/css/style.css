@@ -289,6 +289,12 @@ h1 {
 
 }
 
+h2 {
+    font-size:15px;
+    margin-top:10px;
+    margin-bottom:20px;
+}
+
 .userInfo {
     color: #000;
     margin-top: 5px;
