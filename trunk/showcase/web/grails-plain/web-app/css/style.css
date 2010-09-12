@@ -363,6 +363,12 @@ h1 {
     padding-left: 25px;
 }
 
+.menuButton a.following {
+    background: url(../images/group.png) center left no-repeat;
+    color: #333;
+    padding-left: 25px;
+}
+
 /* ACTION BUTTONS */
 
 .buttons {

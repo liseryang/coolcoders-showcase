@@ -11,7 +11,7 @@ class User {
 
 
   static belongsTo = Category
-  static hasMany = [categories: Category, messages: Message,follows:User]
+  static hasMany = [categories: Category, messages: Message,following:User]
 
   static constraints = {
     fullname(nullable:true)
