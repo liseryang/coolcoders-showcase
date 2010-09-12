@@ -6,7 +6,7 @@ class User {
   String fullname
   String password
   String email
-  Gender gender
+  Gender gender = Gender.MALE
   Date birthday
 
 
@@ -17,8 +17,8 @@ class User {
     fullname(nullable:true)
     birthday(nullable:true)
     username(blank: false, unique: true, maxSize: 32)
-    password(blank: false)
-    email(blank: false, email: true, unique: true)
+    password(blank: false,matches:'^.*(?=.{6,})(?=.*\\d)(?=.*[a-zA-Z]).*$')
+    email(blank: false, email: true, unique: true) 
   }
 
   public String toString() {

@@ -49,7 +49,7 @@
           <g:link controller="logout"><g:message code="default.logout.label"/></g:link></div>
       </g:if>
       <g:else>
-        <div><g:message code="default.register.label"/></div>
+        <div><g:link controller="register"><g:message code="default.register.label"/></g:link></div>
       </g:else>
     </div>
   </header>
