@@ -44,7 +44,8 @@
     <h1>Cool Coders Showcase</h1>
     <div class="userInfo">
       <g:if test="${session.currentUser}">
-        <div>${session.currentUser.username}</div>
+        <div>
+          <g:link controller="profile">${session.currentUser.username}</g:link></div>
         <div>
           <g:link controller="logout"><g:message code="default.logout.label"/></g:link></div>
       </g:if>
@@ -58,6 +59,9 @@
     <div class="nav">
       <g:pageProperty name="page.breadcrump" default="No Breadcrump found"/>
     </div>
+    <g:if test="${flash.message}">
+      <div class="message">${flash.message}</div>
+    </g:if>
     <g:layoutBody/>
   </div>
 
