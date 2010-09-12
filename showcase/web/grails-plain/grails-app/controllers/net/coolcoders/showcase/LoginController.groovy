@@ -3,8 +3,14 @@ package net.coolcoders.showcase
 class LoginController {
 
   def index = {
-    def loginCommandInstance = new LoginCommand()
-    [loginCommandInstance: loginCommandInstance]
+    if (!session.currentUser) {
+      def loginCommandInstance = new LoginCommand()
+      [loginCommandInstance: loginCommandInstance]
+    }
+    else {
+      redirect(controller: "message")
+    }
+
   }
 
 
@@ -14,7 +20,7 @@ class LoginController {
       render(view: "index", model: [loginCommandInstance: loginCommandInstance])
     }
     else {
-      User user = User.findByUsernameAndPassword(loginCommandInstance.username,loginCommandInstance.password)
+      User user = User.findByUsernameAndPassword(loginCommandInstance.username, loginCommandInstance.password)
       if (user) {
         session.currentUser = user
         redirect(controller: "message")

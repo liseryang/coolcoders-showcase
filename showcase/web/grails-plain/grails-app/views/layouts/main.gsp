@@ -43,9 +43,14 @@
   <header class="clearfix">
     <h1>Cool Coders Showcase</h1>
     <div class="userInfo">
-      <div>Username</div>
-      <div><g:message code="default.logout.label"/></div>
-      <div><g:message code="default.register.label"/></div>
+      <g:if test="${session.currentUser}">
+        <div>${session.currentUser.username}</div>
+        <div>
+          <g:link controller="logout"><g:message code="default.logout.label"/></g:link></div>
+      </g:if>
+      <g:else>
+        <div><g:message code="default.register.label"/></div>
+      </g:else>
     </div>
   </header>
 
