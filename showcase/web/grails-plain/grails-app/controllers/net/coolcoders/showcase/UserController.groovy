@@ -2,13 +2,28 @@ package net.coolcoders.showcase
 
 class UserController {
 
+  private static final String SORTORDER_ASC = "asc"
+  private static final String SORTORDER_DESC = "desc"
+
   def userService
 
   def following = {
     log.debug("Entering following with params $params")
+    def currentSortOrder = params.order
+    if (!currentSortOrder) {
+      currentSortOrder = SORTORDER_ASC
+    }
+    def nextSortOrder = SORTORDER_DESC
+    if (currentSortOrder == SORTORDER_DESC) {
+      nextSortOrder = SORTORDER_ASC
+    }
+    def sortParameter = params.sort
+    if (!sortParameter) {
+      sortParameter = "username"
+    }
     User userInstance = User.get(session.currentUser.id)
-    def followingUsers = userInstance.following
-    [followingUsers: followingUsers]
+    def followingUsers = userService.findAllFollwingUsers(userInstance, sortParameter, currentSortOrder)
+    [followingUsers: followingUsers, nextSortOrder: nextSortOrder]
   }
 
 
