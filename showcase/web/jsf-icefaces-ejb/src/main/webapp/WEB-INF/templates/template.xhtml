@@ -8,6 +8,8 @@
       xmlns:icecore="http://icefaces.org/core"
       xmlns:ice="http://www.icesoft.com/icefaces/component">
 
+<f:view contentType="text/html" />
+
 <h:head>
     <meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1"/>
 
@@ -22,27 +24,60 @@
 
     <!-- ICEfaces  -->
     <link href="#{sessionBean.themePath}" rel="stylesheet" type="text/css"></link>
+
     <!--<link href="./css/showcase_style.css" rel="stylesheet" type="text/css"/>-->
     <!--<link href="./css/showcase_overrides.css" rel="stylesheet" type="text/css"/>-->
     <!--<link href="./css/showcase_layout.css" rel="stylesheet" type="text/css"/>-->
     <link href="./css/images/favicon.ico" rel="shortcut icon" type="image/x-icon"/>
     <link href="./css/images/favicon.ico" rel="icon" type="image/x-icon"/>
+
     <!--<script src="/component-showcase/javax.faces.resource/jsf.js.jsf?ln=javax.faces" type="text/javascript"></script>-->
     <!--<script src="code.icepush.jsf?a1057359755" type="text/javascript"></script>-->
     <!--<script src="/component-showcase/javax.faces.resource/bridge.js.jsf?a1057359755" type="text/javascript"></script>-->
     <!--<script src="/component-showcase/javax.faces.resource/compat.js.jsf" type="text/javascript"></script>-->
     <!--<script src="/component-showcase/javax.faces.resource/icefaces-compat.js.jsf" type="text/javascript"></script>-->
+
+    <!-- JQuery -->
+    <link href="./css/custom-theme/jquery-ui-1.8.4.custom.css" rel="stylesheet" type="text/css"/>
+    <script type="text/javascript" src="./js/jquery-1.4.2.min.js"></script>
+    <script type="text/javascript" src="./js/jquery-ui-1.8.4.custom.min.js"></script>
+
+    <!--<link type="text/css" rel="stylesheet" href="http://jqueryui.com/themes/base/ui.all.css" />-->
+    <!--<script type="text/javascript" src="http://jqueryui.com/js/jquery.js"></script>-->
+    
+    <script type="text/javascript">
+        $(document).ready(function() {
+            $('#switcher').themeswitcher({
+                defaultTheme: 'Sunny',
+                width: '145',
+                height: 400
+            });
+
+            $(function() {
+                // Register Birthday Datepicker
+                $('#register\\:birthday').datepicker();
+
+                // Tabs
+                $('#tabs').tabs();
+
+            });
+            
+        });
+    </script>
+    <script type="text/javascript"
+            src="http://jqueryui.com/themeroller/themeswitchertool/">
+    </script>
+
 </h:head>
 
 <h:body>
-    <div class="container">
-        <!--<div class="container showgrid">-->
-        <div class="span-24 last">
+    <div class="container ui-widget-content ui-corner-all" >
+        <div class="span-24 last ui-widget-header ui-corner-top">
             <div class="span-14">
                 <h:outputText value="CoolCoders Showcase" style="font-size: xx-large"/>
             </div>
             <div class="span-10 last" style="margin-top: 10px; text-align: right;">
-                <ice:form partialSubmit="true">
+                <ice:form id="header" partialSubmit="true">
                     <div class="span-10 last">
                         <ice:commandButton value="Logout #{sessionBean.currentUser.username}"
                                            action="#{loginBean.logout}"
@@ -53,19 +88,17 @@
                                            valueChangeListener="#{sessionBean.changeStyle}">
                             <f:selectItems value="#{sessionBean.themePaths}"/>
                         </ice:selectOneMenu>
+                        <div id="switcher" />
                     </div>
                 </ice:form>
             </div>
-            <!--<div class="span-1 last" style="margin-top: 10px; text-align: right;">-->
-            <!--<ice:outputConnectionStatus />-->
-            <!--</div>-->
         </div>
 
-        <div class="span-24 last">
+        <div class="span-24 last ui-widget-content">
             <ui:insert name="content">Content</ui:insert>
         </div>
 
-        <div class="span-24 last">
+        <div class="span-24 last ui-widget-header ui-corner-bottom">
             <div class="span-5 prepend-19 last" style="text-align: right">
                 <h:outputText value="Powered By Coolcoders" style="margin-right: 2px"/>
             </div>
