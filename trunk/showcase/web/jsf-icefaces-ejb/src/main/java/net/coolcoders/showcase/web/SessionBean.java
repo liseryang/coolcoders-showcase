@@ -21,8 +21,8 @@ package net.coolcoders.showcase.web;
 @SessionScoped
 public class SessionBean implements java.io.Serializable {
 
-//    private String themePath = "./xmlhttp/css/rime/rime.css";
-    private String themePath = "./xmlhttp/css/xp/xp.css";
+    private String themePath = "./xmlhttp/css/rime/rime.css";
+//    private String themePath = "./xmlhttp/css/xp/xp.css";
 
     private User currentUser;
 
