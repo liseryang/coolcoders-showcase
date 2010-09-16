@@ -1,36 +1,61 @@
 <?xml version='1.0' encoding='UTF-8' ?>
-<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+        "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml"
       xmlns:ui="http://java.sun.com/jsf/facelets"
-      xmlns:h="http://java.sun.com/jsf/html">
+      xmlns:h="http://java.sun.com/jsf/html" xmlns:f="http://java.sun.com/jsf/composite">
 
-    <body>
+<body>
 
-        <ui:composition template="./WEB-INF/templates/template.xhtml">
+<ui:composition template="./WEB-INF/templates/template.xhtml">
 
-            <ui:define name="top">
-                <h:outputText value="Signed in: " />
-                <h:outputText value="#{sessionBean.currentUser.username}" />
-            </ui:define>
+    <ui:define name="top">
+        <h:outputText value="Signed in: "/>
+        <h:outputText value="#{sessionBean.currentUser.username}"/>
+    </ui:define>
 
-            <ui:define name="content">
-                <h:form id="home">
-                    <div id="tabs">
-                        <ul>
-                            <li><a href="#tabs-1">Tweets</a></li>
-                            <li><a href="#tabs-2">Users</a></li>
-                        </ul>
-                        <div id="tabs-1">
-                            
-                        </div>
-                        <div id="tabs-2">
+    <ui:define name="content">
+        <h:form id="home">
+            <div id="tabs">
+                <ul>
+                    <li><a href="#tabs-1">Tweets</a></li>
+                    <li><a href="#tabs-2">Users</a></li>
+                </ul>
+                <div id="tabs-1">
+                    <h:dataTable id="messages"
+                                 value="#{tweetsBean.messages}"
+                                 var="msg"
+                                 border="1"
+                                 >
+                        <h:column>
 
-                        </div>
-                    </div>
-                </h:form>
-            </ui:define>
+                            <f:facet name="header">
+                                Message
+                            </f:facet>
+                            <h:outputText value="#{msg.content}"/>
+                        </h:column>
+                        <h:column>
+                            <f:facet name="header">
+                                Message
+                            </f:facet>
+                            <h:outputText value="#{msg.created}"/>
+                        </h:column>
+                        <h:column>
+                            <f:facet name="header">
+                                Message
+                            </f:facet>
+                            <h:outputText value="#{msg.author.username}"/>
+                        </h:column>
+                    </h:dataTable>
+                </div>
+                <div id="tabs-2">
 
-        </ui:composition>
+                </div>
+            </div>
+        </h:form>
+    </ui:define>
 
-    </body>
+</ui:composition>
+
+</body>
 </html>

@@ -10,64 +10,30 @@
     <packaging>war</packaging>
     <name>Showcase Web JSF Mojarra EJB</name>
 
-    <repositories>
-        <repository>
-            <id>java.net2</id>
-            <name>Repository hosting the jee6 artifacts</name>
-            <url>http://download.java.net/maven/2</url>
-        </repository>
-        <repository>
-            <id>unknown-jars-temp-repo</id>
-            <name>A temporary repository created by NetBeans for libraries and jars it could not identify. Please
-                replace the dependencies in this repository with correct ones and delete this repository.
-            </name>
-            <url>file:${project.basedir}/lib</url>
-        </repository>
-    </repositories>
     <dependencies>
         <dependency>
             <groupId>${project.groupId}</groupId>
             <artifactId>service-ejb</artifactId>
             <version>${project.version}</version>
         </dependency>
+
+        <!-- JSF Mojarra -->
         <dependency>
             <groupId>javax.faces</groupId>
             <artifactId>jsf-api</artifactId>
-            <version>2.0.3-FCS</version>
-            <scope>provided</scope>
         </dependency>
         <dependency>
             <groupId>javax.faces</groupId>
             <artifactId>jsf-impl</artifactId>
-            <version>2.0.3-FCS</version>
-            <scope>provided</scope>
         </dependency>
         <dependency>
             <groupId>javax</groupId>
             <artifactId>javaee-web-api</artifactId>
-            <version>6.0</version>
-            <scope>provided</scope>
         </dependency>
-
-        <dependency>
-            <groupId>junit</groupId>
-            <artifactId>junit</artifactId>
-            <version>3.8.2</version>
-            <scope>test</scope>
-        </dependency>
-
     </dependencies>
     <build>
+        <finalName>showcase-mojarra-ejb</finalName>
         <plugins>
-            <plugin>
-                <groupId>org.apache.maven.plugins</groupId>
-                <artifactId>maven-compiler-plugin</artifactId>
-                <version>2.0.2</version>
-                <configuration>
-                    <source>1.6</source>
-                    <target>1.6</target>
-                </configuration>
-            </plugin>
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-war-plugin</artifactId>
@@ -77,7 +43,6 @@
                 </configuration>
             </plugin>
         </plugins>
-        <finalName>showcase-web</finalName>
     </build>
     <profiles>
         <profile>
