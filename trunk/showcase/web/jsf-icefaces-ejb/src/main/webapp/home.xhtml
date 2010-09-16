@@ -12,40 +12,59 @@
 
 <ui:composition template="./WEB-INF/templates/template.xhtml">
 
-    <ui:define name="top">
-        <h:outputText value="Signed in: "/>
-        <h:outputText value="#{sessionBean.currentUser.username}"/>
-    </ui:define>
-
     <ui:define name="content">
         <ice:form id="login" partialSubmit="true">
-            <ice:panelTabSet styleClass="span-24 last">
+
+            <ice:panelTabSet styleClass="span-23 last">
                 <ice:panelTab label="Tweets">
-                    <ice:dataTable id="messageTable"
-                            value="#{tweetsBean.messages}"
-                            var="msg"
-                            style="width: 100%">
-                        <ice:column>
-                            <f:facet name="header">
-                                <ice:outputLabel value="Message" />
-                            </f:facet>
-                            <ice:outputText value="#{msg.content}" />
-                        </ice:column>
 
-                        <ice:column>
-                            <f:facet name="header">
-                                <ice:outputLabel value="Date" />
-                            </f:facet>
-                            <ice:outputText value="#{msg.created}" />
-                        </ice:column>
+                    <div class="span-23 last">
+                        <ice:inputTextarea id="messageInput"
+                                           value="#{tweetsBean.message.content}"
+                                           styleClass="span-23 last"
+                                           style="height: 50px"
+                                />
+                    </div>
+                    <div class="span-23 last">
+                        <center>
+                            <ice:commandButton value="Post Message" action="#{tweetsBean.saveMessage}"/>
+                        </center>
+                    </div>
+                    <div class="span-23 last">
+                        <ice:dataTable id="messageTable"
+                                       value="#{tweetsBean.messages}"
+                                       var="msg"
+                                       rows="10"
+                                       style="width: 100%">
+                            <ice:column>
+                                <f:facet name="header">
+                                    <ice:outputLabel value="Message"/>
+                                </f:facet>
+                                <ice:outputText value="#{msg.content}"/>
+                            </ice:column>
 
-                        <ice:column>
-                            <f:facet name="header">
-                                <ice:outputLabel value="User" />
-                            </f:facet>
-                            <ice:outputText value="#{msg.author.username}" />
-                        </ice:column>
-                    </ice:dataTable>
+                            <ice:column>
+                                <f:facet name="header">
+                                    <ice:outputLabel value="Date"/>
+                                </f:facet>
+                                <ice:outputText value="#{msg.created}">
+                                    <f:convertDateTime pattern="dd.MM.yyyy mm:hh" />
+                                </ice:outputText>
+                            </ice:column>
+
+                            <ice:column>
+                                <f:facet name="header">
+                                    <ice:outputLabel value="User"/>
+                                </f:facet>
+                                <ice:outputText value="#{msg.author.username}"/>
+                            </ice:column>
+                        </ice:dataTable>
+                    </div>
+                    <div class="span-6 prepend-9 last">
+                        <ui:include src="./WEB-INF/templates/table/dataPaginator.xhtml">
+                            <ui:param name="tableId" value="messageTable"/>
+                        </ui:include>
+                    </div>
                 </ice:panelTab>
 
                 <ice:panelTab label="Users">

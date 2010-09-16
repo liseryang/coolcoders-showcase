@@ -73,6 +73,11 @@ public class LoginBean {
         }
     }
 
+    public String logout() {
+        sessionBean.setCurrentUser(null);
+        return "login";
+    }
+
     public String initDb() {
         dbInitBean.initDb();
         return null;
