@@ -12,6 +12,6 @@
 
     <modules>
         <module>jsf-icefaces-ejb</module>
-        <module>jsf-icefaces-spring</module>
+        <module>jsf-mojarra-ejb</module>
     </modules>
 </project>

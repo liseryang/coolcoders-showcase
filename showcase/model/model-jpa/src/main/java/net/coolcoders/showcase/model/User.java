@@ -41,6 +41,8 @@ public class User implements Serializable {
     @Column(nullable = false)
     private String password;
 
+    private transient String confirmPassword;
+
     @NotNull
     @Email
     @Column(nullable = false, unique = true)
@@ -155,4 +157,12 @@ public class User implements Serializable {
         this.messages = messages;
     }
 
+    @Transient
+    public String getConfirmPassword() {
+        return confirmPassword;
+    }
+
+    public void setConfirmPassword(String confirmPassword) {
+        this.confirmPassword = confirmPassword;
+    }
 }

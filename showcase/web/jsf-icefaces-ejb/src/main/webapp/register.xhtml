@@ -1,0 +1,61 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core">
+
+    <body>
+
+        <ui:composition template="./WEB-INF/templates/template.xhtml">
+
+            <ui:define name="top">
+                Register
+            </ui:define>
+
+            <ui:define name="content">
+                <div id="tabs">
+
+                    <ul>
+                        <li><a href="#tabs-1">Register</a></li>
+                    </ul>
+                    <div id="tabs-1">
+                        <center>
+                            <div class="ui-widget-content ui-corner-all" style="padding: 3px">
+                                <h:form id="register">
+                                    <h:panelGrid columns="2">
+
+                                        <h:outputLabel for="fullname" value="Fullname:" styleClass="label" />
+                                        <h:inputText id="fullname" value="#{registerBean.user.fullname}" />
+
+                                        <h:outputLabel for="birthday" value="Birthday:" styleClass="label"/>
+                                        <h:inputText id="birthday" value="#{registerBean.user.birthday}">
+                                            <f:convertDateTime pattern="MM/dd/yyyy"/>
+                                        </h:inputText>
+
+                                        <h:outputLabel for="email" value="Email: *" styleClass="label"/>
+                                        <h:inputText id="email" value="#{registerBean.user.email}" required="true" />
+
+                                        <h:outputLabel for="username" value="Username: *" styleClass="label"/>
+                                        <h:inputText id="username" value="#{registerBean.user.username}" required="true"/>
+
+                                        <h:outputLabel for="password" value="Password: *" styleClass="label"/>
+                                        <h:inputSecret id="password" value="#{registerBean.user.password}" required="true"/>
+
+                                        <h:outputLabel for="confirmPassword" value="Confirm Password: *" styleClass="label"/>
+                                        <h:inputSecret id="confirmPassword" value="#{registerBean.user.confirmPassword}" required="true"/>
+                                    </h:panelGrid>
+                                    <h:messages style="color: red;"/>
+                                    <h:commandButton value="Save" action="#{registerBean.save}" />
+                                    <h:commandButton value="Cancel" action="login" immediate="true" />
+                                </h:form>
+                            </div>
+                        </center>
+                    </div>
+                </div>
+            </ui:define>
+
+        </ui:composition>
+
+    </body>
+</html>
