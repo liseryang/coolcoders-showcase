@@ -6,9 +6,9 @@
         <artifactId>web</artifactId>
         <version>1.0-SNAPSHOT</version>
     </parent>
-    <artifactId>jsf-icefaces-ejb</artifactId>
+    <artifactId>jsf-mojarra-ejb</artifactId>
     <packaging>war</packaging>
-    <name>Showcase Web JSF Icefaces EJB</name>
+    <name>Showcase Web JSF Mojarra EJB</name>
 
     <repositories>
         <repository>
@@ -25,6 +25,11 @@
         </repository>
     </repositories>
     <dependencies>
+        <dependency>
+            <groupId>${project.groupId}</groupId>
+            <artifactId>service-ejb</artifactId>
+            <version>${project.version}</version>
+        </dependency>
         <dependency>
             <groupId>javax.faces</groupId>
             <artifactId>jsf-api</artifactId>
