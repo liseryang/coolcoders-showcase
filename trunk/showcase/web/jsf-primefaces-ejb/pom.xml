@@ -51,7 +51,7 @@
         
     </dependencies>
     <build>
-        <finalName>showcase-icefaces-ejb</finalName>
+        <finalName>showcase-primefaces-ejb</finalName>
         <plugins>
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
