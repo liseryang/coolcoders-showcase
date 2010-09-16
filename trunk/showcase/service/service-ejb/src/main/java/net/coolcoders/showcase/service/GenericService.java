@@ -6,6 +6,7 @@
 package net.coolcoders.showcase.service;
 
 import net.coolcoders.showcase.dao.GenericDao;
+import net.coolcoders.showcase.model.User;
 
 import java.io.Serializable;
 import java.util.List;
@@ -57,6 +58,10 @@ public abstract class GenericService<T, PK extends Serializable> {
 
     public void persist(Object entity) {
         genericDao.persist(entity);
+    }
+
+    public void saveAll(List<User> users) {
+        genericDao.saveAll(users);
     }
 
     public <T> T merge(T entity) {

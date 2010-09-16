@@ -9,9 +9,9 @@ import javax.persistence.*;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Pattern;
 import javax.validation.constraints.Size;
-import java.io.Serializable;
 import java.util.Date;
-import java.util.List;
+import java.util.HashSet;
+import java.util.Set;
 
 /**
  *
@@ -19,13 +19,7 @@ import java.util.List;
  */
 @Entity
 @Table(name="USER_TABLE")
-public class User implements Serializable {
-
-    private static final long serialVersionUID = 1L;
-
-    @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
-    private Long id;
+public class User extends AbstractBaseEntity {
 
     @NotNull
     @Size(max=32)
@@ -53,19 +47,22 @@ public class User implements Serializable {
     @Temporal(value = javax.persistence.TemporalType.DATE)
     private Date birthday;
 
-    @OneToMany(mappedBy = "author")
-    private List<Message> messages;
+    @OneToMany(mappedBy = "author", cascade = CascadeType.ALL)
+    private Set<Message> messages = new HashSet<Message>();
 
     @ManyToMany
-    private List<Category> categories;
+    private Set<Category> categories = new HashSet<Category>();
 
-
-    public Long getId() {
-        return id;
+    public User() {
     }
 
-    public void setId(Long id) {
-        this.id = id;
+    public User(String fullname, String username, String password, String email, Gender gender, Date birthday) {
+        this.fullname = fullname;
+        this.username = username;
+        this.password = password;
+        this.email = email;
+        this.gender = gender;
+        this.birthday = birthday;
     }
 
     public Date getBirthday() {
@@ -116,45 +113,20 @@ public class User implements Serializable {
         this.username = username;
     }
 
-    public List<Category> getCategories() {
-        return categories;
-    }
-
-    public void setCategories(List<Category> categories) {
-        this.categories = categories;
-    }
-
-    @Override
-    public int hashCode() {
-        int hash = 0;
-        hash += (id != null ? id.hashCode() : 0);
-        return hash;
-    }
-
-    @Override
-    public boolean equals(Object object) {
-        // TODO: Warning - this method won't work in the case the id fields are not set
-        if (!(object instanceof User)) {
-            return false;
-        }
-        User other = (User) object;
-        if ((this.id == null && other.id != null) || (this.id != null && !this.id.equals(other.id))) {
-            return false;
-        }
-        return true;
-    }
-
-    @Override
-    public String toString() {
-        return "net.coolcoders.showcase.model.User[id=" + id + "]";
-    }
-
-    public List<Message> getMessages() {
+    public Set<Message> getMessages() {
         return messages;
     }
 
-    public void setMessages(List<Message> messages) {
+    public void setMessages(Set<Message> messages) {
         this.messages = messages;
+    }
+
+    public Set<Category> getCategories() {
+        return categories;
+    }
+
+    public void setCategories(Set<Category> categories) {
+        this.categories = categories;
     }
 
     @Transient

@@ -4,6 +4,8 @@
  */
 package net.coolcoders.showcase.dao;
 
+import net.coolcoders.showcase.model.User;
+
 import javax.annotation.PostConstruct;
 import javax.persistence.EntityManager;
 import javax.persistence.NoResultException;
@@ -131,6 +133,12 @@ public abstract class GenericDao<T, PK extends Serializable> {
 
     public void persist(Object entity) {
         em.persist(entity);
+    }
+
+    public void saveAll(List<User> users) {
+        for (User user : users) {
+            persist(user);
+        }
     }
 
     public <T> T merge(T entity) {

@@ -78,6 +78,11 @@ public class UserServiceBean extends GenericService<User, Long>  {
     }
 
     @Override
+    public void saveAll(List<User> users) {
+        super.saveAll(users);    //To change body of overridden methods use File | Settings | File Templates.
+    }
+
+    @Override
     public User persistOrMerge(User entity) {
         return super.persistOrMerge(entity);
     }
