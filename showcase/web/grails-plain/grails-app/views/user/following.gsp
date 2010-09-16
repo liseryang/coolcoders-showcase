@@ -10,7 +10,7 @@
   <span class="menuButton"><a class="home" href="${createLink(uri: '/')}"><g:message code="default.message.label"/></a></span>
   <span class="menuButton"><a class="following" href="${createLink(action: "following")}"><g:message code="default.following.label"/></a></span>
 </content>
-<div class="list">
+<div class="list userList">
   <table style="width:400px;">
     <thead>
     <tr>
@@ -46,6 +46,6 @@
     </tbody>
   </table>
 </div>
-<g:link action="search"><g:message code="default.button.search.label"/></g:link>
+<div class="searchUserLink"><g:link action="search"><g:message code="default.button.search.label"/></g:link></div>
 </body>
 </html>

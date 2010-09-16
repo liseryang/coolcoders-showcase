@@ -673,11 +673,11 @@ td.errors input {
 
 #messageList .messageEntry {
     margin-top: 20px;
-    border:1px solid black;
-    border-radius:5px;
-    padding:15px;
-    vertical-align:top;
-    background-color:#fff8dc;
+    border: 1px solid black;
+    border-radius: 5px;
+    padding: 15px;
+    vertical-align: top;
+    background-color: #fff8dc;
 }
 
 #messageList td {
@@ -689,17 +689,17 @@ td.errors input {
 
 .messageDate {
     width: 100px;
-    float:left;
+    float: left;
 }
 
 .messageUser {
     width: 150px;
-    float:left;
+    float: left;
 }
 
 .messageContent {
     width: 400px;
-    float:left;
+    float: left;
 }
 
 #messageUpdateBox {
@@ -713,5 +713,20 @@ td.errors input {
     margin-top: 10px;
     border-radius: 10px;
     font-size: 15px;
+}
+
+.userList {
+    margin-top: 20px;
+    margin-left: 200px;
+    margin-right: 200px;
+    text-align: center;
+    border: 1px solid black;
+    border-radius: 5px;
+    padding:10px;
+}
+
+.searchUserLink {
+    text-align: center;
+    padding-top: 20px;
 }
 
