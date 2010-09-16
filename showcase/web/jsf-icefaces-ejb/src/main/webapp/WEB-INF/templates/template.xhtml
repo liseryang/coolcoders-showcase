@@ -21,7 +21,7 @@
     <link href="./css/blueprint/screen.css" rel="stylesheet" type="text/css"/>
 
     <!-- ICEfaces  -->
-    <link href="./xmlhttp/css/rime/rime.css" rel="stylesheet" type="text/css"></link>
+    <link href="#{sessionBean.themePath}" rel="stylesheet" type="text/css"></link>
     <!--<link href="./css/showcase_style.css" rel="stylesheet" type="text/css"/>-->
     <!--<link href="./css/showcase_overrides.css" rel="stylesheet" type="text/css"/>-->
     <!--<link href="./css/showcase_layout.css" rel="stylesheet" type="text/css"/>-->
@@ -43,11 +43,22 @@
             </div>
             <div class="span-10 last" style="margin-top: 10px; text-align: right;">
                 <ice:form partialSubmit="true">
-                    <ice:commandButton value="Logout #{sessionBean.currentUser.username}"
-                                       action="#{loginBean.logout}"
-                                       rendered="#{sessionBean.currentUser != null}"/>
+                    <div class="span-10 last">
+                        <ice:commandButton value="Logout #{sessionBean.currentUser.username}"
+                                           action="#{loginBean.logout}"
+                                           rendered="#{sessionBean.currentUser != null}"/>
+                    </div>
+                    <div class="span-10 last">
+                        <ice:selectOneMenu value="#{sessionBean.themePath}"
+                                           valueChangeListener="#{sessionBean.changeStyle}">
+                            <f:selectItems value="#{sessionBean.themePaths}"/>
+                        </ice:selectOneMenu>
+                    </div>
                 </ice:form>
             </div>
+            <!--<div class="span-1 last" style="margin-top: 10px; text-align: right;">-->
+            <!--<ice:outputConnectionStatus />-->
+            <!--</div>-->
         </div>
 
         <div class="span-24 last">
