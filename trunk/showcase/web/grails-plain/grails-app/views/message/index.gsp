@@ -10,7 +10,10 @@
 </content>
 
 <g:form action="create" controller="message">
-  <div id="messageUpdateBox">
+  <div class="dialog center singleBorder" id="messageUpdateBox">
+    <p>
+      <g:message code="message.create.label"/>
+    </p>
     <g:textArea name="content"/>
     <p>
       <g:actionSubmit value="Send" action="create"/>
@@ -36,7 +39,7 @@
       </div>
     </div>
   </div>
-  <div class="searchUserLink">
+  <div class="pageActions">
     <g:link action="following" controller="user"><g:message code="default.viewfriends.label"/></g:link>
   </div>
 </g:if>

@@ -20,7 +20,7 @@
   <div class="message">${flash.error}</div>
 </g:if>
 <div class="login">
-  <div class="loginBox">
+  <div class="dialog center singleBorder">
     <g:form action="login">
       <table width="100%">
         <tr class="prop">
