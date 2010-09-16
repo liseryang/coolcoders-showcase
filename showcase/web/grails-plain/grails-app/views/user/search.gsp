@@ -10,13 +10,13 @@
   <span class="menuButton"><a class="home" href="${createLink(uri: '/')}"><g:message code="default.message.label"/></a></span>
   <span class="menuButton"><a class="following" href="${createLink(action: "following")}"><g:message code="default.following.label"/></a></span>
 </content>
-<div>
+<div class="searchUserBox">
   <g:form action="search">
-    <g:textField name="queryText" value="${queryText}"/>
+    <label><g:message code="search.user.label"/></label><g:textField name="queryText" value="${queryText}"/>
     <g:submitButton name="search" value="Search"/>
   </g:form>
 </div>
-<div class="list">
+<div class="userList">
   <table style="width:400px;">
     <thead>
     <tr>

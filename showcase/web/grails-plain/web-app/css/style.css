@@ -722,11 +722,21 @@ td.errors input {
     text-align: center;
     border: 1px solid black;
     border-radius: 5px;
-    padding:10px;
+    padding: 10px;
 }
 
 .searchUserLink {
     text-align: center;
     padding-top: 20px;
+}
+
+.searchUserBox {
+    margin-top: 20px;
+    margin-left: 200px;
+    margin-right: 200px;
+    text-align: center;
+    border: 1px solid black;
+    border-radius: 5px;
+    padding: 10px;
 }
 

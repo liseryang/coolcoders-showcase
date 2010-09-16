@@ -36,7 +36,7 @@
       </div>
     </div>
   </div>
-  <div>
+  <div class="searchUserLink">
     <g:link action="following" controller="user"><g:message code="default.viewfriends.label"/></g:link>
   </div>
 </g:if>
