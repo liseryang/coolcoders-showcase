@@ -12,27 +12,22 @@
 <g:form action="create" controller="message">
   <div id="messageUpdateBox">
     <g:textArea name="content"/>
-    <g:actionSubmit value="Send" action="create"/>
+    <p>
+      <g:actionSubmit value="Send" action="create"/>
+    </p>
   </div>
 </g:form>
 
 <g:if test="${messages}">
   <div id="messageList">
-    <table>
-      <g:each in="${messages}" var="messageInstance">
-        <tr>
-          <td class="messageDate">
-            <g:formatDate date="${messageInstance?.created}" style="SHORT" type="datetime"/>
-          </td>
-          <td class="messageUser">
-            ${messageInstance?.user?.username}
-          </td>
-          <td class="messageContent">
-            ${messageInstance?.content}
-          </td>
-        </tr>
-      </g:each>
-    </table>
+    <g:each in="${messages}" var="messageInstance">
+      <div class="messageEntry clearfix">
+        <div class="messageDate"><g:formatDate date="${messageInstance?.created}" style="SHORT" type="datetime"/></div>
+        <div class="messageUser">${messageInstance?.user?.username}</div>
+        <div class="messageContent">${messageInstance?.content}</div>
+      </div>
+    </g:each>
+
     <div>
       <div style="text-align:center">
         <g:if test="${prevPageAvailable}"><g:link action="index" params="${[offset:offset-pageSize]}"><g:message code="paging.prev"/></g:link></g:if>
