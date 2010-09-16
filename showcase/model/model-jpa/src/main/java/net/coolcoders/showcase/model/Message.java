@@ -4,11 +4,15 @@
  */
 package net.coolcoders.showcase.model;
 
-import javax.persistence.*;
+import javax.persistence.Entity;
+import javax.persistence.Id;
+import javax.persistence.ManyToOne;
+import javax.persistence.Temporal;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
 import java.io.Serializable;
 import java.util.Date;
+import java.util.UUID;
 
 /**
  *
@@ -18,9 +22,9 @@ import java.util.Date;
 public class Message implements Serializable {
 
     private static final long serialVersionUID = 1L;
+
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
-    private Long id;
+    private String id = UUID.randomUUID().toString();
 
     @NotNull
     @Size(max=140)
@@ -30,12 +34,13 @@ public class Message implements Serializable {
     @ManyToOne
     private User author;
 
-    public Long getId() {
-        return id;
+    public Message() {
     }
 
-    public void setId(Long id) {
-        this.id = id;
+    public Message(User author, Date created, String content) {
+        this.author = author;
+        this.created = created;
+        this.content = content;
     }
 
     public String getContent() {

@@ -6,6 +6,7 @@
 package net.coolcoders.showcase.web;
 
 import net.coolcoders.showcase.model.User;
+import net.coolcoders.showcase.service.DbInitBean;
 import net.coolcoders.showcase.service.UserServiceBean;
 
 import javax.enterprise.context.RequestScoped;
@@ -27,6 +28,9 @@ public class LoginBean {
 
     @Inject
     private SessionBean sessionBean;
+
+    @Inject
+    private DbInitBean dbInitBean;
 
     private String username = null;
 
@@ -67,6 +71,11 @@ public class LoginBean {
             sessionBean.setCurrentUser(user);
             return "home";
         }
+    }
+
+    public String initDb() {
+        dbInitBean.initDb();
+        return null;
     }
 
 }
