@@ -28,4 +28,8 @@ public class SessionBean implements java.io.Serializable {
         this.currentUser = currentUser;
     }
 
+    public String logout() {
+        currentUser = null;
+        return "login";
+    }
 }
