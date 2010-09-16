@@ -12,19 +12,25 @@
 </content>
 <h2><g:message code="register.heading"/></h2>
 
-<g:hasErrors bean="${userInstance}">
-  <div class="errors">
-    <ul>
-      <g:eachError var="err" bean="${userInstance}">
-        <li><g:message error="${err}" /></li>
-      </g:eachError>
-    </ul>
-  </div>
-</g:hasErrors>
+
 <div>
 
   <g:form action="save">
-    <table>
+    <div class="dialog center singleBorder">
+    <table class="center">
+      <tr>
+        <td colspan="2">
+          <g:hasErrors bean="${userInstance}">
+            <div class="errors">
+              <ul>
+                <g:eachError var="err" bean="${userInstance}">
+                  <li><g:message error="${err}"/></li>
+                </g:eachError>
+              </ul>
+            </div>
+          </g:hasErrors>
+        </td>
+      </tr>
       <tr class="prop">
         <td class="name">
           <label for="username"><g:message code="user.username.label"/></label>
@@ -54,9 +60,9 @@
           <label for="email"><g:message code="user.gender.label"/></label>
         </td>
         <td class="value ${hasErrors(bean: userInstance, field: 'gender', 'errors')}">
-          <g:radioGroup name="gender" values="${Gender.values()}" labels="${Gender.values()*.i18nKey}" value="${userInstance.gender}" >
+          <g:radioGroup name="gender" values="${Gender.values()}" labels="${Gender.values()*.i18nKey}" value="${userInstance.gender}">
             <p>${it.radio} <g:message code="${it.label}"/></p>
-          </g:radioGroup> 
+          </g:radioGroup>
         </td>
       </tr>
       <tr class="prop">
@@ -86,7 +92,8 @@
         </td>
       </tr>
     </table>
-    <g:actionSubmit value="Register" action="save"/>
+    <div class="pageActions"><g:actionSubmit value="Register" action="save"/></div>
+    </div>
   </g:form>
 </div>
 
