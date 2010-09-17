@@ -25,8 +25,8 @@
             <artifactId>mysql-connector-java</artifactId>
         </dependency>
         <dependency>
-            <groupId>oracle</groupId>
-            <artifactId>oracle</artifactId>
+            <groupId>ojdbc</groupId>
+            <artifactId>ojdbc14</artifactId>
         </dependency>
 
         <dependency>
