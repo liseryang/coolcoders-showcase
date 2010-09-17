@@ -17,7 +17,7 @@
     * Birthday
     * Set of categories
  # User submits the form
- # All attributes are validated according to the constraints (See here for more details)
+ # All attributes are validated according to the constraints (See [DomainModelUser here] for more details)
  # If all attributes provided are valid, a new User is created with the given informations
  # User is redirected to the login page
 
