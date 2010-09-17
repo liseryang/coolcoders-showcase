@@ -38,6 +38,11 @@ public class UserServiceBean extends GenericService<User, Long>  {
     }
 
     @Override
+    public List<User> getAll() {
+        return super.getAll();    //To change body of overridden methods use File | Settings | File Templates.
+    }
+
+    @Override
     public List<User> find(Map<String, Object> restrictions) {
         return super.find(restrictions);
     }

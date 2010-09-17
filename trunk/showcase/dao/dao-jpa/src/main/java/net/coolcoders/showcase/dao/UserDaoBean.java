@@ -28,6 +28,11 @@ public class UserDaoBean extends GenericDao<User, Long> {
     }
 
     @Override
+    public List<User> getAll() {
+        return super.getAll();    //To change body of overridden methods use File | Settings | File Templates.
+    }
+
+    @Override
     public List<User> find(String attribute, Object value) {
         return super.find(attribute, value);
     }
