@@ -6,5 +6,10 @@
 = Details =
 
 == Normal Flow ==
+ # Add selected user to the list of users the current user is following
 
 == Alternative flows ==
+
+
+=== Current user already follows user ===
+ # Do nothing
