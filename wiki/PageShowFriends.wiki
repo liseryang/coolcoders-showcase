@@ -5,6 +5,9 @@
 = Layout =
 
 == Header ==
+ * Cool coders logo (left aligned)
+ * Link to [PageEditProfile Edit profile] with username of current user (right aligned)
+ * Link to [UserStoryLogout Logout] (right aligned)
 
 == Bread crumb ==
  * Link "Home" to [PageShowMessages show message page]
