@@ -3,14 +3,13 @@
 = User stories =
 
 || *User story* || *Description* ||
-|| [UserStoryLogin Login] || X ||
-|| [UserStoryRegister Register] || X ||
-|| [UserStoryShowRecentMessages Show recent messages] || X ||
-|| [UserStoryCreateMessage Create a message] || X ||
-|| [UserStoryShowYourFriends Show your friends] || X ||
-|| [UserStorySearchUser Search for user] || X ||
-|| [UserStoryAddNewFriend Add new friend] || X ||
-|| [UserStoryEditProfile Edit profile] || X ||
-|| [UserStoryLogout Logout] || X ||
-|| [UserStoryLogout Logout] || X ||
-|| [UserStoryDefaultDataLoding Load default data on startup] || X||
+|| [UserStoryLogin Login] || As a registered User i want to login to the system ||
+|| [UserStoryRegister Register] || As a new user, I want to register an account so that I can login to the system ||
+|| [UserStoryShowRecentMessages Show recent messages] || As a logged in user, I want to see a list of all messages of users I am currently following ||
+|| [UserStoryCreateMessage Create a message] || As an logged in user I want to create a new message to tell all users following me what cool stuff I am coding right now ||
+|| [UserStoryShowYourFriends Show your friends] || As an logged in user I want to see a list of users I'm currently following so that I can unfollow boring friends ||
+|| [UserStorySearchUser Search for user] || As a logged in user I want to search for users so that I can follow them ||
+|| [UserStoryAddNewFriend Add new friend] || As a logged in user I want to follow an user so that I can see his messages ||
+|| [UserStoryEditProfile Edit profile] || As a logged in user I want to update my profile ||
+|| [UserStoryLogout Logout] || As a logged in user I want to logout from the system to protect my account ||
+|| [UserStoryDefaultDataLoding Load default data on startup] || As an administrator I want sample data be loaded into the system on startup so that I can test the system right after startup ||
