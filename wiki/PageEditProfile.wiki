@@ -6,7 +6,7 @@
 == Header ==
 
 == Bread crumb ==
-* Link "Home" to [PageShowMessages show message page]
+ * Link "Home" to [PageShowMessages show message page]
  * Link "Your profile" with link to [PageEditProfile]
 
 == Body ==
