@@ -13,6 +13,17 @@
 
 == Body ==
 
+=== Search form ===
+ # Label "Search by username:"
+ # Textfield for search string
+ # Button "Search" to start the search
+
+=== Search result ===
+ # Table with with search result entries
+    # Column "Username"
+    # Column "Last post" (Date of newest post)
+    # Column with link "Follow" which triggers the user stors [UserStoryAddNewFriend Add new friend]
+
 = Examples = 
 
 == Grails plain ==
