@@ -1,3 +1,16 @@
 #summary One-sentence Overview user stories
 
-Summary of all user stories to be implemented in a single showcase
+= User stories =
+
+|| *User story* || *Description* ||
+|| [UserStoryLogin Login] || X ||
+|| [UserStoryRegister Register] || X ||
+|| [UserStoryShowRecentMessages Show recent messages] || X ||
+|| [UserStoryCreateMessage Create a message] || X ||
+|| [UserStoryShowYourFriends Show your friends] || X ||
+|| [UserStorySearchUser Search for user] || X ||
+|| [UserStoryAddNewFriend Add new friend] || X ||
+|| [UserStoryEditProfile Edit profile] || X ||
+|| [UserStoryLogout Logout] || X ||
+|| [UserStoryLogout Logout] || X ||
+|| [UserStoryDefaultDataLoding Load default data on startup] || X||
