@@ -18,6 +18,7 @@
     * Set of categories
  # User submits the form
  # All attributes are validated according to the constraints (See [DomainModelUser here] for more details)
+   # Special validation: Password must match transient attribute Repassword
  # If all attributes provided are valid, a new User is created with the given informations
  # User is redirected to the login page
 
