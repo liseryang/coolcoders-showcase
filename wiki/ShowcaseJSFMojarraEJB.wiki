@@ -13,7 +13,10 @@ JPA 2.0
 
 
 = Start up help =
-# Download and Install latest Netbeans[http://netbeans.org/downloads/] (6.9.1) with latest Glassfish (3.0.1) 
-# Checkout Project
-# Add JDBC/JNDI resource named "cc_showcase"
-# Deploy Project on Glassfish
+Download and Install latest Netbeans[http://netbeans.org/downloads/] (6.9.1) with latest Glassfish (3.0.1)
+ 
+Checkout Project
+
+Add JDBC/JNDI resource named "cc_showcase"
+
+Deploy Project on Glassfish
