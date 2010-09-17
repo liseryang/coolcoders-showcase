@@ -8,17 +8,22 @@
 == Normal Flow ==
 
  # User can change one of the following informations:
-    * Username (Prefilled)
-    * Password (Empty)
-    * Repassword (Empty)
-    * Fullname  (Prefilled)
-    * Email  (Prefilled)
-    * Gender  (Preselected)
-    * Birthday (Prefilled)
-    * Set of categories (Preselected)
+    * Username
+    * Password
+    * Repassword
+    * Fullname
+    * Email
+    * Gender
+    * Birthday
+    * Set of categories
  # User submits the form
  # All attributes are validated according to the constraints (See [DomainModelUser here] for more details)
  # If all attributes provided are valid, informations of the current user are updated according to the provided informations
  # User is redirected to the [PageShowMessages show message page]
 
 == Alternative flows ==
+
+=== At least one attribute does not pass validation ===
+
+ # Redisplay [PageEditProfile edit profile page] with all informations provided by the user
+ # Display an error message for each failed contraint
