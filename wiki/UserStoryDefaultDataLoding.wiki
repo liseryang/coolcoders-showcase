@@ -48,3 +48,6 @@ Create following dummy messages:
 
 
 == Alternative flows ==
+
+=== DB already in filled ===
+Don't create dummy entites
