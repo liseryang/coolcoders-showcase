@@ -20,5 +20,7 @@ Form with following elements:
 
 
  = Example Screens = 
+
 == Grails plain ==
+
 http://coolcoders-showcase.googlecode.com/svn/wiki/images/showcase_login_v1.png
