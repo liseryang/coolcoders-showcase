@@ -2,6 +2,8 @@
 
 As a registered User i want to login to the system
 
+== Corresponding pages ==
+ * [PageLogin Login]
 
 = Details =
 
@@ -15,8 +17,4 @@ As a registered User i want to login to the system
 === No User with matching username / password found ===
  # User gets redirected to the login page
  # A warning message "Login failed" is displayed
-
-
-= Corresponding pages =
- * [PageLogin Login]
 
