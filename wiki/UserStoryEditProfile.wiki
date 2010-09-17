@@ -7,4 +7,18 @@
 
 == Normal Flow ==
 
+ # User can change one of the following informations:
+    * Username (Prefilled)
+    * Password (Empty)
+    * Repassword (Empty)
+    * Fullname  (Prefilled)
+    * Email  (Prefilled)
+    * Gender  (Preselected)
+    * Birthday (Prefilled)
+    * Set of categories (Preselected)
+ # User submits the form
+ # All attributes are validated according to the constraints (See [DomainModelUser here] for more details)
+ # If all attributes provided are valid, informations of the current user are updated according to the provided informations
+ # User is redirected to the [PageShowMessages show message page]
+
 == Alternative flows ==
