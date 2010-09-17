@@ -2,4 +2,12 @@
 
 == Attributes ==
 
+|| *Type* || *Name* || *Primary?* || *Description* ||
+||`long`||id||Yes||Auto generated ID||
+||`String`||name||No||Used to identify the category||
+||`Set<`[DomainModelUser User]`>`||users||No||All users using this category||
+
 == Constraints ==
+
+|| *Attribute* || *Constraint* || *Validation error message* ||
+||name||Unique||Category already defined!||
