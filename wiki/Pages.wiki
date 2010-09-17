@@ -1,9 +1,9 @@
 #summary Summary of all pages contained in a single showcase
 
 || *Page* || *Description* ||
-|| [PageLogin Login] || X ||
-|| [PageRegister Register] || X ||
-|| [PageShowMessages Show messages] || X ||
-|| [PageShowFriends Show friends] || X ||
-||  [PageSearchNewFriends Search new friends] || X ||
-||  [PageEditProfile Edit profile] || X ||
+|| [PageLogin Login] || Page with login form and link to register page ||
+|| [PageRegister Register] || Page with form to register a new account ||
+|| [PageShowMessages Show messages] || Page with a form to submit a new message and a list of the newest messages of users followed by the logged in user ||
+|| [PageShowFriends Show friends] || Page with a list of users followed by the current user ||
+||  [PageSearchNewFriends Search new friends] || Page to search a user and to follow him ||
+||  [PageEditProfile Edit profile] || Page to edit the profile of the current user ||
