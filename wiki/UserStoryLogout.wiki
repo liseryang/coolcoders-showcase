@@ -6,4 +6,7 @@
 
 == Normal Flow ==
 
+ # Remove information of logged in user (e.g. session)
+ # Redirect user to the [PageLogin login page] 
+
 == Alternative flows ==
