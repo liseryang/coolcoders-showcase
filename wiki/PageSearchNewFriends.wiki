@@ -1,4 +1,6 @@
-= Usecases =
+= User stories =
+ * [UserStorySearchUser Search user]
+ * [UserStoryAddNewFriend Add new friend]
 
 = Layout =
 
