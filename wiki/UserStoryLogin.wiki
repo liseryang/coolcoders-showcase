@@ -14,7 +14,14 @@ As a registered User i want to login to the system
 
 == Alternative flows ==
 
+=== No  username provided ===
+ # User gets redirected to the login page
+ # A warning message "Username required!" is displayed
+
+=== No  password provided ===
+ # User gets redirected to the login page
+ # A warning message "Password required!" is displayed
+
 === No User with matching username / password found ===
  # User gets redirected to the login page
  # A warning message "Login failed" is displayed
-
