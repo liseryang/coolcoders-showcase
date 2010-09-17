@@ -6,6 +6,8 @@
 = Layout =
 
 == Header ==
+ * Cool coders logo (left aligned)
+ * Link to [UserStoryLogout Logut] (right aligned)
 
 == Bread crumb ==
 
