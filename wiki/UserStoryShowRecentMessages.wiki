@@ -16,7 +16,7 @@
 == Alternative flows ==
 
 === User follows no other user ===
- # Display a message box with the text _Currently you have no friends!_
+ # Display a message box with a warning text (See [PageShowFriends Show Friends])
 
 === No new messages for current user can be found ===
- # Display a message box with the text _Your friends are very layzy and have not written a single post yet!_
+ # Display a message box with a warning message  (See [PageShowFriends Show Friends])
