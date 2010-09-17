@@ -10,7 +10,7 @@
 ||`String`||email||No||
 ||`Gender`||gender||No||
 ||`Date`||birthday||No||
-||`Set<Category>`||categories||No||
+||`Set<`[DomainModelCategory]`>`||categories||No||
 
 == Constraints ==
 
