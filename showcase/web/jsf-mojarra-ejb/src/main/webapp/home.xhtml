@@ -22,31 +22,35 @@
                     <li><a href="#tabs-2">Users</a></li>
                 </ul>
                 <div id="tabs-1">
-                    <h:dataTable id="messages"
-                                 value="#{tweetsBean.messages}"
-                                 var="msg"
-                                 border="1"
-                                 >
-                        <h:column>
-
-                            <f:facet name="header">
-                                Message
-                            </f:facet>
-                            <h:outputText value="#{msg.content}"/>
-                        </h:column>
-                        <h:column>
-                            <f:facet name="header">
-                                Message
-                            </f:facet>
-                            <h:outputText value="#{msg.created}"/>
-                        </h:column>
-                        <h:column>
-                            <f:facet name="header">
-                                Message
-                            </f:facet>
-                            <h:outputText value="#{msg.author.username}"/>
-                        </h:column>
-                    </h:dataTable>
+                    <div class="ui-datatable ui-widget">
+                        <h:dataTable id="messages"
+                                     value="#{tweetsBean.messages}"
+                                     var="msg"
+                                     border="1"
+                                     headerClass="ui-state-default"
+                                     columnClasses=""
+                                     styleClass="ui-datatable-data ui-widget-content"
+                                >
+                            <h:column rowHeader="true">
+                                <f:facet name="header">
+                                    Message
+                                </f:facet>
+                                <h:outputText value="#{msg.content}"/>
+                            </h:column>
+                            <h:column rowHeader="true">
+                                <f:facet name="header">
+                                    Created
+                                </f:facet>
+                                <h:outputText value="#{msg.created}"/>
+                            </h:column>
+                            <h:column rowHeader="true">
+                                <f:facet name="header">
+                                    Author
+                                </f:facet>
+                                <h:outputText value="#{msg.author.username}"/>
+                            </h:column>
+                        </h:dataTable>
+                    </div>
                 </div>
                 <div id="tabs-2">
 
