@@ -14,6 +14,12 @@
  * Link "Your friends" with link to [PageShowFriends]
 
 == Body ==
+ # Table with entries of type [DomainModelUser user]
+    # Sortable column "Username"
+    # Sortable column "No. of posts" (Containing the post count of the user)
+    # Column with the action [UserStoryAddNewFriend Follow]
+ # A paging component displaying the amount of available pages, the current page and the number of all users the current user is following
+ # A link "Search new friends" to page [PageSearchNewFriends Search new friends]
 
 
 = Examples =
