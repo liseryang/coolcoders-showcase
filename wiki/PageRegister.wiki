@@ -1,4 +1,4 @@
-= Usecases =
+= User stories =
 
 = Layout =
 
