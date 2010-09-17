@@ -1,0 +1,11 @@
+#summary Showcase implemented with EJB + IceFaces (JSF)
+
+= Technologies = 
+
+== View ==
+
+== Service ==
+
+== Persistence == 
+
+= Start up help =
