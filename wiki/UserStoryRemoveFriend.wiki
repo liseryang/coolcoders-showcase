@@ -6,5 +6,10 @@
 = Details =
 
 == Normal Flow ==
+ # Remove selected user from the list of users the current user is following
+ # Display [PageShowFriends show friends page] with a message `You are not following user <username> anymore`
 
 == Alternative flows ==
+
+=== Current user does not follow selected user ===
+ # Do nothing 
