@@ -1,4 +1,5 @@
-= Usecases =
+= User stories =
+ * [UserStoryEditProfile Edit profile]
 
 = Layout =
 
