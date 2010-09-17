@@ -2,15 +2,17 @@
 
 == Attributes ==
 
-||*Type*||*Name*||*Primary?*||
-||`long`||id||Yes||
-||`String`||username||No||
-||`String`||fullname||No||
-||`String`||password||No||
-||`String`||email||No||
-||`Gender`||gender||No||
-||`Date`||birthday||No||
-||`Set<`[DomainModelCategory]`>`||categories||No||
+||*Type*||*Name*||*Primary?*||*Description*||
+||`long`||id||Yes||...||
+||`String`||username||No||...||
+||`String`||fullname||No||...||
+||`String`||password||No||...||
+||`String`||email||No||...||
+||`Gender`||gender||No||...||
+||`Date`||birthday||No||...||
+||`Set<`[DomainModelCategory Category]`>`||categories||No||...||
+||`List<`[DomainModelMessage Message]`>`||messages||No||...||
+||`Set<`[DomainModelUser User]`>`||following||No||...||
 
 == Constraints ==
 
