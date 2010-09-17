@@ -1,6 +1,7 @@
 = Overview =
 
 == Corresponding pages ==
+ * [PageEditProfile Edit profile]
 
 = Details =
 
