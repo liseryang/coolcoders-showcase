@@ -1,4 +1,4 @@
-= Usecases =
+= User stories =
 
  * [UserStoryShowRecentMessages Show recent messages]
  * [UserStoryCreateMessage Create new message]
