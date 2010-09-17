@@ -10,17 +10,17 @@
     * If no sort attribute can be detected, set `username` as sort attribute
  # Detect the current sort order
    * If no sort order can be found, set sort order to `username` 
-# Detect the current page size
+ # Detect the current page size
     * If no page size can be found, set page size to 10
-# Detect the current offset
+ # Detect the current offset
    * If no `offset` can be found, set `offset = 0`
    * If `offset<0`, set `offset = 0`
  # Load all [DomainModelUser users] the current user is follwing according to sort attribute, sort order, pagesize and offset
-# Display following attributes for each user:
+ # Display following attributes for each user:
    # Username
    # Count of all messages written by this user
    # Button to Unfollow the user
-# A click on the header of the table should
+ # A click on the header of the table should
   # Change the sort order, if the current attribute was already selected
   # Change the sprt attribute to the corresponding attribute and set the sort order to "asc"
 
