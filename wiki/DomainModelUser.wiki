@@ -3,16 +3,16 @@
 == Attributes ==
 
 ||*Type*||*Name*||*Primary?*||*Description*||
-||`long`||id||Yes||...||
-||`String`||username||No||...||
-||`String`||fullname||No||...||
-||`String`||password||No||...||
-||`String`||email||No||...||
-||`Gender`||gender||No||...||
-||`Date`||birthday||No||...||
-||`Set<`[DomainModelCategory Category]`>`||categories||No||...||
-||`List<`[DomainModelMessage Message]`>`||messages||No||...||
-||`Set<`[DomainModelUser User]`>`||following||No||...||
+||`long`||id||Yes||Auto generated ID||
+||`String`||username||No||Used to identify the user||
+||`String`||fullname||No||Real name of the user||
+||`String`||password||No||Password of the user (plain text)||
+||`String`||email||No||Email of the user||
+||`Gender`||gender||No||Gender (Provided by Enum Gender. Possible values: Gender.MALE, Gender.FEMALE)||
+||`Date`||birthday||No||Birthday of the User, precision Year, month, day||
+||`Set<`[DomainModelCategory Category]`>`||categories||No||Categories selected by the user to specify his interests||
+||`List<`[DomainModelMessage Message]`>`||messages||No||Messages created by the user||
+||`Set<`[DomainModelUser User]`>`||following||No||All users this user is following||
 
 == Constraints ==
 
