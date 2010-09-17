@@ -1,4 +1,5 @@
-= Usecases =
+= User stories =
+ * [UserStoryShowYourFriends Show your friends]
 
 = Layout =
 
