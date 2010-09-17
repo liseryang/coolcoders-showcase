@@ -7,4 +7,23 @@
 
 == Normal Flow ==
 
+ # User provides following informations:
+    * Username
+    * Password
+    * Repassword
+    * Fullname
+    * Email
+    * Gender
+    * Birthday
+    * Set of categories
+ # User submits the form
+ # All attributes are validated according to the constraints (See here for more details)
+ # If all attributes provided are valid, a new User is created with the given informations
+ # User is redirected to the login page
+
 == Alternative flows ==
+
+=== At least one attribute does not pass validation ===
+
+ # Redisplay register page with all informations provided by the user
+ # Display an error message for each failed contraint
