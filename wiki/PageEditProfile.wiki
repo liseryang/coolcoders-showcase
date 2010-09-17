@@ -8,3 +8,9 @@
 == Bread crumb ==
 
 == Body ==
+
+= Examples =
+
+== Grails plain ==
+
+http://coolcoders-showcase.googlecode.com/svn/wiki/images/showcase_editprofile_v1.png
