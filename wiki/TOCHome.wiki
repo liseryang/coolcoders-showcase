@@ -22,3 +22,7 @@
     * [PageShowFriends Show friends]
     * [PageSearchNewFriends Search new friends]
     * [PageEditProfile Edit profile]
+  * [DomainModel Domain model]
+    * [DomainModelUser User]
+    * [DomainModelCategory Category]
+    * [DomainModelMessage Message]
