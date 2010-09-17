@@ -7,12 +7,38 @@
 
 == Header ==
  * Cool coders logo (left aligned)
- * Link to [UserStoryLogout Logut] (right aligned)
+ * Link to [UserStoryLogout Logout] (right aligned)
 
 == Bread crumb ==
+ * Link to [PageShowMessages Home]
 
 == Body ==
+The body contains of 2 sections:
 
+=== Create new message section ===
+ # Form with following elements:
+    # Area for validation error messages
+    # Textblock `What cool code are you hacking right now?`
+    # Textarea to enter a new message
+    # Submit button to submit the message (See [UserStoryCreateMessage User story create message])
+
+=== Show all messages (Only if user has friends and messages are available) ===
+
+ # List of all messages, for each message a single row containing
+    # Creation date of the message
+    # Username of the user created this message
+    # The content of the message
+ # Below the list simple paging buttons:
+    # Button "Prev", if newer messages are available
+    # Button "Next", if older messages are available
+ # Bellow the list and paging elements, a link to the Page [PageShowFriends Show Friends] with the Text "View your friends"
+
+=== No friends warning (Only if user has no friends) ===
+ # Box with the text content "Currently you have no friends!"
+
+=== No messages warning (Only if there are no messages to display) ===
+ # Box with the text content "Your friends are very layzy and have not written a single post yet!"
+ 
 = Examples = 
 
 == Grails plain ==
