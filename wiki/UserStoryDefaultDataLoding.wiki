@@ -6,4 +6,19 @@
 
 == Normal Flow ==
 
+On startup create the following entities:
+
+=== Categories ===
+ || *Name* ||
+ || JEE5 ||
+ || JEE6 ||
+ || Grails ||
+ || Wicket ||
+ || GWT ||
+ || JSF ||
+ || Icefaces ||
+ || Primefaces ||
+ || SmartGWT ||
+
+
 == Alternative flows ==
