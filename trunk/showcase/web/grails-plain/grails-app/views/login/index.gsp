@@ -9,13 +9,7 @@
   <span class="menuButton"><a class="home" href="${createLink(uri: '/')}"><g:message code="default.login.label"/></a></span>
 </content>
 
-<g:hasErrors bean="${loginCommandInstance}">
-  <ul>
-    <g:eachError var="err" bean="${loginCommandInstance}">
-      <li>${err}</li>
-    </g:eachError>
-  </ul>
-</g:hasErrors>
+
 <g:if test="${flash.error}">
   <div class="message">${flash.error}</div>
 </g:if>
@@ -23,6 +17,21 @@
   <div class="dialog center singleBorder">
     <g:form action="login">
       <table width="100%">
+
+        <g:hasErrors bean="${loginCommandInstance}">
+          <tr>
+            <td colspan="2" style="text-align:left;">
+              <div class="errors">
+                <ul>
+                  <g:eachError var="err" bean="${loginCommandInstance}">
+                    <li><g:message error="${err}"/></li>
+                  </g:eachError>
+                </ul>
+              </div>
+            </td>
+          </tr>
+        </g:hasErrors>
+
         <tr class="prop">
           <td class="name"><label for="username"><g:message code="user.username.label"/>:</label></td>
           <td class="value"><g:textField name="username" value="${loginCommandInstance.username}"/></td>
