@@ -1,6 +1,7 @@
 = Overview =
 
 == Corresponding pages ==
+ * [PageShowMessages Show messages]
 
 = Details =
 
