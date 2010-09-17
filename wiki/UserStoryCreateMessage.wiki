@@ -6,5 +6,13 @@
 = Details =
 
 == Normal Flow ==
+ # User enters a message and clicks "Send"
+ # If all constraints of the [DomainModelMessage message] are valid, create a new message and ad the message to `currentUser.messages`
+ # Reload the [PageShowMessages Show message page] 
 
 == Alternative flows ==
+
+=== At least 1 contraint is not valid ===
+ # Redisplay the [PageShowMessages Show message page]
+ # Redisplay the provided message
+ # Show an error message for the validation error to the user
