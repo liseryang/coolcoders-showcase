@@ -10,6 +10,7 @@
 || [UserStoryShowYourFriends Show your friends] || As an logged in user I want to see a list of users I'm currently following so that I can unfollow boring friends ||
 || [UserStorySearchUser Search for user] || As a logged in user I want to search for users so that I can follow them ||
 || [UserStoryAddNewFriend Add new friend] || As a logged in user I want to follow an user so that I can see his messages ||
+|| [UserStoryRemoveFriend Remove existing friend] || As a logged in user i want to unfollow an user I am following so i dont have to read his messages again ||
 || [UserStoryEditProfile Edit profile] || As a logged in user I want to update my profile ||
 || [UserStoryLogout Logout] || As a logged in user I want to logout from the system to protect my account ||
 || [UserStoryDefaultDataLoding Load default data on startup] || As an administrator I want sample data be loaded into the system on startup so that I can test the system right after startup ||
