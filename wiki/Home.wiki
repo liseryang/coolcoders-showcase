@@ -1,8 +1,33 @@
 #summary Main WIkipage
 
-= Showcases =
+= [Showcases Showcases] = 
 
+    * [ShowcaseGrails Grails]
+    * [ShowcaseJSFMojarraEJB JSF with Mojarra based on EJB]
+    * [ShowcaseJSFIcefacesEJB JSF with Icefaces based on EJB]
+    * [ShowcaseJSFPrimefacesEJB JSF with Primcefaces based on EJB]
 
+= [UserStories Userstories] = 
+    * [UserStoryLogin Login]
+    * [UserStoryRegister Register]
+    * [UserStoryShowRecentMessages Show recent messages]
+    * [UserStoryCreateMessage Create a message]
+    * [UserStoryShowYourFriends Show your friends]
+    * [UserStorySearchUser Search for user]
+    * [UserStoryAddNewFriend Add new friend]
+    * [UserStoryEditProfile Edit profile]
+    * [UserStoryLogout Logout]
+    * [UserStoryDefaultDataLoding Load default data on startup]
+ 
+= [Pages Pages] = 
+    * [PageLogin Login]
+    * [PageRegister Register]
+    * [PageShowMessages Show messages]
+    * [PageShowFriends Show friends]
+    * [PageSearchNewFriends Search new friends]
+    * [PageEditProfile Edit profile]
 
-
-= Userstories =
+= [DomainModel Domain model] = 
+    * [DomainModelUser User]
+    * [DomainModelCategory Category]
+    * [DomainModelMessage Message]
