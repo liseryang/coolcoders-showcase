@@ -3,9 +3,13 @@
 = Technologies = 
 
 == View ==
+JSF 2.0 (Mojarra)
 
 == Service ==
+EJB 3.1
 
 == Persistence == 
+JPA 2.0
+
 
 = Start up help =
