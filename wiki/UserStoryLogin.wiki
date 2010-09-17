@@ -1,0 +1,22 @@
+= Overview =
+
+As a registered User i want to login to the system
+
+
+= Details =
+
+== Normal Flow ==
+ # User enters his username and his password
+ # User clicks "Login"
+ # User with this username / password combination gets logged in
+
+== Alternative flows ==
+
+=== No User with matching username / password found ===
+ # User gets redirected to the login page
+ # A warning message "Login failed" is displayed
+
+
+= Corresponding pages =
+ * [PageLogin Login]
+
