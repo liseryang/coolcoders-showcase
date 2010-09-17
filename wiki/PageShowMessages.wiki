@@ -1,5 +1,8 @@
 = Usecases =
 
+ * [UserStoryShowRecentMessages Show recent messages]
+ * [UserStoryCreateMessage Create new message]
+
 = Layout =
 
 == Header ==
