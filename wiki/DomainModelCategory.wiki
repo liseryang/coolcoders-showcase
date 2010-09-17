@@ -10,4 +10,5 @@
 == Constraints ==
 
 || *Attribute* || *Constraint* || *Validation error message* ||
+||id||Unique||...||
 ||name||Unique||Category already defined!||
