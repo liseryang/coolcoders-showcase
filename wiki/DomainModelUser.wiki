@@ -18,4 +18,5 @@
 ||username||Unique||Username already in use!||
 ||username||max length 32 character||Username too long, only 32 characters allowed!||
 ||password||Must match regular expression `^.*(?=.{6,})(?=.*\\d)(?=.*[a-zA-Z]).*$` ||Password must contain at least 1 character and 1 number!||
-||email||Must be a valid email address||Email is not a valid email!||
+||email||Unique||Email is already in use!||
+||email||Must be a valid email address||Email xxx is not a valid email!||
