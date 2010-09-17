@@ -12,6 +12,7 @@
     * [UserStoryShowYourFriends Show your friends]
     * [UserStorySearchUser Search for user]
     * [UserStoryAddNewFriend Add new friend]
+    * [UserStoryRemoveFriend Remove existing friend]
     * [UserStoryEditProfile Edit profile]
     * [UserStoryLogout Logout]
     * [UserStoryDefaultDataLoding Load default data on startup]
