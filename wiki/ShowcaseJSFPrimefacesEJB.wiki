@@ -1,0 +1,11 @@
+#summary Showcase implemented with EJB + PrimeFaces (JSF)
+
+= Technologies = 
+
+== View ==
+
+== Service ==
+
+== Persistence == 
+
+= Start up help =
