@@ -8,4 +8,5 @@
     * [UserStoryLogin Login]
     * [UserStoryRegister Register]
     * [UserStoryShowRecentMessages Show recent messages]
+    * [UserStoryCreateMessage Create a message]
     * [UserStoryShowYourFriends Show your friends]
