@@ -1,0 +1,22 @@
+= Usecases =
+ * [UseCaseLogin Login]
+
+= Layout =
+
+== Header ==
+ * Cool coders logo (left aligned)
+ * Link to [PageRegister Register page] (right aligned)
+
+== Bread crumb ==
+ * Link "Login"
+
+== Body ==
+Form with following elements:
+ * Error message box (Only visible if login fails)
+ * Label "Username" with textfield for the username
+ * Label "Password" with password field for the password
+ * Button "Login" to submit the form
+ * Link with text "Register" to the  [PageRegister Register page]
+
+
+
