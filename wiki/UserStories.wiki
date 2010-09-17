@@ -1,4 +1,4 @@
-#summary One-sentence Overview user stories
+#summary Overview user stories
 
 = User stories =
 
