@@ -3,6 +3,7 @@
 = Classes =
 The domain model consists of the following classes:
 
- * [DomainModelUser User]: All informations about an User of the System
- * [DomainModelCategory Category] A Category contains a list of users 
- * [DomainModelMessage] Message contains a short text message of an user
+|| *Class* || Description ||
+|| [DomainModelUser User] || All informations about an User of the System ||
+|| [DomainModelCategory Category] || A Category contains a list of users  ||
+|| [DomainModelMessage] || Message contains a short text message of an user ||
