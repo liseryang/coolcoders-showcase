@@ -2,7 +2,7 @@
 
 == Attributes ==
 
-||*Type*||*Name*||*Primary?*||*Description*||
+|| *Type* || *Name* || *Primary?* || *Description* ||
 ||`long`||id||Yes||Auto generated ID||
 ||`String`||username||No||Used to identify the user||
 ||`String`||fullname||No||Real name of the user||
@@ -16,7 +16,7 @@
 
 == Constraints ==
 
-||*Attribute*||*Constraint*||*Validation error message*||
+|| *Attribute* || *Constraint* || *Validation error message* ||
 ||username||Unique||Username already in use!||
 ||username||max length 32 character||Username too long, only 32 characters allowed!||
 ||password||Must match regular expression `^.*(?=.{6,})(?=.*\\d)(?=.*[a-zA-Z]).*$` ||Password must contain at least 1 character and 1 number!||
