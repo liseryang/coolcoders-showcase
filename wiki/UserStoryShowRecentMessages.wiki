@@ -6,5 +6,17 @@
 = Details =
 
 == Normal Flow ==
+ # Detect the current `offset` for the message list selected by the user. 
+    * If no offset can be found, set `offset` to 0
+    * If `offset<0` set `offset = 0`
+ # Display the 10 newest [DomainModelMessage message] created by the current user or an user the current [DomainModelUser user] is following starting with number `offset`
+ # If there are more than 10 messages, display a link "Next" in order change the offset to `offset + 10`
+ # If the `offset` is bigger 0, display a link "Prev" wich loads the page again with a `offset = currentOffset -10`
 
 == Alternative flows ==
+
+=== User follows no other user ===
+ # Display a message box with the text _Currently you have no friends!_
+
+=== No new messages for current user can be found ===
+ # Display a message box with the text _Your friends are very layzy and have not written a single post yet!_
