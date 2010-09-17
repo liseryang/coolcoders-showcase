@@ -17,3 +17,8 @@ Form with following elements:
  * Label "Password" with password field for the password
  * Button "Login" to submit the form
  * Link with text "Register" to the  [PageRegister Register page]
+
+
+ = Example Screens = 
+== Grails plain ==
+http://coolcoders-showcase.googlecode.com/svn/wiki/images/showcase_login_v1.png
