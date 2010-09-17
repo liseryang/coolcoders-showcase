@@ -19,7 +19,7 @@ Form with following elements:
  * Link with text "Register" to the  [PageRegister Register page]
 
 
- = Example Screens = 
+= Example Screens = 
 
 == Grails plain ==
 
