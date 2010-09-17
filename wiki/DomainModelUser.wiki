@@ -17,6 +17,7 @@
 == Constraints ==
 
 || *Attribute* || *Constraint* || *Validation error message* ||
+||id||Unique||...||
 ||username||Unique||Username already in use!||
 ||username||max length 32 character||Username too long, only 32 characters allowed!||
 ||password||Must match regular expression `^.*(?=.{6,})(?=.*\\d)(?=.*[a-zA-Z]).*$` ||Password must contain at least 1 character and 1 number!||
