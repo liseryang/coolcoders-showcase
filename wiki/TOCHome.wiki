@@ -1,4 +1,4 @@
-  * [Welcome Home]
+  * [Home Home]
   * [Showcases Showcases]
     * [Grails]
     * [JSFMojarraEJB JSF with Mojarra based on EJB]
