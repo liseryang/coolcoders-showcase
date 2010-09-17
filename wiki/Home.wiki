@@ -1,5 +1,4 @@
 #summary Main WIkipage
-#labels Featured
 
 = Showcases =
 
