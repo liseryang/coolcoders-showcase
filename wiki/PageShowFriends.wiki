@@ -7,6 +7,8 @@
 == Header ==
 
 == Bread crumb ==
+ * Link "Home" to [PageShowMessages show message page]
+ * Link "Your friends" with link to [PageShowFriends]
 
 == Body ==
 
