@@ -15,4 +15,12 @@
         <module>jsf-icefaces-ejb</module>
         <module>jsf-primefaces-ejb</module>
     </modules>
+    <profiles>
+        <profile>
+            <id>bambo</id>
+            <modules>
+                <module>jsf-primefaces-ejb-bambo</module>
+            </modules>
+        </profile>
+    </profiles>
 </project>
