@@ -120,6 +120,11 @@
                 <artifactId>jsf-mojarra-ejb</artifactId>
                 <version>${project.version}</version>
             </dependency>
+            <dependency>
+                <groupId>${project.groupId}</groupId>
+                <artifactId>jsf-primefaces-ejb</artifactId>
+                <version>${project.version}</version>
+            </dependency>
 
 
             <dependency>
@@ -128,7 +133,7 @@
                 <version>6.0</version>
                 <scope>provided</scope>
             </dependency>
-            
+
             <!-- Apache Commons -->
             <dependency>
                 <groupId>commons-beanutils</groupId>
@@ -153,9 +158,9 @@
                 <version>5.1.6</version>
             </dependency>
             <dependency>
-                <groupId>oracle</groupId>
-                <artifactId>oracle</artifactId>
-                <version>10.2.0.3</version>
+                <groupId>ojdbc</groupId>
+                <artifactId>ojdbc14</artifactId>
+                <version>10.2.0.4</version>
             </dependency>
 
             <!-- Hibernate -->
@@ -256,7 +261,7 @@
                 <version>6.0</version>
                 <scope>provided</scope>
             </dependency>
-            
+
             <!-- Test Dependencies -->
             <dependency>
                 <groupId>junit</groupId>
@@ -284,13 +289,6 @@
             <id>bambo.it</id>
             <url>http://artifactory.bambo.it:9090/repo</url>
         </repository>
-        <repository>
-            <id>prime-repo</id>
-            <name>Prime Technology Maven Repository</name>
-            <url>http://repository.prime.com.tr</url>
-            <layout>default</layout>
-        </repository>
-        
     </repositories>
 
     <pluginRepositories>
