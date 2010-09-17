@@ -1,7 +1,7 @@
 package net.coolcoders.showcase.web;
 
 import javax.annotation.Resource;
-import javax.inject.Inject;
+import javax.ejb.*;
 import java.util.Date;
 
 /**
