@@ -29,8 +29,8 @@ public abstract class GenericDao<T, PK extends Serializable> {
 
     private Class<T> persistentClass;
     @PersistenceContext
-    private EntityManager em;
-    private CriteriaBuilder cb;
+    protected EntityManager em;
+    protected CriteriaBuilder cb;
 
     @PostConstruct
     public void init() {
@@ -63,6 +63,10 @@ public abstract class GenericDao<T, PK extends Serializable> {
         Map<String, Object> restrictions = new HashMap<String, Object>();
         restrictions.put(attribute, value);
         return find(restrictions);
+    }
+
+    public List<T> getAll() {
+        return find(new HashMap<String, Object>());
     }
 
     public T findSingleResult(String attribute, Object value) {

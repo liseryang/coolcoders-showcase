@@ -40,6 +40,10 @@ public abstract class GenericService<T, PK extends Serializable> {
         return genericDao.find(id);
     }
 
+    public List<T> getAll() {
+        return genericDao.getAll();
+    }
+
     public List<T> find(Map<String, Object> restrictions) {
         return genericDao.find(restrictions);
     }
