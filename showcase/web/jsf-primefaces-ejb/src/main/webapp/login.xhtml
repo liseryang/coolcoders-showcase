@@ -3,7 +3,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml"
       xmlns:ui="http://java.sun.com/jsf/facelets"
       xmlns:h="http://java.sun.com/jsf/html"
-    xmlns:p="http://primefaces.prime.com.tr/ui" >
+      xmlns:p="http://primefaces.prime.com.tr/ui" >
 
     <body>
 
@@ -16,9 +16,11 @@
                         <ul>
                             <li><a href="#tabs-1">Login</a></li>
                         </ul>
-                        <div id="tabs-1">
-                            <center>
+                        <div id="tabs-1" align="center">
                                 <div class="ui-widget-content ui-corner-all" style="padding: 3px">
+                                    <div>
+                                        <h:outputText value="${loginBean.message}" style="color: red;" />
+                                    </div>
                                     <h:panelGrid columns="2">
                                         <h:outputLabel value="Username:" styleClass="label"/>
                                         <h:inputText value="#{loginBean.username}" />
@@ -28,15 +30,19 @@
 
                                     </h:panelGrid>
                                     <div>
-                                        <h:outputText value="${loginBean.message}" style="color: red;" />
-                                    </div>
-                                    <div>
                                         <h:commandButton value="Login" action="#{loginBean.login}" />
                                         <h:commandButton value="Register" action="register" />
-                                        <h:commandButton value="Init" action="#{loginBean.initDb}" />
+                                    </div>
+                                    <div style="margin: 5px 0px 5px 0px;">
+                                        <h:panelGrid columns="1" style="border: dashed">
+                                            <h:outputText value="Following Users exists by default" style="font-weight:bold;" />
+                                            <h:outputText value="abaumgartner / test123" />
+                                            <h:outputText value="anerlich / test123" />
+                                            <h:outputText value="jmihelko / test123" />
+                                            <h:outputText value="pschneider-manzell / test123" />
+                                        </h:panelGrid>
                                     </div>
                                 </div>
-                            </center>
                         </div>
                     </div>
                 </h:form>

@@ -50,8 +50,14 @@ public class User extends AbstractBaseEntity {
     @OneToMany(mappedBy = "author", cascade = CascadeType.ALL)
     private Set<Message> messages = new HashSet<Message>();
 
-    @ManyToMany
+    @ManyToMany(mappedBy = "users")
     private Set<Category> categories = new HashSet<Category>();
+
+    @ManyToMany(mappedBy = "followedBy")
+    private Set<User> following = new HashSet<User>();
+
+    @ManyToMany()
+    private Set<User> followedBy = new HashSet<User>();
 
     public User() {
     }
@@ -127,6 +133,14 @@ public class User extends AbstractBaseEntity {
 
     public void setCategories(Set<Category> categories) {
         this.categories = categories;
+    }
+
+    public Set<User> getFollowing() {
+        return following;
+    }
+
+    public void setFollowing(Set<User> following) {
+        this.following = following;
     }
 
     @Transient

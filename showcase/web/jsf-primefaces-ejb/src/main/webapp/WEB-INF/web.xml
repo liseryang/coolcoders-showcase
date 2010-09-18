@@ -9,7 +9,7 @@
 
     <context-param>
         <param-name>primefaces.skin</param-name>
-        <param-value>none</param-value>
+        <param-value>Sunny</param-value>
     </context-param>
 
     <filter>
