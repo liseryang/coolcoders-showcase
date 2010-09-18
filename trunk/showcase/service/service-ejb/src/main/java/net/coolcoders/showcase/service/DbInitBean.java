@@ -11,6 +11,7 @@ import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
+import java.util.UUID;
 
 /**
  * Created by IntelliJ IDEA.
@@ -30,22 +31,38 @@ public class DbInitBean {
         List<User> users = new ArrayList<User>();
         SimpleDateFormat sdf = new SimpleDateFormat("dd.MM.yyyy");
         try {
-            User u1 = new User("Andreas Baumgartner", "bamboit", "bam-1543", "andreas@bambo.it", Gender.MALE, sdf.parse("15.09.1979"));
-            users.add(u1);
-            User u2 = new User("Peter Schneider-Manzell", "petersm", "bam-1543", "peter@schneider-manzell.de", Gender.MALE, sdf.parse("15.09.1979"));
-            users.add(u2);
+            User bambo = new User("Andreas Baumgartner", "abaumgartner", "test123", "andreas@bambo.it", Gender.MALE, sdf.parse("15.09.1979"));
+            users.add(bambo);
+            User peter = new User("Peter Schneider-Manzell", "pschneider-manzell", "test123", "peter@schneider-manzell.de", Gender.MALE, null);
+            users.add(peter);
+            User andreas = new User("Andreas Nerlich", "anerlich", "test123", "andreas.nerlich@gmail.com", Gender.MALE, null);
+            users.add(andreas);
+            User josip = new User("Josip Mihelko", "jmihelko", "test123", "josip.mihelko@googlemail.com", Gender.MALE, null);
+            users.add(josip);
 
-            for (User user : users) {
-                for (int i = 0; i < 5; i++) {
-                    Message message = new Message(user, new Date(), user.getEmail() + " " + i);
-                    user.getMessages().add(message);
-                }
-            }
+            bambo.getFollowing().add(peter);
+            josip.getFollowing().add(andreas);
+            andreas.getFollowing().add(bambo);
+
+            createDummyMessages(bambo, 100);
+            createDummyMessages(josip, 50);
+            createDummyMessages(andreas, 10);
+
+            userServiceBean.saveAll(users);
+
         } catch (ParseException e) {
             throw new RuntimeException(e);
         }
 
         userServiceBean.saveAll(users);
     }
+
+    private void createDummyMessages(User u, int count) {
+        for( int i = 0; i < count; i++) {
+            Message m = new Message(u, new Date(), UUID.randomUUID().toString());
+            u.getMessages().add(m);
+        }
+    }
+
 
 }

@@ -59,10 +59,13 @@ public class LoginBean {
     }
 
     public String login() {
+        if(userServiceBean.getAll().size() == 0) {
+            dbInitBean.initDb();
+        }
         Map<String, Object> restrictions = new HashMap<String, Object>();
         restrictions.put("username", username);
         restrictions.put("password", password);
-        
+
         User user = userServiceBean.findSingleResult(restrictions);
         if(user == null) {
             message = "Login failed!";
@@ -76,11 +79,6 @@ public class LoginBean {
     public String logout() {
         sessionBean.setCurrentUser(null);
         return "login";
-    }
-
-    public String initDb() {
-        dbInitBean.initDb();
-        return null;
     }
 
 }
