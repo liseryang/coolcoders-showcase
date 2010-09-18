@@ -51,7 +51,7 @@
         
     </dependencies>
     <build>
-        <finalName>showcase-primefaces-ejb</finalName>
+        <finalName>showcase-primefaces-ejb-bambo</finalName>
         <plugins>
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
