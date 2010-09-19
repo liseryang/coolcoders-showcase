@@ -71,7 +71,7 @@ class BootStrap {
 
 
   User createDummyUser(String username, String fullname, String email, Gender gender) {
-    User dummyUser = new User(username: username, password: "test123", email: email, gender: gender).save()
+    User dummyUser = new User(username: username, fullname:fullname, password: "test123", email: email, gender: gender).save()
     log.debug("Created user $dummyUser")
     return dummyUser
   }

@@ -44,7 +44,7 @@
             <label for="fullname"><g:message code="user.fullname.label"/></label>
           </td>
           <td class="value ${hasErrors(bean: userInstance, field: 'fullname', 'errors')}">
-            <g:textField name="fullname"/>
+            <g:textField name="fullname" value="${userInstance.fullname}"/>
           </td>
         </tr>
         <tr class="prop">
