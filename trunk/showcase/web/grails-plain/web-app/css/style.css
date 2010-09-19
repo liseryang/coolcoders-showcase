@@ -710,6 +710,15 @@ td.errors input {
     padding-top: 20px;
 }
 
+.pageActions a {
+    margin: 5px;
+}
+
+.pageActions .currentStep {
+    font-weight:bold;
+    margin:5px;
+}
+
 .searchUserBox {
     margin-top: 20px;
     text-align: center;

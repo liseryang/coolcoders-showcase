@@ -10,7 +10,7 @@ class UserService {
   }
 
 
-  def findAllFollwingUsers(User userInstance, String sortAttribute, String order) {
+  def findAllFollwingUsers(User userInstance, String sortAttribute, String order,int pageSize,int offset) {
     String hqlQueryString = "SELECT followingUser from User as user JOIN user.following as followingUser WHERE user.id=:userId"
     if (sortAttribute == "username") {
       hqlQueryString = hqlQueryString + " ORDER BY followingUser.username " + order
@@ -18,6 +18,6 @@ class UserService {
     else if (sortAttribute == "messageCount") {
       hqlQueryString = hqlQueryString + " ORDER BY size(followingUser.messages) " + order
     }
-    return User.executeQuery(hqlQueryString, ["userId": userInstance.id])
+    return User.executeQuery(hqlQueryString, ["userId": userInstance.id],[max:pageSize, offset:offset])
   }
 }
