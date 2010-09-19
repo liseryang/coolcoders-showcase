@@ -1,4 +1,4 @@
-<%@ page import="net.coolcoders.showcase.Message" %>
+<%@ page import="net.coolcoders.showcase.User; net.coolcoders.showcase.Message" %>
 <html>
 <head>
   <title>Friends of ${session.currentUser.username}</title>
@@ -15,12 +15,12 @@
     <thead>
     <tr>
       <th>
-        <g:link action="following" params="${[sort:'username',order:nextSortOrder]}">
+        <g:link action="following" params="${[sort:'username',order:nextSortOrder,max:pageSize]}">
           <g:message code="user.username.label"/>
         </g:link>
       </th>
       <th>
-        <g:link action="following" params="${[sort:'messageCount',order:nextSortOrder]}">
+        <g:link action="following" params="${[sort:'messageCount',order:nextSortOrder,max:pageSize]}">
           <g:message code="user.post.count.label"/>
         </g:link>
       </th>
@@ -46,6 +46,15 @@
     </tbody>
   </table>
 </div>
-<div class="pageActions"><g:link action="search"><g:message code="default.button.search.label"/></g:link></div>
+<div class="pageActions">
+  <g:paginate controller="user" action="following" total="${totalCount}"/>
+</div>
+<div class="pageActions">
+  <span><g:message code="paging.pagesize"/></span><g:select name="max" from="${[10,25,50,100]}" value="${pageSize}" onchange="location.href='${createLink(action:'following')}?max='+document.getElementById('max').value"/>
+</div>
+<div class="pageActions">
+  <g:link action="search"><g:message code="default.button.search.label"/></g:link>
+
+</div>
 </body>
 </html>

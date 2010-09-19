@@ -4,26 +4,35 @@ class UserController {
 
   private static final String SORTORDER_ASC = "asc"
   private static final String SORTORDER_DESC = "desc"
+  private static final int PAGESIZE_DEFAULT = 10
 
   def userService
 
   def following = {
     log.debug("Entering following with params $params")
-    def currentSortOrder = params.order
-    if (!currentSortOrder) {
-      currentSortOrder = SORTORDER_ASC
+    if (!params.order) {
+      params.order = SORTORDER_ASC
     }
     def nextSortOrder = SORTORDER_DESC
-    if (currentSortOrder == SORTORDER_DESC) {
+    if (params.order == SORTORDER_DESC) {
       nextSortOrder = SORTORDER_ASC
     }
-    def sortParameter = params.sort
-    if (!sortParameter) {
-      sortParameter = "username"
+    if (!params.sort) {
+      params.sort = "username"
     }
+
+    if(!params.max) {
+      params.max = PAGESIZE_DEFAULT
+    }
+
+    if(!params.offset) {
+      params.offset = 0
+    }
+
     User userInstance = User.get(session.currentUser.id)
-    def followingUsers = userService.findAllFollwingUsers(userInstance, sortParameter, currentSortOrder)
-    [followingUsers: followingUsers, nextSortOrder: nextSortOrder]
+    def followingUsers = userService.findAllFollwingUsers(userInstance, params.sort, params.order, params.max as int, params.offset as int)
+    def totalCount = userInstance.following.size()
+    [followingUsers: followingUsers, nextSortOrder: nextSortOrder,totalCount:totalCount,pageSize:params.max]
   }
 
 
