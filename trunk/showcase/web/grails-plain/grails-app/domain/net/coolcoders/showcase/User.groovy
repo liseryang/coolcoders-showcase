@@ -5,6 +5,7 @@ class User {
   String username
   String fullname
   String password
+  String repassword
   String email
   Gender gender = Gender.MALE
   Date birthday
@@ -19,6 +20,8 @@ class User {
     password(blank: false,matches:'^.*(?=.{6,})(?=.*\\d)(?=.*[a-zA-Z]).*$')
     email(blank: false, email: true, unique: true) 
   }
+
+  static transients = ['repassword']
 
   public String toString() {
     "username: $username, email: $email"
