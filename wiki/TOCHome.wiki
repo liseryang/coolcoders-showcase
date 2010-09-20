@@ -1,6 +1,7 @@
   * [Home Home]
   * [Showcases Showcases]
     * [ShowcaseGrails Grails]
+    * [ShowcaseGrailsSmartGWT Grails with SmartGWT]
     * [ShowcaseJSFMojarraEJB JSF with Mojarra based on EJB]
     * [ShowcaseJSFIcefacesEJB JSF with Icefaces based on EJB]
     * [ShowcaseJSFPrimefacesEJB JSF with Primcefaces based on EJB]
