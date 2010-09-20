@@ -8,7 +8,7 @@
 
 <content tag="breadcrump">
   <span class="menuButton"><a class="home" href="${createLink(uri: '/')}"><g:message code="default.message.label"/></a></span>
-  <span class="menuButton"><a class="profile" href="${createLink(action: "indx")}"><g:message code="default.profile.label"/></a></span>
+  <span class="menuButton"><a class="profile" href="${createLink(action: "index")}"><g:message code="default.profile.label"/></a></span>
 </content>
 <h2><g:message code="profile.heading"/></h2>
 
@@ -71,6 +71,14 @@
           </td>
           <td class="value ${hasErrors(bean: userInstance, field: 'password', 'errors')}">
             <g:passwordField name="password" value="${userInstance.password}"/>
+          </td>
+        </tr>
+        <tr class="prop">
+          <td class="name">
+            <label for="repassword"><g:message code="user.repassword.label"/></label>
+          </td>
+          <td class="value ${hasErrors(bean: userInstance, field: 'repassword', 'errors')}">
+            <g:passwordField name="repassword" value="${userInstance.repassword}"/>
           </td>
         </tr>
         <tr class="prop">

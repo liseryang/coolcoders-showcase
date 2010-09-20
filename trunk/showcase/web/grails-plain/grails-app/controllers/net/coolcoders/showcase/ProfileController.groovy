@@ -5,6 +5,7 @@ class ProfileController {
   def index = {
     User userInstance = User.get(session.currentUser.id)
     def availableCategories = Category.list()
+    userInstance.repassword = userInstance.password
     [userInstance: userInstance, availableCategories: availableCategories]
   }
 
@@ -26,7 +27,12 @@ class ProfileController {
         userInstance.categories = Category.getAll(categoryIds)
       }
     }
-    if (!userInstance.validate()) {
+    userInstance.validate()
+    if (userInstance.password != userInstance.repassword) {
+      userInstance.errors.rejectValue('repassword', 'invalid.repassword')
+    }
+
+    if (userInstance.hasErrors()) {
       def availableCategories = Category.list()
       render(view: "index", model: [userInstance: userInstance, availableCategories: availableCategories])
     }
