@@ -5,4 +5,5 @@ package net.coolcoders.smartgwt.client;
  */
 public class ViewConstants {
     public static final int STD_MEMBERS_MARGIN = 20;
+    public static final int STD_BUTTON_WIDTH = 120;
 }

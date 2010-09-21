@@ -4,7 +4,6 @@ import com.google.gwt.user.client.rpc.AsyncCallback;
 import com.smartgwt.client.types.Alignment;
 import com.smartgwt.client.util.SC;
 import com.smartgwt.client.widgets.Button;
-import com.smartgwt.client.widgets.Label;
 import com.smartgwt.client.widgets.events.ClickEvent;
 import com.smartgwt.client.widgets.events.ClickHandler;
 import com.smartgwt.client.widgets.form.DynamicForm;
@@ -17,18 +16,18 @@ import net.coolcoders.smartgwt.client.LoginAction;
 import net.coolcoders.smartgwt.client.LoginResponse;
 import net.coolcoders.smartgwt.client.ShowCaseUi;
 import net.coolcoders.smartgwt.client.ViewConstants;
+import net.coolcoders.smartgwt.components.ShowcaseBaseButton;
+import net.coolcoders.smartgwt.components.ShowcaseBaseView;
 
 /**
  * @author <a href="mailto:josip.mihelko@googlemail.com">Josip Mihelko</a>
  */
 public class LoginView extends ShowcaseBaseView implements ClickHandler {
-    private ShowCaseUi ui;
     DynamicForm loginForm;
     private Button login, register;
 
     public LoginView(GwtActionServiceAsync actionServiceAsync, ShowCaseUi showCaseUi) {
-        super(actionServiceAsync);
-        this.ui = showCaseUi;
+        super(actionServiceAsync, showCaseUi);
         initWidgets();
         layout();
     }
@@ -42,14 +41,10 @@ public class LoginView extends ShowcaseBaseView implements ClickHandler {
         loginForm.setAutoWidth();
         loginForm.setAlign(Alignment.CENTER);
         //login and register-button
-        login = new Button("Login");
+        login = new ShowcaseBaseButton("Login");
         login.addClickHandler(this);
-        login.setAlign(Alignment.CENTER);
-        login.setWidth(120);
-        register = new Button("Register");
+        register = new ShowcaseBaseButton("Register");
         register.addClickHandler(this);
-        register.setAlign(Alignment.CENTER);
-        register.setWidth(120);
     }
 
     private void layout() {

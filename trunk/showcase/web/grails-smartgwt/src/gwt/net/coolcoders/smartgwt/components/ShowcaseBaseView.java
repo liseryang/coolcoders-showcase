@@ -1,19 +1,24 @@
-package net.coolcoders.smartgwt.views;
+package net.coolcoders.smartgwt.components;
 
 import com.smartgwt.client.types.Alignment;
 import com.smartgwt.client.widgets.Label;
+import com.smartgwt.client.widgets.layout.HLayout;
 import com.smartgwt.client.widgets.layout.VLayout;
 import grails.plugins.gwt.client.GwtActionServiceAsync;
+import net.coolcoders.smartgwt.client.ShowCaseUi;
+import net.coolcoders.smartgwt.client.ViewConstants;
 
 /**
  * @author <a href="mailto:josip.mihelko@googlemail.com">Josip Mihelko</a>
  */
 public abstract class ShowcaseBaseView extends VLayout {
     protected final GwtActionServiceAsync actionService;
+    protected final ShowCaseUi ui;
 
-    public ShowcaseBaseView(GwtActionServiceAsync actionServiceAsync) {
+    public ShowcaseBaseView(GwtActionServiceAsync actionServiceAsync, ShowCaseUi showCaseUi) {
         super();
-        actionService = actionServiceAsync;
+        this.actionService = actionServiceAsync;
+        this.ui = showCaseUi;
         setWidth100();
         setAlign(Alignment.CENTER);
         setAutoHeight();
@@ -39,5 +44,19 @@ public abstract class ShowcaseBaseView extends VLayout {
         label.setWidth100();
         label.setAutoHeight();
         return label;
+    }
+
+    protected HLayout getHorizontalLayout() {
+        HLayout layout = new HLayout(ViewConstants.STD_MEMBERS_MARGIN);
+        layout.setAlign(Alignment.CENTER);
+        layout.setWidth100();
+        return layout;
+    }
+
+    protected VLayout getVerticalLayout() {
+        VLayout layout = new VLayout(ViewConstants.STD_MEMBERS_MARGIN);
+        layout.setAlign(Alignment.CENTER);
+        layout.setHeight100();
+        return layout;
     }
 }
