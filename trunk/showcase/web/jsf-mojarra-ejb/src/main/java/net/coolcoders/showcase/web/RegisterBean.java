@@ -8,6 +8,7 @@ package net.coolcoders.showcase.web;
 import net.coolcoders.showcase.model.User;
 import net.coolcoders.showcase.service.UserServiceBean;
 
+import javax.ejb.EJB;
 import javax.enterprise.context.RequestScoped;
 import javax.inject.Inject;
 import javax.inject.Named;
@@ -20,7 +21,7 @@ import javax.inject.Named;
 @RequestScoped
 public class RegisterBean {
 
-    @Inject
+    @EJB
     private UserServiceBean userServiceBean;
 
     @Inject

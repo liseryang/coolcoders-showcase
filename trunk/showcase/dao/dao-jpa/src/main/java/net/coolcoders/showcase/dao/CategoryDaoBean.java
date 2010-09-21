@@ -6,7 +6,7 @@
 package net.coolcoders.showcase.dao;
 
 import net.coolcoders.showcase.dao.generic.AbstractGenericDao;
-import net.coolcoders.showcase.model.Message;
+import net.coolcoders.showcase.model.Category;
 
 import javax.ejb.Stateless;
 
@@ -15,10 +15,10 @@ import javax.ejb.Stateless;
  * @author andreas
  */
 @Stateless
-public class MessageDaoBean extends AbstractGenericDao<Message, Long> {
+public class CategoryDaoBean extends AbstractGenericDao<Category, Long> {
 
-    public MessageDaoBean() {
-        super(Message.class);
+    public CategoryDaoBean() {
+        super(Category.class);
     }
 
 }

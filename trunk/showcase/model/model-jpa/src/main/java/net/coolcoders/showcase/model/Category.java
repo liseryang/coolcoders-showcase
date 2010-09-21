@@ -22,6 +22,13 @@ public class Category extends AbstractBaseEntity {
     @ManyToMany
     private Set<User> users = new HashSet<User>();
 
+    public Category() {
+    }
+
+    public Category(String name) {
+        this.name = name;
+    }
+
     public String getName() {
         return name;
     }

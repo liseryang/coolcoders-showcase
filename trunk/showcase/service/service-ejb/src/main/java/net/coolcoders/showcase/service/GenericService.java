@@ -1,76 +1,80 @@
-/*
- * To change this template, choose Tools | Templates
- * and open the template in the editor.
- */
-
 package net.coolcoders.showcase.service;
 
-import net.coolcoders.showcase.dao.GenericDao;
-import net.coolcoders.showcase.model.User;
+import net.coolcoders.showcase.dao.generic.GenericDao;
+import net.coolcoders.showcase.dao.generic.QueryOrder;
+import net.coolcoders.showcase.dao.generic.QueryParameter;
 
-import java.io.Serializable;
+import javax.ejb.EJB;
+import javax.ejb.Stateless;
 import java.util.List;
 import java.util.Map;
 
 /**
- *
- * @author andreas
+ * Created by IntelliJ IDEA.
+ * User: andreas
+ * Date: 20.09.2010
+ * Time: 11:29:24
+ * To change this template use File | Settings | File Templates.
  */
-public abstract class GenericService<T, PK extends Serializable> {
+@Stateless
+public class GenericService<T> {
 
-    protected GenericDao<T, PK> genericDao;
+    @EJB
+    private GenericDao<T> genericDao;
 
-    public T getNamedQuerySingleResult(String name, Map<String, Object> parameters) {
-        return genericDao.getNamedQuerySingleResult(name, parameters);
+    public T findNamedQueryResult(Class clazz, String queryName, Map<String, Object> parameters) {
+        return genericDao.findNamedQueryResult(clazz, queryName, parameters);
     }
 
-    public List<T> getNamedQueryListResult(String name, Map<String, Object> parameters) {
-        return genericDao.getNamedQueryListResult(name, parameters);
+    public List<T> getNamedQueryResult(Class clazz, String queryName, Map<String, Object> parameters) {
+        return genericDao.getNamedQueryResult(clazz, queryName, parameters);
     }
 
-    public T findSingleResult(Map<String, Object> restrictions) {
-        return genericDao.findSingleResult(restrictions);
+    public List<T> get(Class clazz) {
+        return genericDao.get(clazz);
     }
 
-    public T findSingleResult(String attribute, Object value) {
-        return genericDao.findSingleResult(attribute, value);
+    public List<T> get(Class clazz, QueryParameter queryParameter, QueryOrder queryOrder) {
+        return genericDao.get(clazz, queryParameter, queryOrder);
     }
 
-    public T find(PK id) {
-        return genericDao.find(id);
+    public T find(Class clazz, Object id) {
+        return genericDao.find(clazz, id);
     }
 
-    public List<T> getAll() {
-        return genericDao.getAll();
+    public T find(Class clazz, String attribute, Object value) {
+        return genericDao.find(clazz, attribute, value);
     }
 
-    public List<T> find(Map<String, Object> restrictions) {
-        return genericDao.find(restrictions);
+    public T find(Class clazz, QueryParameter queryParameter) {
+        return genericDao.find(clazz, queryParameter);
     }
 
-    public List<T> find(String attribute, Object value) {
-        return genericDao.find(attribute, value);
-    }
-
-    public void remove(T entity) {
-        genericDao.remove(entity);
-    }
-
-    public T persistOrMerge(T entity) {
-        return genericDao.persistOrMerge(entity);
+    public T find(Class clazz, QueryParameter queryParameter, QueryOrder queryOrder) {
+        return genericDao.find(clazz, queryParameter, queryOrder);
     }
 
     public void persist(Object entity) {
         genericDao.persist(entity);
     }
 
-    public void saveAll(List<User> users) {
-        genericDao.saveAll(users);
-    }
-
-    public <T> T merge(T entity) {
+    public T merge(T entity) {
         return genericDao.merge(entity);
     }
 
+    public T persistOrMerge(T entity) {
+        return genericDao.persistOrMerge(entity);
+    }
 
+    public void persistAll(List<T> ts) {
+        genericDao.persistAll(ts);
+    }
+
+    public void remove(T entity) {
+        genericDao.remove(entity);
+    }
+
+    public void delete(Class clazz, Object id) {
+        genericDao.delete(clazz, id);
+    }
 }

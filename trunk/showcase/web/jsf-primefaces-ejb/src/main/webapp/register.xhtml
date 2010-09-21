@@ -8,7 +8,7 @@
     <body>
 
         <ui:composition template="./WEB-INF/templates/template.xhtml">
-
+                               
             <ui:define name="content">
                 <div id="tabs">
 
@@ -19,29 +19,36 @@
                         <center>
                             <div class="ui-widget-content ui-corner-all" style="padding: 3px">
                                 <h:form id="register">
+                                    <h:messages style="color: red;"/>
                                     <h:panelGrid columns="2">
+
+                                        <h:outputLabel for="username" value="Username: *" styleClass="label"/>
+                                        <h:inputText id="username" value="#{registerBean.user.username}" required="true"/>
 
                                         <h:outputLabel for="fullname" value="Fullname:" styleClass="label" />
                                         <h:inputText id="fullname" value="#{registerBean.user.fullname}" />
+
+                                        <h:outputLabel for="email" value="Email: *" styleClass="label"/>
+                                        <h:inputText id="email" value="#{registerBean.user.email}" required="true" />
+
+                                        <h:outputLabel for="gender" value="Gender:" styleClass="label"/>
+                                        <h:selectOneRadio id="gender" value="#{registerBean.user.gender}">
+                                            <f:selectItems value="#{registerBean.genderItems}" />
+                                        </h:selectOneRadio>
+
+                                        <h:outputLabel for="password" value="Password: *" styleClass="label"/>
+                                        <h:inputSecret id="password" value="#{registerBean.user.password}" required="true"/>
 
                                         <h:outputLabel for="birthday" value="Birthday:" styleClass="label"/>
                                         <h:inputText id="birthday" value="#{registerBean.user.birthday}">
                                             <f:convertDateTime pattern="MM/dd/yyyy"/>
                                         </h:inputText>
 
-                                        <h:outputLabel for="email" value="Email: *" styleClass="label"/>
-                                        <h:inputText id="email" value="#{registerBean.user.email}" required="true" />
-
-                                        <h:outputLabel for="username" value="Username: *" styleClass="label"/>
-                                        <h:inputText id="username" value="#{registerBean.user.username}" required="true"/>
-
-                                        <h:outputLabel for="password" value="Password: *" styleClass="label"/>
-                                        <h:inputSecret id="password" value="#{registerBean.user.password}" required="true"/>
-
-                                        <h:outputLabel for="confirmPassword" value="Confirm Password: *" styleClass="label"/>
-                                        <h:inputSecret id="confirmPassword" value="#{registerBean.user.confirmPassword}" required="true"/>
+                                        <h:outputLabel for="categories" value="Categories:" styleClass="label"/>
+                                        <h:selectManyCheckbox id="categories" value="#{registerBean.user.categories}" layout="pageDirection">
+                                            <f:selectItems value="#{registerBean.categoryItems}" />
+                                        </h:selectManyCheckbox>
                                     </h:panelGrid>
-                                    <h:messages style="color: red;"/>
                                     <h:commandButton value="Save" action="#{registerBean.save}" />
                                     <h:commandButton value="Cancel" action="login" immediate="true" />
                                 </h:form>

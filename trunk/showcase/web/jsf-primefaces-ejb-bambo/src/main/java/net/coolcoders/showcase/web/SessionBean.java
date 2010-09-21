@@ -7,12 +7,11 @@ package net.coolcoders.showcase.web;
 
 import net.coolcoders.showcase.model.User;
 
-import javax.ejb.TimerService;
+import javax.ejb.EJB;
 import javax.enterprise.context.SessionScoped;
 import javax.faces.context.FacesContext;
 import javax.faces.event.ValueChangeEvent;
 import javax.faces.model.SelectItem;
-import javax.inject.Inject;
 import javax.inject.Named;
 
 /**
@@ -25,7 +24,7 @@ public class SessionBean implements java.io.Serializable {
     private String themePath = "./xmlhttp/css/rime/rime.css";
 //    private String themePath = "./xmlhttp/css/xp/xp.css";
 
-    @Inject
+    @EJB
     TimerBean timerBean;
 
     private User currentUser;
