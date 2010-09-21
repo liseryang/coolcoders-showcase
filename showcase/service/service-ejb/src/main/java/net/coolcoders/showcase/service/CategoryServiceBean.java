@@ -5,8 +5,8 @@
 
 package net.coolcoders.showcase.service;
 
-import net.coolcoders.showcase.dao.MessageDaoBean;
-import net.coolcoders.showcase.model.Message;
+import net.coolcoders.showcase.dao.CategoryDaoBean;
+import net.coolcoders.showcase.model.Category;
 
 import javax.annotation.PostConstruct;
 import javax.ejb.EJB;
@@ -17,17 +17,17 @@ import javax.ejb.Stateless;
  * @author andreas
  */
 @Stateless
-public class MessageServiceBean extends AbstractGenericService<Message, Long> {
+public class CategoryServiceBean extends AbstractGenericService<Category, Long> {
 
     @EJB
-    private MessageDaoBean messageDaoBean ;
+    private CategoryDaoBean categoryDaoBean;
 
-    public MessageServiceBean() {
+    public CategoryServiceBean() {
     }
 
     @PostConstruct
     public void init() {
-        abstractGenericDao = messageDaoBean;
+        abstractGenericDao = categoryDaoBean;
     }
 
 }

@@ -8,10 +8,10 @@ package net.coolcoders.showcase.web;
 import net.coolcoders.showcase.model.Message;
 import net.coolcoders.showcase.service.MessageServiceBean;
 
+import javax.ejb.EJB;
 import javax.enterprise.context.RequestScoped;
 import javax.inject.Inject;
 import javax.inject.Named;
-import java.util.HashMap;
 import java.util.List;
 
 /**
@@ -22,14 +22,14 @@ import java.util.List;
 @RequestScoped
 public class TweetsBean {
 
-    @Inject
+    @EJB
     private MessageServiceBean messageServiceBean;
 
     @Inject
     private SessionBean sessionBean;
 
     public List<Message> getMessages() {
-        List<Message> messages = messageServiceBean.find(new HashMap());
+        List<Message> messages = messageServiceBean.get();
         return messages;
     }
 

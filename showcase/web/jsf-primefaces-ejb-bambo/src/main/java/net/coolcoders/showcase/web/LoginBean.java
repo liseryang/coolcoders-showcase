@@ -5,15 +5,15 @@
 
 package net.coolcoders.showcase.web;
 
+import net.coolcoders.showcase.dao.generic.QueryParameter;
 import net.coolcoders.showcase.model.User;
 import net.coolcoders.showcase.service.DbInitBean;
 import net.coolcoders.showcase.service.UserServiceBean;
 
+import javax.ejb.EJB;
 import javax.enterprise.context.RequestScoped;
 import javax.inject.Inject;
 import javax.inject.Named;
-import java.util.HashMap;
-import java.util.Map;
 
 /**
  *
@@ -23,13 +23,13 @@ import java.util.Map;
 @RequestScoped
 public class LoginBean {
 
-    @Inject
+    @EJB
     private UserServiceBean userServiceBean;
 
     @Inject
     private SessionBean sessionBean;
 
-    @Inject
+    @EJB
     private DbInitBean dbInitBean;
 
     private String username = null;
@@ -59,11 +59,7 @@ public class LoginBean {
     }
 
     public String login() {
-        Map<String, Object> restrictions = new HashMap<String, Object>();
-        restrictions.put("username", username);
-        restrictions.put("password", password);
-        
-        User user = userServiceBean.findSingleResult(restrictions);
+        User user = userServiceBean.find(QueryParameter.with("username", username).and("password", password));
         if(user == null) {
             message = "Login failed!";
             return null;

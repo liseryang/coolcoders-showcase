@@ -10,13 +10,13 @@ import net.coolcoders.showcase.model.User;
 import net.coolcoders.showcase.service.MessageServiceBean;
 import net.coolcoders.showcase.service.UserServiceBean;
 
+import javax.ejb.EJB;
 import javax.enterprise.context.RequestScoped;
 import javax.faces.model.SelectItem;
 import javax.inject.Inject;
 import javax.inject.Named;
 import java.util.ArrayList;
 import java.util.Date;
-import java.util.HashMap;
 import java.util.List;
 
 /**
@@ -27,10 +27,10 @@ import java.util.List;
 @RequestScoped
 public class TweetsBean {
 
-    @Inject
+    @EJB
     private MessageServiceBean messageServiceBean;
 
-    @Inject
+    @EJB
     private UserServiceBean userServiceBean;
 
     @Inject
@@ -41,7 +41,7 @@ public class TweetsBean {
     private Message selectedMessage;
 
     public List<Message> getMessages() {
-        List<Message> messages = messageServiceBean.find(new HashMap());
+        List<Message> messages = messageServiceBean.get();
         return messages;
     }
 
@@ -60,7 +60,7 @@ public class TweetsBean {
     }
 
     public SelectItem[] getAuthorOptions() {
-        List<User> users = userServiceBean.getAll();
+        List<User> users = userServiceBean.get();
         List<SelectItem> items = new ArrayList<SelectItem>();
         items.add(new SelectItem(null, ""));
         for (User user : users) {
