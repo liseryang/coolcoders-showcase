@@ -7,9 +7,13 @@ import com.smartgwt.client.util.SC;
 import com.smartgwt.client.widgets.layout.HLayout;
 import grails.plugins.gwt.client.GwtActionService;
 import grails.plugins.gwt.client.GwtActionServiceAsync;
+import net.coolcoders.smartgwt.components.ShowcaseBaseView;
 import net.coolcoders.smartgwt.views.LoginView;
 import net.coolcoders.smartgwt.views.MessagesView;
 import net.coolcoders.smartgwt.views.RegisterView;
+
+import java.util.ArrayList;
+import java.util.List;
 
 /**
  * @author <a href="mailto:josip.mihelko@googlemail.com">Josip Mihelko</a>
@@ -19,6 +23,7 @@ public class ShowCaseUi extends HLayout {
     private LoginView loginView;
     private RegisterView registerView;
     private MessagesView messagesView;
+    private List<ShowcaseBaseView> views = new ArrayList<ShowcaseBaseView>();
 
     public ShowCaseUi() {
         initActionService();
@@ -47,28 +52,45 @@ public class ShowCaseUi extends HLayout {
             public void onSuccess(LoadLookupDataResponse result) {
                 //required lookup data loaded -> build the ui
                 initViews(result);
-                loginView.draw();
+                loginView.show();
             }
         });
     }
 
     /**
-     * Init all the views.
+     * Init all the views the "Old School DI-Way" ;) .
      */
     private void initViews(LoadLookupDataResponse lookupData) {
-        messagesView = new MessagesView();
+        messagesView = new MessagesView(actionService, this);
+        messagesView.draw();
         loginView = new LoginView(actionService, this);
-        registerView = new RegisterView(actionService, lookupData.getCategoriesMap());
-
+        loginView.draw();
+        registerView = new RegisterView(actionService, this, lookupData.getCategoriesMap());
+        registerView.draw();
+        views.add(loginView);
+        views.add(registerView);
+        views.add(messagesView);
+        hideAllViews();
     }
 
     public void loginSuccessful() {
-        loginView.hide();
+        hideAllViews();
         messagesView.show();
     }
 
     public void showRegisterView() {
-        loginView.hide();
-        registerView.draw();
+        hideAllViews();
+        registerView.show();
+    }
+
+    public void showLoginView() {
+        hideAllViews();
+        loginView.show();
+    }
+
+    private void hideAllViews() {
+        for (ShowcaseBaseView view : views) {
+            view.hide();
+        }
     }
 }

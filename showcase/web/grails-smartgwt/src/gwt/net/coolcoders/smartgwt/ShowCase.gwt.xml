@@ -10,5 +10,5 @@
     <source path="client"/>
     <source path="views"/>
     <source path="data"/>
-    <source path="action"/>
+    <source path="components"/>
 </module>
