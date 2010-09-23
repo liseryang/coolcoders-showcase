@@ -3,7 +3,7 @@
 == Attributes ==
 
 || *Type* || *Name* || *Primary?* || *Description* ||
-||`long`||id||Yes||Auto generated ID||
+||`String`||id||Yes||UUID||
 ||`String`||username||No||Used to identify the user||
 ||`String`||fullname||No||Real name of the user||
 ||`String`||password||No||Password of the user (plain text)||
