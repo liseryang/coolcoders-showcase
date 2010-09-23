@@ -3,7 +3,7 @@
 == Attributes ==
 
 || *Type* || *Name* || *Primary?* || *Description* ||
-||`long`||id||Yes||Auto generated ID||
+||`String`||id||Yes||UUID||
 ||`String`||name||No||Used to identify the category||
 ||`Set<`[DomainModelUser User]`>`||users||No||All users using this category||
 
