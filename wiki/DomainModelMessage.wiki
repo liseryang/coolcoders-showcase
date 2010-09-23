@@ -3,7 +3,7 @@
 == Attributes ==
 
 || *Type* || *Name* || *Primary?* || *Description* ||
-||`long`||id||Yes||Auto generated ID||
+||`String`||id||Yes||UUID||
 ||`String`||content||No||Content of the message||
 ||`Date`||created||No||Date the message was created||
 ||[DomainModelUser User]||creator||No||Creator of this message||
