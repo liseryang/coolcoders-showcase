@@ -2,6 +2,7 @@ package net.coolcoders.showcase
 
 class Message {
 
+  String id
   String content
   Date created = new Date()
 
@@ -14,6 +15,10 @@ class Message {
 
   String toString() {
     "${user?.username} ($created): $content"
+  }
+
+  static mapping = {
+    id generator: 'uuid'
   }
 
 }

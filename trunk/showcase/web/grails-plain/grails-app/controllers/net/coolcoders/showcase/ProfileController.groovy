@@ -17,12 +17,12 @@ class ProfileController {
     def categoryIdsParameter = params['categoryIds']
     if (categoryIdsParameter) {
       if (categoryIdsParameter instanceof String) {
-        userInstance.categories = [Category.get(categoryIdsParameter as Long)]
+        userInstance.categories = [Category.get(categoryIdsParameter)]
       }
       else {
         def categoryIds = []
         categoryIdsParameter.each {
-          categoryIds.add it as Long
+          categoryIds.add it
         }
         userInstance.categories = Category.getAll(categoryIds)
       }

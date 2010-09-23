@@ -48,7 +48,7 @@ class UserController {
   }
 
   def follow = {
-    def userToFollow = User.get(params.id as Long)
+    def userToFollow = User.get(params.id)
     def currentUser = User.get(session.currentUser.id)
     currentUser.addToFollowing(userToFollow)
     flash.message = g.message(code: 'user.follow.executed', args: [userToFollow.username])
@@ -56,7 +56,7 @@ class UserController {
   }
 
   def unfollow = {
-    def userToUnfollow = User.get(params.id as Long)
+    def userToUnfollow = User.get(params.id )
     def currentUser = User.get(session.currentUser.id)
     currentUser.removeFromFollowing(userToUnfollow)
     flash.message = g.message(code: 'user.unfollow.executed', args: [userToUnfollow.username])
