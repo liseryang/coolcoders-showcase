@@ -2,6 +2,7 @@ package net.coolcoders.showcase
 
 class Category {
 
+  String id
   String name
 
   static belongsTo = User
@@ -13,5 +14,9 @@ class Category {
 
   public String toString() {
     "$name"
+  }
+
+  static mapping = {
+    id generator: 'uuid'
   }
 }
