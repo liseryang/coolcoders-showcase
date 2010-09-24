@@ -20,7 +20,7 @@ class MessageServiceIntegrationTest extends GrailsUnitTestCase {
 
   void testFindAllMessagesOfFollowingNoFollowingUsers() {
     def username = "pschneider-manzell"
-    User userInstance = User.findByUsername(username)
+    AppUser userInstance = AppUser.findByUsername(username)
     assertNotNull("No user with username $username found", userInstance)
     def offset = 0
     def pageSize = 10
@@ -32,7 +32,7 @@ class MessageServiceIntegrationTest extends GrailsUnitTestCase {
 
   void testFindAllMessagesOfFollowingWithFollowingUsers() {
     def username = "anerlich"
-    User userInstance = User.findByUsername(username)
+    AppUser userInstance = AppUser.findByUsername(username)
     assertNotNull("No user with username $username found", userInstance)
     def offset = 0
     def pageSize = 10
@@ -44,7 +44,7 @@ class MessageServiceIntegrationTest extends GrailsUnitTestCase {
 
   void testCountAllMessagesOfFollowingWithoutFollowingUsers() {
     String username = "pschneider-manzell"
-    User userInstance = User.findByUsername(username)
+    AppUser userInstance = AppUser.findByUsername(username)
     assertNotNull("No user with username $username found", userInstance)
     def result = messageService.countAllMessagesOfFollowing(userInstance)
     assertNotNull("NULL instead of int value detected!", result)
@@ -53,7 +53,7 @@ class MessageServiceIntegrationTest extends GrailsUnitTestCase {
 
   void testCountAllMessagesOfFollowingWithFollowingUsers() {
     String username = "anerlich"
-    User userInstance = User.findByUsername(username)
+    AppUser userInstance = AppUser.findByUsername(username)
     assertNotNull("No user with username $username found", userInstance)
     def result = messageService.countAllMessagesOfFollowing(userInstance)
     assertNotNull("NULL instead of int value detected!", result)

@@ -5,8 +5,8 @@ class Category {
   String id
   String name
 
-  static belongsTo = User
-  static hasMany = [users: User]
+  static belongsTo = AppUser
+  static hasMany = [users: AppUser]
 
   static constraints = {
     name(blank: false, unique: true)

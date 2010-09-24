@@ -3,14 +3,14 @@ package net.coolcoders.showcase
 class RegisterController {
 
   def index = {
-    User userInstance = new User()
+    AppUser userInstance = new AppUser()
     def availableCategories = Category.list()
     [userInstance: userInstance, availableCategories: availableCategories]
   }
 
   def save = {
     log.debug("Entering save with params $params")
-    User userInstance = new User()
+    AppUser userInstance = new AppUser()
     userInstance.properties = params
 
     def categoryIdsParameter = params['categoryIds']

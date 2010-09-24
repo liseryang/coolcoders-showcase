@@ -26,7 +26,7 @@
     <g:each in="${messages}" var="messageInstance">
       <div class="messageEntry clearfix">
         <div class="messageDate"><g:formatDate date="${messageInstance?.created}" style="SHORT" type="datetime"/></div>
-        <div class="messageUser">${messageInstance?.user?.username}</div>
+        <div class="messageUser">${messageInstance?.creator?.username}</div>
         <div class="messageContent">${messageInstance?.content}</div>
       </div>
     </g:each>

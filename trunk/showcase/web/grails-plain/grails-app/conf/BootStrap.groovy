@@ -1,7 +1,8 @@
-import net.coolcoders.showcase.User
+import net.coolcoders.showcase.AppUser
 import net.coolcoders.showcase.Gender
 import net.coolcoders.showcase.Category
 import net.coolcoders.showcase.Message
+import net.coolcoders.showcase.AppUser
 
 class BootStrap {
 
@@ -46,18 +47,18 @@ class BootStrap {
 
 
   private void createUsers() {
-    if (!User.count()) {
-      User pschneidermanzell = createDummyUser("pschneider-manzell", "Peter Schneider-Manzell", "pschneider-manzell@coolcoders.net", Gender.MALE)
-      User abaumgartner = createDummyUser("abaumgartner", "Andreas Baumgartner", "abaumgartner@coolcoders.net", Gender.MALE)
-      User jmihelko = createDummyUser("jmihelko", "Josip Mihelko", "jmihelko@coolcoders.net", Gender.MALE)
-      User anerlich = createDummyUser("anerlich", "Andreas Baumgartner", "anerlich@coolcoders.net", Gender.MALE)
+    if (!AppUser.count()) {
+      AppUser pschneidermanzell = createDummyUser("pschneider-manzell", "Peter Schneider-Manzell", "pschneider-manzell@coolcoders.net", Gender.MALE)
+      AppUser abaumgartner = createDummyUser("abaumgartner", "Andreas Baumgartner", "abaumgartner@coolcoders.net", Gender.MALE)
+      AppUser jmihelko = createDummyUser("jmihelko", "Josip Mihelko", "jmihelko@coolcoders.net", Gender.MALE)
+      AppUser anerlich = createDummyUser("anerlich", "Andreas Baumgartner", "anerlich@coolcoders.net", Gender.MALE)
 
       abaumgartner.addToFollowing(pschneidermanzell)
       jmihelko.addToFollowing(anerlich)
       anerlich.addToFollowing(abaumgartner)
 
       for (i in 1..100) {
-        User dummyUser = createDummyUser("user$i", "Dummy User$i", "user$i@coolcoders.net", Gender.MALE)
+        AppUser dummyUser = createDummyUser("user$i", "Dummy User$i", "user$i@coolcoders.net", Gender.MALE)
         pschneidermanzell.addToFollowing(dummyUser)
       }
 
@@ -70,17 +71,17 @@ class BootStrap {
   }
 
 
-  User createDummyUser(String username, String fullname, String email, Gender gender) {
-    User dummyUser = new User(username: username, fullname:fullname, password: "test123", email: email, gender: gender).save()
+  AppUser createDummyUser(String username, String fullname, String email, Gender gender) {
+    AppUser dummyUser = new AppUser(username: username, fullname:fullname, password: "test123", email: email, gender: gender).save()
     log.debug("Created user $dummyUser")
     return dummyUser
   }
 
-  void createDummyMessagesForUser(User userInstance, int count) {
+  void createDummyMessagesForUser(AppUser userInstance, int count) {
     log.debug("Creating dummy messages for user $userInstance")
     for (i in 1..count) {
       String messageContent = "Test message number $i"
-      Message messageInstance = new Message(content: messageContent, user: userInstance).save()
+      Message messageInstance = new Message(content: messageContent, creator: userInstance).save()
       userInstance.addToMessages(messageInstance)
       log.debug("Created message $messageInstance")
     }

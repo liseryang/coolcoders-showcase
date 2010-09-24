@@ -29,7 +29,7 @@ class UserController {
       params.offset = 0
     }
 
-    User userInstance = User.get(session.currentUser.id)
+    AppUser userInstance = AppUser.get(session.currentUser.id)
     def followingUsers = userService.findAllFollwingUsers(userInstance, params.sort, params.order, params.max as int, params.offset as int)
     def totalCount = userInstance.following.size()
     [followingUsers: followingUsers, nextSortOrder: nextSortOrder,totalCount:totalCount,pageSize:params.max]
@@ -38,7 +38,7 @@ class UserController {
 
   def search = {
     log.debug("Entering search with params $params")
-    def currentUser = User.get(session.currentUser.id)
+    def currentUser = AppUser.get(session.currentUser.id)
     def queryText = params.queryText
     def result = []
     if (queryText) {
@@ -48,16 +48,16 @@ class UserController {
   }
 
   def follow = {
-    def userToFollow = User.get(params.id)
-    def currentUser = User.get(session.currentUser.id)
+    def userToFollow = AppUser.get(params.id)
+    def currentUser = AppUser.get(session.currentUser.id)
     currentUser.addToFollowing(userToFollow)
     flash.message = g.message(code: 'user.follow.executed', args: [userToFollow.username])
     redirect(action: "following")
   }
 
   def unfollow = {
-    def userToUnfollow = User.get(params.id )
-    def currentUser = User.get(session.currentUser.id)
+    def userToUnfollow = AppUser.get(params.id )
+    def currentUser = AppUser.get(session.currentUser.id)
     currentUser.removeFromFollowing(userToUnfollow)
     flash.message = g.message(code: 'user.unfollow.executed', args: [userToUnfollow.username])
     redirect(action: "following")
