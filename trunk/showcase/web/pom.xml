@@ -6,67 +6,12 @@
         <artifactId>showcase</artifactId>
         <version>1.0-SNAPSHOT</version>
     </parent>
-    <groupId>net.cool-coders.showcase</groupId>
     <artifactId>web</artifactId>
-    <version>1.0-SNAPSHOT</version>
     <packaging>pom</packaging>
     <name>Showcase Web</name>
 
     <modules>
-        <module>jsf-mojarra-ejb</module>
-        <module>jsf-icefaces-ejb</module>
-        <module>jsf-primefaces-ejb</module>
-        <module>jsf-primefaces-ejb-bambo</module>
-        <!--<module>jsf-richfaces-ejb</module>-->
+        <module>jsf</module>
     </modules>
 
-    <dependencyManagement>
-        <dependencies>
-
-            <!-- Primefaces -->
-            <dependency>
-                <groupId>org.primefaces</groupId>
-                <artifactId>primefaces</artifactId>
-                <version>2.2.M1</version>
-            </dependency>
-            <dependency>
-                <groupId>org.atmosphere</groupId>
-                <artifactId>atmosphere-runtime</artifactId>
-                <version>0.5</version>
-            </dependency>
-            <dependency>
-                <groupId>commons-fileupload</groupId>
-                <artifactId>commons-fileupload</artifactId>
-                <version>1.2.1</version>
-            </dependency>
-
-            <!-- Icefaces -->
-            <dependency>
-                 <groupId>org.icefaces</groupId>
-                 <artifactId>icefaces-compat</artifactId>
-                 <version>2.0-Beta1</version>
-                 <exclusions>
-                     <exclusion>
-                         <groupId>javax.servlet</groupId>
-                         <artifactId>servlet-api</artifactId>
-                     </exclusion>
-                     <exclusion>
-                         <groupId>javax.el</groupId>
-                         <artifactId>el-api</artifactId>
-                     </exclusion>
-                 </exclusions>
-             </dependency>
-
-        </dependencies>
-    </dependencyManagement>
-    
-    <profiles>
-        <profile>
-            <id>bambo</id>
-            <modules>
-                <module>jsf-primefaces-ejb-bambo</module>
-            </modules>
-        </profile>
-    </profiles>
-    
 </project>
