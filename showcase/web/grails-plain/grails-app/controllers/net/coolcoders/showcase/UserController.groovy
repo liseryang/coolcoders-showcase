@@ -2,37 +2,38 @@ package net.coolcoders.showcase
 
 class UserController {
 
-  private static final String SORTORDER_ASC = "asc"
-  private static final String SORTORDER_DESC = "desc"
   private static final int PAGESIZE_DEFAULT = 10
 
   def userService
 
   def following = {
     log.debug("Entering following with params $params")
-    if (!params.order) {
-      params.order = SORTORDER_ASC
+    def sortOrder = SortOrder.ASC
+    def sortAttribute = UserSortAttribute.USERNAME
+
+    if (params.order) {
+      sortOrder = SortOrder.valueOf(params.order)
     }
-    def nextSortOrder = SORTORDER_DESC
-    if (params.order == SORTORDER_DESC) {
-      nextSortOrder = SORTORDER_ASC
+    def nextSortOrder = SortOrder.DESC
+    if (sortOrder == SortOrder.DESC) {
+      nextSortOrder = SortOrder.ASC
     }
-    if (!params.sort) {
-      params.sort = "username"
+    if (params.sort) {
+      sortAttribute = UserSortAttribute.valueOf(params.sort)
     }
 
-    if(!params.max) {
+    if (!params.max) {
       params.max = PAGESIZE_DEFAULT
     }
 
-    if(!params.offset) {
+    if (!params.offset) {
       params.offset = 0
     }
 
     AppUser userInstance = AppUser.get(session.currentUser.id)
-    def followingUsers = userService.findAllFollwingUsers(userInstance, params.sort, params.order, params.max as int, params.offset as int)
+    def followingUsers = userService.findAllFollwingUsers(userInstance, sortAttribute, sortOrder, params.max as int, params.offset as int)
     def totalCount = userInstance.following.size()
-    [followingUsers: followingUsers, nextSortOrder: nextSortOrder,totalCount:totalCount,pageSize:params.max]
+    [followingUsers: followingUsers, nextSortOrder: nextSortOrder.name(), totalCount: totalCount, pageSize: params.max]
   }
 
 
@@ -56,7 +57,7 @@ class UserController {
   }
 
   def unfollow = {
-    def userToUnfollow = AppUser.get(params.id )
+    def userToUnfollow = AppUser.get(params.id)
     def currentUser = AppUser.get(session.currentUser.id)
     currentUser.removeFromFollowing(userToUnfollow)
     flash.message = g.message(code: 'user.unfollow.executed', args: [userToUnfollow.username])

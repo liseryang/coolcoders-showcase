@@ -19,8 +19,8 @@ class UserServiceIntegrationTest extends GrailsUnitTestCase {
 
   void testFindAllFollowingUsersOrderByUsernameNormalPageSizeAndOffset() {
     AppUser userInstance = AppUser.findByUsername("pschneider-manzell")
-    def sortAttribute = "username"
-    def sortOrder = "asc"
+    def sortAttribute =  UserSortAttribute.USERNAME
+    def sortOrder = SortOrder.ASC
     def pageSize = 10
     def offset = 0
     def result = userService.findAllFollwingUsers(userInstance,sortAttribute,sortOrder,pageSize,offset)
@@ -29,8 +29,8 @@ class UserServiceIntegrationTest extends GrailsUnitTestCase {
 
   void testFindAllFollowingUsersOrderByMessageCountNormalPageSizeAndOffset() {
     AppUser userInstance = AppUser.findByUsername("pschneider-manzell")
-    def sortAttribute = "messageCount"
-    def sortOrder = "asc"
+    def sortAttribute = UserSortAttribute.MESSAGE_COUNT
+    def sortOrder = SortOrder.ASC
     def pageSize = 10
     def offset = 0
     def result = userService.findAllFollwingUsers(userInstance,sortAttribute,sortOrder,pageSize,offset)
@@ -39,8 +39,8 @@ class UserServiceIntegrationTest extends GrailsUnitTestCase {
 
   void testFindAllFollowingUsersOrderByUsernameBigPageSizeAndOffset() {
     AppUser userInstance = AppUser.findByUsername("pschneider-manzell")
-    def sortAttribute = "username"
-    def sortOrder = "asc"
+    def sortAttribute = UserSortAttribute.USERNAME
+    def sortOrder = SortOrder.ASC
     def pageSize = 1000
     def offset = 0
     def result = userService.findAllFollwingUsers(userInstance,sortAttribute,sortOrder,pageSize,offset)
@@ -49,8 +49,8 @@ class UserServiceIntegrationTest extends GrailsUnitTestCase {
 
   void testFindAllFollowingUsersOrderByUsernameNormalPageSizeAndBigOffset() {
     AppUser userInstance = AppUser.findByUsername("pschneider-manzell")
-    def sortAttribute = "username"
-    def sortOrder = "asc"
+    def sortAttribute = UserSortAttribute.USERNAME
+    def sortOrder = SortOrder.ASC
     def pageSize = 10
     def offset = 1000
     def result = userService.findAllFollwingUsers(userInstance,sortAttribute,sortOrder,pageSize,offset)

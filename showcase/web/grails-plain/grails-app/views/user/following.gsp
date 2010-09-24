@@ -1,4 +1,4 @@
-<%@ page import="net.coolcoders.showcase.User; net.coolcoders.showcase.Message" %>
+<%@ page import="net.coolcoders.showcase.UserSortAttribute; net.coolcoders.showcase.User; net.coolcoders.showcase.Message" %>
 <html>
 <head>
   <title>Friends of ${session.currentUser.username}</title>
@@ -15,12 +15,12 @@
     <thead>
     <tr>
       <th>
-        <g:link action="following" params="${[sort:'username',order:nextSortOrder,max:pageSize]}">
+        <g:link action="following" params="${[sort:UserSortAttribute.USERNAME.name(),order:nextSortOrder,max:pageSize]}">
           <g:message code="user.username.label"/>
         </g:link>
       </th>
       <th>
-        <g:link action="following" params="${[sort:'messageCount',order:nextSortOrder,max:pageSize]}">
+        <g:link action="following" params="${[sort:UserSortAttribute.MESSAGE_COUNT.name(),order:nextSortOrder,max:pageSize]}">
           <g:message code="user.post.count.label"/>
         </g:link>
       </th>
@@ -36,7 +36,7 @@
           ${followingUser.username.encodeAsHTML()}
         </td>
         <td>
-          ${Message.countByUser(followingUser)}
+          ${Message.countByCreator(followingUser)}
         </td>
         <td>
           <g:link action="unfollow" id="${followingUser.id}"><g:message code="default.button.unfollow.label"/></g:link>
