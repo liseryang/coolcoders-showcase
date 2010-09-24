@@ -11,15 +11,12 @@ import net.coolcoders.showcase.model.User;
 import javax.annotation.PostConstruct;
 import javax.ejb.EJB;
 import javax.ejb.Stateless;
-import javax.ejb.TransactionAttribute;
-import javax.ejb.TransactionAttributeType;
 
 /**
  *
  * @author andreas
  */
 @Stateless
-@TransactionAttribute(TransactionAttributeType.REQUIRES_NEW)
 public class UserServiceBean extends AbstractGenericService<User, String> {
 
     @EJB
@@ -32,5 +29,7 @@ public class UserServiceBean extends AbstractGenericService<User, String> {
     public void init() {
         abstractGenericDao = userDaoBean;
     }
+
+        
 
 }
