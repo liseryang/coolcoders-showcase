@@ -20,7 +20,7 @@ class LoginController {
       render(view: "index", model: [loginCommandInstance: loginCommandInstance])
     }
     else {
-      User user = User.findByUsernameAndPassword(loginCommandInstance.username, loginCommandInstance.password)
+      AppUser user = AppUser.findByUsernameAndPassword(loginCommandInstance.username, loginCommandInstance.password)
       if (user) {
         session.currentUser = user
         redirect(controller: "message")

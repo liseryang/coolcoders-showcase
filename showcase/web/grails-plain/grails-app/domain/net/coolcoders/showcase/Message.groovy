@@ -7,14 +7,14 @@ class Message {
   Date created = new Date()
 
 
-  static belongsTo = [user: User]
+  static belongsTo = [creator: AppUser]
 
   static constraints = {
     content(blank: false, maxSize: 140)
   }
 
   String toString() {
-    "${user?.username} ($created): $content"
+    "${creator?.username} ($created): $content"
   }
 
   static mapping = {

@@ -13,7 +13,7 @@ class MessageController {
     if (offset < 0) {
       offset = 0
     }
-    def currentUser = User.get(session.currentUser.id)
+    def currentUser = AppUser.get(session.currentUser.id)
     def messages = messageService.findAllMessagesOfFollowing(currentUser, offset,PAGE_SIZE)
     def messageCount = messageService.countAllMessagesOfFollowing(currentUser)
     def nextPageAvailable = PAGE_SIZE + offset < messageCount
@@ -25,8 +25,8 @@ class MessageController {
   def create = {
     Message message = new Message()
     message.properties = params
-    def currentUser = User.get(session.currentUser.id)
-    message.user = currentUser
+    def currentUser = AppUser.get(session.currentUser.id)
+    message.creator = currentUser
     if (!message.validate()) {
       log.debug("Could not validate message! $message.errors")
       flash.error = g.message(code: 'message.create.failed')

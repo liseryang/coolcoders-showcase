@@ -6,18 +6,18 @@ class UserService {
 
 
   def searchForUsers(String searchText) {
-    return User.findByUsernameIlike("%$searchText%")
+    return AppUser.findByUsernameIlike("%$searchText%")
   }
 
 
-  def findAllFollwingUsers(User userInstance, String sortAttribute, String order,int pageSize,int offset) {
-    String hqlQueryString = "SELECT followingUser from User as user JOIN user.following as followingUser WHERE user.id=:userId"
+  def findAllFollwingUsers(AppUser userInstance, String sortAttribute, String order,int pageSize,int offset) {
+    String hqlQueryString = "SELECT followingUser from AppUser as user JOIN user.following as followingUser WHERE user.id=:userId"
     if (sortAttribute == "username") {
       hqlQueryString = hqlQueryString + " ORDER BY followingUser.username " + order
     }
     else if (sortAttribute == "messageCount") {
       hqlQueryString = hqlQueryString + " ORDER BY size(followingUser.messages) " + order
     }
-    return User.executeQuery(hqlQueryString, ["userId": userInstance.id],[max:pageSize, offset:offset])
+    return AppUser.executeQuery(hqlQueryString, ["userId": userInstance.id],[max:pageSize, offset:offset])
   }
 }

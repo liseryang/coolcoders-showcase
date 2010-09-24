@@ -3,7 +3,7 @@ package net.coolcoders.showcase
 class ProfileController {
 
   def index = {
-    User userInstance = User.get(session.currentUser.id)
+    AppUser userInstance = AppUser.get(session.currentUser.id)
     def availableCategories = Category.list()
     userInstance.repassword = userInstance.password
     [userInstance: userInstance, availableCategories: availableCategories]
@@ -12,7 +12,7 @@ class ProfileController {
 
   def update = {
     log.debug("Entering update with params $params")
-    User userInstance = User.get(session.currentUser.id)
+    AppUser userInstance = AppUser.get(session.currentUser.id)
     userInstance.properties = params
     def categoryIdsParameter = params['categoryIds']
     if (categoryIdsParameter) {

@@ -1,6 +1,6 @@
 package net.coolcoders.showcase
 
-class User {
+class AppUser {
 
   String id
   String username
@@ -12,7 +12,7 @@ class User {
   Date birthday
 
 
-  static hasMany = [categories: Category, messages: Message, following: User]
+  static hasMany = [categories: Category, messages: Message, following: AppUser]
 
   static constraints = {
     fullname(nullable: true)
