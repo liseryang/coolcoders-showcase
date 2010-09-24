@@ -25,6 +25,6 @@
     * [PageSearchNewFriends Search new friends]
     * [PageEditProfile Edit profile]
   * [DomainModel Domain model]
-    * [DomainModelUser User]
+    * [DomainModelUser AppUser]
     * [DomainModelCategory Category]
     * [DomainModelMessage Message]
