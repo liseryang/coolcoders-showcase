@@ -1,4 +1,4 @@
-= User =
+= AppUser =
 
 == Attributes ==
 
@@ -12,7 +12,7 @@
 ||`Date`||birthday||No||Birthday of the User, precision Year, month, day||
 ||`Set<`[DomainModelCategory Category]`>`||categories||No||Categories selected by the user to specify his interests||
 ||`List<`[DomainModelMessage Message]`>`||messages||No||Messages created by the user||
-||`Set<`[DomainModelUser User]`>`||following||No||All users this user is following||
+||`Set<`[DomainModelUser AppUser]`>`||following||No||All users this user is following||
 
 == Constraints ==
 
