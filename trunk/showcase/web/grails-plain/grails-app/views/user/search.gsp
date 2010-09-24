@@ -38,7 +38,7 @@
           ${userInstance.username.encodeAsHTML()}
         </td>
         <td>
-          ${Message.countByUser(userInstance)}
+          ${Message.countByCreator(userInstance)}
         </td>
         <td>
           <g:if test="${currentUser.following.any {it.id == userInstance.id}}">
