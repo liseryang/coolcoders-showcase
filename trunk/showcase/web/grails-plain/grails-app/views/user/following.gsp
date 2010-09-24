@@ -1,4 +1,4 @@
-<%@ page import="net.coolcoders.showcase.UserSortAttribute; net.coolcoders.showcase.User; net.coolcoders.showcase.Message" %>
+<%@ page import="net.coolcoders.showcase.UserSortAttribute; net.coolcoders.showcase.AppUser; net.coolcoders.showcase.Message" %>
 <html>
 <head>
   <title>Friends of ${session.currentUser.username}</title>
