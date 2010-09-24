@@ -48,7 +48,6 @@ public class GenericDao<T> {
     }
 
     // Get Methods; returns List<T>
-
     public List<T> get(Class clazz) {
         return get(clazz, null, null);
     }
@@ -59,7 +58,6 @@ public class GenericDao<T> {
     }
 
     // find Methods; returns T
-
     public T find(Class clazz, Object id) {
         return (T) em.find(clazz, id);
     }

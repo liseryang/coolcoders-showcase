@@ -68,9 +68,9 @@
                         </configuration>
                     </execution>
                 </executions>
-        </plugin>
-    </plugins>
-    <finalName>model-jpa</finalName>
-</build>
+            </plugin>
+        </plugins>
+        <finalName>model-jpa</finalName>
+    </build>
 
-        </project>
+</project>

@@ -12,18 +12,21 @@
 
     <dependencies>
         <dependency>
-            <groupId>net.cool-coders.showcase</groupId>
+            <groupId>${project.groupId}</groupId>
             <artifactId>service-ejb</artifactId>
         </dependency>
-
+        
         <dependency>
             <groupId>javax</groupId>
             <artifactId>javaee-api</artifactId>
         </dependency>
-        <!--<dependency>-->
-            <!--<groupId>javax</groupId>-->
-            <!--<artifactId>javaee-web-api</artifactId>-->
-        <!--</dependency>-->
+
+        <dependency>
+             <groupId>org.icefaces</groupId>
+             <artifactId>icefaces-compat</artifactId>
+         </dependency>
+
+        <!-- Test -->
         <dependency>
             <groupId>junit</groupId>
             <artifactId>junit</artifactId>
@@ -32,12 +35,6 @@
             <groupId>easymock</groupId>
             <artifactId>easymock</artifactId>
         </dependency>
-
-       <dependency>
-            <groupId>org.icefaces</groupId>
-            <artifactId>icefaces-compat</artifactId>
-        </dependency>
-
     </dependencies>
     <build>
         <finalName>showcase-icefaces-ejb</finalName>
