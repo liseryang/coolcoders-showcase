@@ -19,7 +19,7 @@ public class Category extends AbstractBaseEntity {
 
     private String name;
 
-    @ManyToMany
+    @ManyToMany(mappedBy = "categories")
     private Set<User> users = new HashSet<User>();
 
     public Category() {

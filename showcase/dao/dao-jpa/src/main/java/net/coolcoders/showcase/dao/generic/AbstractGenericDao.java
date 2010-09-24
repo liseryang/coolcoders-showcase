@@ -9,6 +9,7 @@ import javax.persistence.NoResultException;
 import javax.persistence.PersistenceContext;
 import javax.persistence.TypedQuery;
 import javax.persistence.criteria.*;
+import javax.persistence.metamodel.SingularAttribute;
 import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
@@ -40,8 +41,8 @@ public abstract class AbstractGenericDao<T, PK extends Serializable> {
 
     private TypedQuery<T> createTypedNamedQuery(String name, QueryParameter queryParameter) {
         TypedQuery<T> query = em.createNamedQuery(name, persistentClass);
-        for (String paramName : queryParameter.parameters().keySet()) {
-            query.setParameter(paramName, queryParameter.parameters().get(paramName));
+        for (QueryParameterEntry paramName : queryParameter.parameters()) {
+            query.setParameter(paramName.getAttribute().getName(), paramName.getValue());
         }
         return query;
     }
@@ -61,10 +62,6 @@ public abstract class AbstractGenericDao<T, PK extends Serializable> {
         return em.find(persistentClass, id);
     }
 
-    public T find(String attribute, Object value) {
-        return find(QueryParameter.with(attribute, value), null);
-    }
-
     public T find(QueryParameter queryParameter) {
         CriteriaQuery<T> query = createCriteriaQuery(queryParameter, null);
         return findCriteriaQueryResult(query);
@@ -81,17 +78,48 @@ public abstract class AbstractGenericDao<T, PK extends Serializable> {
         CriteriaQuery<T> query = cb.createQuery(persistentClass);
         Root<T> root = query.from(persistentClass);
 
-        if(queryParameter != null) {
+        if (queryParameter != null) {
             List<Predicate> predicates = new ArrayList<Predicate>();
-            for (String attribute : queryParameter.parameters().keySet()) {
-                predicates.add(cb.equal(root.get(attribute), queryParameter.parameters().get(attribute)));
+            for (QueryParameterEntry entry : queryParameter.parameters()) {
+                Expression path = root.get(entry.getAttribute());
+
+                Object value = entry.getValue();
+                Predicate predicate = null;
+                if (QueryParameterEntry.Operator.EQ.equals(entry.getOperator())) {
+                    predicate = cb.equal(path, value);
+                } else if (value instanceof Number) {
+                    Number number = (Number) value;
+                    if (QueryParameterEntry.Operator.GT.equals(entry.getOperator())) {
+                        predicate = cb.gt(path, number);
+                    } else if (QueryParameterEntry.Operator.GE.equals(entry.getOperator())) {
+                        predicate = cb.ge(path, number);
+                    } else if (QueryParameterEntry.Operator.LT.equals(entry.getOperator())) {
+                        predicate = cb.lt(path, number);
+                    } else if (QueryParameterEntry.Operator.LE.equals(entry.getOperator())) {
+                        predicate = cb.le(path, number);
+                    }
+                } else if (value instanceof Comparable) {
+                    Comparable comp = (Comparable) value;
+                    if (QueryParameterEntry.Operator.GT.equals(entry.getOperator())) {
+                        predicate = cb.greaterThan(path, comp);
+                    } else if (QueryParameterEntry.Operator.GE.equals(entry.getOperator())) {
+                        predicate = cb.greaterThanOrEqualTo(path, comp);
+                    } else if (QueryParameterEntry.Operator.LT.equals(entry.getOperator())) {
+                        predicate = cb.lessThan(path, comp);
+                    } else if (QueryParameterEntry.Operator.LE.equals(entry.getOperator())) {
+                        predicate = cb.lessThanOrEqualTo(path, comp);
+                    }
+                }
+                if (predicate != null) {
+                    predicates.add(predicate);
+                }
             }
             query.where(predicates.toArray(new Predicate[predicates.size()]));
         }
 
-        if(queryOrder != null) {
+        if (queryOrder != null) {
             List<Order> orders = new ArrayList<Order>();
-            for (String attribute : queryOrder.statements().keySet()) {
+            for (SingularAttribute attribute : queryOrder.statements().keySet()) {
                 QueryOrder.OrderDirection direction = queryOrder.statements().get(attribute);
                 if (QueryOrder.OrderDirection.ASC.equals(direction)) {
                     orders.add(cb.asc(root.get(attribute)));

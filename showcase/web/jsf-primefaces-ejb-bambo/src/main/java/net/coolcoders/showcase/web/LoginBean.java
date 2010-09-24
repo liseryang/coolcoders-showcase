@@ -7,6 +7,7 @@ package net.coolcoders.showcase.web;
 
 import net.coolcoders.showcase.dao.generic.QueryParameter;
 import net.coolcoders.showcase.model.User;
+import net.coolcoders.showcase.model.User_;
 import net.coolcoders.showcase.service.DbInitBean;
 import net.coolcoders.showcase.service.UserServiceBean;
 
@@ -59,7 +60,7 @@ public class LoginBean {
     }
 
     public String login() {
-        User user = userServiceBean.find(QueryParameter.with("username", username).and("password", password));
+        User user = userServiceBean.find(QueryParameter.with(User_.username, username).and(User_.password, password));
         if(user == null) {
             message = "Login failed!";
             return null;

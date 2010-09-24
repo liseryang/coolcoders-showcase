@@ -11,13 +11,16 @@ import net.coolcoders.showcase.model.User;
 import javax.annotation.PostConstruct;
 import javax.ejb.EJB;
 import javax.ejb.Stateless;
+import javax.ejb.TransactionAttribute;
+import javax.ejb.TransactionAttributeType;
 
 /**
  *
  * @author andreas
  */
 @Stateless
-public class UserServiceBean extends AbstractGenericService<User, Long> {
+@TransactionAttribute(TransactionAttributeType.REQUIRES_NEW)
+public class UserServiceBean extends AbstractGenericService<User, String> {
 
     @EJB
     private UserDaoBean userDaoBean;

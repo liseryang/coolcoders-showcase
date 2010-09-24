@@ -40,10 +40,6 @@ public abstract class AbstractGenericService<T, PK extends Serializable> {
         return abstractGenericDao.find(id);
     }
 
-    public T find(String attribute, Object value) {
-        return abstractGenericDao.find(attribute, value);
-    }
-
     public T find(QueryParameter queryParameter) {
         return abstractGenericDao.find(queryParameter);
     }

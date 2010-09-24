@@ -9,13 +9,16 @@ import net.coolcoders.showcase.dao.generic.AbstractGenericDao;
 import net.coolcoders.showcase.model.Message;
 
 import javax.ejb.Stateless;
+import javax.ejb.TransactionAttribute;
+import javax.ejb.TransactionAttributeType;
 
 /**
  *
  * @author andreas
  */
 @Stateless
-public class MessageDaoBean extends AbstractGenericDao<Message, Long> {
+@TransactionAttribute(TransactionAttributeType.MANDATORY)
+public class MessageDaoBean extends AbstractGenericDao<Message, String> {
 
     public MessageDaoBean() {
         super(Message.class);

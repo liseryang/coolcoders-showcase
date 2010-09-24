@@ -1,5 +1,6 @@
 package net.coolcoders.showcase.dao.generic;
 
+import javax.persistence.metamodel.SingularAttribute;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -12,26 +13,26 @@ import java.util.Map;
  */
 public class QueryOrder {
 
-    enum OrderDirection {ASC, DESC};
+    public enum OrderDirection {ASC, DESC};
 
-    private Map<String, OrderDirection> statements = null;
+    private Map<SingularAttribute, OrderDirection> statements = null;
 
-    private QueryOrder(String name, OrderDirection orderDirection) {
-        this.statements = new HashMap<String, OrderDirection>();
+    private QueryOrder(SingularAttribute name, OrderDirection orderDirection) {
+        this.statements = new HashMap<SingularAttribute, OrderDirection>();
         this.statements.put(name, orderDirection);
     }
 
-    public static QueryOrder with(String name, OrderDirection orderDirection) {
+    public static QueryOrder with(SingularAttribute name, OrderDirection orderDirection) {
         return new QueryOrder(name, orderDirection);
     }
 
-    public QueryOrder and(String name, OrderDirection orderDirection) {
+    public QueryOrder and(SingularAttribute name, OrderDirection orderDirection) {
         this.statements.put(name, orderDirection);
         return this;
     }
 
-    public Map<String, OrderDirection> statements() {
+    public Map<SingularAttribute, OrderDirection> statements() {
         return this.statements;
     }
-    
+
 }

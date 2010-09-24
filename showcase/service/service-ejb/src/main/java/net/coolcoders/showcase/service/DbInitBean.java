@@ -6,7 +6,9 @@ import net.coolcoders.showcase.model.Message;
 import net.coolcoders.showcase.model.User;
 
 import javax.ejb.EJB;
-import javax.ejb.Singleton;
+import javax.ejb.Stateless;
+import javax.ejb.TransactionAttribute;
+import javax.ejb.TransactionAttributeType;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
@@ -21,7 +23,8 @@ import java.util.UUID;
  * Time: 17:03:49
  * To change this template use File | Settings | File Templates.
  */
-@Singleton
+@Stateless
+@TransactionAttribute(TransactionAttributeType.REQUIRED)
 public class DbInitBean {
 
     @EJB
@@ -50,12 +53,19 @@ public class DbInitBean {
 
             User bambo = new User("Andreas Baumgartner", "abaumgartner", "test123", "andreas@bambo.it", Gender.MALE, sdf.parse("15.09.1979"));
             users.add(bambo);
+            bambo.getCategories().add(jee6);
+
             User peter = new User("Peter Schneider-Manzell", "pschneider-manzell", "test123", "peter@schneider-manzell.de", Gender.MALE, null);
             users.add(peter);
+            peter.getCategories().add(grails);
+
             User andreas = new User("Andreas Nerlich", "anerlich", "test123", "andreas.nerlich@gmail.com", Gender.MALE, null);
             users.add(andreas);
+            andreas.getCategories().add(grails);
+
             User josip = new User("Josip Mihelko", "jmihelko", "test123", "josip.mihelko@googlemail.com", Gender.MALE, null);
             users.add(josip);
+            josip.getCategories().add(grails);
 
             bambo.getFollowing().add(peter);
             josip.getFollowing().add(andreas);
