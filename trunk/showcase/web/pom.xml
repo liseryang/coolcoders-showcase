@@ -14,4 +14,10 @@
         <module>jsf</module>
     </modules>
 
+    <dependencies>
+        <dependency>
+            <groupId>hsqldb</groupId>
+            <artifactId>hsqldb</artifactId>
+        </dependency>        
+    </dependencies>
 </project>
