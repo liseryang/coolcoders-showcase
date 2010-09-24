@@ -6,6 +6,8 @@ import net.coolcoders.showcase.dao.generic.QueryParameter;
 
 import javax.ejb.EJB;
 import javax.ejb.Stateless;
+import javax.ejb.TransactionAttribute;
+import javax.ejb.TransactionAttributeType;
 import java.util.List;
 import java.util.Map;
 
@@ -17,6 +19,7 @@ import java.util.Map;
  * To change this template use File | Settings | File Templates.
  */
 @Stateless
+@TransactionAttribute(TransactionAttributeType.REQUIRES_NEW)
 public class GenericService<T> {
 
     @EJB
@@ -40,10 +43,6 @@ public class GenericService<T> {
 
     public T find(Class clazz, Object id) {
         return genericDao.find(clazz, id);
-    }
-
-    public T find(Class clazz, String attribute, Object value) {
-        return genericDao.find(clazz, attribute, value);
     }
 
     public T find(Class clazz, QueryParameter queryParameter) {

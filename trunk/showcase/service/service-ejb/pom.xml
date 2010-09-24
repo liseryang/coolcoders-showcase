@@ -10,13 +10,6 @@
     <packaging>jar</packaging>
     <name>Showcase Service EJB</name>
 
-    <build>
-
-    </build>
-
-    <properties>
-    </properties>
-
     <dependencies>
         <dependency>
             <groupId>${project.groupId}</groupId>

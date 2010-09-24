@@ -22,7 +22,6 @@ import java.util.ArrayList;
 import java.util.List;
 
 /**
- *
  * @author andreas
  */
 @Named
@@ -68,7 +67,7 @@ public class RegisterBean {
         }
         List<SelectItem> items = new ArrayList<SelectItem>(categories.size());
         for (Category category : categories) {
-            items.add(new SelectItem(category, category.getName()));
+            items.add(new SelectItem(category.getId(), category.getName()));
         }
         return items.toArray(new SelectItem[items.size()]);
     }

@@ -11,13 +11,16 @@ import net.coolcoders.showcase.model.Message;
 import javax.annotation.PostConstruct;
 import javax.ejb.EJB;
 import javax.ejb.Stateless;
+import javax.ejb.TransactionAttribute;
+import javax.ejb.TransactionAttributeType;
 
 /**
  *
  * @author andreas
  */
 @Stateless
-public class MessageServiceBean extends AbstractGenericService<Message, Long> {
+@TransactionAttribute(TransactionAttributeType.REQUIRES_NEW)
+public class MessageServiceBean extends AbstractGenericService<Message, String> {
 
     @EJB
     private MessageDaoBean messageDaoBean ;

@@ -11,13 +11,16 @@ import net.coolcoders.showcase.model.Category;
 import javax.annotation.PostConstruct;
 import javax.ejb.EJB;
 import javax.ejb.Stateless;
+import javax.ejb.TransactionAttribute;
+import javax.ejb.TransactionAttributeType;
 
 /**
  *
  * @author andreas
  */
 @Stateless
-public class CategoryServiceBean extends AbstractGenericService<Category, Long> {
+@TransactionAttribute(TransactionAttributeType.REQUIRES_NEW)
+public class CategoryServiceBean extends AbstractGenericService<Category, String> {
 
     @EJB
     private CategoryDaoBean categoryDaoBean;

@@ -10,13 +10,6 @@
     <packaging>jar</packaging>
     <name>Showcase Service Spring</name>
 
-    <build>
-
-    </build>
-
-    <properties>
-    </properties>
-
     <dependencies>
         <dependency>
             <groupId>org.springframework</groupId>

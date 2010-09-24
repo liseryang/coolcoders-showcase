@@ -10,6 +10,7 @@ import javax.persistence.NoResultException;
 import javax.persistence.PersistenceContext;
 import javax.persistence.TypedQuery;
 import javax.persistence.criteria.*;
+import javax.persistence.metamodel.SingularAttribute;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
@@ -63,11 +64,6 @@ public class GenericDao<T> {
         return (T) em.find(clazz, id);
     }
 
-    public T find(Class clazz, String attribute, Object value) {
-        CriteriaQuery<T> query = createCriteriaQuery(clazz, QueryParameter.with(attribute, value), null);
-        return findCriteriaQueryResult(query);
-    }
-
     public T find(Class clazz, QueryParameter queryParameter) {
         CriteriaQuery<T> query = createCriteriaQuery(clazz, queryParameter, null);
         return findCriteriaQueryResult(query);
@@ -86,15 +82,46 @@ public class GenericDao<T> {
 
         if (queryParameter != null) {
             List<Predicate> predicates = new ArrayList<Predicate>();
-            for (String attribute : queryParameter.parameters().keySet()) {
-                predicates.add(cb.equal(root.get(attribute), queryParameter.parameters().get(attribute)));
+            for (QueryParameterEntry entry : queryParameter.parameters()) {
+                Expression path = root.get(entry.getAttribute());
+
+                Object value = entry.getValue();
+                Predicate predicate = null;
+                if (QueryParameterEntry.Operator.EQ.equals(entry.getOperator())) {
+                    predicate = cb.equal(path, value);
+                } else if (value instanceof Number) {
+                    Number number = (Number) value;
+                    if (QueryParameterEntry.Operator.GT.equals(entry.getOperator())) {
+                        predicate = cb.gt(path, number);
+                    } else if (QueryParameterEntry.Operator.GE.equals(entry.getOperator())) {
+                        predicate = cb.ge(path, number);
+                    } else if (QueryParameterEntry.Operator.LT.equals(entry.getOperator())) {
+                        predicate = cb.lt(path, number);
+                    } else if (QueryParameterEntry.Operator.LE.equals(entry.getOperator())) {
+                        predicate = cb.le(path, number);
+                    }
+                } else if (value instanceof Comparable) {
+                    Comparable comp = (Comparable) value;
+                    if (QueryParameterEntry.Operator.GT.equals(entry.getOperator())) {
+                        predicate = cb.greaterThan(path, comp);
+                    } else if (QueryParameterEntry.Operator.GE.equals(entry.getOperator())) {
+                        predicate = cb.greaterThanOrEqualTo(path, comp);
+                    } else if (QueryParameterEntry.Operator.LT.equals(entry.getOperator())) {
+                        predicate = cb.lessThan(path, comp);
+                    } else if (QueryParameterEntry.Operator.LE.equals(entry.getOperator())) {
+                        predicate = cb.lessThanOrEqualTo(path, comp);
+                    }
+                }
+                if (predicate != null) {
+                    predicates.add(predicate);
+                }
             }
             query.where(predicates.toArray(new Predicate[predicates.size()]));
         }
 
         if (queryOrder != null) {
             List<Order> orders = new ArrayList<Order>();
-            for (String attribute : queryOrder.statements().keySet()) {
+            for (SingularAttribute attribute : queryOrder.statements().keySet()) {
                 QueryOrder.OrderDirection direction = queryOrder.statements().get(attribute);
                 if (QueryOrder.OrderDirection.ASC.equals(direction)) {
                     orders.add(cb.asc(root.get(attribute)));

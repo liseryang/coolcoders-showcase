@@ -21,23 +21,22 @@ import java.util.Set;
 @Table(name="USER_TABLE")
 public class User extends AbstractBaseEntity {
 
-    @NotNull
+    @NotNull(message = "{net.coolcoders.showcase.User.username.blank}")
     @Size(max=32)
     @Column(nullable = false, unique = true)
     private String username;
 
-    @NotNull
     @Column(nullable = true)
     private String fullname;
 
-    @NotNull
-    @Pattern(regexp="^.*(?=.{6,})(?=.*\\d)(?=.*[a-zA-Z]).*$")
+    @NotNull(message = "{net.coolcoders.showcase.User.password.blank}")
+    @Pattern(regexp="^.*(?=.{6,})(?=.*\\d)(?=.*[a-zA-Z]).*$", message="{net.coolcoders.showcase.User.password.matches.invalid}")
     @Column(nullable = false)
     private String password;
 
     private transient String confirmPassword;
 
-    @NotNull
+    @NotNull(message = "{net.coolcoders.showcase.User.email.blank}")
     @Email
     @Column(nullable = false, unique = true)
     private String email;
@@ -50,7 +49,7 @@ public class User extends AbstractBaseEntity {
     @OneToMany(mappedBy = "author", cascade = CascadeType.ALL)
     private Set<Message> messages = new HashSet<Message>();
 
-    @ManyToMany(mappedBy = "users")
+    @ManyToMany()
     private Set<Category> categories = new HashSet<Category>();
 
     @ManyToMany(mappedBy = "followedBy")

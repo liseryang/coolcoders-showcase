@@ -1,7 +1,8 @@
 package net.coolcoders.showcase.dao.generic;
 
-import java.util.HashMap;
-import java.util.Map;
+import javax.persistence.metamodel.SingularAttribute;
+import java.util.ArrayList;
+import java.util.List;
 
 /**
  * Created by IntelliJ IDEA.
@@ -12,24 +13,37 @@ import java.util.Map;
  */
 public class QueryParameter {
 
-    private Map<String, Object> parameters = null;
+    private List<QueryParameterEntry> parameters = null;
 
-    private QueryParameter(String name, Object value) {
-        this.parameters = new HashMap<String, Object>();
-        this.parameters.put(name, value);
+    private QueryParameter(SingularAttribute name, Object value) {
+        this.parameters = new ArrayList<QueryParameterEntry>();
+        this.parameters.add(new QueryParameterEntry(name, value));
     }
 
-    public static QueryParameter with(String name, Object value) {
+    private QueryParameter(SingularAttribute name, Object value, QueryParameterEntry.Operator operator) {
+        this.parameters = new ArrayList<QueryParameterEntry>();
+        this.parameters.add(new QueryParameterEntry(name, value, operator));
+    }
+
+    public static QueryParameter with(SingularAttribute name, Object value) {
         return new QueryParameter(name, value);
     }
 
-    public QueryParameter and(String name, Object value) {
-        this.parameters.put(name, value);
+    public static QueryParameter with(SingularAttribute name, QueryParameterEntry.Operator operator, Object value) {
+        return new QueryParameter(name, value, operator);
+    }
+
+    public QueryParameter and(SingularAttribute name, Object value) {
+        this.parameters.add(new QueryParameterEntry(name, value));
         return this;
     }
 
-    public Map<String, Object> parameters() {
-        return this.parameters;
+    public QueryParameter and(SingularAttribute name, QueryParameterEntry.Operator operator, Object value) {
+        this.parameters.add(new QueryParameterEntry(name, value, operator));
+        return this;
     }
 
+    public List<QueryParameterEntry> parameters() {
+        return this.parameters;
+    }
 }
