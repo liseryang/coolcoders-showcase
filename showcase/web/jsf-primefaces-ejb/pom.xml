@@ -11,11 +11,16 @@
     <name>Showcase Web JSF Primefaces EJB</name>
 
     <dependencies>
+
         <dependency>
-            <groupId>net.cool-coders.showcase</groupId>
+            <groupId>${project.groupId}</groupId>
             <artifactId>service-ejb</artifactId>
         </dependency>
 
+        <dependency>
+            <groupId>javax</groupId>
+            <artifactId>javaee-api</artifactId>
+        </dependency>
         <dependency>
             <groupId>javax</groupId>
             <artifactId>javaee-web-api</artifactId>
@@ -41,7 +46,7 @@
             <groupId>commons-fileupload</groupId>
             <artifactId>commons-fileupload</artifactId>
         </dependency>
-        
+
     </dependencies>
     <build>
         <finalName>showcase-primefaces-ejb</finalName>
