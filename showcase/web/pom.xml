@@ -16,6 +16,7 @@
         <module>jsf-mojarra-ejb</module>
         <module>jsf-icefaces-ejb</module>
         <module>jsf-primefaces-ejb</module>
+        <module>jsf-primefaces-ejb-bambo</module>
         <!--<module>jsf-richfaces-ejb</module>-->
     </modules>
 
