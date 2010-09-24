@@ -12,5 +12,6 @@
 
 || *Attribute* || *Constraint* || *Validation error message* ||
 ||id||Unique||...||
+||creator||not null||Creator required!||
 ||content||not null||Message required!||
 ||content||max length 140 character||Message too long, only 140 characters allowed!||
