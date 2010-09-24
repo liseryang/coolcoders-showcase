@@ -1,6 +1,11 @@
 <project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
          xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
     <modelVersion>4.0.0</modelVersion>
+    <parent>
+        <groupId>net.cool-coders.showcase</groupId>
+        <artifactId>showcase</artifactId>
+        <version>1.0-SNAPSHOT</version>
+    </parent>
     <groupId>net.cool-coders.showcase</groupId>
     <artifactId>web</artifactId>
     <version>1.0-SNAPSHOT</version>
@@ -16,11 +21,6 @@
 
     <dependencyManagement>
         <dependencies>
-            <dependency>
-                <groupId>net.cool-coders.showcase</groupId>
-                <artifactId>service-ejb</artifactId>
-                <version>1.0-SNAPSHOT</version>
-            </dependency>
 
             <dependency>
                 <groupId>javax</groupId>
@@ -29,6 +29,7 @@
                 <scope>provided</scope>
             </dependency>
 
+            <!-- Primefaces -->
             <dependency>
                 <groupId>org.primefaces</groupId>
                 <artifactId>primefaces</artifactId>
@@ -45,6 +46,7 @@
                 <version>1.2.1</version>
             </dependency>
 
+            <!-- Icefaces -->
             <dependency>
                  <groupId>org.icefaces</groupId>
                  <artifactId>icefaces-compat</artifactId>
@@ -60,41 +62,9 @@
                      </exclusion>
                  </exclusions>
              </dependency>
-            
-            <dependency>
-                <groupId>junit</groupId>
-                <artifactId>junit</artifactId>
-                <version>4.8.1</version>
-                <scope>test</scope>
-            </dependency>
-            <dependency>
-                <groupId>easymock</groupId>
-                <artifactId>easymock</artifactId>
-                <version>2.0</version>
-                <scope>test</scope>
-            </dependency>
+
         </dependencies>
     </dependencyManagement>
-
-    <build>
-        <plugins>
-            <plugin>
-                <groupId>org.apache.maven.plugins</groupId>
-                <artifactId>maven-compiler-plugin</artifactId>
-                <configuration>
-                    <source>1.6</source>
-                    <target>1.6</target>
-                </configuration>
-            </plugin>
-            <plugin>
-                <groupId>org.apache.maven.plugins</groupId>
-                <artifactId>maven-resources-plugin</artifactId>
-                <configuration>
-                    <encoding>UTF-8</encoding>
-                </configuration>
-            </plugin>
-        </plugins>
-    </build>
     
     <profiles>
         <profile>
@@ -104,32 +74,5 @@
             </modules>
         </profile>
     </profiles>
-
-    <repositories>
-        <repository>
-            <id>bambo.it</id>
-            <url>http://artifactory.bambo.it:9090/repo</url>
-        </repository>
-    </repositories>
-
-    <pluginRepositories>
-        <pluginRepository>
-            <id>bambo.it</id>
-            <url>http://artifactory.bambo.it:9090/repo</url>
-        </pluginRepository>
-    </pluginRepositories>
-
-    <distributionManagement>
-        <snapshotRepository>
-            <id>bambo.it-snapshots</id>
-            <name>bambo.it-snapshots</name>
-            <url>http://artifactory.bambo.it:9090/libs-snapshots-local</url>
-        </snapshotRepository>
-        <repository>
-            <id>bambo.it-releases</id>
-            <name>bambo.it-releases</name>
-            <url>http://artifactory.bambo.it:9090/libs-releases-local</url>
-        </repository>
-    </distributionManagement>
     
 </project>

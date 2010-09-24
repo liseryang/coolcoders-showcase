@@ -13,6 +13,7 @@
 
     <dependencies>
 
+        <!-- EclipseLink -->
         <dependency>
             <groupId>org.eclipse.persistence</groupId>
             <artifactId>javax.persistence</artifactId>
@@ -57,7 +58,8 @@
                         <phase>generate-sources</phase>
                         <configuration>
                             <!--<outputDirectory>${generated.sources.directory}</outputDirectory>-->
-                            <compilerArguments>-Aeclipselink.persistencexml=model/model-jpa/src/main/resources/META-INF/persistence.xml
+                            <compilerArguments>
+                                -Aeclipselink.persistencexml=model/model-jpa/src/test/resources/META-INF/persistence.xml
                             </compilerArguments>
                             <processors>
                                 <processor>org.eclipse.persistence.internal.jpa.modelgen.CanonicalModelProcessor
@@ -66,9 +68,9 @@
                         </configuration>
                     </execution>
                 </executions>
-            </plugin>
-        </plugins>
-        <finalName>model-jpa</finalName>
-    </build>
+        </plugin>
+    </plugins>
+    <finalName>model-jpa</finalName>
+</build>
 
-</project>
+        </project>

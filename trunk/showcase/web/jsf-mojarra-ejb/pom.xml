@@ -12,7 +12,7 @@
 
     <dependencies>
         <dependency>
-            <groupId>net.cool-coders.showcase</groupId>
+            <groupId>${project.groupId}</groupId>
             <artifactId>service-ejb</artifactId>
         </dependency>
 
