@@ -1,0 +1,54 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:p="http://primefaces.prime.com.tr/ui" >
+
+    <body>
+
+        <ui:composition template="./WEB-INF/templates/template.xhtml">
+
+            <ui:define name="content">
+                <h:form id="login">
+
+                    <div id="tabs">
+                        <ul>
+                            <li><a href="#tabs-1">Login</a></li>
+                        </ul>
+                        <div id="tabs-1" align="center">
+                                <div  style="padding: 3px">
+                                    <div>
+                                        <h:outputText value="${loginBean.message}" style="color: red;" />
+                                    </div>
+                                    <h:panelGrid columns="2">
+                                        <h:outputLabel value="Username:" styleClass="label"/>
+                                        <h:inputText value="#{loginBean.username}" />
+
+                                        <h:outputLabel value="Password:" styleClass="label"/>
+                                        <h:inputSecret value="#{loginBean.password}" />
+
+                                    </h:panelGrid>
+                                    <div>
+                                        <h:commandButton value="Login" action="#{loginBean.login}" />
+                                        <h:commandButton value="Register" action="register" />
+                                    </div>
+                                    <div style="margin: 5px 0px 5px 0px;">
+                                        <h:panelGrid columns="1" style="border: dashed">
+                                            <h:outputText value="Following Users exists by default" style="font-weight:bold;" />
+                                            <h:outputText value="abaumgartner / test123" />
+                                            <h:outputText value="anerlich / test123" />
+                                            <h:outputText value="jmihelko / test123" />
+                                            <h:outputText value="pschneider-manzell / test123" />
+                                        </h:panelGrid>
+                                    </div>
+                                </div>
+                        </div>
+                    </div>
+                </h:form>
+            </ui:define>
+
+        </ui:composition>
+
+    </body>
+</html>

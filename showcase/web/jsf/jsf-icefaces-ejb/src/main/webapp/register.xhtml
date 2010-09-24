@@ -1,0 +1,60 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+        "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:icecore="http://icefaces.org/core"
+      xmlns:ice="http://www.icesoft.com/icefaces/component">
+
+<body>
+
+<ui:composition template="./WEB-INF/templates/template.xhtml">
+
+    <ui:define name="content">
+        <ice:form id="login" partialSubmit="true">
+            <ice:panelTabSet styleClass="span-24 last">
+                <ice:panelTab label="Register">
+                    <center>
+                        <div class="ui-widget-content ui-corner-all" style="padding: 3px">
+                            <h:panelGrid columns="2">
+                                <h:outputLabel for="fullname" value="Fullname:" styleClass="label"/>
+                                <h:inputText id="fullname" value="#{registerBean.user.fullname}"/>
+
+                                <h:outputLabel for="birthday" value="Birthday:" styleClass="label"/>
+                                <ice:selectInputDate id="birthday"
+                                    value="#{registerBean.user.birthday}"
+                                    renderAsPopup="true">
+                                    <f:convertDateTime pattern="MM/dd/yyyy"/>
+                                </ice:selectInputDate>
+
+                                <h:outputLabel for="email" value="Email: *" styleClass="label"/>
+                                <h:inputText id="email" value="#{registerBean.user.email}" required="true"/>
+
+                                <h:outputLabel for="username" value="Username: *" styleClass="label"/>
+                                <h:inputText id="username" value="#{registerBean.user.username}" required="true"/>
+
+                                <h:outputLabel for="password" value="Password: *" styleClass="label"/>
+                                <h:inputSecret id="password" value="#{registerBean.user.password}" required="true"/>
+
+                                <h:outputLabel for="confirmPassword" value="Confirm Password: *"
+                                               styleClass="label"/>
+                                <h:inputSecret id="confirmPassword" value="#{registerBean.user.confirmPassword}"
+                                               required="true"/>
+                            </h:panelGrid>
+                            <h:messages style="color: red;"/>
+                            <h:commandButton value="Save" action="#{registerBean.save}"/>
+                            <h:commandButton value="Cancel" action="login" immediate="true"/>
+                        </div>
+                    </center>
+
+                </ice:panelTab>
+            </ice:panelTabSet>
+        </ice:form>
+    </ui:define>
+
+</ui:composition>
+
+</body>
+</html>
