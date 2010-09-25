@@ -12,7 +12,13 @@
 
 
 = Start up help =
- # Download and Install latest Netbeans http://netbeans.org/downloads/ (6.9.1) with latest Glassfish (3.0.1)
- # Checkout Project
- # Add JDBC/JNDI resource named "cc_showcase"
- # Deploy Project on Glassfish
+
+== Prerequisites ==
+ * JDK 6
+ * Maven > 2.2
+
+== Steps ==
+ # [http://code.google.com/p/coolcoders-showcase/source/checkout Checkout] project.
+ # Go into Folder "showcase/web/jsf/jsf-mojarra-ejb"
+ # execute "mvn clean package embedded-glassfish:run"
+ # Open "http://localhost:8080/showcase-mojarra" in a browser.
