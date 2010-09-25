@@ -3,7 +3,7 @@
 = Technologies = 
 
 == View ==
- * JSF 2.0 (Mojarra)
+ * JSF 2.0 (Mojarra) + Primefaces 2.2.M1
 
 == Service ==
  * EJB 3.1
