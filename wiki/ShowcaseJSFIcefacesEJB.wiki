@@ -3,9 +3,22 @@
 = Technologies = 
 
 == View ==
+ * JSF 2.0 (Mojarra)
 
 == Service ==
+ * EJB 3.1
 
 == Persistence == 
+ * JPA 2.0
 
 = Start up help =
+
+== Prerequisites ==
+ * JDK 6
+ * Maven >= 2.2
+
+== Steps ==
+ # [http://code.google.com/p/coolcoders-showcase/source/checkout Checkout] project.
+ # Go into Folder "showcase/web/jsf/jsf-icefaces-ejb"
+ # execute "mvn clean package embedded-glassfish:run"
+ # Open "http://localhost:8080/showcase-icefaces" in a browser.
