@@ -49,6 +49,20 @@
                     <failOnMissingWebXml>false</failOnMissingWebXml>
                 </configuration>
             </plugin>
+            <plugin>
+                <groupId>org.glassfish</groupId>
+                <artifactId>maven-embedded-glassfish-plugin</artifactId>
+                <version>3.0.1</version>
+                <configuration>
+                    <goalPrefix>embedded-glassfish</goalPrefix>
+                    <app>${project.build.directory}/${build.finalName}.war</app>
+                    <autoDelete>true</autoDelete>
+                    <port>8080</port>
+                    <command>VALUE</command>
+                    <configFile>${basedir}/src/test/resources/domain.xml</configFile>
+                </configuration>
+            </plugin>
+            
         </plugins>
     </build>
 
