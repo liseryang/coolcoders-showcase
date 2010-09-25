@@ -15,7 +15,7 @@
 
 == Prerequisites ==
  * JDK 6
- * Maven > 2.2
+ * Maven >= 2.2
 
 == Steps ==
  # [http://code.google.com/p/coolcoders-showcase/source/checkout Checkout] project.
