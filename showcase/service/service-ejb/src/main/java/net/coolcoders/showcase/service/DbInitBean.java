@@ -87,7 +87,8 @@ public class DbInitBean {
 
     private void createDummyMessages(User u, int count) {
         for( int i = 0; i < count; i++) {
-            Message m = new Message(u, new Date(), UUID.randomUUID().toString());
+            String content = "Test message number "+i;
+            Message m = new Message(u, new Date(), content);
             u.getMessages().add(m);
         }
     }
