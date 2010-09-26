@@ -44,6 +44,10 @@ Create following dummy messages:
  * 100 messages for user abaumgartner
  * 50 messages for user jmihelko
  * 10 messages for user anerlich
+
+Message content:
+
+`Test message number <message number of current user>`, e.g. `Test message number 1`
  
 
 
