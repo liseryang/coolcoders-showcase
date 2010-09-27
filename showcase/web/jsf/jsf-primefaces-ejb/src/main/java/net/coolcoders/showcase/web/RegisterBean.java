@@ -9,7 +9,6 @@ import net.coolcoders.showcase.model.Category;
 import net.coolcoders.showcase.model.Gender;
 import net.coolcoders.showcase.model.User;
 import net.coolcoders.showcase.service.CategoryServiceBean;
-import net.coolcoders.showcase.service.DbInitBean;
 import net.coolcoders.showcase.service.UserServiceBean;
 import net.coolcoders.showcase.web.util.MessageBundleLoader;
 
@@ -37,9 +36,6 @@ public class RegisterBean {
     @Inject
     private SessionBean sessionBean;
 
-    @EJB
-    private DbInitBean dbInitBean;
-
     private User user = new User();
 
     public User getUser() {
@@ -62,9 +58,6 @@ public class RegisterBean {
 
     public SelectItem[] getCategoryItems() {
         List<Category> categories = categoryServiceBean.get();
-        if(categories.size() == 0) {
-            dbInitBean.initDb();
-        }
         List<SelectItem> items = new ArrayList<SelectItem>(categories.size());
         for (Category category : categories) {
             items.add(new SelectItem(category.getId(), category.getName()));

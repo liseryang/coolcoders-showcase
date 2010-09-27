@@ -8,7 +8,6 @@ package net.coolcoders.showcase.web;
 import net.coolcoders.showcase.dao.generic.QueryParameter;
 import net.coolcoders.showcase.model.User;
 import net.coolcoders.showcase.model.User_;
-import net.coolcoders.showcase.service.DbInitBean;
 import net.coolcoders.showcase.service.UserServiceBean;
 
 import javax.ejb.EJB;
@@ -31,9 +30,6 @@ public class LoginBean {
 
     @Inject
     private SessionBean sessionBean;
-
-    @EJB
-    private DbInitBean dbInitBean;
 
     private String username = null;
 
@@ -80,10 +76,4 @@ public class LoginBean {
         sessionBean.setCurrentUser(null);
         return "login";
     }
-
-    public String initDb() {
-        dbInitBean.initDb();
-        return null;
-    }
-
 }
