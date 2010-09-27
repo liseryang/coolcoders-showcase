@@ -5,16 +5,13 @@ import net.coolcoders.showcase.model.Gender;
 import net.coolcoders.showcase.model.Message;
 import net.coolcoders.showcase.model.User;
 
-import javax.ejb.EJB;
-import javax.ejb.Stateless;
-import javax.ejb.TransactionAttribute;
-import javax.ejb.TransactionAttributeType;
+import javax.annotation.PostConstruct;
+import javax.ejb.*;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
-import java.util.UUID;
 
 /**
  * Created by IntelliJ IDEA.
@@ -23,7 +20,8 @@ import java.util.UUID;
  * Time: 17:03:49
  * To change this template use File | Settings | File Templates.
  */
-@Stateless
+@Singleton
+@Startup
 @TransactionAttribute(TransactionAttributeType.REQUIRED)
 public class DbInitBean {
 
@@ -33,6 +31,7 @@ public class DbInitBean {
     @EJB
     private CategoryServiceBean categoryServiceBean;
 
+    @PostConstruct
     public void initDb() {
         System.out.println("Start init DB");
         List<User> users = new ArrayList<User>();
