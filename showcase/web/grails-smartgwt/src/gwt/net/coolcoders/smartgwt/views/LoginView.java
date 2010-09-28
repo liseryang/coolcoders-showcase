@@ -1,7 +1,9 @@
 package net.coolcoders.smartgwt.views;
 
-import com.google.gwt.user.client.rpc.AsyncCallback;
+import com.google.gwt.core.client.GWT;
+import com.google.gwt.user.client.Window;
 import com.smartgwt.client.types.Alignment;
+import com.smartgwt.client.types.FormMethod;
 import com.smartgwt.client.util.SC;
 import com.smartgwt.client.widgets.Button;
 import com.smartgwt.client.widgets.events.ClickEvent;
@@ -12,9 +14,7 @@ import com.smartgwt.client.widgets.form.fields.TextItem;
 import com.smartgwt.client.widgets.layout.HLayout;
 import com.smartgwt.client.widgets.layout.VLayout;
 import grails.plugins.gwt.client.GwtActionServiceAsync;
-import net.coolcoders.smartgwt.client.LoginAction;
-import net.coolcoders.smartgwt.client.LoginResponse;
-import net.coolcoders.smartgwt.client.ShowCaseUi;
+import net.coolcoders.smartgwt.client.ShowcaseConstants;
 import net.coolcoders.smartgwt.client.ViewConstants;
 import net.coolcoders.smartgwt.components.ShowcaseBaseButton;
 import net.coolcoders.smartgwt.components.ShowcaseBaseView;
@@ -23,27 +23,40 @@ import net.coolcoders.smartgwt.components.ShowcaseBaseView;
  * @author <a href="mailto:josip.mihelko@googlemail.com">Josip Mihelko</a>
  */
 public class LoginView extends ShowcaseBaseView implements ClickHandler {
-    DynamicForm loginForm;
+    private ShowcaseConstants constants = GWT.create(ShowcaseConstants.class);
+    private DynamicForm loginForm;
     private Button login, register;
 
-    public LoginView(GwtActionServiceAsync actionServiceAsync, ShowCaseUi showCaseUi) {
-        super(actionServiceAsync, showCaseUi);
+    public LoginView(GwtActionServiceAsync actionServiceAsync) {
+        super(actionServiceAsync);
+        String error = Window.Location.getParameter("error");
         initWidgets();
         layout();
+        if (error != null) {
+            SC.say(constants.login_failed());
+        }
     }
 
     private void initWidgets() {
         //a login form
         loginForm = new DynamicForm();
-        TextItem username = new TextItem("Username", "Username");
-        PasswordItem password = new PasswordItem("Password", "Password");
+        TextItem username = new TextItem("username", constants.username_label());
+        username.setRequired(true);
+        username.setRequiredMessage(constants.loginCommand_username_blank());
+        username.setTooltip(constants.username_label());
+        PasswordItem password = new PasswordItem("password", constants.password_label());
+        password.setRequired(true);
+        password.setRequiredMessage(constants.loginCommand_password_blank());
+        password.setTooltip(constants.password_label());
         loginForm.setFields(username, password);
         loginForm.setAutoWidth();
         loginForm.setAlign(Alignment.CENTER);
+        loginForm.setMethod(FormMethod.POST);
+        loginForm.setAction("/smartgwtsc/login/login");
         //login and register-button
-        login = new ShowcaseBaseButton("Login");
+        login = new ShowcaseBaseButton(constants.login_label());
         login.addClickHandler(this);
-        register = new ShowcaseBaseButton("Register");
+        register = new ShowcaseBaseButton(constants.register_label());
         register.addClickHandler(this);
     }
 
@@ -67,33 +80,11 @@ public class LoginView extends ShowcaseBaseView implements ClickHandler {
     public void onClick(ClickEvent clickEvent) {
         Button source = (Button) clickEvent.getSource();
         if (login.equals(source)) {
-            doLogin();
+            if (loginForm.validate()) {
+                loginForm.submitForm();
+            }
         } else if (register.equals(source)) {
-            ui.showRegisterView();
+            Window.Location.assign("/smartgwtsc/register/index");
         }
     }
-
-    private void doLogin() {
-        String username = (String) loginForm.getItem("Username").getValue();
-        String passwd = (String) loginForm.getItem("Password").getValue();
-        if (username == null || passwd == null) {
-            SC.say("Username AND Password needed !");
-            return;
-        }
-        LoginAction action = new LoginAction(username, passwd);
-        actionService.execute(action, new AsyncCallback<LoginResponse>() {
-            public void onFailure(Throwable caught) {
-                SC.say("An error occured !" + caught.getMessage());
-            }
-
-            public void onSuccess(LoginResponse result) {
-                if (result.isSuccessful()) {
-                    ui.loginSuccessful();
-                } else {
-                    SC.say(result.getMessage());
-                }
-            }
-        });
-    }
-
 }

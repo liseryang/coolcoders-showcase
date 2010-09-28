@@ -5,7 +5,6 @@ import com.smartgwt.client.widgets.Label;
 import com.smartgwt.client.widgets.layout.HLayout;
 import com.smartgwt.client.widgets.layout.VLayout;
 import grails.plugins.gwt.client.GwtActionServiceAsync;
-import net.coolcoders.smartgwt.client.ShowCaseUi;
 import net.coolcoders.smartgwt.client.ViewConstants;
 
 /**
@@ -13,12 +12,10 @@ import net.coolcoders.smartgwt.client.ViewConstants;
  */
 public abstract class ShowcaseBaseView extends VLayout {
     protected final GwtActionServiceAsync actionService;
-    protected final ShowCaseUi ui;
 
-    public ShowcaseBaseView(GwtActionServiceAsync actionServiceAsync, ShowCaseUi showCaseUi) {
+    public ShowcaseBaseView(GwtActionServiceAsync actionServiceAsync) {
         super();
         this.actionService = actionServiceAsync;
-        this.ui = showCaseUi;
         setWidth100();
         setAlign(Alignment.CENTER);
         setAutoHeight();

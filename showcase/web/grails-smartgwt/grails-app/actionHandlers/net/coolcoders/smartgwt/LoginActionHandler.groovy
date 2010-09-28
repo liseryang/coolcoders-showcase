@@ -1,6 +1,6 @@
 package net.coolcoders.smartgwt
 
-import net.coolcoders.showcase.grails.smartgwt.User
+import net.coolcoders.showcase.smartgwt.User
 import net.coolcoders.smartgwt.client.LoginAction
 import net.coolcoders.smartgwt.client.LoginResponse
 

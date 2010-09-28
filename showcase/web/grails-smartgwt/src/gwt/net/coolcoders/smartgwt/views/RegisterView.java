@@ -1,6 +1,6 @@
 package net.coolcoders.smartgwt.views;
 
-import com.google.gwt.user.client.rpc.AsyncCallback;
+import com.google.gwt.user.client.Window;
 import com.smartgwt.client.types.Alignment;
 import com.smartgwt.client.util.SC;
 import com.smartgwt.client.widgets.Button;
@@ -10,25 +10,21 @@ import com.smartgwt.client.widgets.form.DynamicForm;
 import com.smartgwt.client.widgets.form.fields.*;
 import com.smartgwt.client.widgets.layout.HLayout;
 import grails.plugins.gwt.client.GwtActionServiceAsync;
-import net.coolcoders.smartgwt.client.RegisterAction;
-import net.coolcoders.smartgwt.client.RegisterResponse;
-import net.coolcoders.smartgwt.client.ShowCaseUi;
 import net.coolcoders.smartgwt.components.ShowcaseBaseButton;
 import net.coolcoders.smartgwt.components.ShowcaseBaseView;
 
-import java.util.Date;
 import java.util.LinkedHashMap;
 
 /**
  * @author <a href="mailto:josip.mihelko@googlemail.com">Josip Mihelko</a>
  */
-public class RegisterView extends ShowcaseBaseView implements ClickHandler, AsyncCallback<RegisterResponse> {
+public class RegisterView extends ShowcaseBaseView implements ClickHandler {
     private DynamicForm registerForm;
     private Button register, cancel;
     LinkedHashMap<Long, String> categories;
 
-    public RegisterView(GwtActionServiceAsync actionServiceAsync, ShowCaseUi showCaseUi, LinkedHashMap<Long, String> categories) {
-        super(actionServiceAsync, showCaseUi);
+    public RegisterView(GwtActionServiceAsync actionServiceAsync, LinkedHashMap<Long, String> categories) {
+        super(actionServiceAsync);
         this.categories = categories;
         initWidgets();
         layout();
@@ -36,6 +32,7 @@ public class RegisterView extends ShowcaseBaseView implements ClickHandler, Asyn
 
     private void initWidgets() {
         registerForm = new DynamicForm();
+        registerForm.setAction("/smartgwtsc/register/register");
         //the form's fields
         FormItem[] items = new FormItem[7 + categories.size()];
         TextItem username = new TextItem("username", "Username");
@@ -98,34 +95,17 @@ public class RegisterView extends ShowcaseBaseView implements ClickHandler, Asyn
             doRegister();
 
         } else if (cancel.equals(source)) {
-            ui.showLoginView();
+            Window.Location.assign("/smartgwtsc/login/index");
         }
     }
 
     private void doRegister() {
         if (checkPassword()) {
-            RegisterAction action = new RegisterAction();
-            SC.say((String) registerForm.getItem("username").getValue());
-            SC.say((String) registerForm.getItem("fullname").getValue());
-            SC.say((String) registerForm.getItem("email").getValue());
-            SC.say((String) registerForm.getItem("gender").getValue());
-            SC.say((String) registerForm.getItem("birthday").getValue());
-            action.setUsername((String) registerForm.getItem("username").getValue());
-            action.setFullname((String) registerForm.getItem("fullname").getValue());
-            action.setEmail((String) registerForm.getItem("email").getValue());
-            action.setGender((String) registerForm.getItem("gender").getValue());
-            action.setBirthday((Date) registerForm.getItem("birthday").getValue());
-            for (Long key : categories.keySet()) {
-                Boolean categoryChecked = (Boolean) registerForm.getItem("category_" + key).getValue();
-                SC.say(key + " - " + categoryChecked);
-                if (categoryChecked) {
-                    action.getCategoryIds().add(key);
-                }
-            }
-            SC.say("executing action !");
-            actionService.execute(action, this);
+            registerForm.submitForm();
         } else {
             SC.say("Your passwords do not match !");
+            registerForm.setFieldErrors("password", "Password don't match !", true);
+            registerForm.setFieldErrors("passwordRep", "Password don't match !", true);
         }
     }
 
@@ -136,17 +116,5 @@ public class RegisterView extends ShowcaseBaseView implements ClickHandler, Asyn
             return true;
         }
         return false;
-    }
-
-    public void onFailure(Throwable caught) {
-        SC.say("An error occurred !" + caught.getMessage());
-    }
-
-    public void onSuccess(RegisterResponse result) {
-        if (result.getSuccessful()) {
-            SC.say("thank you for registering !");
-        } else {
-            SC.say("Errors: " + result.getErrors());
-        }
     }
 }
