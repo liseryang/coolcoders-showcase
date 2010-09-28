@@ -8,11 +8,11 @@ class AppUser {
   String password
   String repassword
   String email
-  Gender gender = Gender.MALE
+  net.coolcoders.showcase.Gender gender = net.coolcoders.showcase.Gender.MALE
   Date birthday
 
 
-  static hasMany = [categories: Category, messages: Message, following: AppUser]
+  static hasMany = [categories: net.coolcoders.showcase.Category, messages: net.coolcoders.showcase.Message, following: AppUser]
 
   static constraints = {
     fullname(nullable: true)
