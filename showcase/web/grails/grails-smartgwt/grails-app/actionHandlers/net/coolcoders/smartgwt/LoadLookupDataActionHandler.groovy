@@ -1,6 +1,6 @@
 package net.coolcoders.smartgwt
 
-import net.coolcoders.showcase.smartgwt.Category
+import net.coolcoders.showcase.Category
 import net.coolcoders.smartgwt.client.LoadLookupDataAction
 import net.coolcoders.smartgwt.client.LoadLookupDataResponse
 

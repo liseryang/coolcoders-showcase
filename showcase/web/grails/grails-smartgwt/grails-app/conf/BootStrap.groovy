@@ -1,8 +1,6 @@
-import net.coolcoders.showcase.smartgwt.User
-import net.coolcoders.showcase.smartgwt.Category
-import net.coolcoders.showcase.smartgwt.Gender
-import net.coolcoders.showcase.smartgwt.User
-import net.coolcoders.showcase.smartgwt.Gender
+import net.coolcoders.showcase.Category
+import net.coolcoders.showcase.Gender
+import net.coolcoders.showcase.AppUser
 
 class BootStrap {
 
@@ -18,8 +16,8 @@ class BootStrap {
       new Category(name: 'Flex').save(failOnError: true)
       new Category(name: 'Flash').save(failOnError: true)
     }
-    if (!User.get(1)) {
-      def user = new User(
+    if (!AppUser.get(1)) {
+      def user = new AppUser(
               username: 'peter',
               password: 'test123',
               fullname: 'Peter Schneider-Manzell',
@@ -27,7 +25,7 @@ class BootStrap {
               gender: Gender.MALE).save(failOnError: true)
       user.addToCategories(Category.get(1))
       user.addToCategories(Category.get(2))
-      user = new User(
+      user = new AppUser(
               username: 'josip',
               password: 'test123',
               fullname: 'Josip Mihelko',
@@ -35,7 +33,7 @@ class BootStrap {
               gender: Gender.MALE).save(failOnError: true)
       user.addToCategories(Category.get(1))
       user.addToCategories(Category.get(2))
-      user = new User(
+      user = new AppUser(
               username: 'bambo',
               password: 'test123',
               fullname: 'Andreas Baumgartner',
