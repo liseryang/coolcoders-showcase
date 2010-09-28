@@ -4,7 +4,7 @@
       xmlns:ui="http://java.sun.com/jsf/facelets"
       xmlns:h="http://java.sun.com/jsf/html"
       xmlns:f="http://java.sun.com/jsf/core"
-      >
+      xmlns:p="http://primefaces.prime.com.tr/ui">
 
 <f:view contentType="text/html" />
 
@@ -32,7 +32,7 @@
     <script type="text/javascript">
         $(document).ready(function() {
             $('#switcher').themeswitcher({
-                defaultTheme: 'Sunny',
+                loadTheme: 'Sunny',
                 width: '145',
                 height: 400
             });
@@ -54,6 +54,20 @@
 </h:head>
 
 <h:body>
+
+    <!--<p:layout fullPage="true" >-->
+        <!--<p:layoutUnit position="top" height="50">-->
+            <!--<h:outputText value="CoolCoders Showcase" style="font-size: xx-large"/>-->
+        <!--</p:layoutUnit>-->
+
+        <!--<p:layoutUnit position="center">-->
+            <!--<ui:insert name="content">Content</ui:insert>-->
+        <!--</p:layoutUnit>-->
+
+        <!--<p:layoutUnit position="bottom" height="50" style="text-align: right">-->
+            <!--<h:outputText value="Powered By Coolcoders" style="margin-right: 2px"/>-->
+        <!--</p:layoutUnit>-->
+    <!--</p:layout>-->
 
     <!--        <div class="container showgrid ui-widget-header">-->
     <div class="container showgrid ui-widget ui-widget-header">

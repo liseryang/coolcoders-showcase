@@ -5,7 +5,7 @@
       xmlns:ui="http://java.sun.com/jsf/facelets"
       xmlns:h="http://java.sun.com/jsf/html"
       xmlns:f="http://java.sun.com/jsf/core"
-      xmlns:p="http://primefaces.prime.com.tr/ui" >
+      xmlns:p="http://primefaces.prime.com.tr/ui">
 
 <body>
 
@@ -18,41 +18,49 @@
 
     <ui:define name="content">
         <h:form id="home">
-            <div id="tabs">
-                <ul>
-                    <li><a href="#tabs-1">Tweets</a></li>
-                    <li><a href="#tabs-2">Users</a></li>
-                </ul>
-                <div id="tabs-1">
-                    
-                        <p:dataTable var="msg" value="#{tweetsBean.messages}">
-                            <p:column>
+            <p:tabView>
+                <p:tab title="Tweets">
+                    <div class="ui-widget ui-widget-content ui-corner-all">
+                        <p:panel header="#{msgs['message.create.label']}">
+                            <h:panelGrid columns="1" columnClasses="textCenter">
+                                <h:inputTextarea value="#{tweetsBean.message.content}"
+                                                 style="width: 840px; height: 100px"/>
+                                <h:commandButton value="Send" action="#{tweetsBean.saveMessage}"/>
+                            </h:panelGrid>
+                        </p:panel>
+                    </div>
 
-                                <f:facet name="header">
-                                    Message
-                                </f:facet>
-                                <h:outputText value="#{msg.content}"/>
-                            </p:column>
-                            <p:column>
-                                <f:facet name="header">
-                                    Created
-                                </f:facet>
+                    <ui:repeat value="#{tweetsBean.messages}" var="msg">
+                        <div class="ui-widget ui-widget-content ui-corner-all" style="margin: 5px 0 5px 0; padding: 5px">
+                            <h:panelGrid columns="3" columnClasses="col1,col2,col3">
                                 <h:outputText value="#{msg.created}">
-                                    <f:convertDateTime pattern="dd.MM.yyyy mm:hh" />
+                                    <f:convertDateTime pattern="dd.MM.yyyy hh:mm"/>
                                 </h:outputText>
-                            </p:column>
-                            <p:column>
-                                <f:facet name="header">
-                                    Author
-                                </f:facet>
                                 <h:outputText value="#{msg.author.username}"/>
-                            </p:column>
-                        </p:dataTable>
-                </div>
-                <div id="tabs-2">
+                                <h:outputText value="#{msg.content}"/>
+                            </h:panelGrid>
+                        </div>
+                    </ui:repeat>
+                </p:tab>
 
-                </div>
-            </div>
+                <p:tab title="Users">
+                    <p:dataTable var="msg" value="#{tweetsBean.messages}" paginator="true" rows="10"
+                                 rowStyleClass="ccRowStyleClass">
+                        <p:column>
+                            <h:outputText value="#{msg.content}"/>
+                        </p:column>
+                        <p:column>
+                            <h:outputText value="#{msg.created}">
+                                <f:convertDateTime pattern="dd.MM.yyyy mm:hh"/>
+                            </h:outputText>
+                        </p:column>
+                        <p:column>
+                            <h:outputText value="#{msg.author.username}"/>
+                        </p:column>
+                    </p:dataTable>
+                </p:tab>
+            </p:tabView>
+
         </h:form>
     </ui:define>
 
