@@ -150,4 +150,6 @@ public class User extends AbstractBaseEntity {
     public void setConfirmPassword(String confirmPassword) {
         this.confirmPassword = confirmPassword;
     }
+
+
 }

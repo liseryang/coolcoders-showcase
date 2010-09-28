@@ -50,6 +50,13 @@ public class DbInitBean {
             categories.add(gwt);
             categoryServiceBean.persistAll(categories);
 
+//            new UserBuilder().withFullname("Andreas Baumgartner")
+//                    .withUsername("abaumgartner")
+//                    .withPassword("test123")
+//                    .withEmail("andreas@bambo.it")
+//                    .withGender(Gender.MALE)
+//                    .withBirthday(sdf.parse("15.09.1979")).build();
+
             User bambo = new User("Andreas Baumgartner", "abaumgartner", "test123", "andreas@bambo.it", Gender.MALE, sdf.parse("15.09.1979"));
             users.add(bambo);
             bambo.getCategories().add(jee6);

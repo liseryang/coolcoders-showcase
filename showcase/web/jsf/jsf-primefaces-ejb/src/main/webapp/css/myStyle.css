@@ -7,3 +7,25 @@
     margin-right: auto;
 }
 
+.textCenter {
+    text-align: center;
+}
+
+tr.ccRowStyleClass {
+    border: none;
+}
+
+td.ui-datatable-data {
+    border: none;
+}
+
+.col1 {
+    width: 150px;
+}
+.col2 {
+    width: 200px;
+}
+.col3 {
+    width: 530px;
+}
+

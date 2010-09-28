@@ -39,13 +39,13 @@ public class TweetsBean {
     public Message getMessage() {
         if(message == null) {
             message = new Message();
-            message.setCreated(new Date());
             message.setAuthor(sessionBean.getCurrentUser());
         }
         return message;
     }
 
     public String saveMessage() {
+        message.setCreated(new Date());
         messageServiceBean.persist(message);
         message = null;
         return null;

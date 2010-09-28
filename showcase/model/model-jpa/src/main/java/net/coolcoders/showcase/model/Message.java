@@ -60,4 +60,7 @@ public class Message extends AbstractBaseEntity {
     public void setAuthor(User author) {
         this.author = author;
     }
+
+
+
 }
