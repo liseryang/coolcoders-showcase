@@ -1,0 +1,13 @@
+<module>
+    <!-- Inherit the core Web Toolkit stuff.                  -->
+    <inherits name="com.google.gwt.user.User"/>
+    <inherits name="com.smartgwt.SmartGwt"/>
+    <inherits name="grails.plugins.gwt.Grails"/>
+
+    <!-- Specify the module entry point class.                   -->
+    <entry-point class="net.coolcoders.smartgwt.client.Login"/>
+    <source path="client"/>
+    <source path="views"/>
+    <source path="data"/>
+    <source path="components"/>
+</module>

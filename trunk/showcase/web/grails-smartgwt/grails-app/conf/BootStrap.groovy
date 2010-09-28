@@ -1,6 +1,8 @@
-import net.coolcoders.showcase.grails.smartgwt.User
-import net.coolcoders.showcase.grails.smartgwt.Category
-import net.coolcoders.showcase.grails.smartgwt.Gender
+import net.coolcoders.showcase.smartgwt.User
+import net.coolcoders.showcase.smartgwt.Category
+import net.coolcoders.showcase.smartgwt.Gender
+import net.coolcoders.showcase.smartgwt.User
+import net.coolcoders.showcase.smartgwt.Gender
 
 class BootStrap {
 
