@@ -1,5 +1,6 @@
 package net.coolcoders.showcase.views;
 
+import com.google.gwt.core.client.GWT;
 import com.google.gwt.user.client.Window;
 import com.smartgwt.client.types.Alignment;
 import com.smartgwt.client.util.SC;
@@ -10,6 +11,7 @@ import com.smartgwt.client.widgets.form.DynamicForm;
 import com.smartgwt.client.widgets.form.fields.*;
 import com.smartgwt.client.widgets.layout.HLayout;
 import grails.plugins.gwt.client.GwtActionServiceAsync;
+import net.coolcoders.showcase.client.ShowcaseConstants;
 import net.coolcoders.showcase.components.ShowcaseBaseButton;
 import net.coolcoders.showcase.components.ShowcaseBaseView;
 
@@ -19,6 +21,7 @@ import java.util.LinkedHashMap;
  * @author <a href="mailto:josip.mihelko@googlemail.com">Josip Mihelko</a>
  */
 public class RegisterView extends ShowcaseBaseView implements ClickHandler {
+    private ShowcaseConstants constants = GWT.create(ShowcaseConstants.class);
     private DynamicForm registerForm;
     private Button register, cancel;
     LinkedHashMap<Long, String> categories;
@@ -35,19 +38,19 @@ public class RegisterView extends ShowcaseBaseView implements ClickHandler {
         registerForm.setAction("/smartgwtsc/register/register");
         //the form's fields
         FormItem[] items = new FormItem[7 + categories.size()];
-        TextItem username = new TextItem("username", "Username");
+        TextItem username = new TextItem("username", constants.username_label());
         username.setTooltip("Your desired username.");
         username.setRequired(true);
         items[0] = username;
-        PasswordItem password = new PasswordItem("password", "Password");
+        PasswordItem password = new PasswordItem("password", constants.password_label());
         password.setTooltip("Your desired Password.");
         password.setRequired(true);
         items[1] = password;
-        PasswordItem passwordRep = new PasswordItem("passwordRep", "PasswordRep");
+        PasswordItem passwordRep = new PasswordItem("passwordRep", constants.repassword_label());
         passwordRep.setTooltip("Repeat your desired Password.");
         passwordRep.setRequired(true);
         items[2] = passwordRep;
-        TextItem fullname = new TextItem("fullname", "Full name");
+        TextItem fullname = new TextItem("fullname", constants.fullname_label());
         fullname.setTooltip("Your real name.");
         fullname.setRequired(true);
         items[3] = fullname;
@@ -55,12 +58,12 @@ public class RegisterView extends ShowcaseBaseView implements ClickHandler {
         email.setTooltip("Your email address.");
         email.setRequired(true);
         items[4] = email;
-        SelectItem genderItem = new SelectItem("gender", "Gender");
+        SelectItem genderItem = new SelectItem("gender", constants.gender_label());
         genderItem.setTooltip("Your gender.");
-        genderItem.setValueMap("FEMALE", "MALE");
+        genderItem.setValueMap(constants.gender_female(), constants.gender_male());
         genderItem.setAllowEmptyValue(false);
         items[5] = genderItem;
-        DateItem birthdayItem = new DateItem("birthday", "Birthday");
+        DateItem birthdayItem = new DateItem("birthday", constants.birthday_label());
         birthdayItem.setTooltip("Yout birthday.");
         items[6] = birthdayItem;
         int i = 0;
@@ -73,7 +76,7 @@ public class RegisterView extends ShowcaseBaseView implements ClickHandler {
         registerForm.setFields(items);
         registerForm.setAlign(Alignment.CENTER);
         //the buttons
-        register = new ShowcaseBaseButton("Register");
+        register = new ShowcaseBaseButton(constants.register_label());
         register.addClickHandler(this);
         cancel = new ShowcaseBaseButton("Cancel");
         cancel.addClickHandler(this);
