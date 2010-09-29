@@ -10,8 +10,8 @@
   <!-- If you add any GWT meta tags, they must   -->
   <!-- be added before this line.                -->
   <!--                                           -->
-  <script>var isomorphicDir = "${resource(dir: 'gwt/net.coolcoders.smartgwt.Login/sc/')}"</script>
-  <script type="text/javascript" src="${resource(dir: 'gwt/net.coolcoders.smartgwt.Login', file: 'net.coolcoders.smartgwt.Login.nocache.js')}"></script>
+  <script>var isomorphicDir = "${resource(dir: 'gwt/net.coolcoders.showcase.Login/sc/')}"</script>
+  <script type="text/javascript" src="${resource(dir: 'gwt/net.coolcoders.showcase.Login', file: 'net.coolcoders.showcase.Login.nocache.js')}"></script>
 </head>
 
 <!--                                           -->
