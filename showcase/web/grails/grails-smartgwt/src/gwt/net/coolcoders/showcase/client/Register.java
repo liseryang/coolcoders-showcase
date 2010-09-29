@@ -2,7 +2,7 @@ package net.coolcoders.showcase.client;
 
 import com.google.gwt.user.client.rpc.AsyncCallback;
 import com.smartgwt.client.util.SC;
-import net.coolcoders.smartgwt.views.RegisterView;
+import net.coolcoders.showcase.views.RegisterView;
 
 /**
  * Entry point classes define <code>onModuleLoad()</code>.

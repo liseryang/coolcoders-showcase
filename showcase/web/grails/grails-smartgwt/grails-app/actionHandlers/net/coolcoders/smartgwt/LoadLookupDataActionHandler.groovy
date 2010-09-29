@@ -1,8 +1,8 @@
 package net.coolcoders.smartgwt
 
 import net.coolcoders.showcase.Category
-import net.coolcoders.showcase.client.client.LoadLookupDataAction
-import net.coolcoders.showcase.client.client.LoadLookupDataResponse
+import net.coolcoders.showcase.client.LoadLookupDataAction
+import net.coolcoders.showcase.client.LoadLookupDataResponse
 
 /**
  * @author <a href="mailto:josip.mihelko@googlemail.com">Josip Mihelko</a>
