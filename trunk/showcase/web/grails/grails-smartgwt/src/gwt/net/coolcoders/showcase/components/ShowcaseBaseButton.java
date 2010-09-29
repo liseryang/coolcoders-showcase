@@ -3,7 +3,7 @@ package net.coolcoders.showcase.components;
 import com.google.gwt.core.client.JavaScriptObject;
 import com.smartgwt.client.types.Alignment;
 import com.smartgwt.client.widgets.Button;
-import net.coolcoders.showcase.client.ViewConstants;
+import net.coolcoders.showcase.views.ViewConstants;
 
 /**
  * @author <a href="mailto:josip.mihelko@googlemail.com">Josip Mihelko</a>

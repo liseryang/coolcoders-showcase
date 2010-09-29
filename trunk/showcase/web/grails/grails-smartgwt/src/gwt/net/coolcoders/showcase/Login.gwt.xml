@@ -3,6 +3,7 @@
     <inherits name="com.google.gwt.user.User"/>
     <inherits name="com.smartgwt.SmartGwt"/>
     <inherits name="grails.plugins.gwt.Grails"/>
+    <inherits name="com.smartgwt.tools.SmartGwtTools"/>
 
     <!-- Specify the module entry point class.                   -->
     <entry-point class="net.coolcoders.showcase.client.Login"/>

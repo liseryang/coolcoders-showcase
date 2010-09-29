@@ -1,4 +1,4 @@
-package net.coolcoders.showcase.client;
+package net.coolcoders.showcase.views;
 
 /**
  * @author <a href="mailto:josip.mihelko@googlemail.com">Josip Mihelko</a>

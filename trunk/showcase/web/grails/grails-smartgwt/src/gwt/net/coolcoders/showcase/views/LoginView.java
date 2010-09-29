@@ -15,7 +15,6 @@ import com.smartgwt.client.widgets.layout.HLayout;
 import com.smartgwt.client.widgets.layout.VLayout;
 import grails.plugins.gwt.client.GwtActionServiceAsync;
 import net.coolcoders.showcase.client.ShowcaseConstants;
-import net.coolcoders.showcase.client.ViewConstants;
 import net.coolcoders.showcase.components.ShowcaseBaseButton;
 import net.coolcoders.showcase.components.ShowcaseBaseView;
 

@@ -5,7 +5,7 @@ import com.smartgwt.client.widgets.Label;
 import com.smartgwt.client.widgets.layout.HLayout;
 import com.smartgwt.client.widgets.layout.VLayout;
 import grails.plugins.gwt.client.GwtActionServiceAsync;
-import net.coolcoders.showcase.client.ViewConstants;
+import net.coolcoders.showcase.views.ViewConstants;
 
 /**
  * @author <a href="mailto:josip.mihelko@googlemail.com">Josip Mihelko</a>
