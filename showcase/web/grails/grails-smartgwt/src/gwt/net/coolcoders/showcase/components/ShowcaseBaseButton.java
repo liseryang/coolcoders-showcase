@@ -1,9 +1,9 @@
-package net.coolcoders.smartgwt.components;
+package net.coolcoders.showcase.components;
 
 import com.google.gwt.core.client.JavaScriptObject;
 import com.smartgwt.client.types.Alignment;
 import com.smartgwt.client.widgets.Button;
-import net.coolcoders.smartgwt.client.ViewConstants;
+import net.coolcoders.showcase.client.ViewConstants;
 
 /**
  * @author <a href="mailto:josip.mihelko@googlemail.com">Josip Mihelko</a>

@@ -1,12 +1,12 @@
-package net.coolcoders.smartgwt.views;
+package net.coolcoders.showcase.views;
 
 import com.google.gwt.user.client.Window;
 import com.smartgwt.client.util.SC;
 import com.smartgwt.client.widgets.Label;
 import com.smartgwt.client.widgets.grid.ListGrid;
 import grails.plugins.gwt.client.GwtActionServiceAsync;
-import net.coolcoders.smartgwt.components.ShowcaseBaseView;
-import net.coolcoders.smartgwt.data.MessagesDataSource;
+import net.coolcoders.showcase.components.ShowcaseBaseView;
+import net.coolcoders.showcase.data.MessagesDataSource;
 
 /**
  * @author <a href="mailto:josip.mihelko@googlemail.com">Josip Mihelko</a>

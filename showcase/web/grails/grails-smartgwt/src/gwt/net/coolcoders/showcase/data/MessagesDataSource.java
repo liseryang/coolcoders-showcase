@@ -1,4 +1,4 @@
-package net.coolcoders.smartgwt.data;
+package net.coolcoders.showcase.data;
 
 import com.google.gwt.core.client.GWT;
 import com.smartgwt.client.data.OperationBinding;
@@ -6,7 +6,7 @@ import com.smartgwt.client.data.RestDataSource;
 import com.smartgwt.client.data.fields.DataSourceDateField;
 import com.smartgwt.client.data.fields.DataSourceTextField;
 import com.smartgwt.client.types.DSOperationType;
-import net.coolcoders.smartgwt.client.ShowcaseConstants;
+import net.coolcoders.showcase.client.ShowcaseConstants;
 
 import java.util.Collections;
 

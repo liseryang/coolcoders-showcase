@@ -1,4 +1,4 @@
-package net.coolcoders.smartgwt.client;
+package net.coolcoders.showcase.client;
 
 import com.google.gwt.core.client.EntryPoint;
 import com.google.gwt.core.client.GWT;

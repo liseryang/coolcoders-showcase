@@ -1,4 +1,4 @@
-package net.coolcoders.smartgwt.client;
+package net.coolcoders.showcase.client;
 
 /**
  * Interface to represent the messages contained in resource bundle:

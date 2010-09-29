@@ -1,7 +1,7 @@
-package net.coolcoders.smartgwt.client;
+package net.coolcoders.showcase.client;
 
 import com.google.gwt.core.client.EntryPoint;
-import net.coolcoders.smartgwt.views.LoginView;
+import net.coolcoders.showcase.views.LoginView;
 
 /**
  * Entry point classes define <code>onModuleLoad()</code>.
