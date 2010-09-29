@@ -1,11 +1,11 @@
-package net.coolcoders.smartgwt.components;
+package net.coolcoders.showcase.components;
 
 import com.smartgwt.client.types.Alignment;
 import com.smartgwt.client.widgets.Label;
 import com.smartgwt.client.widgets.layout.HLayout;
 import com.smartgwt.client.widgets.layout.VLayout;
 import grails.plugins.gwt.client.GwtActionServiceAsync;
-import net.coolcoders.smartgwt.client.ViewConstants;
+import net.coolcoders.showcase.client.ViewConstants;
 
 /**
  * @author <a href="mailto:josip.mihelko@googlemail.com">Josip Mihelko</a>

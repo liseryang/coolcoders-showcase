@@ -1,4 +1,4 @@
-package net.coolcoders.smartgwt.client;
+package net.coolcoders.showcase.client;
 
 import grails.plugins.gwt.shared.Action;
 

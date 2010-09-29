@@ -1,4 +1,4 @@
-package net.coolcoders.smartgwt.views;
+package net.coolcoders.showcase.views;
 
 import com.google.gwt.user.client.Window;
 import com.smartgwt.client.types.Alignment;
@@ -10,8 +10,8 @@ import com.smartgwt.client.widgets.form.DynamicForm;
 import com.smartgwt.client.widgets.form.fields.*;
 import com.smartgwt.client.widgets.layout.HLayout;
 import grails.plugins.gwt.client.GwtActionServiceAsync;
-import net.coolcoders.smartgwt.components.ShowcaseBaseButton;
-import net.coolcoders.smartgwt.components.ShowcaseBaseView;
+import net.coolcoders.showcase.components.ShowcaseBaseButton;
+import net.coolcoders.showcase.components.ShowcaseBaseView;
 
 import java.util.LinkedHashMap;
 

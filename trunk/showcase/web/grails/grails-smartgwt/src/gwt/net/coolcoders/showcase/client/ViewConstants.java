@@ -1,4 +1,4 @@
-package net.coolcoders.smartgwt.client;
+package net.coolcoders.showcase.client;
 
 /**
  * @author <a href="mailto:josip.mihelko@googlemail.com">Josip Mihelko</a>

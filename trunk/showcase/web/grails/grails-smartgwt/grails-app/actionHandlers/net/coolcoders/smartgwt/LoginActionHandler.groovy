@@ -1,8 +1,8 @@
 package net.coolcoders.smartgwt
 
 import net.coolcoders.showcase.AppUser
-import net.coolcoders.smartgwt.client.LoginAction
-import net.coolcoders.smartgwt.client.LoginResponse
+import net.coolcoders.showcase.client.client.LoginAction
+import net.coolcoders.showcase.client.client.LoginResponse
 
 class LoginActionHandler {
   LoginResponse execute(LoginAction action) {

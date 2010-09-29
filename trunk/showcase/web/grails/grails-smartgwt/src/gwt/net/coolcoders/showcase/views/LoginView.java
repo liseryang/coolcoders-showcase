@@ -1,4 +1,4 @@
-package net.coolcoders.smartgwt.views;
+package net.coolcoders.showcase.views;
 
 import com.google.gwt.core.client.GWT;
 import com.google.gwt.user.client.Window;
@@ -14,10 +14,10 @@ import com.smartgwt.client.widgets.form.fields.TextItem;
 import com.smartgwt.client.widgets.layout.HLayout;
 import com.smartgwt.client.widgets.layout.VLayout;
 import grails.plugins.gwt.client.GwtActionServiceAsync;
-import net.coolcoders.smartgwt.client.ShowcaseConstants;
-import net.coolcoders.smartgwt.client.ViewConstants;
-import net.coolcoders.smartgwt.components.ShowcaseBaseButton;
-import net.coolcoders.smartgwt.components.ShowcaseBaseView;
+import net.coolcoders.showcase.client.ShowcaseConstants;
+import net.coolcoders.showcase.client.ViewConstants;
+import net.coolcoders.showcase.components.ShowcaseBaseButton;
+import net.coolcoders.showcase.components.ShowcaseBaseView;
 
 /**
  * @author <a href="mailto:josip.mihelko@googlemail.com">Josip Mihelko</a>

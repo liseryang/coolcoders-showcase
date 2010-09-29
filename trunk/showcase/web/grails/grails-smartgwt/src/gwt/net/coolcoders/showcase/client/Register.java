@@ -1,4 +1,4 @@
-package net.coolcoders.smartgwt.client;
+package net.coolcoders.showcase.client;
 
 import com.google.gwt.user.client.rpc.AsyncCallback;
 import com.smartgwt.client.util.SC;

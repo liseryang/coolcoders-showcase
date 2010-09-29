@@ -5,7 +5,7 @@
     <inherits name="grails.plugins.gwt.Grails"/>
 
     <!-- Specify the module entry point class.                   -->
-    <entry-point class="net.coolcoders.smartgwt.client.Messages"/>
+    <entry-point class="net.coolcoders.showcase.client.client.Messages"/>
     <source path="client"/>
     <source path="views"/>
     <source path="data"/>
