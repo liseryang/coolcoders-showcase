@@ -23,7 +23,7 @@
 
         <dependency>
             <groupId>org.glassfish.extras</groupId>
-            <artifactId>glassfish-embedded-static-shell</artifactId>
+            <artifactId>glassfish-embedded-all</artifactId>
         </dependency>
 
         <dependency>
