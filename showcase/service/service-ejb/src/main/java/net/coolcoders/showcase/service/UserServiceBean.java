@@ -30,6 +30,4 @@ public class UserServiceBean extends AbstractGenericService<User, String> {
         abstractGenericDao = userDaoBean;
     }
 
-        
-
 }
