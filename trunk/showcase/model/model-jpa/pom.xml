@@ -57,7 +57,6 @@
                         </goals>
                         <phase>generate-sources</phase>
                         <configuration>
-                            <!--<outputDirectory>${generated.sources.directory}</outputDirectory>-->
                             <compilerArguments>
                                 -Aeclipselink.persistencexml=model/model-jpa/src/test/resources/META-INF/persistence.xml
                             </compilerArguments>

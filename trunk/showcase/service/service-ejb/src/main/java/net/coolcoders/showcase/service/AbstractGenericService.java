@@ -52,7 +52,7 @@ public abstract class AbstractGenericService<T, PK extends Serializable> {
         abstractGenericDao.persist(entity);
     }
 
-    public <T> T merge(T entity) {
+    public T merge(T entity) {
         return abstractGenericDao.merge(entity);
     }
 
