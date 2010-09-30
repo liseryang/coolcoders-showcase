@@ -2,7 +2,9 @@ package net.coolcoders.showcase.views;
 
 import com.google.gwt.core.client.GWT;
 import com.google.gwt.user.client.Window;
+import com.google.gwt.user.client.rpc.AsyncCallback;
 import com.smartgwt.client.types.Alignment;
+import com.smartgwt.client.types.DateDisplayFormat;
 import com.smartgwt.client.util.SC;
 import com.smartgwt.client.widgets.Button;
 import com.smartgwt.client.widgets.events.ClickEvent;
@@ -10,23 +12,29 @@ import com.smartgwt.client.widgets.events.ClickHandler;
 import com.smartgwt.client.widgets.form.DynamicForm;
 import com.smartgwt.client.widgets.form.fields.*;
 import com.smartgwt.client.widgets.layout.HLayout;
+import com.smartgwt.client.widgets.layout.VLayout;
 import grails.plugins.gwt.client.GwtActionServiceAsync;
+import net.coolcoders.showcase.client.RegisterAction;
+import net.coolcoders.showcase.client.RegisterResponse;
 import net.coolcoders.showcase.client.ShowcaseConstants;
 import net.coolcoders.showcase.components.ShowcaseBaseButton;
 import net.coolcoders.showcase.components.ShowcaseBaseView;
 
+import java.util.Date;
+import java.util.HashSet;
 import java.util.LinkedHashMap;
+import java.util.Set;
 
 /**
  * @author <a href="mailto:josip.mihelko@googlemail.com">Josip Mihelko</a>
  */
-public class RegisterView extends ShowcaseBaseView implements ClickHandler {
+public class RegisterView extends ShowcaseBaseView implements ClickHandler, AsyncCallback<RegisterResponse> {
     private ShowcaseConstants constants = GWT.create(ShowcaseConstants.class);
     private DynamicForm registerForm;
     private Button register, cancel;
-    LinkedHashMap<Long, String> categories;
+    LinkedHashMap<String, String> categories;
 
-    public RegisterView(GwtActionServiceAsync actionServiceAsync, LinkedHashMap<Long, String> categories) {
+    public RegisterView(GwtActionServiceAsync actionServiceAsync, LinkedHashMap<String, String> categories) {
         super(actionServiceAsync);
         this.categories = categories;
         initWidgets();
@@ -36,6 +44,7 @@ public class RegisterView extends ShowcaseBaseView implements ClickHandler {
     private void initWidgets() {
         registerForm = new DynamicForm();
         registerForm.setAction("/smartgwtsc/register/register");
+        registerForm.setValidationURL("/smartgwtsc/register/validate");
         //the form's fields
         FormItem[] items = new FormItem[7 + categories.size()];
         TextItem username = new TextItem("username", constants.username_label());
@@ -60,14 +69,16 @@ public class RegisterView extends ShowcaseBaseView implements ClickHandler {
         items[4] = email;
         SelectItem genderItem = new SelectItem("gender", constants.gender_label());
         genderItem.setTooltip("Your gender.");
-        genderItem.setValueMap(constants.gender_female(), constants.gender_male());
+        genderItem.setValueMap("FEMALE", "MALE");
         genderItem.setAllowEmptyValue(false);
         items[5] = genderItem;
         DateItem birthdayItem = new DateItem("birthday", constants.birthday_label());
-        birthdayItem.setTooltip("Yout birthday.");
+        birthdayItem.setTooltip("Your birthday.");
+        birthdayItem.setDisplayFormat(DateDisplayFormat.TOSERIALIZEABLEDATE);
+        birthdayItem.setUseTextField(true);
         items[6] = birthdayItem;
         int i = 0;
-        for (Long key : categories.keySet()) {
+        for (String key : categories.keySet()) {
             CheckboxItem checkboxItem = new CheckboxItem("category_" + key, categories.get(key));
             checkboxItem.setTooltip("Are you into " + categories.get(key) + " ?");
             items[7 + i] = checkboxItem;
@@ -88,8 +99,10 @@ public class RegisterView extends ShowcaseBaseView implements ClickHandler {
         HLayout buttonLayout = getHorizontalLayout();
         buttonLayout.addMember(cancel);
         buttonLayout.addMember(register);
-        addMember(layout);
-        addMember(buttonLayout);
+        VLayout completeLayout = getVerticalLayout();
+        completeLayout.addMember(layout);
+        completeLayout.addMember(buttonLayout);
+        addMember(completeLayout);
     }
 
     public void onClick(ClickEvent clickEvent) {
@@ -103,21 +116,37 @@ public class RegisterView extends ShowcaseBaseView implements ClickHandler {
     }
 
     private void doRegister() {
-        if (checkPassword()) {
-            registerForm.submitForm();
-        } else {
-            SC.say("Your passwords do not match !");
-            registerForm.setFieldErrors("password", "Password don't match !", true);
-            registerForm.setFieldErrors("passwordRep", "Password don't match !", true);
+        if (registerForm.validate()) {
+            RegisterAction action = new RegisterAction();
+            action.setUsername((String) registerForm.getValue("username"));
+            action.setPassword((String) registerForm.getValue("password"));
+            action.setPasswordRepetition((String) registerForm.getValue("passwordRep"));
+            action.setEmail((String) registerForm.getValue("email"));
+            action.setBirthday((Date) registerForm.getValue("birthday"));
+            action.setFullname((String) registerForm.getValue("fullname"));
+            action.setGender((String) registerForm.getValue("gender"));
+            Set<String> categoryIds = new HashSet<String>();
+            for (String catId : categories.keySet()) {
+                CheckboxItem item = (CheckboxItem) registerForm.getItem("category_" + catId);
+                if (item.getValueAsBoolean()) {
+                    categoryIds.add(catId);
+                }
+            }
+            action.getCategoryIds().addAll(categoryIds);
+            actionService.execute(action, this);
         }
     }
 
-    private boolean checkPassword() {
-        String passwd = (String) registerForm.getValue("password");
-        String passwdRep = (String) registerForm.getValue("passwordRep");
-        if (passwd != null && passwdRep != null && passwd.equals(passwdRep)) {
-            return true;
-        }
-        return false;
+    public void onFailure(Throwable caught) {
+        SC.say("Oh fuck !" + caught.getMessage());
     }
+
+    public void onSuccess(RegisterResponse result) {
+        if (result.getSuccessful()) {
+            SC.say("Thank you for registering, Your id is:  " + result.getUserId());
+        } else {
+            registerForm.setErrors(result.getErrors(), true);
+        }
+    }
+
 }

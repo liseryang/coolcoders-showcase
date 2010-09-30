@@ -32,7 +32,8 @@ public class Register extends BaseEntryPoint {
     }
 
     private void initViews(LoadLookupDataResponse result) {
-        new RegisterView(actionService, result.getCategoriesMap()).draw();
+        RegisterView registerView = new RegisterView(actionService, result.getCategoriesMap());
+        registerView.draw();
     }
 
 }

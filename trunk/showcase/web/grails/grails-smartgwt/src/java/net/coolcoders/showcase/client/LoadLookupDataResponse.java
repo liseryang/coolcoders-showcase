@@ -9,13 +9,13 @@ import java.util.LinkedHashMap;
  */
 public class LoadLookupDataResponse implements Response {
     private static final long serialVersionUID = 1L;
-    private LinkedHashMap<Long, String> categoriesMap;
+    private LinkedHashMap<String, String> categoriesMap;
 
-    public LinkedHashMap<Long, String> getCategoriesMap() {
+    public LinkedHashMap<String, String> getCategoriesMap() {
         return categoriesMap;
     }
 
-    public void setCategoriesMap(LinkedHashMap<Long, String> categoriesMap) {
+    public void setCategoriesMap(LinkedHashMap<String, String> categoriesMap) {
         this.categoriesMap = categoriesMap;
     }
 }
