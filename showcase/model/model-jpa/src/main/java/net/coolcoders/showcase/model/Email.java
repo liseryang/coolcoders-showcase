@@ -21,7 +21,7 @@ import java.lang.annotation.*;
 @Retention(RetentionPolicy.RUNTIME)
 public @interface Email {
 
-    String message() default "Invalid Email";
+    String message() default "{net.coolcoders.showcase.AppUser.email.email.invalid}";
 
 
 
