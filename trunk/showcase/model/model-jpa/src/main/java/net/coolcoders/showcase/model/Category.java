@@ -5,8 +5,10 @@
 
 package net.coolcoders.showcase.model;
 
+import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.ManyToMany;
+import javax.validation.constraints.NotNull;
 import java.util.HashSet;
 import java.util.Set;
 
@@ -17,6 +19,8 @@ import java.util.Set;
 @Entity
 public class Category extends AbstractBaseEntity {
 
+    @NotNull(message="{net.coolcoders.showcase.Category.name.blank}")
+    @Column(nullable = false, unique = true)
     private String name;
 
     @ManyToMany(mappedBy = "categories")
