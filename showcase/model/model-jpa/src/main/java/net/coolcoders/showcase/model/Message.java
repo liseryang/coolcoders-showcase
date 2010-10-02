@@ -18,13 +18,15 @@ import java.util.Date;
 @Entity
 public class Message extends AbstractBaseEntity {
 
-    @NotNull
-    @Size(max=140)
+    @NotNull(message="{net.coolcoders.showcase.Message.content.blank}")
+    @Size(max=140,message = "{net.coolcoders.showcase.Message.content.maxSize.exceeded}")
     private String content;
 
+    @NotNull(message="{net.coolcoders.showcase.Message.created.blank}")
     @Temporal(javax.persistence.TemporalType.TIMESTAMP)
     private Date created = new Date();
 
+    @NotNull(message="{net.coolcoders.showcase.Message.author.blank}")
     @ManyToOne
     private User author;
 
