@@ -10,11 +10,7 @@
     <packaging>pom</packaging>
     <name>Showcase JSF</name>
 
-    <modules>
-        <module>jsf-mojarra-ejb</module>
-        <module>jsf-icefaces-ejb</module>
-        <module>jsf-primefaces-ejb</module>
-    </modules>
+   
 
     <dependencyManagement>
         <dependencies>
