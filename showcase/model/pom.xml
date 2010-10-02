@@ -11,7 +11,6 @@
     <name>Showcase Model</name>
 
     <modules>
-        <module>model-hibernate</module>
         <module>model-jpa</module>
     </modules>
 
