@@ -9,6 +9,7 @@ import javax.validation.ConstraintViolation;
 import javax.validation.Validation;
 import javax.validation.Validator;
 import javax.validation.ValidatorFactory;
+import java.util.Date;
 import java.util.Set;
 
 /**
@@ -24,6 +25,48 @@ public class UserTest extends AbstractBeanValidationTest<User> {
         ValidatorFactory factory = Validation.buildDefaultValidatorFactory();
         validator = factory.getValidator();
         Assert.assertNotNull("No validator created!", validator);
+    }
+
+    @Test
+    public void testCreateConstructor() {
+        String fullname = "Fullname";
+        String username = "Username";
+        String password = "password";
+        String email = "test@test.de";
+        Gender gender = Gender.MALE;
+        Date birthday = new Date();
+        User userInstance = new User(fullname,username,password,email,gender,birthday);
+        Assert.assertEquals(fullname,userInstance.getFullname());
+        Assert.assertEquals(username,userInstance.getUsername());
+        Assert.assertEquals(password,userInstance.getPassword());
+        Assert.assertEquals(email,userInstance.getEmail());
+        Assert.assertEquals(gender,userInstance.getGender());
+        Assert.assertEquals(birthday,userInstance.getBirthday());
+    }
+
+    @Test
+    public void testSettersAndGetters() {
+       String fullname = "Fullname";
+        String username = "Username";
+        String password = "password";
+        String email = "test@test.de";
+        Gender gender = Gender.MALE;
+        Date birthday = new Date();
+
+        User userInstance = new User();
+        userInstance.setFullname(fullname);
+        userInstance.setUsername(username);
+        userInstance.setPassword(password);
+        userInstance.setEmail(email);
+        userInstance.setGender(gender);
+        userInstance.setBirthday(birthday);
+        
+        Assert.assertEquals(fullname,userInstance.getFullname());
+        Assert.assertEquals(username,userInstance.getUsername());
+        Assert.assertEquals(password,userInstance.getPassword());
+        Assert.assertEquals(email,userInstance.getEmail());
+        Assert.assertEquals(gender,userInstance.getGender());
+        Assert.assertEquals(birthday,userInstance.getBirthday());
     }
 
     @Test
