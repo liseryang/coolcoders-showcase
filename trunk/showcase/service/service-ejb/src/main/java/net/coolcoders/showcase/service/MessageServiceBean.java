@@ -13,6 +13,7 @@ import javax.ejb.EJB;
 import javax.ejb.Stateless;
 import javax.ejb.TransactionAttribute;
 import javax.ejb.TransactionAttributeType;
+import java.util.List;
 
 /**
  *
@@ -31,6 +32,10 @@ public class MessageServiceBean extends AbstractGenericService<Message, String> 
     @PostConstruct
     public void init() {
         abstractGenericDao = messageDaoBean;
+    }
+
+    public List<Message> get(String userId, int start, int max) {
+        return messageDaoBean.list(userId, start, max);
     }
 
 }

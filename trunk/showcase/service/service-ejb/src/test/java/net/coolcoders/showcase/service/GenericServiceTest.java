@@ -8,7 +8,6 @@ import net.coolcoders.showcase.model.User_;
 import net.coolcoders.showcase.model.builder.MessageBuilder;
 import net.coolcoders.showcase.model.builder.UserBuilder;
 import org.junit.Assert;
-import org.junit.Ignore;
 import org.junit.Test;
 
 import javax.ejb.embeddable.EJBContainer;
@@ -27,7 +26,7 @@ import java.util.List;
 public class GenericServiceTest {
 
     @Test
-    @Ignore("dosen't work yet")
+//    @Ignore("dosen't work yet")
     public void bla() throws NamingException {
         EJBContainer ejbC = EJBContainer.createEJBContainer();
         Context ctx = ejbC.getContext();

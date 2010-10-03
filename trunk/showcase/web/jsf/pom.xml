@@ -10,8 +10,6 @@
     <packaging>pom</packaging>
     <name>Showcase JSF</name>
 
-   
-
     <dependencyManagement>
         <dependencies>
 
@@ -53,6 +51,14 @@
     </dependencyManagement>
     
     <profiles>
+        <profile>
+            <id>withSubmodules</id>
+            <modules>
+                <module>jsf-mojarra-ejb</module>
+                <module>jsf-icefaces-ejb</module>
+                <module>jsf-primefaces-ejb</module>
+            </modules>
+        </profile>
         <profile>
             <id>bambo</id>
             <modules>
