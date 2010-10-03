@@ -42,10 +42,12 @@
                 <div style="height: 100px;" class="textCenter">
                     <p:commandButton value="#{msgs['default.paginate.prev']}"
                                      action="#{tweetsBean.prevMessages}"
-                                     update="messages"/>
+                                     update="messages"
+                                     rendered="#{tweetsSessionBean.renderPrev}"/>
                     <p:commandButton value="#{msgs['default.paginate.next']}"
                                      action="#{tweetsBean.nextMessages}"
-                                     update="messages"/>
+                                     update="messages"
+                                     rendered="#{tweetsSessionBean.renderNext}"/>
                     <br/>
                     <p:commandButton value="View your friends!"
                                      action="showUsersYouFollow"

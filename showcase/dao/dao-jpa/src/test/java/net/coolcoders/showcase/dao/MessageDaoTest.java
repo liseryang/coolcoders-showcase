@@ -28,5 +28,11 @@ public class MessageDaoTest extends AbstractDaoTest {
         Assert.assertTrue(messages.get(0).getCreated().getTime() > messages.get(1).getCreated().getTime());
     }
 
+    @Test
+    public void testCountForUser() {
+        User andreas = genericDao.find(User.class, QueryParameter.with(User_.username, "anerlich"));
+        Long count = messageDao.count(andreas.getId());
+        Assert.assertEquals(Long.valueOf(100), count);
+    }
 
 }

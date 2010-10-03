@@ -53,5 +53,17 @@ public class MessageDao extends AbstractGenericDao<Message, String> {
 
         return listCriteriaQueryResult(query, first, max);
     }
-    
+
+    public Long count(String userId) {
+        CriteriaBuilder cb = em.getCriteriaBuilder();
+        CriteriaQuery<Long> query = cb.createQuery(Long.class);
+        Root<User> root = query.from(User.class);
+        SetJoin<User,User> followingJoin = root.join(User_.following);
+        SetJoin<User, Message> messagesJoin = followingJoin.join(User_.messages);
+
+        query.select(cb.count(messagesJoin));
+        query.where(cb.equal(root.get(User_.id), userId));
+
+        return em.createQuery(query).getSingleResult();
+    }
 }

@@ -53,6 +53,7 @@ public class TweetsBean {
     }
 
     public List<Message> getMessages() {
+        tweetsSessionBean.setMessageCount(messageService.count(sessionBean.getCurrentUser().getId()));
         if(messages == null) {
             messages = messageService.list(sessionBean.getCurrentUser().getId(),
                     tweetsSessionBean.getFirstPage(),
