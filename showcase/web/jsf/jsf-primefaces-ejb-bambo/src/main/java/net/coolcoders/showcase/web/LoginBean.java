@@ -62,7 +62,7 @@ public class LoginBean {
             return null;
         } else {
             sessionBean.setCurrentUser(user);
-            return "home";
+            return "showMessages";
         }
     }
 

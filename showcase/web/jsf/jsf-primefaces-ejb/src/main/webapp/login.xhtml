@@ -1,20 +1,19 @@
-<?xml version='1.0' encoding='UTF-8' ?>
-<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
-        "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
-<html xmlns="http://www.w3.org/1999/xhtml"
+<ui:composition template="WEB-INF/templates/template.xhtml"
+      xmlns="http://www.w3.org/1999/xhtml"
       xmlns:ui="http://java.sun.com/jsf/facelets"
       xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core"
       xmlns:p="http://primefaces.prime.com.tr/ui">
 
-<body>
-
-<ui:composition template="./WEB-INF/templates/template.xhtml">
+    <ui:define name="breadCrumb">
+        <p:menuitem value="Login" action="login" ajax="false"/>
+    </ui:define>
 
     <ui:define name="content">
         <h:form id="login">
-            <p:tabView>
-                <p:tab title="Login">
-                    <center>
+            <div class="ui-widget ui-widget-content ui-corner-all">
+
+                <center>
                     <div style="padding: 3px; ">
                         <div>
                             <h:outputText value="${loginBean.message}" style="color: red;"/>
@@ -28,12 +27,12 @@
 
                         </h:panelGrid>
 
-                        <div style="margin: 5px 0px 5px 0px">
-                            <h:commandButton value="Login" action="#{loginBean.login}"/>
-                            <h:commandButton value="Register" action="register"/>
+                        <div style="margin: 5px 0px 10px 0px">
+                            <p:commandButton value="Login" action="#{loginBean.login}" ajax="false"/>
+                            <p:commandButton value="Register" action="register" ajax="false"/>
                         </div>
 
-                        <div style="margin: 5px 0px 5px 0px;">
+                        <div>
                             <h:panelGrid columns="1" style="border: dashed">
                                 <h:outputText value="Following Users exists by default" style="font-weight:bold;"/>
                                 <h:outputText value="abaumgartner / test123"/>
@@ -43,13 +42,9 @@
                             </h:panelGrid>
                         </div>
                     </div>
-                    </center>
-                </p:tab>
-            </p:tabView>
+                </center>
+            </div>
         </h:form>
     </ui:define>
 
 </ui:composition>
-
-</body>
-</html>
