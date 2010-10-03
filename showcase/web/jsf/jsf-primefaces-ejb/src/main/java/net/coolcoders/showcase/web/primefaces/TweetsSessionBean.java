@@ -17,7 +17,7 @@ public class TweetsSessionBean implements Serializable{
 
     private int stepSize = 5;
 
-    private Long messageCount;
+    private Long messageCount = 0L;
 
     public Long getMessageCount() {
         return messageCount;
