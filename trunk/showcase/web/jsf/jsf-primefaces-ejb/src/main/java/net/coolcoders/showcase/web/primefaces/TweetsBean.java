@@ -73,4 +73,7 @@ public class TweetsBean {
         return null;
     }
 
+    public String showUsersYouFollow() {
+        return "showUsersYouFollow";
+    }
 }

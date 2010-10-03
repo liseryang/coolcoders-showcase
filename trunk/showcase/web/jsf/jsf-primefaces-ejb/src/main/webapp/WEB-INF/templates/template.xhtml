@@ -1,21 +1,22 @@
 <?xml version='1.0' encoding='UTF-8' ?>
-<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+        "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml"
       xmlns:ui="http://java.sun.com/jsf/facelets"
       xmlns:h="http://java.sun.com/jsf/html"
       xmlns:f="http://java.sun.com/jsf/core"
       xmlns:p="http://primefaces.prime.com.tr/ui">
 
-<f:view contentType="text/html" />
+<f:view contentType="text/html"/>
 
 <f:loadBundle
-      basename="i18n.messages"
-      var="msgs"/>
+        basename="i18n.messages"
+        var="msgs"/>
 
 <h:head>
     <meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1"/>
 
-    <title>CoolCoders Showcase with JSF (Primefaces)</title>
+    <title>COOL CODERS SHOWCASE with JSF (Primefaces)</title>
 
     <link href="./css/myStyle.css" rel="stylesheet" type="text/css"/>
 
@@ -55,33 +56,26 @@
 
 <h:body>
 
-    <!--<p:layout fullPage="true" >-->
-        <!--<p:layoutUnit position="top" height="50">-->
-            <!--<h:outputText value="CoolCoders Showcase" style="font-size: xx-large"/>-->
-        <!--</p:layoutUnit>-->
-
-        <!--<p:layoutUnit position="center">-->
-            <!--<ui:insert name="content">Content</ui:insert>-->
-        <!--</p:layoutUnit>-->
-
-        <!--<p:layoutUnit position="bottom" height="50" style="text-align: right">-->
-            <!--<h:outputText value="Powered By Coolcoders" style="margin-right: 2px"/>-->
-        <!--</p:layoutUnit>-->
-    <!--</p:layout>-->
-
-            <div class="container ui-widget ui-widget-header">
-    <!--<div class="container showgrid ui-widget ui-widget-header">-->
+    <div class="container ui-widget ui-widget-header">
+        <!--<div class="container showgrid ui-widget ui-widget-header">-->
         <div class="span-24 last">
             <div class="span-14">
-                <h:outputText value="CoolCoders Showcase" style="font-size: xx-large; margin-left: 10px"/>
+                <h:outputText value="COOL CODERS SHOWCASE" style="font-size: xx-large; margin-left: 10px"/>
             </div>
             <div class="span-10 last" style="margin-top: 10px">
                 <div class="span-10 last">
                     <div id="switcher" align="right"/>
                 </div>
                 <div class="span-10 last" style="text-align: right;">
-                    <ui:insert name="top"></ui:insert>
+                    <ui:insert name="top"/>
                 </div>
+            </div>
+            <div class="span-24 last">
+                <h:form>
+                    <p:breadCrumb style="width: 938px">
+                        <ui:insert name="breadCrumb"/>
+                    </p:breadCrumb>
+                </h:form>
             </div>
         </div>
 
