@@ -24,6 +24,18 @@
             </h:form>
             <h:form id="messages">
                 <div style="margin-top: 15px">
+                    <h:panelGroup rendered="#{tweetsBean.messageCount == 0}">
+                        <div class="ui-widget ui-widget-content ui-corner-all textCenter"
+                             style="margin: 5px; padding: 5px">
+                            <h:outputText value="#{msgs['message.list.lazyfriends']}"/>
+                        </div>
+                    </h:panelGroup>
+                    <h:panelGroup rendered="#{tweetsBean.friendsCount == 0}">
+                        <div class="ui-widget ui-widget-content ui-corner-all textCenter"
+                             style="margin: 5px; padding: 5px">
+                            <h:outputText value="#{msgs['message.list.findsomefriends']}"/>
+                        </div>
+                    </h:panelGroup>
                     <p:dataList id="messages" value="#{tweetsBean.messages}" var="msg" type="definition">
                         <f:facet name="description">
                             <div class="ui-widget ui-widget-content ui-corner-all"
@@ -49,10 +61,10 @@
                                      update="messages"
                                      rendered="#{tweetsSessionBean.renderNext}"/>
                     <br/>
-                    <p:commandButton value="View your friends!"
+                    <p:commandButton value="#{msgs['default.viewfriends.label']}"
                                      action="showUsersYouFollow"
                                      ajax="false"
-                                    style="margin-top: 5px;"/>
+                                     style="margin-top: 5px;"/>
                 </div>
             </h:form>
         </div>
