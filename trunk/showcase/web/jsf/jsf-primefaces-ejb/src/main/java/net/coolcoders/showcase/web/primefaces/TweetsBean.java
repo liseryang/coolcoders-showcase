@@ -17,7 +17,6 @@ import java.util.Date;
 import java.util.List;
 
 /**
- *
  * @author andreas
  */
 @Named
@@ -41,11 +40,15 @@ public class TweetsBean {
     private List<Message> messages;
 
     public Long getFriendsCount() {
-        return userService.count(sessionBean.getCurrentUser().getId());
+        Long count = 0L;
+        if (sessionBean.getCurrentUser() != null) {
+            count = userService.count(sessionBean.getCurrentUser().getId());
+        }
+        return count;
     }
 
     public Message getMessage() {
-        if(message == null) {
+        if (message == null) {
             message = new Message();
             message.setAuthor(sessionBean.getCurrentUser());
             message.setContent("");
@@ -61,13 +64,16 @@ public class TweetsBean {
     }
 
     public Long getMessageCount() {
-        Long count = messageService.count(sessionBean.getCurrentUser().getId());
-        tweetsSessionBean.setMessageCount(count);
+        Long count = 0L;
+        if (sessionBean.getCurrentUser() != null) {
+            count = messageService.count(sessionBean.getCurrentUser().getId());
+            tweetsSessionBean.setMessageCount(count);
+        }
         return count;
     }
 
     public List<Message> getMessages() {
-        if(messages == null) {
+        if (sessionBean.getCurrentUser() != null && messages == null) {
             messages = messageService.list(sessionBean.getCurrentUser().getId(),
                     tweetsSessionBean.getFirstPage(),
                     tweetsSessionBean.getStepSize());
