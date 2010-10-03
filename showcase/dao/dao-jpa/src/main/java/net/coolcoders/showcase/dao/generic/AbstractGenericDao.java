@@ -9,6 +9,7 @@ import javax.persistence.NoResultException;
 import javax.persistence.PersistenceContext;
 import javax.persistence.TypedQuery;
 import javax.persistence.criteria.*;
+import javax.persistence.metamodel.Attribute;
 import javax.persistence.metamodel.SingularAttribute;
 import java.io.Serializable;
 import java.util.ArrayList;
@@ -34,7 +35,7 @@ public abstract class AbstractGenericDao<T, PK extends Serializable> {
         return query.getSingleResult();
     }
 
-    public List<T> getNamedQueryResult(String queryName, QueryParameter queryParameter) {
+    public List<T> listNamedQueryResult(String queryName, QueryParameter queryParameter) {
         TypedQuery<T> query = createTypedNamedQuery(queryName, queryParameter);
         return query.getResultList();
     }
@@ -48,13 +49,13 @@ public abstract class AbstractGenericDao<T, PK extends Serializable> {
     }
 
     // Get Methods; returns List<T>
-    public List<T> get() {
-        return get(null, null);
+    public List<T> listAll(QueryFetch... queryFetches) {
+        return list(null, null, queryFetches);
     }
 
-    public List<T> get(QueryParameter queryParameter, QueryOrder queryOrder) {
-        CriteriaQuery<T> query = createCriteriaQuery(queryParameter, queryOrder);
-        return getCriteriaQueryResult(query);
+    public List<T> list(QueryParameter queryParameter, QueryOrder queryOrder, QueryFetch... queryFetches) {
+        CriteriaQuery<T> query = createCriteriaQuery(queryParameter, queryOrder, queryFetches);
+        return listCriteriaQueryResult(query, null, null);
     }
 
     // find Methods; returns T
@@ -62,78 +63,106 @@ public abstract class AbstractGenericDao<T, PK extends Serializable> {
         return em.find(persistentClass, id);
     }
 
-    public T find(QueryParameter queryParameter) {
+    public T find(QueryParameter queryParameter, QueryFetch... queryFetches) {
         CriteriaQuery<T> query = createCriteriaQuery(queryParameter, null);
         return findCriteriaQueryResult(query);
     }
 
-    public T find(QueryParameter queryParameter, QueryOrder queryOrder) {
-        CriteriaQuery<T> query = createCriteriaQuery(queryParameter, queryOrder);
+    public T find(QueryParameter queryParameter, QueryOrder queryOrder, QueryFetch... queryFetches) {
+        CriteriaQuery<T> query = createCriteriaQuery(queryParameter, queryOrder, queryFetches);
         return findCriteriaQueryResult(query);
     }
 
 
-    private CriteriaQuery<T> createCriteriaQuery(QueryParameter queryParameter, QueryOrder queryOrder) {
+    private CriteriaQuery<T> createCriteriaQuery(QueryParameter queryParameter, QueryOrder queryOrder, QueryFetch... queryFetches) {
         CriteriaBuilder cb = em.getCriteriaBuilder();
         CriteriaQuery<T> query = cb.createQuery(persistentClass);
         Root<T> root = query.from(persistentClass);
 
-        if (queryParameter != null) {
-            List<Predicate> predicates = new ArrayList<Predicate>();
-            for (QueryParameterEntry entry : queryParameter.parameters()) {
-                Expression path = root.get(entry.getAttribute());
+        applyQueryFetches(root, queryFetches);
 
-                Object value = entry.getValue();
-                Predicate predicate = null;
-                if (QueryParameterEntry.Operator.EQ.equals(entry.getOperator())) {
-                    predicate = cb.equal(path, value);
-                } else if (value instanceof Number) {
-                    Number number = (Number) value;
-                    if (QueryParameterEntry.Operator.GT.equals(entry.getOperator())) {
-                        predicate = cb.gt(path, number);
-                    } else if (QueryParameterEntry.Operator.GE.equals(entry.getOperator())) {
-                        predicate = cb.ge(path, number);
-                    } else if (QueryParameterEntry.Operator.LT.equals(entry.getOperator())) {
-                        predicate = cb.lt(path, number);
-                    } else if (QueryParameterEntry.Operator.LE.equals(entry.getOperator())) {
-                        predicate = cb.le(path, number);
-                    }
-                } else if (value instanceof Comparable) {
-                    Comparable comp = (Comparable) value;
-                    if (QueryParameterEntry.Operator.GT.equals(entry.getOperator())) {
-                        predicate = cb.greaterThan(path, comp);
-                    } else if (QueryParameterEntry.Operator.GE.equals(entry.getOperator())) {
-                        predicate = cb.greaterThanOrEqualTo(path, comp);
-                    } else if (QueryParameterEntry.Operator.LT.equals(entry.getOperator())) {
-                        predicate = cb.lessThan(path, comp);
-                    } else if (QueryParameterEntry.Operator.LE.equals(entry.getOperator())) {
-                        predicate = cb.lessThanOrEqualTo(path, comp);
-                    }
-                }
-                if (predicate != null) {
-                    predicates.add(predicate);
-                }
-            }
+        if (queryParameter != null) {
+            List<Predicate> predicates = createPredicates(cb, root, queryParameter);
             query.where(predicates.toArray(new Predicate[predicates.size()]));
         }
 
         if (queryOrder != null) {
-            List<Order> orders = new ArrayList<Order>();
-            for (SingularAttribute attribute : queryOrder.statements().keySet()) {
-                QueryOrder.OrderDirection direction = queryOrder.statements().get(attribute);
-                if (QueryOrder.OrderDirection.ASC.equals(direction)) {
-                    orders.add(cb.asc(root.get(attribute)));
-                } else if (QueryOrder.OrderDirection.DESC.equals(direction)) {
-                    orders.add(cb.desc(root.get(attribute)));
-                }
-            }
+            List<Order> orders = createOrders(cb, root, queryOrder);
             query.orderBy(orders);
         }
+
+        query.distinct(true);
 
         return query;
     }
 
-    private T findCriteriaQueryResult(CriteriaQuery<T> criteriaQuery) {
+    private <T> void applyQueryFetches(Root<T> root, QueryFetch[] queryFetches) {
+        for (QueryFetch queryFetch : queryFetches) {
+            Fetch<Object, Object> recentFetch = null;
+            for (Attribute attribute : queryFetch.getAttributeNames().keySet()) {
+                JoinType joinType = queryFetch.getAttributeNames().get(attribute);
+                if(recentFetch == null) {
+                    recentFetch = root.fetch(attribute.getName(), joinType);
+                } else {
+                    recentFetch = recentFetch.fetch(attribute.getName(), joinType);
+                }
+            }
+        }
+    }
+
+    private <T> List<Order> createOrders(CriteriaBuilder cb, Root<T> root, QueryOrder queryOrder) {
+        List<Order> orders = new ArrayList<Order>();
+        for (SingularAttribute attribute : queryOrder.statements().keySet()) {
+            QueryOrder.OrderDirection direction = queryOrder.statements().get(attribute);
+            if (QueryOrder.OrderDirection.ASC.equals(direction)) {
+                orders.add(cb.asc(root.get(attribute)));
+            } else if (QueryOrder.OrderDirection.DESC.equals(direction)) {
+                orders.add(cb.desc(root.get(attribute)));
+            }
+        }
+        return orders;
+    }
+
+    private <T> List<Predicate> createPredicates(CriteriaBuilder cb, Root<T> root, QueryParameter queryParameter) {
+        List<Predicate> predicates = new ArrayList<Predicate>();
+        for (QueryParameterEntry entry : queryParameter.parameters()) {
+            Expression path = root.get(entry.getAttribute());
+
+            Object value = entry.getValue();
+            Predicate predicate = null;
+            if (QueryParameterEntry.Operator.EQ.equals(entry.getOperator())) {
+                predicate = cb.equal(path, value);
+            } else if (value instanceof Number) {
+                Number number = (Number) value;
+                if (QueryParameterEntry.Operator.GT.equals(entry.getOperator())) {
+                    predicate = cb.gt(path, number);
+                } else if (QueryParameterEntry.Operator.GE.equals(entry.getOperator())) {
+                    predicate = cb.ge(path, number);
+                } else if (QueryParameterEntry.Operator.LT.equals(entry.getOperator())) {
+                    predicate = cb.lt(path, number);
+                } else if (QueryParameterEntry.Operator.LE.equals(entry.getOperator())) {
+                    predicate = cb.le(path, number);
+                }
+            } else if (value instanceof Comparable) {
+                Comparable comp = (Comparable) value;
+                if (QueryParameterEntry.Operator.GT.equals(entry.getOperator())) {
+                    predicate = cb.greaterThan(path, comp);
+                } else if (QueryParameterEntry.Operator.GE.equals(entry.getOperator())) {
+                    predicate = cb.greaterThanOrEqualTo(path, comp);
+                } else if (QueryParameterEntry.Operator.LT.equals(entry.getOperator())) {
+                    predicate = cb.lessThan(path, comp);
+                } else if (QueryParameterEntry.Operator.LE.equals(entry.getOperator())) {
+                    predicate = cb.lessThanOrEqualTo(path, comp);
+                }
+            }
+            if (predicate != null) {
+                predicates.add(predicate);
+            }
+        }
+        return predicates;
+    }
+
+    protected T findCriteriaQueryResult(CriteriaQuery<T> criteriaQuery) {
         T result = null;
         try {
             result = em.createQuery(criteriaQuery).getSingleResult();
@@ -143,8 +172,15 @@ public abstract class AbstractGenericDao<T, PK extends Serializable> {
         return result;
     }
 
-    private List<T> getCriteriaQueryResult(CriteriaQuery<T> criteriaQuery) {
-        return em.createQuery(criteriaQuery).getResultList();
+    protected List<T> listCriteriaQueryResult(CriteriaQuery<T> criteriaQuery, Integer first, Integer max) {
+        TypedQuery<T> typedQuery = em.createQuery(criteriaQuery);
+        if(first != null) {
+            typedQuery.setFirstResult(first);
+        }
+        if(max != null) {
+            typedQuery.setMaxResults(max);
+        }
+        return typedQuery.getResultList();
     }
 
 

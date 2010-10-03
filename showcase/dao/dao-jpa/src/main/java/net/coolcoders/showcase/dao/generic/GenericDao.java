@@ -20,23 +20,23 @@ import java.util.Map;
  * @author andreas
  */
 @Stateless
-public class GenericDao<T> {
+public class GenericDao {
 
     @PersistenceContext
     protected EntityManager em;
 
     // Named Query Methods
-    public T findNamedQueryResult(Class<T> clazz, String queryName, Map<String, Object> parameters) {
+    public <T> T findNamedQueryResult(Class<T> clazz, String queryName, Map<String, Object> parameters) {
         TypedQuery<T> query = createTypedNamedQuery(clazz, queryName, parameters);
         return query.getSingleResult();
     }
 
-    public List<T> getNamedQueryResult(Class<T> clazz, String queryName, Map<String, Object> parameters) {
+    public <T> List<T> listNamedQueryResult(Class<T> clazz, String queryName, Map<String, Object> parameters) {
         TypedQuery<T> query = createTypedNamedQuery(clazz, queryName, parameters);
         return query.getResultList();
     }
 
-    private TypedQuery<T> createTypedNamedQuery(Class<T> clazz, String name, Map<String, Object> parameters) {
+    private <T> TypedQuery<T> createTypedNamedQuery(Class<T> clazz, String name, Map<String, Object> parameters) {
         TypedQuery<T> query = em.createNamedQuery(name, clazz);
         for (String paramName : parameters.keySet()) {
             query.setParameter(paramName, parameters.get(paramName));
@@ -45,32 +45,31 @@ public class GenericDao<T> {
     }
 
     // Get Methods; returns List<T>
-
-    public List<T> get(Class<T> clazz, QueryFetch... queryFetches) {
-        return get(clazz, null, null, queryFetches);
+    public <T> List<T> listAll(Class<T> clazz, QueryFetch... queryFetches) {
+        return list(clazz, null, null, queryFetches);
     }
 
-    public List<T> get(Class<T> clazz, QueryParameter queryParameter, QueryOrder queryOrder, QueryFetch... queryFetches) {
-        CriteriaQuery<T> query = createCriteriaQuery(clazz, queryParameter, queryOrder);
-        return getCriteriaQueryResult(query);
+    public <T> List<T> list(Class<T> clazz, QueryParameter queryParameter, QueryOrder queryOrder, QueryFetch... queryFetches) {
+        CriteriaQuery<T> query = createCriteriaQuery(clazz, queryParameter, queryOrder, queryFetches);
+        return listCriteriaQueryResult(query);
     }
 
     // find Methods; returns T
-    public T find(Class<T> clazz, Object id) {
+    public <T> T findById(Class<T> clazz, Object id) {
         return em.find(clazz, id);
     }
 
-    public T find(Class<T> clazz, QueryParameter queryParameter, QueryFetch... queryFetches) {
+    public <T> T find(Class<T> clazz, QueryParameter queryParameter, QueryFetch... queryFetches) {
         CriteriaQuery<T> query = createCriteriaQuery(clazz, queryParameter, null);
         return findCriteriaQueryResult(query);
     }
 
-    public T find(Class<T> clazz, QueryParameter queryParameter, QueryOrder queryOrder, QueryFetch... queryFetches) {
+    public <T> T find(Class<T> clazz, QueryParameter queryParameter, QueryOrder queryOrder, QueryFetch... queryFetches) {
         CriteriaQuery<T> query = createCriteriaQuery(clazz, queryParameter, queryOrder);
         return findCriteriaQueryResult(query);
     }
 
-    private CriteriaQuery<T> createCriteriaQuery(Class<T> clazz, QueryParameter queryParameter, QueryOrder queryOrder, QueryFetch... queryFetches) {
+    private <T> CriteriaQuery<T> createCriteriaQuery(Class<T> clazz, QueryParameter queryParameter, QueryOrder queryOrder, QueryFetch... queryFetches) {
         CriteriaBuilder cb = em.getCriteriaBuilder();
         CriteriaQuery<T> query = cb.createQuery(clazz);
         Root<T> root = query.from(clazz);
@@ -106,7 +105,7 @@ public class GenericDao<T> {
         }
     }
 
-    private List<Order> createOrders(CriteriaBuilder cb, Root<T> root, QueryOrder queryOrder) {
+    private <T> List<Order> createOrders(CriteriaBuilder cb, Root<T> root, QueryOrder queryOrder) {
         List<Order> orders = new ArrayList<Order>();
         for (SingularAttribute attribute : queryOrder.statements().keySet()) {
             QueryOrder.OrderDirection direction = queryOrder.statements().get(attribute);
@@ -119,7 +118,7 @@ public class GenericDao<T> {
         return orders;
     }
 
-    private List<Predicate> createPredicates(CriteriaBuilder cb, Root<T> root, QueryParameter queryParameter) {
+    private <T> List<Predicate> createPredicates(CriteriaBuilder cb, Root<T> root, QueryParameter queryParameter) {
         List<Predicate> predicates = new ArrayList<Predicate>();
         for (QueryParameterEntry entry : queryParameter.parameters()) {
             Expression path = root.get(entry.getAttribute());
@@ -158,7 +157,7 @@ public class GenericDao<T> {
         return predicates;
     }
 
-    private T findCriteriaQueryResult(CriteriaQuery<T> criteriaQuery) {
+    protected <T> T findCriteriaQueryResult(CriteriaQuery<T> criteriaQuery) {
         T result = null;
         try {
             result = em.createQuery(criteriaQuery).getSingleResult();
@@ -168,7 +167,7 @@ public class GenericDao<T> {
         return result;
     }
 
-    private List<T> getCriteriaQueryResult(CriteriaQuery<T> criteriaQuery) {
+    protected <T> List<T> listCriteriaQueryResult(CriteriaQuery<T> criteriaQuery) {
         return em.createQuery(criteriaQuery).getResultList();
     }
 
@@ -177,11 +176,11 @@ public class GenericDao<T> {
         em.persist(entity);
     }
 
-    public T merge(T entity) {
+    public <T> T merge(T entity) {
         return em.merge(entity);
     }
 
-    public T persistOrMerge(T entity) {
+    public <T> T persistOrMerge(T entity) {
         if (em.contains(entity)) {
             entity = em.merge(entity);
         } else {
@@ -190,20 +189,20 @@ public class GenericDao<T> {
         return entity;
     }
 
-    public void persistAll(List<T> list) {
+    public <T> void persistAll(List<T> list) {
         for (T item : list) {
             persist(item);
         }
     }
 
-    public void remove(T entity) {
+    public <T> void remove(T entity) {
         if (!em.contains(entity)) {
             entity = em.merge(entity);
         }
         em.remove(entity);
     }
 
-    public void delete(Class<T> clazz, Object id) {
+    public <T> void delete(Class<T> clazz, Object id) {
         em.remove(em.getReference(clazz, id));
     }
 

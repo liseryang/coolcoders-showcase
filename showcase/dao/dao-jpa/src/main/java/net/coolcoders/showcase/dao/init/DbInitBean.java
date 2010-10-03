@@ -1,12 +1,15 @@
-package net.coolcoders.showcase.service;
+package net.coolcoders.showcase.dao.init;
 
+import net.coolcoders.showcase.dao.generic.GenericDao;
 import net.coolcoders.showcase.model.Category;
 import net.coolcoders.showcase.model.Gender;
 import net.coolcoders.showcase.model.Message;
 import net.coolcoders.showcase.model.User;
 
 import javax.annotation.PostConstruct;
-import javax.ejb.*;
+import javax.ejb.EJB;
+import javax.ejb.Singleton;
+import javax.ejb.Startup;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
@@ -22,14 +25,10 @@ import java.util.List;
  */
 @Singleton
 @Startup
-@TransactionAttribute(TransactionAttributeType.REQUIRED)
 public class DbInitBean {
 
     @EJB
-    private UserServiceBean userServiceBean;
-
-    @EJB
-    private CategoryServiceBean categoryServiceBean;
+    private GenericDao genericDao;
 
     @PostConstruct
     public void initDb() {
@@ -48,7 +47,7 @@ public class DbInitBean {
             categories.add(wicket);
             Category gwt = new Category("GWT");
             categories.add(gwt);
-            categoryServiceBean.persistAll(categories);
+            genericDao.persistAll(categories);
 
 //            new UserBuilder().withFullname("Andreas Baumgartner")
 //                    .withUsername("abaumgartner")
@@ -74,30 +73,28 @@ public class DbInitBean {
             josip.getCategories().add(grails);
 
             bambo.getFollowing().add(peter);
-            josip.getFollowing().add(andreas);
             andreas.getFollowing().add(bambo);
+            josip.getFollowing().add(andreas);
 
-            createDummyMessages(bambo, 100);
-            createDummyMessages(josip, 50);
-            createDummyMessages(andreas, 10);
+            createDummyMessages(bambo, 100, new Date(), 10);
+            createDummyMessages(josip, 50, new Date(), 10);
+            createDummyMessages(andreas, 10, new Date(), 10);
 
-            userServiceBean.persistAll(users);
+            genericDao.persistAll(users);
 
         } catch (ParseException e) {
             throw new RuntimeException(e);
         }
 
-        userServiceBean.persistAll(users);
-
+        genericDao.persistAll(users);
     }
 
-    private void createDummyMessages(User u, int count) {
+    private void createDummyMessages(User u, int count, Date startDate, int timeStep) {
         for( int i = 0; i < count; i++) {
-            String content = "Test message number "+i;
-            Message m = new Message(u, new Date(), content);
+            String content = "Test message number " + i;
+            Message m = new Message(u, new Date(startDate.getTime() + timeStep * i), content);
             u.getMessages().add(m);
         }
     }
-
 
 }

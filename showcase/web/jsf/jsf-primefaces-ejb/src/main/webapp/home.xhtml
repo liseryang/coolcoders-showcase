@@ -30,35 +30,41 @@
                         </p:panel>
                     </div>
 
-                    <ui:repeat value="#{tweetsBean.messages}" var="msg">
-                        <div class="ui-widget ui-widget-content ui-corner-all" style="margin: 5px 0 5px 0; padding: 5px">
-                            <h:panelGrid columns="3" columnClasses="col1,col2,col3">
-                                <h:outputText value="#{msg.created}">
-                                    <f:convertDateTime pattern="dd.MM.yyyy hh:mm"/>
-                                </h:outputText>
-                                <h:outputText value="#{msg.author.username}"/>
-                                <h:outputText value="#{msg.content}"/>
-                            </h:panelGrid>
-                        </div>
-                    </ui:repeat>
+                    <!--<p:ajaxStatus>-->
+                    <!--<ui:repeat value="#{tweetsBean.messages}" var="msg">-->
+                        <!--<div class="ui-widget ui-widget-content ui-corner-all" style="margin: 5px 0 5px 0; padding: 5px">-->
+                            <!--<h:panelGrid columns="3" columnClasses="col1,col2,col3">-->
+                                <!--<h:outputText value="#{msg.created}">-->
+                                    <!--<f:convertDateTime pattern="dd.MM.yyyy hh:mm"/>-->
+                                <!--</h:outputText>-->
+                                <!--<h:outputText value="#{msg.author.username}"/>-->
+                                <!--<h:outputText value="#{msg.content}"/>-->
+                            <!--</h:panelGrid>-->
+                        <!--</div>-->
+                    <!--</ui:repeat>-->
+                    <!--</p:ajaxStatus>-->
+
+                    <h:commandButton value="#{msgs['default.paginate.next']}" action="#{tweetsBean.saveMessage}" styleClass="textCenter">
+
+                    </h:commandButton>
                 </p:tab>
 
-                <p:tab title="Users">
-                    <p:dataTable var="msg" value="#{tweetsBean.messages}" paginator="true" rows="10"
-                                 rowStyleClass="ccRowStyleClass">
-                        <p:column>
-                            <h:outputText value="#{msg.content}"/>
-                        </p:column>
-                        <p:column>
-                            <h:outputText value="#{msg.created}">
-                                <f:convertDateTime pattern="dd.MM.yyyy mm:hh"/>
-                            </h:outputText>
-                        </p:column>
-                        <p:column>
-                            <h:outputText value="#{msg.author.username}"/>
-                        </p:column>
-                    </p:dataTable>
-                </p:tab>
+                <!--<p:tab title="Users">-->
+                    <!--<p:dataTable var="msg" value="#{tweetsBean.messages}" paginator="true" rows="10"-->
+                                 <!--rowStyleClass="ccRowStyleClass">-->
+                        <!--<p:column>-->
+                            <!--<h:outputText value="#{msg.content}"/>-->
+                        <!--</p:column>-->
+                        <!--<p:column>-->
+                            <!--<h:outputText value="#{msg.created}">-->
+                                <!--<f:convertDateTime pattern="dd.MM.yyyy mm:hh"/>-->
+                            <!--</h:outputText>-->
+                        <!--</p:column>-->
+                        <!--<p:column>-->
+                            <!--<h:outputText value="#{msg.author.username}"/>-->
+                        <!--</p:column>-->
+                    <!--</p:dataTable>-->
+                <!--</p:tab>-->
             </p:tabView>
 
         </h:form>

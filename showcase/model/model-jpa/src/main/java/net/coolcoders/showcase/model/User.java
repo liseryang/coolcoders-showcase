@@ -52,11 +52,8 @@ public class User extends AbstractBaseEntity {
     @ManyToMany()
     private Set<Category> categories = new HashSet<Category>();
 
-    @ManyToMany(mappedBy = "followedBy")
+    @ManyToMany(cascade={CascadeType.PERSIST, CascadeType.MERGE})
     private Set<User> following = new HashSet<User>();
-
-    @ManyToMany()
-    private Set<User> followedBy = new HashSet<User>();
 
     public User() {
     }
