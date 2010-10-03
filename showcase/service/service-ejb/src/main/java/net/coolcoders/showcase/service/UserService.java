@@ -30,4 +30,7 @@ public class UserService extends AbstractGenericService<User, String> {
         abstractGenericDao = userDao;
     }
 
+    public Long count(String userId) {
+        return userDao.count(userId);
+    }
 }

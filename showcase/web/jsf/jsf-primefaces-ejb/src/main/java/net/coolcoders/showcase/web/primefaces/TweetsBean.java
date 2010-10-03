@@ -7,6 +7,7 @@ package net.coolcoders.showcase.web.primefaces;
 
 import net.coolcoders.showcase.model.Message;
 import net.coolcoders.showcase.service.MessageService;
+import net.coolcoders.showcase.service.UserService;
 
 import javax.ejb.EJB;
 import javax.enterprise.context.RequestScoped;
@@ -26,6 +27,9 @@ public class TweetsBean {
     @EJB
     private MessageService messageService;
 
+    @EJB
+    private UserService userService;
+
     @Inject
     private SessionBean sessionBean;
 
@@ -35,6 +39,10 @@ public class TweetsBean {
     private Message message;
 
     private List<Message> messages;
+
+    public Long getFriendsCount() {
+        return userService.count(sessionBean.getCurrentUser().getId());
+    }
 
     public Message getMessage() {
         if(message == null) {
@@ -52,8 +60,13 @@ public class TweetsBean {
         return null;
     }
 
+    public Long getMessageCount() {
+        Long count = messageService.count(sessionBean.getCurrentUser().getId());
+        tweetsSessionBean.setMessageCount(count);
+        return count;
+    }
+
     public List<Message> getMessages() {
-        tweetsSessionBean.setMessageCount(messageService.count(sessionBean.getCurrentUser().getId()));
         if(messages == null) {
             messages = messageService.list(sessionBean.getCurrentUser().getId(),
                     tweetsSessionBean.getFirstPage(),
