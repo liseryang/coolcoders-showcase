@@ -5,9 +5,7 @@
 
 package net.coolcoders.showcase.web.primefaces;
 
-import net.coolcoders.showcase.dao.generic.QueryParameter;
 import net.coolcoders.showcase.model.User;
-import net.coolcoders.showcase.model.User_;
 import net.coolcoders.showcase.service.UserService;
 
 import javax.ejb.EJB;
@@ -28,9 +26,9 @@ public class SessionBean implements Serializable {
     private UserService userService;
 
     public User getCurrentUser() {
-        if(currentUser == null) {
-            currentUser = userService.find(QueryParameter.with(User_.username, "anerlich"));
-        }
+//        if(currentUser == null) {
+//            currentUser = userService.find(QueryParameter.with(User_.username, "anerlich"));
+//        }
         return currentUser;
     }
 
