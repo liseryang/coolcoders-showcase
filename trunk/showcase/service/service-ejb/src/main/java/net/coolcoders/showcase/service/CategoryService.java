@@ -5,15 +5,14 @@
 
 package net.coolcoders.showcase.service;
 
-import net.coolcoders.showcase.dao.MessageDaoBean;
-import net.coolcoders.showcase.model.Message;
+import net.coolcoders.showcase.dao.CategoryDao;
+import net.coolcoders.showcase.model.Category;
 
 import javax.annotation.PostConstruct;
 import javax.ejb.EJB;
 import javax.ejb.Stateless;
 import javax.ejb.TransactionAttribute;
 import javax.ejb.TransactionAttributeType;
-import java.util.List;
 
 /**
  *
@@ -21,21 +20,17 @@ import java.util.List;
  */
 @Stateless
 @TransactionAttribute(TransactionAttributeType.REQUIRES_NEW)
-public class MessageServiceBean extends AbstractGenericService<Message, String> {
+public class CategoryService extends AbstractGenericService<Category, String> {
 
     @EJB
-    private MessageDaoBean messageDaoBean ;
+    private CategoryDao categoryDao;
 
-    public MessageServiceBean() {
+    public CategoryService() {
     }
 
     @PostConstruct
     public void init() {
-        abstractGenericDao = messageDaoBean;
-    }
-
-    public List<Message> get(String userId, int start, int max) {
-        return messageDaoBean.list(userId, start, max);
+        abstractGenericDao = categoryDao;
     }
 
 }

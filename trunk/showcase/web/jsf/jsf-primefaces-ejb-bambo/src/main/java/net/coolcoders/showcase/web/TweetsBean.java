@@ -7,13 +7,12 @@ package net.coolcoders.showcase.web;
 
 import net.coolcoders.showcase.model.Message;
 import net.coolcoders.showcase.model.User;
-import net.coolcoders.showcase.service.MessageServiceBean;
-import net.coolcoders.showcase.service.UserServiceBean;
+import net.coolcoders.showcase.service.MessageService;
+import net.coolcoders.showcase.service.UserService;
 
 import javax.ejb.EJB;
 import javax.enterprise.context.RequestScoped;
 import javax.faces.model.SelectItem;
-import javax.inject.Inject;
 import javax.inject.Named;
 import java.util.ArrayList;
 import java.util.Date;
@@ -28,12 +27,11 @@ import java.util.List;
 public class TweetsBean {
 
     @EJB
-    private MessageServiceBean messageServiceBean;
+    private MessageService messageService;
 
     @EJB
-    private UserServiceBean userServiceBean;
+    private UserService userService;
 
-    @Inject
     private SessionBean sessionBean;
 
     private Message message;
@@ -41,7 +39,7 @@ public class TweetsBean {
     private Message selectedMessage;
 
     public List<Message> getMessages() {
-        List<Message> messages = messageServiceBean.get();
+        List<Message> messages = messageService.listAll();
         return messages;
     }
 
@@ -55,12 +53,12 @@ public class TweetsBean {
     }
 
     public String saveMessage() {
-        messageServiceBean.persist(message);
+        messageService.persist(message);
         return null;
     }
 
     public SelectItem[] getAuthorOptions() {
-        List<User> users = userServiceBean.get();
+        List<User> users = userService.listAll();
         List<SelectItem> items = new ArrayList<SelectItem>();
         items.add(new SelectItem(null, ""));
         for (User user : users) {
@@ -79,7 +77,7 @@ public class TweetsBean {
 
     public String deleteSelectedMessage() {
         if(selectedMessage != null)  {
-            messageServiceBean.remove(selectedMessage);
+            messageService.remove(selectedMessage);
             selectedMessage = null;
         }
         return null;

@@ -52,7 +52,7 @@
     
     <profiles>
         <profile>
-            <id>withSubmodules</id>
+            <id>withJsfModules</id>
             <modules>
                 <module>jsf-mojarra-ejb</module>
                 <module>jsf-icefaces-ejb</module>

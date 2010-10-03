@@ -6,7 +6,7 @@
 package net.coolcoders.showcase.dao;
 
 import net.coolcoders.showcase.dao.generic.AbstractGenericDao;
-import net.coolcoders.showcase.model.Category;
+import net.coolcoders.showcase.model.User;
 
 import javax.ejb.Stateless;
 import javax.ejb.TransactionAttribute;
@@ -18,10 +18,10 @@ import javax.ejb.TransactionAttributeType;
  */
 @Stateless
 @TransactionAttribute(TransactionAttributeType.MANDATORY)
-public class CategoryDaoBean extends AbstractGenericDao<Category, String> {
+public class UserDao extends AbstractGenericDao<User, String> {
 
-    public CategoryDaoBean() {
-        super(Category.class);
+    public UserDao() {
+        super(User.class);
     }
 
 }

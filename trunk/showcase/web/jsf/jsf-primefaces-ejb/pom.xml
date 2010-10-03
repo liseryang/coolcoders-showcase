@@ -61,7 +61,6 @@
                 <artifactId>maven-embedded-glassfish-plugin</artifactId>
                 <version>3.0.1</version>
                 <configuration>
-                    <goalPrefix>embedded-glassfish</goalPrefix>
                     <app>${project.build.directory}/${build.finalName}.war</app>
                     <autoDelete>true</autoDelete>
                     <port>8080</port>

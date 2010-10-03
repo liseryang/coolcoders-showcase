@@ -20,6 +20,8 @@ public class SessionBean implements java.io.Serializable {
 
     private User currentUser;
 
+    private int maxMessageCount = 10;
+
     public User getCurrentUser() {
         return currentUser;
     }
@@ -28,4 +30,11 @@ public class SessionBean implements java.io.Serializable {
         this.currentUser = currentUser;
     }
 
+    public int getMaxMessageCount() {
+        return maxMessageCount;
+    }
+
+    public void setMaxMessageCount(int maxMessageCount) {
+        this.maxMessageCount = maxMessageCount;
+    }
 }

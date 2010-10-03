@@ -5,7 +5,7 @@
 
 package net.coolcoders.showcase.service;
 
-import net.coolcoders.showcase.dao.UserDaoBean;
+import net.coolcoders.showcase.dao.UserDao;
 import net.coolcoders.showcase.model.User;
 
 import javax.annotation.PostConstruct;
@@ -17,17 +17,17 @@ import javax.ejb.Stateless;
  * @author andreas
  */
 @Stateless
-public class UserServiceBean extends AbstractGenericService<User, String> {
+public class UserService extends AbstractGenericService<User, String> {
 
     @EJB
-    private UserDaoBean userDaoBean;
+    private UserDao userDao;
 
-    public UserServiceBean() {
+    public UserService() {
     }
 
     @PostConstruct
     public void init() {
-        abstractGenericDao = userDaoBean;
+        abstractGenericDao = userDao;
     }
 
 }

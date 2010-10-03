@@ -76,9 +76,9 @@ public class DbInitBean {
             andreas.getFollowing().add(bambo);
             josip.getFollowing().add(andreas);
 
-            createDummyMessages(bambo, 100, new Date(), 10);
-            createDummyMessages(josip, 50, new Date(), 10);
-            createDummyMessages(andreas, 10, new Date(), 10);
+            createDummyMessages(bambo, 100, new Date(), 1000);
+            createDummyMessages(josip, 50, new Date(), 2000);
+            createDummyMessages(andreas, 10, new Date(), 3000);
 
             genericDao.persistAll(users);
 

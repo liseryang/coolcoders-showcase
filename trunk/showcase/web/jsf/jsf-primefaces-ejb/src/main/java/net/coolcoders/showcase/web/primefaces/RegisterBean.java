@@ -3,13 +3,13 @@
  * and open the template in the editor.
  */
 
-package net.coolcoders.showcase.web;
+package net.coolcoders.showcase.web.primefaces;
 
 import net.coolcoders.showcase.model.Category;
 import net.coolcoders.showcase.model.Gender;
 import net.coolcoders.showcase.model.User;
-import net.coolcoders.showcase.service.CategoryServiceBean;
-import net.coolcoders.showcase.service.UserServiceBean;
+import net.coolcoders.showcase.service.CategoryService;
+import net.coolcoders.showcase.service.UserService;
 import net.coolcoders.showcase.web.util.MessageBundleLoader;
 
 import javax.ejb.EJB;
@@ -28,10 +28,10 @@ import java.util.List;
 public class RegisterBean {
 
     @EJB
-    private UserServiceBean userServiceBean;
+    private UserService userService;
 
     @EJB
-    private CategoryServiceBean categoryServiceBean;
+    private CategoryService categoryService;
 
     @Inject
     private SessionBean sessionBean;
@@ -43,7 +43,7 @@ public class RegisterBean {
     }
 
     public String save() {
-        userServiceBean.persist(user);
+        userService.persist(user);
         sessionBean.setCurrentUser(user);
         return "home";
     }
@@ -57,7 +57,7 @@ public class RegisterBean {
     }
 
     public SelectItem[] getCategoryItems() {
-        List<Category> categories = categoryServiceBean.get();
+        List<Category> categories = categoryService.listAll();
         List<SelectItem> items = new ArrayList<SelectItem>(categories.size());
         for (Category category : categories) {
             items.add(new SelectItem(category.getId(), category.getName()));
