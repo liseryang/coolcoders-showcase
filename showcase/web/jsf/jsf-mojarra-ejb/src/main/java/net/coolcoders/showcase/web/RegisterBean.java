@@ -6,7 +6,7 @@
 package net.coolcoders.showcase.web;
 
 import net.coolcoders.showcase.model.User;
-import net.coolcoders.showcase.service.UserServiceBean;
+import net.coolcoders.showcase.service.UserService;
 
 import javax.ejb.EJB;
 import javax.enterprise.context.RequestScoped;
@@ -22,7 +22,7 @@ import javax.inject.Named;
 public class RegisterBean {
 
     @EJB
-    private UserServiceBean userServiceBean;
+    private UserService userService;
 
     @Inject
     private SessionBean sessionBean;
@@ -34,7 +34,7 @@ public class RegisterBean {
     }
 
     public String save() {
-        userServiceBean.persist(user);
+        userService.persist(user);
         sessionBean.setCurrentUser(user);
         return "home";
     }

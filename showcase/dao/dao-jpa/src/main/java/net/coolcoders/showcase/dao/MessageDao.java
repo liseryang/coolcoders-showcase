@@ -26,9 +26,9 @@ import java.util.List;
  */
 @Stateless
 @TransactionAttribute(TransactionAttributeType.MANDATORY)
-public class MessageDaoBean extends AbstractGenericDao<Message, String> {
+public class MessageDao extends AbstractGenericDao<Message, String> {
 
-    public MessageDaoBean() {
+    public MessageDao() {
         super(Message.class);
     }
 

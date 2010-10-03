@@ -12,12 +12,12 @@ import java.util.List;
 
 public class MessageDaoTest extends AbstractDaoTest {
 
-    private MessageDaoBean messageDao;
+    private MessageDao messageDao;
 
     @Before
     public void before() {
         super.before();
-        messageDao = inject(new MessageDaoBean(), "em", em);
+        messageDao = inject(new MessageDao(), "em", em);
     }
 
     @Test

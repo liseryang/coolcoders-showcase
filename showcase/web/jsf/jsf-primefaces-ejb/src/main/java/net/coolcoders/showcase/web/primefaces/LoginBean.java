@@ -3,12 +3,12 @@
  * and open the template in the editor.
  */
 
-package net.coolcoders.showcase.web;
+package net.coolcoders.showcase.web.primefaces;
 
 import net.coolcoders.showcase.dao.generic.QueryParameter;
 import net.coolcoders.showcase.model.User;
 import net.coolcoders.showcase.model.User_;
-import net.coolcoders.showcase.service.UserServiceBean;
+import net.coolcoders.showcase.service.UserService;
 
 import javax.ejb.EJB;
 import javax.enterprise.context.RequestScoped;
@@ -26,7 +26,7 @@ import java.util.Map;
 public class LoginBean {
 
     @EJB
-    private UserServiceBean userServiceBean;
+    private UserService userService;
 
     @Inject
     private SessionBean sessionBean;
@@ -62,7 +62,7 @@ public class LoginBean {
         restrictions.put("username", username);
         restrictions.put("password", password);
 
-        User user = userServiceBean.find(QueryParameter.with(User_.username, username).and(User_.password, password));
+        User user = userService.find(QueryParameter.with(User_.username, username).and(User_.password, password));
         if(user == null) {
             message = "Login failed!";
             return null;

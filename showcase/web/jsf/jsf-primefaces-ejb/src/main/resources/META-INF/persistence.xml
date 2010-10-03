@@ -3,7 +3,7 @@
              xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
              xsi:schemaLocation="http://java.sun.com/xml/ns/persistence http://java.sun.com/xml/ns/persistence/persistence_2_0.xsd">
     <persistence-unit name="ShowcasePU" transaction-type="JTA">
-        <provider>org.eclipse.persistence.jpa.PersistenceProvider</provider>
+        <!--<provider>org.eclipse.persistence.jpa.PersistenceProvider</provider>-->
         <!--<provider>org.hibernate.ejb.HibernatePersistence</provider>-->
 
         <!--<jta-data-source>jdbc/cc_showcase</jta-data-source>-->
@@ -14,8 +14,8 @@
         <class>net.coolcoders.showcase.model.Message</class>
         <properties>
             <property name="eclipselink.ddl-generation" value="drop-and-create-tables"/>
-            <property name="javax.persistence.jdbc.driver" value="org.apache.derby.jdbc.EmbeddedDriver"/>
-            <property name="eclipselink.target-database" value="DERBY"/>
+            <!--<property name="javax.persistence.jdbc.driver" value="org.apache.derby.jdbc.EmbeddedDriver"/>-->
+            <!--<property name="eclipselink.target-database" value="DERBY"/>-->
         </properties>
     </persistence-unit>
 </persistence>

@@ -6,7 +6,7 @@
 package net.coolcoders.showcase.web;
 
 import net.coolcoders.showcase.model.Message;
-import net.coolcoders.showcase.service.MessageServiceBean;
+import net.coolcoders.showcase.service.MessageService;
 
 import javax.ejb.EJB;
 import javax.enterprise.context.RequestScoped;
@@ -23,13 +23,15 @@ import java.util.List;
 public class TweetsBean {
 
     @EJB
-    private MessageServiceBean messageServiceBean;
+    private MessageService messageService;
 
     @Inject
     private SessionBean sessionBean;
 
+    private int currentFirstMessage = 0;
+
     public List<Message> getMessages() {
-        List<Message> messages = messageServiceBean.get();
+        List<Message> messages = messageService.list(sessionBean.getCurrentUser().getId(), currentFirstMessage, currentFirstMessage + sessionBean.getMaxMessageCount());
         return messages;
     }
 
