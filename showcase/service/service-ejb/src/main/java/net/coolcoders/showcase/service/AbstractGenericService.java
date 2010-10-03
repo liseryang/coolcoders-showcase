@@ -6,6 +6,7 @@
 package net.coolcoders.showcase.service;
 
 import net.coolcoders.showcase.dao.generic.AbstractGenericDao;
+import net.coolcoders.showcase.dao.generic.QueryFetch;
 import net.coolcoders.showcase.dao.generic.QueryOrder;
 import net.coolcoders.showcase.dao.generic.QueryParameter;
 
@@ -24,35 +25,35 @@ public abstract class AbstractGenericService<T, PK extends Serializable> {
         return abstractGenericDao.findNamedQueryResult(queryName, queryParameter);
     }
 
-    public List<T> getNamedQueryResult(String queryName, QueryParameter queryParameter) {
-        return abstractGenericDao.getNamedQueryResult(queryName, queryParameter);
+    public List<T> listNamedQueryResult(String queryName, QueryParameter queryParameter) {
+        return abstractGenericDao.listNamedQueryResult(queryName, queryParameter);
     }
 
-    public List<T> get() {
-        return abstractGenericDao.get();
+    public List<T> listAll(QueryFetch... queryFetches) {
+        return abstractGenericDao.listAll(queryFetches);
     }
 
-    public List<T> get(QueryParameter queryParameter, QueryOrder queryOrder) {
-        return abstractGenericDao.get(queryParameter, queryOrder);
+    public List<T> list(QueryParameter queryParameter, QueryOrder queryOrder, QueryFetch... queryFetches) {
+        return abstractGenericDao.list(queryParameter, queryOrder, queryFetches);
     }
 
     public T find(PK id) {
         return abstractGenericDao.find(id);
     }
 
-    public T find(QueryParameter queryParameter) {
-        return abstractGenericDao.find(queryParameter);
+    public T find(QueryParameter queryParameter, QueryFetch... queryFetches) {
+        return abstractGenericDao.find(queryParameter, queryFetches);
     }
 
-    public T find(QueryParameter queryParameter, QueryOrder queryOrder) {
-        return abstractGenericDao.find(queryParameter, queryOrder);
+    public T find(QueryParameter queryParameter, QueryOrder queryOrder, QueryFetch... queryFetches) {
+        return abstractGenericDao.find(queryParameter, queryOrder, queryFetches);
     }
 
     public void persist(Object entity) {
         abstractGenericDao.persist(entity);
     }
 
-    public T merge(T entity) {
+    public <T> T merge(T entity) {
         return abstractGenericDao.merge(entity);
     }
 

@@ -17,7 +17,7 @@ import java.lang.reflect.Field;
  * Time: 17:34:54
  * To change this template use File | Settings | File Templates.
  */
-public class AbstractDaoTest {
+public abstract class AbstractDaoTest {
 
     protected EntityManager em;
     protected GenericDao genericDao;

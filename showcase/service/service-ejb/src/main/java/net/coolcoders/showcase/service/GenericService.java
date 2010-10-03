@@ -21,36 +21,43 @@ import java.util.Map;
  */
 @Stateless
 @TransactionAttribute(TransactionAttributeType.REQUIRES_NEW)
-public class GenericService<T> extends GenericDao<T> {
+public class GenericService extends GenericDao {
 
     @EJB
-    private GenericDao<T> genericDao;
+    private GenericDao genericDao;
 
-    public T findNamedQueryResult(Class<T> clazz, String queryName, Map<String, Object> parameters) {
+    @Override
+    public <T> T findNamedQueryResult(Class<T> clazz, String queryName, Map<String, Object> parameters) {
         return genericDao.findNamedQueryResult(clazz, queryName, parameters);
     }
 
-    public List<T> getNamedQueryResult(Class<T> clazz, String queryName, Map<String, Object> parameters) {
-        return genericDao.getNamedQueryResult(clazz, queryName, parameters);
+    @Override
+    public <T> List<T> listNamedQueryResult(Class<T> clazz, String queryName, Map<String, Object> parameters) {
+        return genericDao.listNamedQueryResult(clazz, queryName, parameters);
     }
 
-    public List<T> get(Class<T> clazz) {
-        return genericDao.get(clazz);
+    @Override
+    public <T> List<T> listAll(Class<T> clazz, QueryFetch... queryFetches) {
+        return genericDao.listAll(clazz, queryFetches);
     }
 
-    public List<T> get(Class<T> clazz, QueryParameter queryParameter, QueryOrder queryOrder, QueryFetch... queryFetches) {
-        return genericDao.get(clazz, queryParameter, queryOrder, queryFetches);
+    @Override
+    public <T> List<T> list(Class<T> clazz, QueryParameter queryParameter, QueryOrder queryOrder, QueryFetch... queryFetches) {
+        return genericDao.list(clazz, queryParameter, queryOrder, queryFetches);
     }
 
-    public T find(Class<T> clazz, Object id) {
-        return genericDao.find(clazz, id);
+    @Override
+    public <T> T findById(Class<T> clazz, Object id) {
+        return genericDao.findById(clazz, id);
     }
 
-    public T find(Class<T> clazz, QueryParameter queryParameter, QueryFetch... queryFetches) {
+    @Override
+    public <T> T find(Class<T> clazz, QueryParameter queryParameter, QueryFetch... queryFetches) {
         return genericDao.find(clazz, queryParameter, queryFetches);
     }
 
-    public T find(Class<T> clazz, QueryParameter queryParameter, QueryOrder queryOrder, QueryFetch... queryFetches) {
+    @Override
+    public <T> T find(Class<T> clazz, QueryParameter queryParameter, QueryOrder queryOrder, QueryFetch... queryFetches) {
         return genericDao.find(clazz, queryParameter, queryOrder, queryFetches);
     }
 
@@ -59,23 +66,28 @@ public class GenericService<T> extends GenericDao<T> {
         genericDao.persist(entity);
     }
 
-    public T merge(T entity) {
+    @Override
+    public <T> T merge(T entity) {
         return genericDao.merge(entity);
     }
 
-    public T persistOrMerge(T entity) {
+    @Override
+    public <T> T persistOrMerge(T entity) {
         return genericDao.persistOrMerge(entity);
     }
 
-    public void persistAll(List<T> ts) {
-        genericDao.persistAll(ts);
+    @Override
+    public <T> void persistAll(List<T> list) {
+        genericDao.persistAll(list);
     }
 
-    public void remove(T entity) {
+    @Override
+    public <T> void remove(T entity) {
         genericDao.remove(entity);
     }
 
-    public void delete(Class<T> clazz, Object id) {
+    @Override
+    public <T> void delete(Class<T> clazz, Object id) {
         genericDao.delete(clazz, id);
     }
 
