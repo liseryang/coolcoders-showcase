@@ -38,4 +38,7 @@ public class MessageService extends AbstractGenericService<Message, String> {
         return messageDao.list(userId, start, max);
     }
 
+    public Long count(String userId) {
+        return messageDao.count(userId);
+    }
 }

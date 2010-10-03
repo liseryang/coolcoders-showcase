@@ -17,6 +17,16 @@ public class TweetsSessionBean implements Serializable{
 
     private int stepSize = 5;
 
+    private Long messageCount;
+
+    public Long getMessageCount() {
+        return messageCount;
+    }
+
+    public void setMessageCount(Long messageCount) {
+        this.messageCount = messageCount;
+    }
+
     public int getStepSize() {
         return stepSize;
     }
@@ -40,5 +50,12 @@ public class TweetsSessionBean implements Serializable{
             firstPage -= stepSize;
         }
     }
-    
+
+    public boolean getRenderNext() {
+        return messageCount > firstPage + stepSize;
+    }
+
+    public boolean getRenderPrev() {
+        return firstPage > 0;
+    }
 }
