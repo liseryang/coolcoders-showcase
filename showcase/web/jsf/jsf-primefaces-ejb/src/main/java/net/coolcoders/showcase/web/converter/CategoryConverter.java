@@ -11,8 +11,8 @@ import javax.faces.convert.FacesConverter;
  * Time: 00:17:19
  * To change this template use File | Settings | File Templates.
  */
-//@FacesConverter(value = "categoryConverter")
-@FacesConverter(forClass = Category.class)
+@FacesConverter(value = "categoryConverter")
+//@FacesConverter(forClass = Category.class)
 public class CategoryConverter extends AbstractConverter<Category> {
 
     public CategoryConverter() {

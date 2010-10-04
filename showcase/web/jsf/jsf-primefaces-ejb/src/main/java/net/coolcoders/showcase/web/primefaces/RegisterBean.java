@@ -39,13 +39,20 @@ public class RegisterBean {
     private User user = new User();
 
     public User getUser() {
+        if(sessionBean.getCurrentUser() != null) {
+            user = sessionBean.getCurrentUser();
+        } 
         return user;
     }
 
     public String save() {
-        userService.persist(user);
+        if(sessionBean.getCurrentUser() == null) {
+            userService.persist(user);
+        } else {
+            userService.merge(user);
+        }
         sessionBean.setCurrentUser(user);
-        return "home";
+        return "showMessages";
     }
 
     public SelectItem[] getGenderItems() {
