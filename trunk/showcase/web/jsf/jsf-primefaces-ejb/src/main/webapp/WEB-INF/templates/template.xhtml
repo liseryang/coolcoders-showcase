@@ -68,9 +68,11 @@
                 </div>
                 <div class="span-10 last" style="text-align: right;">
                     <h:form>
-                        <h:outputText value="#{sessionBean.currentUser.username}"
+                        <p:commandLink value="#{sessionBean.currentUser.username}"
+                                       action="profile"
                                       rendered="#{sessionBean.currentUser != null}"
-                                      />&nbsp;
+                                      ajax="false"/>
+                        &nbsp;
                         <p:commandLink value="Logout" action="#{sessionBean.logout}" ajax="false"
                                        rendered="#{sessionBean.currentUser != null}"/>
                     </h:form>
@@ -91,7 +93,7 @@
 
         <div class="span-24 last">
             <div class="textCenter">
-                <h:outputText value="JSF Primefaces Showcasae By" />
+                <h:outputText value="JSF Primefaces Showcase By" />
                 <a href="http://cool-coders.net/">Cool-Coders</a>
             </div>
         </div>
