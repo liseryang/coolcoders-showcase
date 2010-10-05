@@ -16,6 +16,7 @@ import javax.persistence.criteria.CriteriaBuilder;
 import javax.persistence.criteria.CriteriaQuery;
 import javax.persistence.criteria.Root;
 import javax.persistence.criteria.SetJoin;
+import java.util.List;
 
 /**
  * @author andreas
@@ -28,7 +29,7 @@ public class UserDao extends AbstractGenericDao<User, String> {
         super(User.class);
     }
 
-    public Long count(String userId) {
+    public Long countUsersYouFollow(String userId) {
         CriteriaBuilder cb = em.getCriteriaBuilder();
         CriteriaQuery<Long> query = cb.createQuery(Long.class);
         Root<User> root = query.from(User.class);
@@ -38,5 +39,17 @@ public class UserDao extends AbstractGenericDao<User, String> {
         query.where(cb.equal(root.get(User_.id), userId));
 
         return em.createQuery(query).getSingleResult();
+    }
+
+    public List<User> listUsersYouFollow(String userId) {
+        CriteriaBuilder cb = em.getCriteriaBuilder();
+        CriteriaQuery<User> query = cb.createQuery(User.class);
+        Root<User> root = query.from(User.class);
+        SetJoin<User, User> followingJoin = root.join(User_.following);
+
+        query.select(followingJoin);
+        query.where(cb.equal(root.get(User_.id), userId));
+
+        return em.createQuery(query).getResultList();
     }
 }

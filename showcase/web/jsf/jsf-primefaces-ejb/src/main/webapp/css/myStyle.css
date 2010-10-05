@@ -11,12 +11,19 @@
     text-align: center;
 }
 
-tr.ccRowStyleClass {
-    border: none;
+.textRight {
+    text-align: right;
 }
 
-td.ui-datatable-data {
-    border: none;
+.ccTablePanel {
+
+}
+
+div.ui-panel-titlebar {
+    height: 50px;
+    padding: 0px;
+    margin: 0px;
+   
 }
 
 .col1 {

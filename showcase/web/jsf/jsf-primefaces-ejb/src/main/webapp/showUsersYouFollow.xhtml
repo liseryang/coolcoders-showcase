@@ -1,9 +1,9 @@
 <ui:composition template="WEB-INF/templates/template.xhtml"
-      xmlns="http://www.w3.org/1999/xhtml"
-      xmlns:ui="http://java.sun.com/jsf/facelets"
-      xmlns:h="http://java.sun.com/jsf/html"
-      xmlns:f="http://java.sun.com/jsf/core"
-      xmlns:p="http://primefaces.prime.com.tr/ui">
+                xmlns="http://www.w3.org/1999/xhtml"
+                xmlns:ui="http://java.sun.com/jsf/facelets"
+                xmlns:h="http://java.sun.com/jsf/html"
+                xmlns:f="http://java.sun.com/jsf/core"
+                xmlns:p="http://primefaces.prime.com.tr/ui">
 
     <ui:define name="breadCrumb">
         <p:menuitem value="Home" action="showMessages" ajax="false"/>
@@ -11,21 +11,45 @@
     </ui:define>
 
     <ui:define name="content">
-        <h:form>
-            <p:dataTable var="msg" value="#{tweetsBean.messages}" paginator="true" rows="10"
-                         rowStyleClass="ccRowStyleClass">
-                <p:column>
-                    <h:outputText value="#{msg.content}"/>
-                </p:column>
-                <p:column>
-                    <h:outputText value="#{msg.created}">
-                        <f:convertDateTime pattern="dd.MM.yyyy mm:hh"/>
-                    </h:outputText>
-                </p:column>
-                <p:column>
-                    <h:outputText value="#{msg.author.username}"/>
-                </p:column>
-            </p:dataTable>
-        </h:form>
+        <div class="ui-widget ui-widget-content ui-corner-all">
+            <h:form>
+                <p:panel style="padding: 0px; margin: 10px;" styleClass="ccTablePanel">
+                    <f:facet name="header">
+                        <div style="text-align: right;">
+                            <p:commandButton value="Unfollow" actionListener="#{usersBean.unfollow}" update="tblUsers" image="">
+                            </p:commandButton>
+                        </div>
+                        <!--<div class="span-10">-->
+                            <!--&lt;!&ndash;<h:outputText value="Header Text"/>&ndash;&gt;-->
+                        <!--</div>-->
+                        <!--<div class="span-12 last textRight">-->
+                        <!--</div>-->
+                    </f:facet>
+
+                    <p:dataTable id="tblUsers"
+                                 value="#{usersBean.users}"
+                                 var="item"
+                                 paginator="true"
+                                 rows="5"
+                                 paginatorTemplate="{CurrentPageReport}  {FirstPageLink} {PreviousPageLink} {PageLinks} {NextPageLink} {LastPageLink} {RowsPerPageDropdown}"
+                                 rowsPerPageTemplate="5,10,25,50"
+                                 selection="#{usersBean.selectedUser}"
+                                 selectionMode="single">
+                        <p:column>
+                            <f:facet name="header">
+                                <h:outputLabel value="#{msgs['user.username.label']}"/>
+                            </f:facet>
+                            <h:outputText value="#{item.username}"/>
+                        </p:column>
+                        <p:column>
+                            <f:facet name="header">
+                                <h:outputLabel value="#{msgs['user.post.count.label']}"/>
+                            </f:facet>
+                            <h:outputText value="#{item.messageCount}"/>
+                        </p:column>
+                    </p:dataTable>
+                </p:panel>
+            </h:form>
+        </div>
     </ui:define>
 </ui:composition>

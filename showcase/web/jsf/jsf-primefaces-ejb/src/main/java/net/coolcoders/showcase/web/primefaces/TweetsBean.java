@@ -42,7 +42,7 @@ public class TweetsBean {
     public Long getFriendsCount() {
         Long count = 0L;
         if (sessionBean.getCurrentUser() != null) {
-            count = userService.count(sessionBean.getCurrentUser().getId());
+            count = userService.countUsersYouFollow(sessionBean.getCurrentUser().getId());
         }
         return count;
     }
