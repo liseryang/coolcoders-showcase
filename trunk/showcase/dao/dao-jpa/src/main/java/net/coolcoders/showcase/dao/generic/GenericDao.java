@@ -149,6 +149,15 @@ public class GenericDao {
                 } else if (QueryParameterEntry.Operator.LE.equals(entry.getOperator())) {
                     predicate = cb.lessThanOrEqualTo(path, comp);
                 }
+            } else if (value instanceof String) {
+                String string = (String) value;
+                if (QueryParameterEntry.Operator.STARTS.equals(entry.getOperator())) {
+                    predicate = cb.like(path, string + "%");
+                } else if (QueryParameterEntry.Operator.CONTAINS.equals(entry.getOperator())) {
+                    predicate = cb.like(path, "%" + string + "%");
+                } else if (QueryParameterEntry.Operator.ENDS.equals(entry.getOperator())) {
+                    predicate = cb.like(path, "%" + string);
+                }
             }
             if (predicate != null) {
                 predicates.add(predicate);

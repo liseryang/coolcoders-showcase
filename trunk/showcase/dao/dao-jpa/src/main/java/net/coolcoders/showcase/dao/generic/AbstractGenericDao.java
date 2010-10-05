@@ -143,6 +143,15 @@ public abstract class AbstractGenericDao<T, PK extends Serializable> {
                 } else if (QueryParameterEntry.Operator.LE.equals(entry.getOperator())) {
                     predicate = cb.le(path, number);
                 }
+            } else if (value instanceof String) {
+                String string = (String) value;
+                if (QueryParameterEntry.Operator.STARTS.equals(entry.getOperator())) {
+                    predicate = cb.like(path, string + "%");
+                } else if (QueryParameterEntry.Operator.CONTAINS.equals(entry.getOperator())) {
+                    predicate = cb.like(path, "%" + string + "%");
+                } else if (QueryParameterEntry.Operator.ENDS.equals(entry.getOperator())) {
+                    predicate = cb.like(path, "%" + string);
+                }
             } else if (value instanceof Comparable) {
                 Comparable comp = (Comparable) value;
                 if (QueryParameterEntry.Operator.GT.equals(entry.getOperator())) {
@@ -155,6 +164,7 @@ public abstract class AbstractGenericDao<T, PK extends Serializable> {
                     predicate = cb.lessThanOrEqualTo(path, comp);
                 }
             }
+            
             if (predicate != null) {
                 predicates.add(predicate);
             }
