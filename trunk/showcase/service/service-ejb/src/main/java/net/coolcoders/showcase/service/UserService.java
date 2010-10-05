@@ -11,6 +11,7 @@ import net.coolcoders.showcase.model.User;
 import javax.annotation.PostConstruct;
 import javax.ejb.EJB;
 import javax.ejb.Stateless;
+import java.util.List;
 
 /**
  *
@@ -30,7 +31,12 @@ public class UserService extends AbstractGenericService<User, String> {
         abstractGenericDao = userDao;
     }
 
-    public Long count(String userId) {
-        return userDao.count(userId);
+    public Long countUsersYouFollow(String userId) {
+        return userDao.countUsersYouFollow(userId);
     }
+
+    public List<User> listUsersYouFollow(String userId) {
+        return userDao.listUsersYouFollow(userId);
+    }
+
 }

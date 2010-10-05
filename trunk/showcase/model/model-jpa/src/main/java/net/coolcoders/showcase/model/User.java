@@ -148,5 +148,9 @@ public class User extends AbstractBaseEntity {
         this.confirmPassword = confirmPassword;
     }
 
+    @Transient
+    public int getMessageCount() {
+        return getMessages().size();
+    }
 
 }

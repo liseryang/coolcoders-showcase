@@ -20,7 +20,7 @@ public class UserDaoTest extends AbstractDaoTest {
     @Test
     public void testCountForUser() {
         User andreas = genericDao.find(User.class, QueryParameter.with(User_.username, "anerlich"));
-        Long count = userDao.count(andreas.getId());
+        Long count = userDao.countUsersYouFollow(andreas.getId());
         Assert.assertEquals(Long.valueOf(1), count);
     }
 
