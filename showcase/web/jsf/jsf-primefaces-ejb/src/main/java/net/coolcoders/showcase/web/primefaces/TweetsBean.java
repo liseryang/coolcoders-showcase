@@ -8,9 +8,9 @@ package net.coolcoders.showcase.web.primefaces;
 import net.coolcoders.showcase.model.Message;
 import net.coolcoders.showcase.service.MessageService;
 import net.coolcoders.showcase.service.UserService;
+import net.coolcoders.showcase.web.scope.ViewScoped;
 
 import javax.ejb.EJB;
-import javax.enterprise.context.RequestScoped;
 import javax.inject.Inject;
 import javax.inject.Named;
 import java.util.Date;
@@ -20,7 +20,7 @@ import java.util.List;
  * @author andreas
  */
 @Named
-@RequestScoped
+@ViewScoped
 public class TweetsBean {
 
     @EJB
@@ -32,12 +32,15 @@ public class TweetsBean {
     @Inject
     private SessionBean sessionBean;
 
-    @Inject
-    private TweetsSessionBean tweetsSessionBean;
-
     private Message message;
 
     private List<Message> messages;
+
+    private int firstPage = 0;
+
+    private int stepSize = 5;
+
+    private Long messageCount = 0L;
 
     public Long getFriendsCount() {
         Long count = 0L;
@@ -64,36 +67,62 @@ public class TweetsBean {
     }
 
     public Long getMessageCount() {
-        Long count = 0L;
         if (sessionBean.getCurrentUser() != null) {
-            count = messageService.count(sessionBean.getCurrentUser().getId());
-            tweetsSessionBean.setMessageCount(count);
+            messageCount = messageService.count(sessionBean.getCurrentUser().getId());
         }
-        return count;
+        return messageCount;
     }
 
     public List<Message> getMessages() {
         if (sessionBean.getCurrentUser() != null && messages == null) {
             messages = messageService.list(sessionBean.getCurrentUser().getId(),
-                    tweetsSessionBean.getFirstPage(),
-                    tweetsSessionBean.getStepSize());
+                    getFirstPage(),
+                    getStepSize());
         }
         return messages;
     }
 
     public String nextMessages() {
-        tweetsSessionBean.nextPage();
+        nextPage();
         messages = null;
         return null;
     }
 
     public String prevMessages() {
-        tweetsSessionBean.prevPage();
+        prevPage();
         messages = null;
         return null;
     }
 
-    public String showUsersYouFollow() {
-        return "showUsersYouFollow";
+    public int getStepSize() {
+        return stepSize;
+    }
+
+    public void setStepSize(int stepSize) {
+        this.stepSize = stepSize;
+    }
+
+    public int getFirstPage() {
+        return firstPage;
+    }
+
+    public void nextPage() {
+        firstPage += stepSize;
+    }
+
+    public void prevPage() {
+        if(firstPage - stepSize <= 0) {
+            firstPage = 0;
+        } else {
+            firstPage -= stepSize;
+        }
+    }
+
+    public boolean getRenderNext() {
+        return messageCount > firstPage + stepSize;
+    }
+
+    public boolean getRenderPrev() {
+        return firstPage > 0;
     }
 }

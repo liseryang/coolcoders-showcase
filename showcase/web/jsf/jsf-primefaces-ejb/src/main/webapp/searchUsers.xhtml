@@ -1,0 +1,63 @@
+<ui:composition template="WEB-INF/templates/template.xhtml"
+                xmlns="http://www.w3.org/1999/xhtml"
+                xmlns:ui="http://java.sun.com/jsf/facelets"
+                xmlns:h="http://java.sun.com/jsf/html"
+                xmlns:f="http://java.sun.com/jsf/core"
+                xmlns:p="http://primefaces.prime.com.tr/ui">
+
+    <ui:define name="breadCrumb">
+        <p:menuitem value="Home" action="showMessages" ajax="false"/>
+        <p:menuitem value="Users you follow" action="showUsersYouFollow" ajax="false"/>
+    </ui:define>
+
+    <ui:define name="content">
+        <h:form>
+            <div class="ui-widget ui-widget-content ui-corner-all">
+                <p:panel header="Search for user" styleClass="textCenter" style="margin: 10px;">
+                    <h:inputText value="#{userSearchBean.searchString}" style="margin-right: 5px;"/>
+                    <p:commandButton value="#{msgs['default.button.search.label']}"
+                                     action="#{userSearchBean.search}"
+                                     update="tblUsersSearch"
+                                     />
+                </p:panel>
+                <p:dataTable id="tblUsersSearch"
+                             value="#{userSearchBean.users}"
+                             var="item"
+                             paginator="true"
+                             rows="5"
+                             paginatorTemplate="{CurrentPageReport}  {FirstPageLink} {PreviousPageLink} {PageLinks} {NextPageLink} {LastPageLink} {RowsPerPageDropdown}"
+                             rowsPerPageTemplate="5,10,25,50"
+                             style="margin: 10px">
+                    <p:column>
+                        <f:facet name="header">
+                            <h:outputLabel value="#{msgs['user.username.label']}"/>
+                        </f:facet>
+                        <h:outputText value="#{item.username}"/>
+                    </p:column>
+                    <p:column>
+                        <f:facet name="header">
+                            <h:outputLabel value="#{msgs['user.post.count.label']}"/>
+                        </f:facet>
+                        <h:outputText value="#{item.messageCount}"/>
+                    </p:column>
+                    <p:column>
+                        <f:facet name="header">
+                            <h:outputLabel value="#{msgs['default.actions.label']}"/>
+                        </f:facet>
+
+                        <div class="textCenter">
+                            <p:commandButton value="#{msgs['default.button.follow.label']}"
+                                             action="#{userSearchBean.follow}"
+                                             style="margin-bottom: 5px;"
+                                             update="tblUsersSearch"
+                                             ajax="false"
+                                    >
+                                <f:setPropertyActionListener value="#{item}" target="#{userSearchBean.selectedUser}"/>
+                            </p:commandButton>
+                        </div>
+                    </p:column>
+                </p:dataTable>
+            </div>
+        </h:form>
+    </ui:define>
+</ui:composition>

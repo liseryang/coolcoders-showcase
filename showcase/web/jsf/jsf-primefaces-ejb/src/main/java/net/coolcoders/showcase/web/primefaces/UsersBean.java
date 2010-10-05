@@ -2,9 +2,9 @@ package net.coolcoders.showcase.web.primefaces;
 
 import net.coolcoders.showcase.model.User;
 import net.coolcoders.showcase.service.UserService;
+import net.coolcoders.showcase.web.scope.ViewScoped;
 
 import javax.ejb.EJB;
-import javax.enterprise.context.ConversationScoped;
 import javax.faces.event.ActionEvent;
 import javax.inject.Inject;
 import javax.inject.Named;
@@ -17,7 +17,7 @@ import java.util.List;
  * Time: 16:17:01
  */
 @Named
-@ConversationScoped
+@ViewScoped
 public class UsersBean implements Serializable {
 
     @EJB

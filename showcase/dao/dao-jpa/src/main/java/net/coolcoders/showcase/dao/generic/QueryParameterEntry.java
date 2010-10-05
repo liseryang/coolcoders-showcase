@@ -12,7 +12,7 @@ import javax.persistence.metamodel.SingularAttribute;
 public class QueryParameterEntry<X, T> {
 
     public enum Operator {
-        EQ, GT, GE, LT, LE;
+        EQ, GT, GE, LT, LE, STARTS, CONTAINS, ENDS;
     };
 
     private SingularAttribute<X, T> attribute;

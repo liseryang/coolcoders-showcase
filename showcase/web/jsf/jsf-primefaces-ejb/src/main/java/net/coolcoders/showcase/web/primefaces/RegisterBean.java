@@ -10,10 +10,10 @@ import net.coolcoders.showcase.model.Gender;
 import net.coolcoders.showcase.model.User;
 import net.coolcoders.showcase.service.CategoryService;
 import net.coolcoders.showcase.service.UserService;
+import net.coolcoders.showcase.web.scope.ViewScoped;
 import net.coolcoders.showcase.web.util.MessageBundleLoader;
 
 import javax.ejb.EJB;
-import javax.enterprise.context.RequestScoped;
 import javax.faces.model.SelectItem;
 import javax.inject.Inject;
 import javax.inject.Named;
@@ -24,7 +24,7 @@ import java.util.List;
  * @author andreas
  */
 @Named
-@RequestScoped
+@ViewScoped
 public class RegisterBean {
 
     @EJB

@@ -14,16 +14,11 @@
         <div class="ui-widget ui-widget-content ui-corner-all">
             <h:form>
                 <p:panel style="padding: 0px; margin: 10px;" styleClass="ccTablePanel">
-                    <f:facet name="header">
+                    <f:facet name="footer">
                         <div style="text-align: right;">
-                            <p:commandButton value="Unfollow" actionListener="#{usersBean.unfollow}" update="tblUsers" image="">
+                            <p:commandButton value="Unfollow" actionListener="#{usersBean.unfollow}" ajax="false">
                             </p:commandButton>
                         </div>
-                        <!--<div class="span-10">-->
-                            <!--&lt;!&ndash;<h:outputText value="Header Text"/>&ndash;&gt;-->
-                        <!--</div>-->
-                        <!--<div class="span-12 last textRight">-->
-                        <!--</div>-->
                     </f:facet>
 
                     <p:dataTable id="tblUsers"
@@ -49,6 +44,9 @@
                         </p:column>
                     </p:dataTable>
                 </p:panel>
+                <div class="textCenter" style="height: 50px;">
+                    <p:commandButton value="#{msgs['default.button.search.label']}" action="searchUsers" ajax="false" />
+                </div>
             </h:form>
         </div>
     </ui:define>
