@@ -13,9 +13,9 @@
     <ui:define name="content">
         <div class="yui3-u-1 ui-widget ui-widget-content ui-corner-all">
 
-            <div class="yui3-u-1 ui-widget ui-widget-content ui-corner-all" >
+            <div class="yui3-u-1 ui-widget ui-widget-content ui-corner-all">
                 <h:form id="message">
-                    <p:panel header="#{msgs['message.create.label']}" >
+                    <p:panel header="#{msgs['message.create.label']}">
                         <h:panelGrid columns="1" columnClasses="textCenter">
                             <h:inputTextarea value="#{messagesBean.message.content}"
                                              style="width: 890px; height: 50px; overflow: hidden;"/>
@@ -29,18 +29,18 @@
             <div class="yui3-u-1">
                 <h:form id="messages">
                     <p:messages id="msgs" showDetail="true"/>
-                    <!--<h:panelGroup rendered="#{messagesBean.friendsCount == 0}">-->
-                    <!--<div class="ui-widget ui-widget-content ui-corner-all textCenter"-->
-                    <!--style="margin: 5px; padding: 5px">-->
-                    <!--<h:outputText value="#{msgs['message.list.findsomefriends']}"/>-->
-                    <!--</div>-->
-                    <!--</h:panelGroup>-->
-                    <!--<h:panelGroup rendered="#{messagesBean.messageCount == 0}">-->
-                    <!--<div class="ui-widget ui-widget-content ui-corner-all textCenter"-->
-                    <!--style="margin: 5px; padding: 5px">-->
-                    <!--<h:outputText value="#{msgs['message.list.lazyfriends']}"/>-->
-                    <!--</div>-->
-                    <!--</h:panelGroup>-->
+                    <h:panelGroup rendered="#{messagesBean.friendsCount == 0}">
+                        <div class="ui-messages-info ui-corner-all textCenter"
+                             style="margin: 5px; padding: 5px">
+                            <h:outputText value="#{msgs['message.list.findsomefriends']}"/>
+                        </div>
+                    </h:panelGroup>
+                    <h:panelGroup rendered="#{messagesBean.messageCount == 0 and messagesBean.friendsCount > 0}">
+                        <div class="ui-messages-info ui-corner-all textCenter"
+                             style="margin: 5px; padding: 5px">
+                            <h:outputText value="#{msgs['message.list.lazyfriends']}"/>
+                        </div>
+                    </h:panelGroup>
                     <p:dataList id="messages" value="#{messagesBean.messages}" var="msg" type="definition">
                         <f:facet name="description">
                             <div class="ui-widget ui-widget-content ui-corner-all"
@@ -56,17 +56,19 @@
                         </f:facet>
                     </p:dataList>
 
-                    <div class="btnPanel textCenter">
-                        <p:commandButton value="#{msgs['default.paginate.prev']}"
-                                         action="#{messagesBean.prevMessages}"
-                                         update="messages"
-                                         rendered="#{messagesBean.renderPrev}"/>
-                        <p:commandButton value="#{msgs['default.paginate.next']}"
-                                         action="#{messagesBean.nextMessages}"
-                                         update="messages"
-                                         rendered="#{messagesBean.renderNext}"/>
-                    </div>
-                    
+                    <h:panelGroup rendered="#{messagesBean.messageCount > 0}">
+                        <div class="btnPanel textCenter">
+                            <p:commandButton value="#{msgs['default.paginate.prev']}"
+                                             action="#{messagesBean.prevMessages}"
+                                             update="messages"
+                                             rendered="#{messagesBean.renderPrev}"/>
+                            <p:commandButton value="#{msgs['default.paginate.next']}"
+                                             action="#{messagesBean.nextMessages}"
+                                             update="messages"
+                                             rendered="#{messagesBean.renderNext}"/>
+                        </div>
+                    </h:panelGroup>
+
                     <div class="btnPanel textCenter">
                         <p:commandButton value="#{msgs['default.viewfriends.label']}"
                                          action="showUsersYouFollow"
