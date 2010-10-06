@@ -5,7 +5,8 @@
       xmlns:ui="http://java.sun.com/jsf/facelets"
       xmlns:h="http://java.sun.com/jsf/html"
       xmlns:f="http://java.sun.com/jsf/core"
-      xmlns:p="http://primefaces.prime.com.tr/ui">
+      xmlns:p="http://primefaces.prime.com.tr/ui"
+      xmlns:ft="http://primefaces.prime.com.tr/facestrace">
 
 <f:view contentType="text/html"/>
 
@@ -18,21 +19,25 @@
 
     <title>COOL CODERS SHOWCASE with JSF (Primefaces)</title>
 
-    <link href="./css/myStyle.css" rel="stylesheet" type="text/css"/>
+    <link rel="stylesheet" type="text/css" href="#{request.contextPath}/css/myStyle.css" />
 
-    <link rel="stylesheet" type="text/css" href="./css/yui/cssreset/reset.css"/>
-    <link rel="stylesheet" type="text/css" href="./css/yui/cssbase/base-context.css"/>
-    <link rel="stylesheet" type="text/css" href="./css/yui/cssfonts/fonts.css"/>
-    <link rel="stylesheet" type="text/css" href="./css/yui/cssgrids/grids.css"/>
+    <link rel="stylesheet" type="text/css" href="#{request.contextPath}/css/yui/cssreset/reset.css"/>
+    <link rel="stylesheet" type="text/css" href="#{request.contextPath}/css/yui/cssbase/base-context.css"/>
+    <link rel="stylesheet" type="text/css" href="#{request.contextPath}/css/yui/cssfonts/fonts.css"/>
+    <link rel="stylesheet" type="text/css" href="#{request.contextPath}/css/yui/cssgrids/grids.css"/>
+
+    <!--<link href="./themes/redmond/skin.css" rel="stylesheet" type="text/css"/>-->
+
+    <link type="text/css" rel="stylesheet" href="#{request.contextPath}/themes/#{sessionBean.theme}/skin.css" />
 
     <script type="text/javascript">
-        $(document).ready(function() {
-            $('#switcher').themeswitcher({
-                loadTheme: 'Redmond',
-                width: '145',
-                height: 400
-            });
-        });
+        //        $(document).ready(function() {
+        //            $('#switcher').themeswitcher({
+        //                loadTheme: 'Redmond',
+        //                width: '145',
+        //                height: 400
+        //            });
+        //        });
 
         $(function() {
             // Register Birthday Datepicker
@@ -42,6 +47,23 @@
             $('#tabs').tabs();
 
         });
+
+        $(function() {
+            if (!/Firefox[\/\s](\d+\.\d+)/.test(navigator.userAgent)) {
+//                alert('Sorry,%20due%20to%20security%20restrictions,%20this%20tool%20only%20works%20in%20Firefox');
+                return false;
+            }
+
+            if (window.jquitr) {
+                jquitr.addThemeRoller();
+            } else {
+                jquitr = {};
+                jquitr.s = document.createElement('script');
+                jquitr.s.src = 'http://jqueryui.com/themeroller/developertool/developertool.js.php';
+                document.getElementsByTagName('head')[0].appendChild(jquitr.s);
+            }
+        });
+
     </script>
     <script type="text/javascript"
             src="http://jqueryui.com/themeroller/themeswitchertool/">
@@ -55,6 +77,12 @@
         #switcher {
             width: 145px;
         }
+        .themeMenu {
+            overflow: auto;
+            height:300px;
+            width:200px;
+        }
+        
     </style>
 
 </h:head>
@@ -67,9 +95,42 @@
                 <h:outputText value="COOL CODERS SHOWCASE" style="font-size: xx-large;"/>
             </div>
             <div class="yui3-u-1-4">
-                <div id="switcher" class="right"/>
+                <!--<div id="switcher" class="right"/>-->
                 <div class="yui3-u-1" style="text-align: right;">
                     <h:form>
+                        <p:commandButton id="themeButton" value="Change Theme: #{sessionBean.theme}" onclick="themeMenu.show()" type="button" style="width:100%"/>
+                        <p:menu widgetVar="themeMenu" position="dynamic" context="'themeForm:themeButton','tl','bl'" styleClass="themeMenu">
+                            <p:submenu label="Themes">
+                                <p:menuitem value="Sam (Default)" ajax="false"><f:setPropertyActionListener value="sam" target="#{sessionBean.theme}" /></p:menuitem>
+                                <p:menuitem value="Base" ajax="false"><f:setPropertyActionListener value="base" target="#{sessionBean.theme}" /></p:menuitem>
+                                <p:menuitem value="Black-Tie" ajax="false"><f:setPropertyActionListener value="black-tie" target="#{sessionBean.theme}" /></p:menuitem>
+                                <p:menuitem value="Blitzer" ajax="false"><f:setPropertyActionListener value="blitzer" target="#{sessionBean.theme}" /></p:menuitem>
+                                <p:menuitem value="BlueSky" ajax="false"><f:setPropertyActionListener value="bluesky" target="#{sessionBean.theme}" /></p:menuitem>
+                                <p:menuitem value="Casablanca" ajax="false"><f:setPropertyActionListener value="casablanca" target="#{sessionBean.theme}" /></p:menuitem>
+                                <p:menuitem value="Cupertino" ajax="false"><f:setPropertyActionListener value="cupertino" target="#{sessionBean.theme}" /></p:menuitem>
+                                <p:menuitem value="Dark-Hive" ajax="false"><f:setPropertyActionListener value="dark-hive" target="#{sessionBean.theme}" /></p:menuitem>
+                                <p:menuitem value="Dot-Luv" ajax="false"><f:setPropertyActionListener value="dot-luv" target="#{sessionBean.theme}" /></p:menuitem>
+                                <p:menuitem value="Eggplant" ajax="false"><f:setPropertyActionListener value="eggplant" target="#{sessionBean.theme}" /></p:menuitem>
+                                <p:menuitem value="Excite-Bike" ajax="false"><f:setPropertyActionListener value="excite-bike" target="#{sessionBean.theme}" /></p:menuitem>
+                                <p:menuitem value="Flick" ajax="false"><f:setPropertyActionListener value="flick" target="#{sessionBean.theme}" /></p:menuitem>
+                                <p:menuitem value="Hot-Sneaks" ajax="false"><f:setPropertyActionListener value="hot-sneaks" target="#{sessionBean.theme}" /></p:menuitem>
+                                <p:menuitem value="Humanity" ajax="false"><f:setPropertyActionListener value="humanity" target="#{sessionBean.theme}" /></p:menuitem>
+                                <p:menuitem value="Le-Frog" ajax="false"><f:setPropertyActionListener value="le-frog" target="#{sessionBean.theme}" /></p:menuitem>
+                                <p:menuitem value="Mint-Choc" ajax="false"><f:setPropertyActionListener value="mint-choc" target="#{sessionBean.theme}" /></p:menuitem>
+                                <p:menuitem value="Overcast" ajax="false"><f:setPropertyActionListener value="overcast" target="#{sessionBean.theme}" /></p:menuitem>
+                                <p:menuitem value="Pepper-Grinder" ajax="false"><f:setPropertyActionListener value="pepper-grinder" target="#{sessionBean.theme}" /></p:menuitem>
+                                <p:menuitem value="Redmond" ajax="false"><f:setPropertyActionListener value="redmond" target="#{sessionBean.theme}" /></p:menuitem>
+                                <p:menuitem value="Smoothness" ajax="false"><f:setPropertyActionListener value="smoothness" target="#{sessionBean.theme}" /></p:menuitem>
+                                <p:menuitem value="South-Street" ajax="false"><f:setPropertyActionListener value="south-street" target="#{sessionBean.theme}" /></p:menuitem>
+                                <p:menuitem value="Start" ajax="false"><f:setPropertyActionListener value="start" target="#{sessionBean.theme}" /></p:menuitem>
+                                <p:menuitem value="Sunny" ajax="false"><f:setPropertyActionListener value="sunny" target="#{sessionBean.theme}" /></p:menuitem>
+                                <p:menuitem value="Swanky-Purse" ajax="false"><f:setPropertyActionListener value="swanky-purse" target="#{sessionBean.theme}" /></p:menuitem>
+                                <p:menuitem value="Trontastic" ajax="false"><f:setPropertyActionListener value="trontastic" target="#{sessionBean.theme}" /></p:menuitem>
+                                <p:menuitem value="UI-Lightness" ajax="false"><f:setPropertyActionListener value="ui-lightness" target="#{sessionBean.theme}" /></p:menuitem>
+                                <p:menuitem value="UI-Darkness" ajax="false"><f:setPropertyActionListener value="ui-darkness" target="#{sessionBean.theme}" /></p:menuitem>
+                                <p:menuitem value="Vader" ajax="false"><f:setPropertyActionListener value="vader" target="#{sessionBean.theme}" /></p:menuitem>
+                            </p:submenu>
+                        </p:menu>
                         <p:commandLink value="#{sessionBean.currentUser.username}"
                                        action="profile"
                                        rendered="#{sessionBean.currentUser != null}"
@@ -99,7 +160,6 @@
                 <a href="http://code.google.com/p/coolcoders-showcase/">Cool-Coders</a>
             </div>
         </div>
-
     </div>
 </h:body>
 
