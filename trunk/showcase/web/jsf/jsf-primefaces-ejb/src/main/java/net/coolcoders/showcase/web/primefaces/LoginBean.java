@@ -17,8 +17,6 @@ import javax.faces.application.FacesMessage;
 import javax.faces.context.FacesContext;
 import javax.inject.Inject;
 import javax.inject.Named;
-import java.util.HashMap;
-import java.util.Map;
 
 /**
  *
@@ -61,10 +59,6 @@ public class LoginBean {
     }
 
     public String login() {
-        Map<String, Object> restrictions = new HashMap<String, Object>();
-        restrictions.put("username", username);
-        restrictions.put("password", password);
-
         User user = userService.find(QueryParameter.with(User_.username, username).and(User_.password, password));
         if(user == null) {
             FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(FacesMessage.SEVERITY_ERROR, "", MessageBundleLoader.getMessage("login.failed")));
