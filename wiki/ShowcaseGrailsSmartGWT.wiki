@@ -3,7 +3,8 @@
 = Technologies = 
 
 == View ==
- * [http://www.grails.org Grails 1.3.4]
+ * [http://code.google.com/webtoolkit/download.html GWT 2.0.4]
+ * [http://code.google.com/p/smartgwt/downloads/list SmartGwt 2.2]
 
 == Service ==
  * [http://www.grails.org Grails 1.3.4]
