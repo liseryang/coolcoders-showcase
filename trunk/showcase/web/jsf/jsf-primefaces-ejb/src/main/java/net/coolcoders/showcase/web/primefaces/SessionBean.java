@@ -5,15 +5,15 @@
 
 package net.coolcoders.showcase.web.primefaces;
 
-import net.coolcoders.showcase.dao.generic.QueryParameter;
 import net.coolcoders.showcase.model.User;
-import net.coolcoders.showcase.model.User_;
 import net.coolcoders.showcase.service.UserService;
 
 import javax.ejb.EJB;
 import javax.enterprise.context.SessionScoped;
+import javax.faces.context.FacesContext;
 import javax.inject.Named;
 import java.io.Serializable;
+import java.util.Map;
 
 /**
  * @author andreas
@@ -30,11 +30,10 @@ public class SessionBean implements Serializable {
     private String theme = "redmond"; //default
 
     public String getTheme() {
-//        Map<String, String> params = FacesContext.getCurrentInstance().getExternalContext().getRequestParameterMap();
-//        if(params.containsKey("theme")) {
-//            theme = params.get("theme");
-//        }
-
+        Map<String, String> params = FacesContext.getCurrentInstance().getExternalContext().getRequestParameterMap();
+        if(params.containsKey("theme")) {
+            theme = params.get("theme");
+        }
         return theme;
     }
 
@@ -44,9 +43,9 @@ public class SessionBean implements Serializable {
 
 
     public User getCurrentUser() {
-        if(currentUser == null) {
-            currentUser = userService.find(QueryParameter.with(User_.username, "anerlich"));
-        }
+//        if(currentUser == null) {
+//            currentUser = userService.find(QueryParameter.with(User_.username, "anerlich"));
+//        }
         return currentUser;
     }
 

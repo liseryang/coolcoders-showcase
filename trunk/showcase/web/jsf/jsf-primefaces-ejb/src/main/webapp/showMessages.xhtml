@@ -12,14 +12,14 @@
 
     <ui:define name="content">
         <div class="yui3-u-1 ui-widget ui-widget-content ui-corner-all">
-
+            <p:growl id="growl" showDetail="true" /> 
             <div class="yui3-u-1 ui-widget ui-widget-content ui-corner-all">
                 <h:form id="message">
                     <p:panel header="#{msgs['message.create.label']}">
                         <h:panelGrid columns="1" columnClasses="textCenter">
-                            <h:inputTextarea value="#{messagesBean.message.content}"
+                            <h:inputTextarea id="inputMessage" value="#{messagesBean.message.content}"
                                              style="width: 890px; height: 50px; overflow: hidden;"/>
-                            <p:commandButton value="Send" action="#{messagesBean.saveMessage}" update="messages"
+                            <p:commandButton value="Send" action="#{messagesBean.saveMessage}" update="inputMessage messages growl"
                                              style="margin-top: 5px;"/>
                         </h:panelGrid>
                     </p:panel>

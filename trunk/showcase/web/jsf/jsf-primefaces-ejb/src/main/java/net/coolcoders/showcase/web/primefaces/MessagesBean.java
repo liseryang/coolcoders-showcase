@@ -11,6 +11,8 @@ import net.coolcoders.showcase.service.UserService;
 import net.coolcoders.showcase.web.scope.ViewScoped;
 
 import javax.ejb.EJB;
+import javax.faces.application.FacesMessage;
+import javax.faces.context.FacesContext;
 import javax.inject.Inject;
 import javax.inject.Named;
 import java.util.Date;
@@ -62,6 +64,7 @@ public class MessagesBean {
     public String saveMessage() {
         message.setCreated(new Date());
         messageService.persist(message);
+        FacesContext.getCurrentInstance().addMessage(null, new FacesMessage("Sent message:", message.getContent()));
         message = null;
         return null;
     }
