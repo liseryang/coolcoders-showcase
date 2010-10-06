@@ -1,7 +1,6 @@
 package net.coolcoders.showcase.components;
 
 import com.google.gwt.core.client.JavaScriptObject;
-import com.smartgwt.client.types.Alignment;
 import com.smartgwt.client.widgets.Button;
 import net.coolcoders.showcase.views.ViewConstants;
 
@@ -10,21 +9,16 @@ import net.coolcoders.showcase.views.ViewConstants;
  */
 public class ShowcaseBaseButton extends Button {
     public ShowcaseBaseButton() {
-        initMySelf();
+        setWidth(ViewConstants.STD_BUTTON_WIDTH);
     }
 
     public ShowcaseBaseButton(JavaScriptObject jsObj) {
         super(jsObj);
-        initMySelf();
+        setWidth(ViewConstants.STD_BUTTON_WIDTH);
     }
 
     public ShowcaseBaseButton(String title) {
         super(title);
-        initMySelf();
-    }
-
-    private void initMySelf() {
         setWidth(ViewConstants.STD_BUTTON_WIDTH);
-        setAlign(Alignment.CENTER);
     }
 }

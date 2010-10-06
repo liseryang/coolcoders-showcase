@@ -4,7 +4,6 @@ import com.google.gwt.core.client.GWT;
 import com.smartgwt.client.data.OperationBinding;
 import com.smartgwt.client.data.RestDataSource;
 import com.smartgwt.client.data.fields.DataSourceDateField;
-import com.smartgwt.client.data.fields.DataSourceIntegerField;
 import com.smartgwt.client.data.fields.DataSourceTextField;
 import com.smartgwt.client.types.DSOperationType;
 import net.coolcoders.showcase.client.ShowcaseConstants;
@@ -24,16 +23,24 @@ public class MessagesDataSource extends RestDataSource {
     }
 
     private MessagesDataSource() {
-        init();
+        initFields();
+        initOperations();
     }
 
-    private void init() {
-        DataSourceIntegerField idField = new DataSourceIntegerField("id", "ID", 3, false);
+    private void initFields() {
+        //fields
+        DataSourceTextField idField = new DataSourceTextField("id", "ID", 3, false);
         idField.setPrimaryKey(true);
-        idField.setDetail(false);
+        idField.setDetail(true);
         DataSourceTextField messageContentField = new DataSourceTextField("content", constants.message_label());
         DataSourceDateField createdField = new DataSourceDateField("created");
-        setFields(idField, messageContentField, createdField);
+        createdField.setDetail(true);
+        DataSourceTextField creatorField = new DataSourceTextField("creator");
+        creatorField.setDetail(true);
+        setFields(idField, messageContentField, createdField, creatorField);
+    }
+
+    private void initOperations() {
         OperationBinding fetch = new OperationBinding(DSOperationType.FETCH, "/smartgwtsc/message/list");
         setOperationBindings(fetch);
     }

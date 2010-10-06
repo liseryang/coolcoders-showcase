@@ -66,26 +66,18 @@ public class LoginView extends ShowcaseBaseView implements ClickHandler {
         buttonLayout.addMember(register);
         buttonLayout.addMember(login);
         buttonLayout.setAlign(Alignment.CENTER);
-        VLayout layout = new VLayout(ViewConstants.STD_MEMBERS_MARGIN);
-        layout.setAutoWidth();
-        layout.addMember(loginForm);
-        layout.addMember(buttonLayout);
-        layout.addMember(getInfoLabel());
-        layout.setShowEdges(true);
-        layout.setMargin(100);
-        layout.setPadding(20);
-        HLayout container = new HLayout();
-        container.setWidth100();
-        container.setAlign(Alignment.CENTER);
-        container.addMember(layout);
+        VLayout container = getDialogContainer();
+        container.addMember(loginForm);
+        container.addMember(buttonLayout);
+        container.addMember(getInfoLabel());
         addMember(container);
-
     }
 
     private Label getInfoLabel() {
         Label label = new Label(constants.login_help_message() + constants.login_help_users());
         label.setWidth(260);
         label.setStyleName("loginHelp");
+        label.setPadding(10);
         return label;
     }
 
