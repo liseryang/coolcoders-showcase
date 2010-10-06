@@ -18,19 +18,19 @@
 }
 
 /*Some Containers*/
-div.btnPanel {
+.btnPanel {
     height: 50px;
 }
 
-div.simpleMargin, div.btnPanel {
+.simpleMargin, .btnPanel {
     margin-top: 5px;
 }
 
-div.formContainer {
+.formContainer {
     width: 300px;
 }
 
-div.contentPanel {
+.contentPanel {
     padding: 0; 
     margin: 10px;
 }
