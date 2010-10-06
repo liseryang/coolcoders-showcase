@@ -1,4 +1,4 @@
-<ui:composition template="WEB-INF/templates/template.xhtml"
+<ui:composition template="WEB-INF/templates/templateYui.xhtml"
                 xmlns="http://www.w3.org/1999/xhtml"
                 xmlns:ui="http://java.sun.com/jsf/facelets"
                 xmlns:h="http://java.sun.com/jsf/html"
@@ -6,37 +6,42 @@
                 xmlns:p="http://primefaces.prime.com.tr/ui">
 
     <ui:define name="breadCrumb">
-        <p:menuitem value="Home" action="showMessages" ajax="false"/>
+        <p:menuitem value="Home" helpText="Hallo" action="showMessages" ajax="false"/>
+        <p:menuitem value="Home" helpText="Hallo" action="showMessages" ajax="false"/>
     </ui:define>
 
     <ui:define name="content">
-        <div class="ui-widget ui-widget-content ui-corner-all">
-            <h:form id="message">
-                <div class="ui-widget ui-widget-content ui-corner-all">
-                    <p:panel header="#{msgs['message.create.label']}">
+        <div class="yui3-u-1 ui-widget ui-widget-content ui-corner-all">
+
+            <div class="yui3-u-1 ui-widget ui-widget-content ui-corner-all" >
+                <h:form id="message">
+                    <p:panel header="#{msgs['message.create.label']}" >
                         <h:panelGrid columns="1" columnClasses="textCenter">
-                            <h:inputTextarea value="#{tweetsBean.message.content}"
-                                             style="width: 890px; height: 50px"/>
-                            <p:commandButton value="Send" action="#{tweetsBean.saveMessage}" update="messages"/>
+                            <h:inputTextarea value="#{messagesBean.message.content}"
+                                             style="width: 890px; height: 50px; overflow: hidden;"/>
+                            <p:commandButton value="Send" action="#{messagesBean.saveMessage}" update="messages"
+                                             style="margin-top: 5px;"/>
                         </h:panelGrid>
                     </p:panel>
-                </div>
-            </h:form>
-            <h:form id="messages">
-                <div style="margin-top: 15px">
-                    <h:panelGroup rendered="#{tweetsBean.messageCount == 0}">
-                        <div class="ui-widget ui-widget-content ui-corner-all textCenter"
-                             style="margin: 5px; padding: 5px">
-                            <h:outputText value="#{msgs['message.list.lazyfriends']}"/>
-                        </div>
-                    </h:panelGroup>
-                    <h:panelGroup rendered="#{tweetsBean.friendsCount == 0}">
-                        <div class="ui-widget ui-widget-content ui-corner-all textCenter"
-                             style="margin: 5px; padding: 5px">
-                            <h:outputText value="#{msgs['message.list.findsomefriends']}"/>
-                        </div>
-                    </h:panelGroup>
-                    <p:dataList id="messages" value="#{tweetsBean.messages}" var="msg" type="definition">
+                </h:form>
+            </div>
+
+            <div class="yui3-u-1">
+                <h:form id="messages">
+                    <p:messages id="msgs" showDetail="true"/>
+                    <!--<h:panelGroup rendered="#{messagesBean.friendsCount == 0}">-->
+                    <!--<div class="ui-widget ui-widget-content ui-corner-all textCenter"-->
+                    <!--style="margin: 5px; padding: 5px">-->
+                    <!--<h:outputText value="#{msgs['message.list.findsomefriends']}"/>-->
+                    <!--</div>-->
+                    <!--</h:panelGroup>-->
+                    <!--<h:panelGroup rendered="#{messagesBean.messageCount == 0}">-->
+                    <!--<div class="ui-widget ui-widget-content ui-corner-all textCenter"-->
+                    <!--style="margin: 5px; padding: 5px">-->
+                    <!--<h:outputText value="#{msgs['message.list.lazyfriends']}"/>-->
+                    <!--</div>-->
+                    <!--</h:panelGroup>-->
+                    <p:dataList id="messages" value="#{messagesBean.messages}" var="msg" type="definition">
                         <f:facet name="description">
                             <div class="ui-widget ui-widget-content ui-corner-all"
                                  style="margin: 5px; padding: 5px">
@@ -50,23 +55,25 @@
                             </div>
                         </f:facet>
                     </p:dataList>
-                </div>
-                <div style="height: 100px;" class="textCenter">
-                    <p:commandButton value="#{msgs['default.paginate.prev']}"
-                                     action="#{tweetsBean.prevMessages}"
-                                     update="messages"
-                                     rendered="#{tweetsSessionBean.renderPrev}"/>
-                    <p:commandButton value="#{msgs['default.paginate.next']}"
-                                     action="#{tweetsBean.nextMessages}"
-                                     update="messages"
-                                     rendered="#{tweetsSessionBean.renderNext}"/>
-                    <br/>
-                    <p:commandButton value="#{msgs['default.viewfriends.label']}"
-                                     action="showUsersYouFollow"
-                                     ajax="false"
-                                     style="margin-top: 5px;"/>
-                </div>
-            </h:form>
+
+                    <div class="btnPanel textCenter">
+                        <p:commandButton value="#{msgs['default.paginate.prev']}"
+                                         action="#{messagesBean.prevMessages}"
+                                         update="messages"
+                                         rendered="#{messagesBean.renderPrev}"/>
+                        <p:commandButton value="#{msgs['default.paginate.next']}"
+                                         action="#{messagesBean.nextMessages}"
+                                         update="messages"
+                                         rendered="#{messagesBean.renderNext}"/>
+                    </div>
+                    
+                    <div class="btnPanel textCenter">
+                        <p:commandButton value="#{msgs['default.viewfriends.label']}"
+                                         action="showUsersYouFollow"
+                                         ajax="false"/>
+                    </div>
+                </h:form>
+            </div>
         </div>
     </ui:define>
 </ui:composition>

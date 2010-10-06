@@ -1,4 +1,4 @@
-<ui:composition template="WEB-INF/templates/template.xhtml"
+<ui:composition template="WEB-INF/templates/templateYui.xhtml"
                 xmlns="http://www.w3.org/1999/xhtml"
                 xmlns:ui="http://java.sun.com/jsf/facelets"
                 xmlns:h="http://java.sun.com/jsf/html"
@@ -7,13 +7,15 @@
 
     <ui:define name="breadCrumb">
         <p:menuitem value="Home" action="showMessages" ajax="false"/>
+        <p:menuitem value="Home" helpText="Hallo" action="showMessages" ajax="false"/>
         <p:menuitem value="Users you follow" action="showUsersYouFollow" ajax="false"/>
+        <p:menuitem value="Search Users" action="searchUsers" ajax="false"/>
     </ui:define>
 
     <ui:define name="content">
         <h:form>
-            <div class="ui-widget ui-widget-content ui-corner-all">
-                <p:panel header="Search for user" styleClass="textCenter" style="margin: 10px;">
+            <div class="yui3-u-1 ui-widget ui-widget-content ui-corner-all">
+                <p:panel header="Search for user" styleClass="contentPanel textCenter">
                     <h:inputText value="#{userSearchBean.searchString}" style="margin-right: 5px;"/>
                     <p:commandButton value="#{msgs['default.button.search.label']}"
                                      action="#{userSearchBean.search}"

@@ -11,6 +11,8 @@ import net.coolcoders.showcase.service.UserService;
 import net.coolcoders.showcase.web.scope.ViewScoped;
 
 import javax.ejb.EJB;
+import javax.faces.application.FacesMessage;
+import javax.faces.context.FacesContext;
 import javax.inject.Inject;
 import javax.inject.Named;
 import java.util.Date;
@@ -21,7 +23,7 @@ import java.util.List;
  */
 @Named
 @ViewScoped
-public class TweetsBean {
+public class MessagesBean {
 
     @EJB
     private MessageService messageService;
@@ -78,6 +80,14 @@ public class TweetsBean {
             messages = messageService.list(sessionBean.getCurrentUser().getId(),
                     getFirstPage(),
                     getStepSize());
+        }
+
+        if(messages.size() == 0) {
+            if(getFriendsCount() == 0) {
+                FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(FacesMessage.SEVERITY_INFO,"Sample info message", "No friends!"));
+            } else {
+                FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(FacesMessage.SEVERITY_INFO,"Sample info message", "No Messgaes"));
+            }
         }
         return messages;
     }

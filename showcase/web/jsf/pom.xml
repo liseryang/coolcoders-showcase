@@ -16,8 +16,13 @@
             <!-- Primefaces -->
             <dependency>
                 <groupId>org.primefaces</groupId>
+                <artifactId>facestrace</artifactId>
+                <version>1.1.1-SNAPSHOT</version>
+            </dependency>
+            <dependency>
+                <groupId>org.primefaces</groupId>
                 <artifactId>primefaces</artifactId>
-                <version>2.2.M1</version>
+                <version>2.2.RC1-SNAPSHOT</version>
             </dependency>
             <dependency>
                 <groupId>org.atmosphere</groupId>

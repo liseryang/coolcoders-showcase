@@ -1,49 +1,46 @@
-<ui:composition template="WEB-INF/templates/template.xhtml"
-      xmlns="http://www.w3.org/1999/xhtml"
-      xmlns:ui="http://java.sun.com/jsf/facelets"
-      xmlns:h="http://java.sun.com/jsf/html"
-      xmlns:f="http://java.sun.com/jsf/core"
-      xmlns:p="http://primefaces.prime.com.tr/ui">
+<ui:composition template="WEB-INF/templates/templateYui.xhtml"
+                xmlns="http://www.w3.org/1999/xhtml"
+                xmlns:ui="http://java.sun.com/jsf/facelets"
+                xmlns:h="http://java.sun.com/jsf/html"
+                xmlns:f="http://java.sun.com/jsf/core"
+                xmlns:p="http://primefaces.prime.com.tr/ui">
 
     <ui:define name="breadCrumb">
+        <p:menuitem value="Login" action="login" ajax="false"/>
         <p:menuitem value="Login" action="login" ajax="false"/>
     </ui:define>
 
     <ui:define name="content">
-        <h:form id="login">
-            <div class="ui-widget ui-widget-content ui-corner-all">
-                <center>
-                    <div style="padding: 3px; ">
-                        <div>
-                            <h:outputText value="${loginBean.message}" style="color: red;"/>
-                        </div>
+        <div class="yui3-u-1 ui-widget ui-widget-content ui-corner-all" style="padding-bottom: 10px;">
+            <h:form id="login">
+                <div class="yui3-u-1 simpleMargin">
+                    <div class="formContainer center">
                         <h:panelGrid columns="2">
-                            <h:outputLabel value="Username:" styleClass="label"/>
-                            <h:inputText value="#{loginBean.username}"/>
-
-                            <h:outputLabel value="Password:" styleClass="label"/>
-                            <h:inputSecret value="#{loginBean.password}"/>
-
+                            <h:outputLabel value="Username:" styleClass="frmLabel" />
+                            <h:inputText value="#{loginBean.username}" styleClass="frmInput"/>
+                            <h:outputLabel value="Password:" styleClass="frmLabel" />
+                            <h:inputSecret value="#{loginBean.password}" styleClass="frmInput"/>
                         </h:panelGrid>
-
-                        <div style="margin: 5px 0px 10px 0px">
-                            <p:commandButton value="Login" action="#{loginBean.login}" ajax="false"/>
-                            <p:commandButton value="Register" action="register" ajax="false"/>
-                        </div>
-
-                        <div>
-                            <h:panelGrid columns="1" style="border: dashed">
-                                <h:outputText value="Following Users exists by default" style="font-weight:bold;"/>
-                                <h:outputText value="abaumgartner / test123"/>
-                                <h:outputText value="anerlich / test123"/>
-                                <h:outputText value="jmihelko / test123"/>
-                                <h:outputText value="pschneider-manzell / test123"/>
-                            </h:panelGrid>
-                        </div>
                     </div>
-                </center>
-            </div>
-        </h:form>
+                </div>
+                <div class="yui3-u-1 simpleMargin">
+                    <div class="formContainer center textCenter">
+                        <p:commandButton value="Login" action="#{loginBean.login}" ajax="false"/>
+                        <p:commandButton value="Register" action="register" ajax="false"/>
+                    </div>
+                </div>
+
+                <div class="yui3-u-1 simpleMargin">
+                    <div style="border: dashed;" class="formContainer center textCenter">
+                        <h:outputText value="Following Users exists by default" style="font-weight:bold;"/><br/>
+                        <h:outputText value="abaumgartner / test123"/><br/>
+                        <h:outputText value="anerlich / test123"/><br/>
+                        <h:outputText value="jmihelko / test123"/><br/>
+                        <h:outputText value="pschneider-manzell / test123"/>
+                    </div>
+                </div>
+            </h:form>
+        </div>
     </ui:define>
 
 </ui:composition>
