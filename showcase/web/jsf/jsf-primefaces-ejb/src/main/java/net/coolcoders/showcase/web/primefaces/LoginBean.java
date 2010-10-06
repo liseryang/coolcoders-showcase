@@ -10,8 +10,11 @@ import net.coolcoders.showcase.model.User;
 import net.coolcoders.showcase.model.User_;
 import net.coolcoders.showcase.service.UserService;
 import net.coolcoders.showcase.web.scope.ViewScoped;
+import net.coolcoders.showcase.web.util.MessageBundleLoader;
 
 import javax.ejb.EJB;
+import javax.faces.application.FacesMessage;
+import javax.faces.context.FacesContext;
 import javax.inject.Inject;
 import javax.inject.Named;
 import java.util.HashMap;
@@ -64,6 +67,7 @@ public class LoginBean {
 
         User user = userService.find(QueryParameter.with(User_.username, username).and(User_.password, password));
         if(user == null) {
+            FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(FacesMessage.SEVERITY_ERROR, "", MessageBundleLoader.getMessage("login.failed")));
             message = "Login failed!";
             return null;
         } else {
