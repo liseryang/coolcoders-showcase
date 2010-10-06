@@ -143,7 +143,7 @@ public class RegisterView extends ShowcaseBaseView implements ClickHandler, Asyn
 
     public void onSuccess(RegisterResponse result) {
         if (result.getSuccessful()) {
-            SC.say("Thank you for registering, Your id is:  " + result.getUserId());
+            Window.Location.assign("/smartgwtsc/messages/index/?userId=" + result.getUserId());
         } else {
             registerForm.setErrors(result.getErrors(), true);
         }

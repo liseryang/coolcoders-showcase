@@ -6,6 +6,7 @@ import com.smartgwt.client.types.Alignment;
 import com.smartgwt.client.types.FormMethod;
 import com.smartgwt.client.util.SC;
 import com.smartgwt.client.widgets.Button;
+import com.smartgwt.client.widgets.Label;
 import com.smartgwt.client.widgets.events.ClickEvent;
 import com.smartgwt.client.widgets.events.ClickHandler;
 import com.smartgwt.client.widgets.form.DynamicForm;
@@ -52,6 +53,7 @@ public class LoginView extends ShowcaseBaseView implements ClickHandler {
         loginForm.setAlign(Alignment.CENTER);
         loginForm.setMethod(FormMethod.POST);
         loginForm.setAction("/smartgwtsc/login/login");
+        loginForm.setCanSubmit(true);
         //login and register-button
         login = new ShowcaseBaseButton(constants.login_label());
         login.addClickHandler(this);
@@ -64,16 +66,27 @@ public class LoginView extends ShowcaseBaseView implements ClickHandler {
         buttonLayout.addMember(register);
         buttonLayout.addMember(login);
         buttonLayout.setAlign(Alignment.CENTER);
-        HLayout formLayout = new HLayout(ViewConstants.STD_MEMBERS_MARGIN);
-        formLayout.addMember(loginForm);
-        formLayout.setAlign(Alignment.CENTER);
         VLayout layout = new VLayout(ViewConstants.STD_MEMBERS_MARGIN);
-        layout.setHeight100();
-        layout.setAlign(Alignment.CENTER);
-        layout.addMember(formLayout);
+        layout.setAutoWidth();
+        layout.addMember(loginForm);
         layout.addMember(buttonLayout);
-        addMember(layout);
+        layout.addMember(getInfoLabel());
+        layout.setShowEdges(true);
+        layout.setMargin(100);
+        layout.setPadding(20);
+        HLayout container = new HLayout();
+        container.setWidth100();
+        container.setAlign(Alignment.CENTER);
+        container.addMember(layout);
+        addMember(container);
 
+    }
+
+    private Label getInfoLabel() {
+        Label label = new Label(constants.login_help_message() + constants.login_help_users());
+        label.setWidth(260);
+        label.setStyleName("loginHelp");
+        return label;
     }
 
     public void onClick(ClickEvent clickEvent) {

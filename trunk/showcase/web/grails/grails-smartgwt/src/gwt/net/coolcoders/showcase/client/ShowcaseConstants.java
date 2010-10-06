@@ -2,13 +2,13 @@ package net.coolcoders.showcase.client;
 
 /**
  * Interface to represent the constants contained in resource bundle:
- * 	'/home/josip/Work/showcase/web/grails-smartgwt/src/gwt/net/coolcoders/smartgwt/client/ShowcaseConstants.properties'.
+ * 	'/home/josip/Work/showcase/web/grails/grails-smartgwt/src/gwt/net/coolcoders/showcase/client/ShowcaseConstants.properties'.
  */
 public interface ShowcaseConstants extends com.google.gwt.i18n.client.Constants {
-
+  
   /**
    * Translated "Birthday".
-   *
+   * 
    * @return translated "Birthday"
    */
   @DefaultStringValue("Birthday")
@@ -16,8 +16,17 @@ public interface ShowcaseConstants extends com.google.gwt.i18n.client.Constants 
   String birthday_label();
 
   /**
+   * Translated "Send".
+   * 
+   * @return translated "Send"
+   */
+  @DefaultStringValue("Send")
+  @Key("button.send")
+  String button_send();
+
+  /**
    * Translated "Categories".
-   *
+   * 
    * @return translated "Categories"
    */
   @DefaultStringValue("Categories")
@@ -26,7 +35,7 @@ public interface ShowcaseConstants extends com.google.gwt.i18n.client.Constants 
 
   /**
    * Translated "Action".
-   *
+   * 
    * @return translated "Action"
    */
   @DefaultStringValue("Action")
@@ -35,7 +44,7 @@ public interface ShowcaseConstants extends com.google.gwt.i18n.client.Constants 
 
   /**
    * Translated "Users you follow".
-   *
+   * 
    * @return translated "Users you follow"
    */
   @DefaultStringValue("Users you follow")
@@ -44,7 +53,7 @@ public interface ShowcaseConstants extends com.google.gwt.i18n.client.Constants 
 
   /**
    * Translated "Profile".
-   *
+   * 
    * @return translated "Profile"
    */
   @DefaultStringValue("Profile")
@@ -53,7 +62,7 @@ public interface ShowcaseConstants extends com.google.gwt.i18n.client.Constants 
 
   /**
    * Translated "Email".
-   *
+   * 
    * @return translated "Email"
    */
   @DefaultStringValue("Email")
@@ -62,7 +71,7 @@ public interface ShowcaseConstants extends com.google.gwt.i18n.client.Constants 
 
   /**
    * Translated "Find new friends!".
-   *
+   * 
    * @return translated "Find new friends!"
    */
   @DefaultStringValue("Find new friends!")
@@ -71,7 +80,7 @@ public interface ShowcaseConstants extends com.google.gwt.i18n.client.Constants 
 
   /**
    * Translated "Full name".
-   *
+   * 
    * @return translated "Full name"
    */
   @DefaultStringValue("Full name")
@@ -80,7 +89,7 @@ public interface ShowcaseConstants extends com.google.gwt.i18n.client.Constants 
 
   /**
    * Translated "Female".
-   *
+   * 
    * @return translated "Female"
    */
   @DefaultStringValue("Female")
@@ -89,7 +98,7 @@ public interface ShowcaseConstants extends com.google.gwt.i18n.client.Constants 
 
   /**
    * Translated "Gender".
-   *
+   * 
    * @return translated "Gender"
    */
   @DefaultStringValue("Gender")
@@ -98,7 +107,7 @@ public interface ShowcaseConstants extends com.google.gwt.i18n.client.Constants 
 
   /**
    * Translated "Male".
-   *
+   * 
    * @return translated "Male"
    */
   @DefaultStringValue("Male")
@@ -107,7 +116,7 @@ public interface ShowcaseConstants extends com.google.gwt.i18n.client.Constants 
 
   /**
    * Translated "Password does not match Repassword!".
-   *
+   * 
    * @return translated "Password does not match Repassword!"
    */
   @DefaultStringValue("Password does not match Repassword!")
@@ -116,7 +125,7 @@ public interface ShowcaseConstants extends com.google.gwt.i18n.client.Constants 
 
   /**
    * Translated "Login failed!".
-   *
+   * 
    * @return translated "Login failed!"
    */
   @DefaultStringValue("Login failed!")
@@ -124,17 +133,26 @@ public interface ShowcaseConstants extends com.google.gwt.i18n.client.Constants 
   String login_failed();
 
   /**
-   * Translated "Following users exists by default:".
-   *
-   * @return translated "Following users exists by default:"
+   * Translated "Following users exists by default:<br/><br/>".
+   * 
+   * @return translated "Following users exists by default:<br/><br/>"
    */
-  @DefaultStringValue("Following users exists by default:")
+  @DefaultStringValue("Following users exists by default:<br/><br/>")
   @Key("login.help.message")
   String login_help_message();
 
   /**
+   * Translated "abaumgartner/test123<br/>anerlich/test123<br/>jmihelko/test123<br/>pschneider-manzell/test123".
+   * 
+   * @return translated "abaumgartner/test123<br/>anerlich/test123<br/>jmihelko/test123<br/>pschneider-manzell/test123"
+   */
+  @DefaultStringValue("abaumgartner/test123<br/>anerlich/test123<br/>jmihelko/test123<br/>pschneider-manzell/test123")
+  @Key("login.help.users")
+  String login_help_users();
+
+  /**
    * Translated "Login".
-   *
+   * 
    * @return translated "Login"
    */
   @DefaultStringValue("Login")
@@ -143,7 +161,7 @@ public interface ShowcaseConstants extends com.google.gwt.i18n.client.Constants 
 
   /**
    * Translated "Password is required!".
-   *
+   * 
    * @return translated "Password is required!"
    */
   @DefaultStringValue("Password is required!")
@@ -152,7 +170,7 @@ public interface ShowcaseConstants extends com.google.gwt.i18n.client.Constants 
 
   /**
    * Translated "Username is required!".
-   *
+   * 
    * @return translated "Username is required!"
    */
   @DefaultStringValue("Username is required!")
@@ -161,7 +179,7 @@ public interface ShowcaseConstants extends com.google.gwt.i18n.client.Constants 
 
   /**
    * Translated "Logout".
-   *
+   * 
    * @return translated "Logout"
    */
   @DefaultStringValue("Logout")
@@ -170,7 +188,7 @@ public interface ShowcaseConstants extends com.google.gwt.i18n.client.Constants 
 
   /**
    * Translated "What cool code are you hacking right now?".
-   *
+   * 
    * @return translated "What cool code are you hacking right now?"
    */
   @DefaultStringValue("What cool code are you hacking right now?")
@@ -179,7 +197,7 @@ public interface ShowcaseConstants extends com.google.gwt.i18n.client.Constants 
 
   /**
    * Translated "Home".
-   *
+   * 
    * @return translated "Home"
    */
   @DefaultStringValue("Home")
@@ -188,7 +206,7 @@ public interface ShowcaseConstants extends com.google.gwt.i18n.client.Constants 
 
   /**
    * Translated "Currently you have no friends!".
-   *
+   * 
    * @return translated "Currently you have no friends!"
    */
   @DefaultStringValue("Currently you have no friends!")
@@ -197,7 +215,7 @@ public interface ShowcaseConstants extends com.google.gwt.i18n.client.Constants 
 
   /**
    * Translated "Your friends are very layzy and have not written a single post yet!".
-   *
+   * 
    * @return translated "Your friends are very layzy and have not written a single post yet!"
    */
   @DefaultStringValue("Your friends are very layzy and have not written a single post yet!")
@@ -206,7 +224,7 @@ public interface ShowcaseConstants extends com.google.gwt.i18n.client.Constants 
 
   /**
    * Translated "Next".
-   *
+   * 
    * @return translated "Next"
    */
   @DefaultStringValue("Next")
@@ -215,7 +233,7 @@ public interface ShowcaseConstants extends com.google.gwt.i18n.client.Constants 
 
   /**
    * Translated "Page size".
-   *
+   * 
    * @return translated "Page size"
    */
   @DefaultStringValue("Page size")
@@ -224,7 +242,7 @@ public interface ShowcaseConstants extends com.google.gwt.i18n.client.Constants 
 
   /**
    * Translated "Prev".
-   *
+   * 
    * @return translated "Prev"
    */
   @DefaultStringValue("Prev")
@@ -233,7 +251,7 @@ public interface ShowcaseConstants extends com.google.gwt.i18n.client.Constants 
 
   /**
    * Translated "Password".
-   *
+   * 
    * @return translated "Password"
    */
   @DefaultStringValue("Password")
@@ -242,7 +260,7 @@ public interface ShowcaseConstants extends com.google.gwt.i18n.client.Constants 
 
   /**
    * Translated "Posts".
-   *
+   * 
    * @return translated "Posts"
    */
   @DefaultStringValue("Posts")
@@ -251,7 +269,7 @@ public interface ShowcaseConstants extends com.google.gwt.i18n.client.Constants 
 
   /**
    * Translated "Your profile".
-   *
+   * 
    * @return translated "Your profile"
    */
   @DefaultStringValue("Your profile")
@@ -260,7 +278,7 @@ public interface ShowcaseConstants extends com.google.gwt.i18n.client.Constants 
 
   /**
    * Translated "Your profile has been updated".
-   *
+   * 
    * @return translated "Your profile has been updated"
    */
   @DefaultStringValue("Your profile has been updated")
@@ -269,7 +287,7 @@ public interface ShowcaseConstants extends com.google.gwt.i18n.client.Constants 
 
   /**
    * Translated "Create a new account".
-   *
+   * 
    * @return translated "Create a new account"
    */
   @DefaultStringValue("Create a new account")
@@ -278,7 +296,7 @@ public interface ShowcaseConstants extends com.google.gwt.i18n.client.Constants 
 
   /**
    * Translated "Register".
-   *
+   * 
    * @return translated "Register"
    */
   @DefaultStringValue("Register")
@@ -287,7 +305,7 @@ public interface ShowcaseConstants extends com.google.gwt.i18n.client.Constants 
 
   /**
    * Translated "Repassword".
-   *
+   * 
    * @return translated "Repassword"
    */
   @DefaultStringValue("Repassword")
@@ -296,7 +314,7 @@ public interface ShowcaseConstants extends com.google.gwt.i18n.client.Constants 
 
   /**
    * Translated "Search for user:".
-   *
+   * 
    * @return translated "Search for user:"
    */
   @DefaultStringValue("Search for user:")
@@ -304,8 +322,26 @@ public interface ShowcaseConstants extends com.google.gwt.i18n.client.Constants 
   String search_user_label();
 
   /**
+   * Translated "CoolCoders Showcase".
+   * 
+   * @return translated "CoolCoders Showcase"
+   */
+  @DefaultStringValue("CoolCoders Showcase")
+  @Key("showcase.heading")
+  String showcase_heading();
+
+  /**
+   * Translated "Succeeding in style and coolness...".
+   * 
+   * @return translated "Succeeding in style and coolness..."
+   */
+  @DefaultStringValue("Succeeding in style and coolness...")
+  @Key("showcase.heading.tooltip")
+  String showcase_heading_tooltip();
+
+  /**
    * Translated "Email is required!".
-   *
+   * 
    * @return translated "Email is required!"
    */
   @DefaultStringValue("Email is required!")
@@ -314,7 +350,7 @@ public interface ShowcaseConstants extends com.google.gwt.i18n.client.Constants 
 
   /**
    * Translated "Email is already in use!".
-   *
+   * 
    * @return translated "Email is already in use!"
    */
   @DefaultStringValue("Email is already in use!")
@@ -323,7 +359,7 @@ public interface ShowcaseConstants extends com.google.gwt.i18n.client.Constants 
 
   /**
    * Translated "Password required!".
-   *
+   * 
    * @return translated "Password required!"
    */
   @DefaultStringValue("Password required!")
@@ -332,7 +368,7 @@ public interface ShowcaseConstants extends com.google.gwt.i18n.client.Constants 
 
   /**
    * Translated "Username is required!".
-   *
+   * 
    * @return translated "Username is required!"
    */
   @DefaultStringValue("Username is required!")
@@ -341,7 +377,7 @@ public interface ShowcaseConstants extends com.google.gwt.i18n.client.Constants 
 
   /**
    * Translated "Username is already in use!".
-   *
+   * 
    * @return translated "Username is already in use!"
    */
   @DefaultStringValue("Username is already in use!")
@@ -350,7 +386,7 @@ public interface ShowcaseConstants extends com.google.gwt.i18n.client.Constants 
 
   /**
    * Translated "Username".
-   *
+   * 
    * @return translated "Username"
    */
   @DefaultStringValue("Username")
@@ -359,7 +395,7 @@ public interface ShowcaseConstants extends com.google.gwt.i18n.client.Constants 
 
   /**
    * Translated "View your friends!".
-   *
+   * 
    * @return translated "View your friends!"
    */
   @DefaultStringValue("View your friends!")

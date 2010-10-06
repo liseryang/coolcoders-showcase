@@ -6,7 +6,7 @@
     <inherits name="com.smartgwt.tools.SmartGwtTools"/>
 
     <!-- Specify the module entry point class.                   -->
-    <entry-point class="net.coolcoders.showcase.client.Messages"/>
+    <entry-point class="net.coolcoders.showcase.client.Showcase"/>
     <source path="client"/>
     <source path="views"/>
     <source path="data"/>

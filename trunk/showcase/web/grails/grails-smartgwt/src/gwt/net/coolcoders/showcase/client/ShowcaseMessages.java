@@ -2,13 +2,13 @@ package net.coolcoders.showcase.client;
 
 /**
  * Interface to represent the messages contained in resource bundle:
- * 	/home/josip/Work/showcase/web/grails-smartgwt/src/gwt/net/coolcoders/smartgwt/client/ShowcaseMessages.properties'.
+ * 	/home/josip/Work/showcase/web/grails/grails-smartgwt/src/gwt/net/coolcoders/showcase/client/ShowcaseMessages.properties'.
  */
 public interface ShowcaseMessages extends com.google.gwt.i18n.client.Messages {
-
+  
   /**
    * Translated "<i>{2}</i> is an invalid email!".
-   *
+   * 
    * @return translated "<i>{2}</i> is an invalid email!"
    */
   @DefaultMessage("<i>{2}</i> is an invalid email!")
@@ -17,7 +17,7 @@ public interface ShowcaseMessages extends com.google.gwt.i18n.client.Messages {
 
   /**
    * Translated "You are now following user {0}".
-   *
+   * 
    * @return translated "You are now following user {0}"
    */
   @DefaultMessage("You are now following user {0}")
@@ -26,7 +26,7 @@ public interface ShowcaseMessages extends com.google.gwt.i18n.client.Messages {
 
   /**
    * Translated "Your password does not match the pattern {3}!".
-   *
+   * 
    * @return translated "Your password does not match the pattern {3}!"
    */
   @DefaultMessage("Your password does not match the pattern {3}!")
@@ -35,7 +35,7 @@ public interface ShowcaseMessages extends com.google.gwt.i18n.client.Messages {
 
   /**
    * Translated "You are not following user {0} anymore".
-   *
+   * 
    * @return translated "You are not following user {0} anymore"
    */
   @DefaultMessage("You are not following user {0} anymore")
