@@ -42,7 +42,8 @@ public class MessagesDataSource extends RestDataSource {
 
     private void initOperations() {
         OperationBinding fetch = new OperationBinding(DSOperationType.FETCH, "/smartgwtsc/message/list");
-        setOperationBindings(fetch);
+        OperationBinding add = new OperationBinding(DSOperationType.ADD, "/smartgwtsc/message/add");
+        setOperationBindings(fetch, add);
     }
 
 }
