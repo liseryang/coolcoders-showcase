@@ -19,54 +19,13 @@
 
     <!-- Blueprint -->
     <link href="./css/blueprint/ie.css" rel="stylesheet" type="text/css"/>
-    <!--        <link href="./css/blueprint/print.css" rel="stylesheet" type="text/css" />-->
     <link href="./css/blueprint/screen.css" rel="stylesheet" type="text/css"/>
 
     <!-- ICEfaces  -->
     <link href="#{sessionBean.themePath}" rel="stylesheet" type="text/css"></link>
 
-    <!--<link href="./css/showcase_style.css" rel="stylesheet" type="text/css"/>-->
-    <!--<link href="./css/showcase_overrides.css" rel="stylesheet" type="text/css"/>-->
-    <!--<link href="./css/showcase_layout.css" rel="stylesheet" type="text/css"/>-->
-    <link href="./css/images/favicon.ico" rel="shortcut icon" type="image/x-icon"/>
-    <link href="./css/images/favicon.ico" rel="icon" type="image/x-icon"/>
-
-    <!--<script src="/component-showcase/javax.faces.resource/jsf.js.jsf?ln=javax.faces" type="text/javascript"></script>-->
-    <!--<script src="code.icepush.jsf?a1057359755" type="text/javascript"></script>-->
-    <!--<script src="/component-showcase/javax.faces.resource/bridge.js.jsf?a1057359755" type="text/javascript"></script>-->
-    <!--<script src="/component-showcase/javax.faces.resource/compat.js.jsf" type="text/javascript"></script>-->
-    <!--<script src="/component-showcase/javax.faces.resource/icefaces-compat.js.jsf" type="text/javascript"></script>-->
-
-    <!-- JQuery -->
-    <link href="./css/custom-theme/jquery-ui-1.8.4.custom.css" rel="stylesheet" type="text/css"/>
-    <script type="text/javascript" src="./js/jquery-1.4.2.min.js"></script>
-    <script type="text/javascript" src="./js/jquery-ui-1.8.4.custom.min.js"></script>
-
-    <!--<link type="text/css" rel="stylesheet" href="http://jqueryui.com/themes/base/ui.all.css" />-->
-    <!--<script type="text/javascript" src="http://jqueryui.com/js/jquery.js"></script>-->
-    
-    <script type="text/javascript">
-        $(document).ready(function() {
-            $('#switcher').themeswitcher({
-                defaultTheme: 'Sunny',
-                width: '145',
-                height: 400
-            });
-
-            $(function() {
-                // Register Birthday Datepicker
-                $('#register\\:birthday').datepicker();
-
-                // Tabs
-                $('#tabs').tabs();
-
-            });
-            
-        });
-    </script>
-    <script type="text/javascript"
-            src="http://jqueryui.com/themeroller/themeswitchertool/">
-    </script>
+    <link href="./images/favicon.ico" rel="shortcut icon" type="image/x-icon"/>
+    <link href="./images/favicon.ico" rel="icon" type="image/x-icon"/>
 
 </h:head>
 
@@ -88,7 +47,6 @@
                                            valueChangeListener="#{sessionBean.changeStyle}">
                             <f:selectItems value="#{sessionBean.themePaths}"/>
                         </ice:selectOneMenu>
-                        <div id="switcher" />
                     </div>
                 </ice:form>
             </div>
