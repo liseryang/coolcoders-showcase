@@ -12,8 +12,8 @@ class LoginController {
     def password = params.password
     def loginData = userService.login(username, password)
     if (loginData.success) {
-      log.info "logged in !"
-      redirect(controller: 'messages', action: 'index', params: [userId: loginData.user.id])
+      session.setAttribute("userId", loginData.user.id)
+      redirect(controller: 'showcase', action: 'index')
       return
     }
     redirect action: 'index', params: [error: true]

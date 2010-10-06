@@ -1,7 +1,15 @@
 .heading {
-    font-size: 1.3em;
+    color: #E3D7BF;
+    font-weight: bold;
+    font-size: 50px;
+    font-family: MolotRegular, Arial, sans-serif;
+    text-shadow: black 1px 1px 0px, #476871 2px 2px 0px, #476871 3px 3px 0px, #476871 4px 4px 0px, #476871 5px 5px 0px, #476871 6px 6px 0px, #476871 7px 7px 0px;
+    text-transform: uppercase;
+    vertical-align: middle;
+    margin-left: 10px;
+    border-bottom: 2px solid black;
 }
 
-.subHeading {
-    font-size: 1.0em;
+.loginHelp {
+    border: 1px #000 dashed;
 }
