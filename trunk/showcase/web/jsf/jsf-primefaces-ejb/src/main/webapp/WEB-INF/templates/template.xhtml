@@ -1,6 +1,6 @@
 <?xml version='1.0' encoding='UTF-8' ?>
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
-        "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+        "http://www.w3.org/TR/html4/strict.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml"
       xmlns:ui="http://java.sun.com/jsf/facelets"
       xmlns:h="http://java.sun.com/jsf/html"
@@ -20,15 +20,10 @@
 
     <link href="./css/myStyle.css" rel="stylesheet" type="text/css"/>
 
-    <!-- Blueprint -->
-    <link href="./css/blueprint/ie.css" rel="stylesheet" type="text/css"/>
-    <!--        <link href="./css/blueprint/print.css" rel="stylesheet" type="text/css" />-->
-    <link href="./css/blueprint/screen.css" rel="stylesheet" type="text/css"/>
-
-    <!-- JQuery -->
-    <!--<link href="./css/custom-theme/jquery-ui-1.8.4.custom.css" rel="stylesheet" type="text/css"/>-->
-    <!--<script type="text/javascript" src="./js/jquery-1.4.2.min.js"></script>-->
-    <!--<script type="text/javascript" src="./js/jquery-ui-1.8.4.custom.min.js"></script>-->
+    <link rel="stylesheet" type="text/css" href="./css/yui/cssreset/reset.css"/>
+    <link rel="stylesheet" type="text/css" href="./css/yui/cssbase/base-context.css"/>
+    <link rel="stylesheet" type="text/css" href="./css/yui/cssfonts/fonts.css"/>
+    <link rel="stylesheet" type="text/css" href="./css/yui/cssgrids/grids.css"/>
 
     <script type="text/javascript">
         $(document).ready(function() {
@@ -52,48 +47,55 @@
             src="http://jqueryui.com/themeroller/themeswitchertool/">
     </script>
 
+    <style type="text/css">
+        body {
+            margin: auto; /* center in viewport */
+            width: 960px;
+        }
+        #switcher {
+            width: 145px;
+        }
+    </style>
+
 </h:head>
 
 <h:body>
 
-    <div class="container ui-widget ui-widget-header">
-        <!--<div class="container showgrid ui-widget ui-widget-header">-->
-        <div class="span-24 last">
-            <div class="span-14">
-                <h:outputText value="COOL CODERS SHOWCASE" style="font-size: xx-large; margin-left: 10px"/>
+    <div class="yui3-g ui-widget ui-widget-header">
+        <div class="yui3-1" style="padding: 5px;">
+            <div class="yui3-u-3-4">
+                <h:outputText value="COOL CODERS SHOWCASE" style="font-size: xx-large;"/>
             </div>
-            <div class="span-10 last" style="margin-top: 10px">
-                <div class="span-10 last">
-                    <div id="switcher" align="right"/>
-                </div>
-                <div class="span-10 last" style="text-align: right;">
+            <div class="yui3-u-1-4">
+                <div id="switcher" class="right"/>
+                <div class="yui3-u-1" style="text-align: right;">
                     <h:form>
                         <p:commandLink value="#{sessionBean.currentUser.username}"
                                        action="profile"
-                                      rendered="#{sessionBean.currentUser != null}"
-                                      ajax="false"/>
+                                       rendered="#{sessionBean.currentUser != null}"
+                                       ajax="false"/>
                         &nbsp;
                         <p:commandLink value="Logout" action="#{sessionBean.logout}" ajax="false"
                                        rendered="#{sessionBean.currentUser != null}"/>
                     </h:form>
                 </div>
             </div>
-            <div class="span-24 last">
-                <h:form>
-                    <p:breadCrumb style="width: 938px" preview="true" previewWidth="10" expandedBeginningItems="1" expandedEndItems="3" >
-                        <ui:insert name="breadCrumb"/>
-                    </p:breadCrumb>
-                </h:form>
-            </div>
+        </div>
+        <div class="yui3-u-1">
+            <h:form>
+                <p:breadCrumb styleClass="yui3-u-1" style="width: 947px; float: none;">
+                    <ui:insert name="breadCrumb"/>
+                </p:breadCrumb>
+            </h:form>
         </div>
 
-        <div class="span-24 last">
+        <div class="yui3-u-1">
             <ui:insert name="content">Content</ui:insert>
         </div>
 
-        <div class="span-24 last">
+        <div class="yui3-u-1 simpleMargin">
             <div class="textCenter">
-                <h:outputText value="JSF Primefaces Showcase By" />
+                <h:outputText value="JSF Primefaces Showcase By"/>
                 <a href="http://cool-coders.net/">Cool-Coders</a>
             </div>
         </div>
