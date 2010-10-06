@@ -17,9 +17,6 @@ class MessageController {
     def xml = new MarkupBuilder(response.writer)
     xml.response() {
       status(0)
-      startRow(start)
-      endRow(end)
-      totalRows(messages.totalCount)
       data {
         messages.each {
           flushMessage xml, it

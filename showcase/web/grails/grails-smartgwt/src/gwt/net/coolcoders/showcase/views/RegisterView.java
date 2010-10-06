@@ -3,7 +3,6 @@ package net.coolcoders.showcase.views;
 import com.google.gwt.core.client.GWT;
 import com.google.gwt.user.client.Window;
 import com.google.gwt.user.client.rpc.AsyncCallback;
-import com.smartgwt.client.types.Alignment;
 import com.smartgwt.client.types.DateDisplayFormat;
 import com.smartgwt.client.util.SC;
 import com.smartgwt.client.widgets.Button;
@@ -85,7 +84,6 @@ public class RegisterView extends ShowcaseBaseView implements ClickHandler, Asyn
             i++;
         }
         registerForm.setFields(items);
-        registerForm.setAlign(Alignment.CENTER);
         //the buttons
         register = new ShowcaseBaseButton(constants.register_label());
         register.addClickHandler(this);
@@ -94,15 +92,13 @@ public class RegisterView extends ShowcaseBaseView implements ClickHandler, Asyn
     }
 
     private void layout() {
-        HLayout layout = getHorizontalLayout();
-        layout.addMember(registerForm);
-        HLayout buttonLayout = getHorizontalLayout();
+        HLayout buttonLayout = new HLayout(ViewConstants.STD_MEMBERS_MARGIN);
         buttonLayout.addMember(cancel);
         buttonLayout.addMember(register);
-        VLayout completeLayout = getVerticalLayout();
-        completeLayout.addMember(layout);
-        completeLayout.addMember(buttonLayout);
-        addMember(completeLayout);
+        VLayout container = getDialogContainer();
+        container.addMember(registerForm);
+        container.addMember(buttonLayout);
+        addMember(container);
     }
 
     public void onClick(ClickEvent clickEvent) {

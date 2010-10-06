@@ -13,3 +13,17 @@
 .loginHelp {
     border: 1px #000 dashed;
 }
+
+.messageHeading {
+    font-weight: bold;
+    font-size: 13px;
+}
+
+.messageEntry {
+    margin-top: 20px;
+    border: 1px solid black;
+    border-radius: 5px;
+    padding: 15px;
+    vertical-align: top;
+    background-color: #fff8dc;
+}

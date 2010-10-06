@@ -3,8 +3,6 @@ package net.coolcoders.showcase.components;
 import com.google.gwt.core.client.GWT;
 import com.smartgwt.client.types.Alignment;
 import com.smartgwt.client.widgets.Label;
-import com.smartgwt.client.widgets.form.fields.SpacerItem;
-import com.smartgwt.client.widgets.layout.HLayout;
 import com.smartgwt.client.widgets.layout.VLayout;
 import grails.plugins.gwt.client.GwtActionServiceAsync;
 import net.coolcoders.showcase.client.ShowcaseConstants;
@@ -20,11 +18,11 @@ public abstract class ShowcaseBaseView extends VLayout {
     protected final GwtActionServiceAsync actionService;
 
     public ShowcaseBaseView(GwtActionServiceAsync actionServiceAsync) {
-        super();
+        super(ViewConstants.STD_MEMBERS_MARGIN);
         this.actionService = actionServiceAsync;
         setWidth100();
-        setAlign(Alignment.CENTER);
         setAutoHeight();
+        setDefaultLayoutAlign(Alignment.CENTER);
         addMember(getGreetingsLabel());
     }
 
@@ -36,22 +34,17 @@ public abstract class ShowcaseBaseView extends VLayout {
         label.setWidth100();
         label.setAutoHeight();
         label.setTooltip(constants.showcase_heading_tooltip());
-        label.setBorder("");
         return label;
     }
 
-
-    protected HLayout getHorizontalLayout() {
-        HLayout layout = new HLayout(ViewConstants.STD_MEMBERS_MARGIN);
-        layout.setAlign(Alignment.CENTER);
-        layout.setWidth100();
-        return layout;
-    }
-
-    protected VLayout getVerticalLayout() {
-        VLayout layout = new VLayout(ViewConstants.STD_MEMBERS_MARGIN);
-        layout.setAlign(Alignment.CENTER);
-        layout.setHeight100();
-        return layout;
+    protected VLayout getDialogContainer() {
+        VLayout container = new VLayout(ViewConstants.STD_MEMBERS_MARGIN);
+        container.setAutoWidth();
+        container.setDefaultLayoutAlign(Alignment.CENTER);
+        container.setPadding(20);
+        container.setMargin(100);
+        container.setShowEdges(true);
+        container.setBackgroundColor(ViewConstants.STD_DIALOG_BG_COLOR);
+        return container;
     }
 }
