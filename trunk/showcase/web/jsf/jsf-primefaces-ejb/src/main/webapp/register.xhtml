@@ -1,4 +1,4 @@
-<ui:composition template="./WEB-INF/templates/template.xhtml"
+<ui:composition template="./WEB-INF/templates/templateYui.xhtml"
       xmlns="http://www.w3.org/1999/xhtml"
       xmlns:ui="http://java.sun.com/jsf/facelets"
       xmlns:h="http://java.sun.com/jsf/html"
@@ -6,6 +6,7 @@
       xmlns:p="http://primefaces.prime.com.tr/ui">
 
     <ui:define name="breadCrumb">
+        <p:menuitem value="Login" action="login" ajax="false"/>
         <p:menuitem value="Login" action="login" ajax="false"/>
         <p:menuitem value="Register" action="register" ajax="false"/>
     </ui:define>

@@ -1,4 +1,4 @@
-<ui:composition template="WEB-INF/templates/template.xhtml"
+<ui:composition template="WEB-INF/templates/templateYui.xhtml"
                 xmlns="http://www.w3.org/1999/xhtml"
                 xmlns:ui="http://java.sun.com/jsf/facelets"
                 xmlns:h="http://java.sun.com/jsf/html"
@@ -7,13 +7,14 @@
 
     <ui:define name="breadCrumb">
         <p:menuitem value="Home" action="showMessages" ajax="false"/>
+        <p:menuitem value="Home" helpText="Hallo" action="showMessages" ajax="false"/>
         <p:menuitem value="Users you follow" action="showUsersYouFollow" ajax="false"/>
     </ui:define>
 
     <ui:define name="content">
-        <div class="ui-widget ui-widget-content ui-corner-all">
+        <div class="yui3-u-1 ui-widget ui-widget-content ui-corner-all">
             <h:form>
-                <p:panel style="padding: 0px; margin: 10px;" styleClass="ccTablePanel">
+                <p:panel styleClass="yui3-u-1 contentPanel">
                     <f:facet name="footer">
                         <div style="text-align: right;">
                             <p:commandButton value="Unfollow" actionListener="#{usersBean.unfollow}" ajax="false">
@@ -44,7 +45,7 @@
                         </p:column>
                     </p:dataTable>
                 </p:panel>
-                <div class="textCenter" style="height: 50px;">
+                <div class="yui3-u-1 btnPanel textCenter">
                     <p:commandButton value="#{msgs['default.button.search.label']}" action="searchUsers" ajax="false" />
                 </div>
             </h:form>
