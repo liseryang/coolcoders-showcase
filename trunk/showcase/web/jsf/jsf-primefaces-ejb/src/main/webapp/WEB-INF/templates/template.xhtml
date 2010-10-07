@@ -48,21 +48,20 @@
 
         });
 
-        $(function() {
-            if (!/Firefox[\/\s](\d+\.\d+)/.test(navigator.userAgent)) {
-//                alert('Sorry,%20due%20to%20security%20restrictions,%20this%20tool%20only%20works%20in%20Firefox');
-                return false;
-            }
-
-            if (window.jquitr) {
-                jquitr.addThemeRoller();
-            } else {
-                jquitr = {};
-                jquitr.s = document.createElement('script');
-                jquitr.s.src = 'http://jqueryui.com/themeroller/developertool/developertool.js.php';
-                document.getElementsByTagName('head')[0].appendChild(jquitr.s);
-            }
-        });
+//        $(function() {
+//            if (!/Firefox[\/\s](\d+\.\d+)/.test(navigator.userAgent)) {
+//                return false;
+//            }
+//
+//            if (window.jquitr) {
+//                jquitr.addThemeRoller();
+//            } else {
+//                jquitr = {};
+//                jquitr.s = document.createElement('script');
+//                jquitr.s.src = 'http://jqueryui.com/themeroller/developertool/developertool.js.php';
+//                document.getElementsByTagName('head')[0].appendChild(jquitr.s);
+//            }
+//        });
 
     </script>
     <script type="text/javascript"
