@@ -7,6 +7,9 @@
     text-transform: uppercase;
     vertical-align: middle;
     margin-left: 10px;
+}
+
+.bottomBorder {
     border-bottom: 2px solid black;
 }
 

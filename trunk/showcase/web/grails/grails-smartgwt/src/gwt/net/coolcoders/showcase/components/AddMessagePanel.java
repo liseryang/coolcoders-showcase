@@ -34,8 +34,8 @@ public class AddMessagePanel extends VLayout implements ClickHandler {
         setWidth100();
         setDefaultLayoutAlign(Alignment.CENTER);
         editor.setTitleStyle("messageHeading");
-        editor.setWidth(200);
-        editor.setHeight(30);
+        editor.setWidth(400);
+        editor.setHeight(50);
         editor.setRequired(true);
         form.setTitleOrientation(TitleOrientation.TOP);
         form.setFields(editor);
@@ -58,6 +58,7 @@ public class AddMessagePanel extends VLayout implements ClickHandler {
     public void onClick(ClickEvent clickEvent) {
         if (form.validate()) {
             form.saveData();
+            form.deselectAllRecords();
         }
     }
 }

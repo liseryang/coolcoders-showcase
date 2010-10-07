@@ -9,10 +9,13 @@ class MessageService {
 
   def findAllMessagesOfFollowing(AppUser user, int offset, int pageSize) {
     log.info "findAllMessagesOfFollowing( appUser=${user}, offset=${offset}, pageSize=${pageSize} )"
+    def following = []
+    following.addAll(user.following)
+    following.add(user)
     def criteria = Message.createCriteria()
     def messages = criteria.list(max: pageSize, offset: offset) {
-      'in'('creator', user.following)
-      order('created', 'asc')
+      'in'('creator', following)
+      order('created', 'desc')
     }
     messages
   }

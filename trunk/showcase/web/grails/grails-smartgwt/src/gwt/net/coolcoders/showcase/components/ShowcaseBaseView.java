@@ -3,6 +3,7 @@ package net.coolcoders.showcase.components;
 import com.google.gwt.core.client.GWT;
 import com.smartgwt.client.types.Alignment;
 import com.smartgwt.client.widgets.Label;
+import com.smartgwt.client.widgets.layout.HLayout;
 import com.smartgwt.client.widgets.layout.VLayout;
 import grails.plugins.gwt.client.GwtActionServiceAsync;
 import net.coolcoders.showcase.client.ShowcaseConstants;
@@ -16,6 +17,7 @@ public abstract class ShowcaseBaseView extends VLayout {
     protected ShowcaseConstants constants = GWT.create(ShowcaseConstants.class);
     protected ShowcaseMessages messages = GWT.create(ShowcaseMessages.class);
     protected final GwtActionServiceAsync actionService;
+    protected final HLayout headerPanel = new HLayout();
 
     public ShowcaseBaseView(GwtActionServiceAsync actionServiceAsync) {
         super(ViewConstants.STD_MEMBERS_MARGIN);
@@ -23,7 +25,10 @@ public abstract class ShowcaseBaseView extends VLayout {
         setWidth100();
         setAutoHeight();
         setDefaultLayoutAlign(Alignment.CENTER);
-        addMember(getGreetingsLabel());
+        headerPanel.addMember(getGreetingsLabel());
+        headerPanel.setWidth100();
+        headerPanel.setStyleName("bottomBorder");
+        addMember(headerPanel);
     }
 
     private Label getGreetingsLabel() {
