@@ -15,6 +15,7 @@ import javax.faces.application.FacesMessage;
 import javax.faces.context.FacesContext;
 import javax.inject.Inject;
 import javax.inject.Named;
+import java.io.Serializable;
 import java.util.Date;
 import java.util.List;
 
@@ -23,7 +24,7 @@ import java.util.List;
  */
 @Named
 @ViewScoped
-public class MessagesBean {
+public class MessagesBean implements Serializable {
 
     @EJB
     private MessageService messageService;
