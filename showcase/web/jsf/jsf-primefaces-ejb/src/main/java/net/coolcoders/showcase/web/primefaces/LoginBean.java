@@ -9,8 +9,8 @@ import net.coolcoders.showcase.dao.generic.QueryParameter;
 import net.coolcoders.showcase.model.User;
 import net.coolcoders.showcase.model.User_;
 import net.coolcoders.showcase.service.UserService;
+import net.coolcoders.showcase.web.common.i18n.MessageBundleLoader;
 import net.coolcoders.showcase.web.scope.ViewScoped;
-import net.coolcoders.showcase.web.util.MessageBundleLoader;
 
 import javax.ejb.EJB;
 import javax.faces.application.FacesMessage;
