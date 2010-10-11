@@ -33,6 +33,7 @@
     <link href="#{request.contextPath}/images/favicon.ico" rel="shortcut icon" type="image/x-icon"/>
     <link href="#{request.contextPath}/images/favicon.ico" rel="icon" type="image/x-icon"/>
 
+    <link type="text/css" rel="stylesheet" href="#{request.contextPath}/themes/redmond/skin.css" />
 
     <style type="text/css">
         body {
@@ -46,7 +47,7 @@
 
 <h:body>
 
-    <div class="yui3-g">
+    <div class="yui3-g ui-widget ui-widget-header">
         <div class="yui3-1" style="padding: 5px;">
             <div class="yui3-u-3-4">
                 <h:outputText value="COOL CODERS SHOWCASE" style="font-size: xx-large;"/>
@@ -54,27 +55,27 @@
             <div class="yui3-u-1-4">
                 <div class="yui3-u-1" style="text-align: right;">
                     <ice:form id="headerForm" partialSubmit="true">
-                        <ice:selectOneMenu value="#{sessionBean.themePath}"
-                                           valueChangeListener="#{sessionBean.changeStyle}">
-                            <f:selectItems value="#{sessionBean.themePaths}"/>
-                        </ice:selectOneMenu>
-                        <br/>
-                        <ice:commandLink value="#{sessionBean.currentUser.username}"
+                        <!--<ice:selectOneMenu value="#{sessionBean.themePath}"-->
+                                           <!--valueChangeListener="#{sessionBean.changeStyle}">-->
+                            <!--<f:selectItems value="#{sessionBean.themePaths}"/>-->
+                        <!--</ice:selectOneMenu>-->
+                        <ice:commandButton value="#{sessionBean.currentUser.username}"
                                        action="profile"
                                        rendered="#{sessionBean.currentUser != null}"
-                                       />
-                        &nbsp;
-                        <ice:commandButton value="Logout #{sessionBean.currentUser.username}"
+                                       styleClass="ui-button ui-widget ui-state-default ui-corner-all ui-button-text-only"/>
+                        <br/>
+                        <ice:commandButton value="Logout"
                                            action="#{loginBean.logout}"
-                                           rendered="#{sessionBean.currentUser != null}"/>
+                                           rendered="#{sessionBean.currentUser != null}"
+                                styleClass="ui-button ui-widget ui-state-default ui-corner-all ui-button-text-only"/>
                     </ice:form>
                 </div>
             </div>
         </div>
 
-        <div class="yui3-u-1" style="height: 30px; margin-bottom: 10px;">
+        <div class="yui3-u-1" style="height: 30px;">
             <ice:form>
-                <ice:menuBar>
+                <ice:menuBar >
                     <ui:insert name="breadCrumb"/>
                 </ice:menuBar>
             </ice:form>

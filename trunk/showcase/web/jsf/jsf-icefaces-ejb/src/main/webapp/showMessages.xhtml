@@ -11,17 +11,16 @@
     </ui:define>
 
     <ui:define name="content">
-        <ice:form id="tabSet" partialSubmit="true">
+        <ice:form id="messages" partialSubmit="true">
 
-            <div class="yui3-u-1 ui-widget ui-widget-content ui-corner-all">
-                <div class="yui3-u-1 ui-widget ui-widget-content ui-corner-all">
-                    <h:panelGrid columns="1" columnClasses="textCenter">
+            <div class="yui3-u-1 ui-widget ui-widget-content ui-corner-right ui-corner-bottom paddingContainer">
+                    <div class="textCenter">
                         <h:inputTextarea id="inputMessage" value="#{messagesBean.message.content}"
-                                         style="width: 955px; height: 50px; overflow: hidden;"/>
+                                         style="width: 935px; height: 50px; overflow: hidden;"/>
+                        <br/>
                         <ice:commandButton value="Send" action="#{messagesBean.saveMessage}"
-                                           style="margin-top: 5px;"/>
-                    </h:panelGrid>
-                </div>
+                                           style="margin-top: 5px;" styleClass="ui-button ui-widget ui-state-default ui-corner-all ui-button-text-only"/>
+                    </div>
 
                 <div class="yui3-u-1">
                     <ice:messages id="msgs" showDetail="true"/>
@@ -72,16 +71,19 @@
                         <div class="btnPanel textCenter">
                             <ice:commandButton value="#{msgs['default.paginate.prev']}"
                                                action="#{messagesBean.prevMessages}"
-                                               rendered="#{messagesBean.renderPrev}"/>
+                                               rendered="#{messagesBean.renderPrev}"
+                                    styleClass="ui-button ui-widget ui-state-default ui-corner-all ui-button-text-only"/>
                             <ice:commandButton value="#{msgs['default.paginate.next']}"
                                                action="#{messagesBean.nextMessages}"
-                                               rendered="#{messagesBean.renderNext}"/>
+                                               rendered="#{messagesBean.renderNext}"
+                                    styleClass="ui-button ui-widget ui-state-default ui-corner-all ui-button-text-only"/>
                         </div>
                     </h:panelGroup>
 
                     <div class="btnPanel textCenter">
                         <ice:commandButton value="#{msgs['default.viewfriends.label']}"
                                            action="showUsersYouFollow"
+                                           styleClass="ui-button ui-widget ui-state-default ui-corner-all ui-button-text-only"
                                 />
                     </div>
                 </div>
