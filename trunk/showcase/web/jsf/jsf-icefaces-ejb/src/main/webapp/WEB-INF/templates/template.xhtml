@@ -1,67 +1,90 @@
 <?xml version='1.0' encoding='UTF-8' ?>
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
-        "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+        "http://www.w3.org/TR/html4/strict.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
       xmlns:h="http://java.sun.com/jsf/html"
       xmlns:f="http://java.sun.com/jsf/core"
-      xmlns:ui="http://java.sun.com/jsf/facelets"
       xmlns:icecore="http://icefaces.org/core"
       xmlns:ice="http://www.icesoft.com/icefaces/component">
 
-<f:view contentType="text/html" />
+<f:view contentType="text/html"/>
+
+<f:loadBundle
+        basename="i18n.messages"
+        var="msgs"/>
 
 <h:head>
     <meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1"/>
 
-    <title>CoolCoders Showcase with JSF (ICEfaces)</title>
+    <title>COOL CODERS SHOWCASE with JSF (ICEfaces)</title>
 
-    <link href="./css/myStyle.css" rel="stylesheet" type="text/css"/>
-
-    <!-- Blueprint -->
-    <link href="./css/blueprint/ie.css" rel="stylesheet" type="text/css"/>
-    <link href="./css/blueprint/screen.css" rel="stylesheet" type="text/css"/>
+    <link rel="stylesheet" type="text/css" href="#{request.contextPath}/css/myStyle.css"/>
 
     <!-- ICEfaces  -->
     <link href="#{sessionBean.themePath}" rel="stylesheet" type="text/css"></link>
 
-    <link href="./images/favicon.ico" rel="shortcut icon" type="image/x-icon"/>
-    <link href="./images/favicon.ico" rel="icon" type="image/x-icon"/>
+    <link rel="stylesheet" type="text/css" href="#{request.contextPath}/css/yui/cssreset/reset.css"/>
+    <link rel="stylesheet" type="text/css" href="#{request.contextPath}/css/yui/cssbase/base-context.css"/>
+    <link rel="stylesheet" type="text/css" href="#{request.contextPath}/css/yui/cssfonts/fonts.css"/>
+    <link rel="stylesheet" type="text/css" href="#{request.contextPath}/css/yui/cssgrids/grids.css"/>
+
+
+    <link href="#{request.contextPath}/images/favicon.ico" rel="shortcut icon" type="image/x-icon"/>
+    <link href="#{request.contextPath}/images/favicon.ico" rel="icon" type="image/x-icon"/>
+
+
+    <style type="text/css">
+        body {
+            margin: auto; /* center in viewport */
+            width: 960px;
+        }
+    </style>
+
 
 </h:head>
 
 <h:body>
-    <div class="container ui-widget-content ui-corner-all" >
-        <div class="span-24 last ui-widget-header ui-corner-top">
-            <div class="span-14">
-                <h:outputText value="CoolCoders Showcase" style="font-size: xx-large"/>
+
+    <div class="yui3-g">
+        <div class="yui3-1" style="padding: 5px;">
+            <div class="yui3-u-3-4">
+                <h:outputText value="COOL CODERS SHOWCASE" style="font-size: xx-large;"/>
             </div>
-            <div class="span-10 last" style="margin-top: 10px; text-align: right;">
-                <ice:form id="header" partialSubmit="true">
-                    <div class="span-10 last">
-                        <ice:commandButton value="Logout #{sessionBean.currentUser.username}"
-                                           action="#{loginBean.logout}"
-                                           rendered="#{sessionBean.currentUser != null}"/>
-                    </div>
-                    <div class="span-10 last">
+            <div class="yui3-u-1-4">
+                <div class="yui3-u-1" style="text-align: right;">
+                    <ice:form id="headerForm" partialSubmit="true">
                         <ice:selectOneMenu value="#{sessionBean.themePath}"
                                            valueChangeListener="#{sessionBean.changeStyle}">
                             <f:selectItems value="#{sessionBean.themePaths}"/>
                         </ice:selectOneMenu>
-                    </div>
-                </ice:form>
+                        <br/>
+                        <ice:commandButton value="Logout #{sessionBean.currentUser.username}"
+                                           action="#{loginBean.logout}"
+                                           rendered="#{sessionBean.currentUser != null}"/>
+                    </ice:form>
+                </div>
             </div>
         </div>
 
-        <div class="span-24 last ui-widget-content">
+        <div class="yui3-u-1" style="height: 30px; margin-bottom: 10px;">
+            <ice:form>
+                <ice:menuBar>
+                    <ui:insert name="breadCrumb"/>
+                </ice:menuBar>
+            </ice:form>
+        </div>
+
+        <div class="yui3-u-1">
             <ui:insert name="content">Content</ui:insert>
         </div>
 
-        <div class="span-24 last ui-widget-header ui-corner-bottom">
-            <div class="span-5 prepend-19 last" style="text-align: right">
-                <h:outputText value="Powered By Coolcoders" style="margin-right: 2px"/>
+        <div class="yui3-u-1 simpleMargin">
+            <div class="textCenter">
+                <h:outputText value="JSF ICEfaces Showcase By"/>
+                <a href="http://code.google.com/p/coolcoders-showcase/">Cool-Coders</a>
             </div>
         </div>
-
     </div>
 </h:body>
 

@@ -1,0 +1,58 @@
+<ui:composition template="WEB-INF/templates/template.xhtml"
+                xmlns="http://www.w3.org/1999/xhtml"
+                xmlns:ui="http://java.sun.com/jsf/facelets"
+                xmlns:h="http://java.sun.com/jsf/html"
+                xmlns:f="http://java.sun.com/jsf/core"
+                xmlns:icecore="http://icefaces.org/core"
+                xmlns:ice="http://www.icesoft.com/icefaces/component">
+
+    <ui:define name="breadCrumb">
+        <ice:menuItem value="Home" action="showMessages"/>
+        <ice:menuItem value="Users you follow" action="showUsersYouFollow"/>
+        <ice:menuItem value="Search Users" action="searchUsers"/>
+    </ui:define>
+
+    <ui:define name="content">
+        <h:form>
+            <div class="yui3-u-1">
+                <div class="center" style="width:300px">
+                    <h:inputText value="#{userSearchBean.searchString}" style="margin-right: 5px;"/>
+                    <ice:commandButton value="#{msgs['default.button.search.label']}"
+                                       action="#{userSearchBean.search}"/>
+                </div>
+                <ice:dataTable id="tblUsersSearch"
+                               value="#{userSearchBean.users}"
+                               var="item"
+                               rows="5"
+                               style="width: 100%">
+                    <ice:column>
+                        <f:facet name="header">
+                            <h:outputLabel value="#{msgs['user.username.label']}"/>
+                        </f:facet>
+                        <h:outputText value="#{item.username}"/>
+                    </ice:column>
+                    <ice:column>
+                        <f:facet name="header">
+                            <h:outputLabel value="#{msgs['user.post.count.label']}"/>
+                        </f:facet>
+                        <h:outputText value="#{item.messageCount}"/>
+                    </ice:column>
+                    <ice:column>
+                        <f:facet name="header">
+                            <h:outputLabel value="#{msgs['default.actions.label']}"/>
+                        </f:facet>
+
+                        <div class="textCenter">
+                            <ice:commandButton value="#{msgs['default.button.follow.label']}"
+                                               action="#{userSearchBean.follow}"
+                                               style="margin-bottom: 5px;"
+                                    >
+                                <f:setPropertyActionListener value="#{item}" target="#{userSearchBean.selectedUser}"/>
+                            </ice:commandButton>
+                        </div>
+                    </ice:column>
+                </ice:dataTable>
+            </div>
+        </h:form>
+    </ui:define>
+</ui:composition>

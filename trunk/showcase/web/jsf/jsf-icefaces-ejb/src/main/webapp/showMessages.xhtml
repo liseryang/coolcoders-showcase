@@ -1,0 +1,91 @@
+<ui:composition template="WEB-INF/templates/template.xhtml"
+                xmlns="http://www.w3.org/1999/xhtml"
+                xmlns:ui="http://java.sun.com/jsf/facelets"
+                xmlns:h="http://java.sun.com/jsf/html"
+                xmlns:f="http://java.sun.com/jsf/core"
+                xmlns:icecore="http://icefaces.org/core"
+                xmlns:ice="http://www.icesoft.com/icefaces/component">
+
+    <ui:define name="breadCrumb">
+        <ice:menuItem value="Home" action="showMessages"/>
+    </ui:define>
+
+    <ui:define name="content">
+        <ice:form id="tabSet" partialSubmit="true">
+
+            <div class="yui3-u-1 ui-widget ui-widget-content ui-corner-all">
+                <div class="yui3-u-1 ui-widget ui-widget-content ui-corner-all">
+                    <h:panelGrid columns="1" columnClasses="textCenter">
+                        <h:inputTextarea id="inputMessage" value="#{messagesBean.message.content}"
+                                         style="width: 955px; height: 50px; overflow: hidden;"/>
+                        <ice:commandButton value="Send" action="#{messagesBean.saveMessage}"
+                                           style="margin-top: 5px;"/>
+                    </h:panelGrid>
+                </div>
+
+                <div class="yui3-u-1">
+                    <ice:messages id="msgs" showDetail="true"/>
+                    <h:panelGroup rendered="#{messagesBean.friendsCount == 0}">
+                        <div class="ui-messages-info ui-corner-all textCenter"
+                             style="margin: 5px; padding: 5px">
+                            <h:outputText value="#{msgs['message.list.findsomefriends']}"/>
+                        </div>
+                    </h:panelGroup>
+                    <h:panelGroup rendered="#{messagesBean.messageCount == 0 and messagesBean.friendsCount > 0}">
+                        <div class="ui-messages-info ui-corner-all textCenter"
+                             style="margin: 5px; padding: 5px">
+                            <h:outputText value="#{msgs['message.list.lazyfriends']}"/>
+                        </div>
+                    </h:panelGroup>
+
+                    <div class="yui3-u-1">
+                        <ice:dataTable id="messageTable"
+                                       value="#{messagesBean.messages}"
+                                       var="msg"
+                                       rows="10"
+                                       style="width: 100%">
+                            <ice:column>
+                                <f:facet name="header">
+                                    <ice:outputLabel value="Message"/>
+                                </f:facet>
+                                <ice:outputText value="#{msg.content}"/>
+                            </ice:column>
+
+                            <ice:column>
+                                <f:facet name="header">
+                                    <ice:outputLabel value="Date"/>
+                                </f:facet>
+                                <ice:outputText value="#{msg.created}">
+                                    <f:convertDateTime pattern="dd.MM.yyyy mm:hh"/>
+                                </ice:outputText>
+                            </ice:column>
+
+                            <ice:column>
+                                <f:facet name="header">
+                                    <ice:outputLabel value="User"/>
+                                </f:facet>
+                                <ice:outputText value="#{msg.author.username}"/>
+                            </ice:column>
+                        </ice:dataTable>
+                    </div>
+                    <h:panelGroup rendered="#{messagesBean.messageCount > 0}">
+                        <div class="btnPanel textCenter">
+                            <ice:commandButton value="#{msgs['default.paginate.prev']}"
+                                               action="#{messagesBean.prevMessages}"
+                                               rendered="#{messagesBean.renderPrev}"/>
+                            <ice:commandButton value="#{msgs['default.paginate.next']}"
+                                               action="#{messagesBean.nextMessages}"
+                                               rendered="#{messagesBean.renderNext}"/>
+                        </div>
+                    </h:panelGroup>
+
+                    <div class="btnPanel textCenter">
+                        <ice:commandButton value="#{msgs['default.viewfriends.label']}"
+                                           action="showUsersYouFollow"
+                                />
+                    </div>
+                </div>
+            </div>
+        </ice:form>
+    </ui:define>
+</ui:composition>

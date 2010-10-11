@@ -1,4 +1,4 @@
-package net.coolcoders.showcase.web.util;
+package net.coolcoders.showcase.web.common.i18n;
 
 import javax.faces.context.FacesContext;
 import java.util.Locale;
