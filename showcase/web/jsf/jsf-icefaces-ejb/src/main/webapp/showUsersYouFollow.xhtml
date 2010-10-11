@@ -1,0 +1,49 @@
+<ui:composition template="WEB-INF/templates/template.xhtml"
+                xmlns="http://www.w3.org/1999/xhtml"
+                xmlns:ui="http://java.sun.com/jsf/facelets"
+                xmlns:h="http://java.sun.com/jsf/html"
+                xmlns:f="http://java.sun.com/jsf/core"
+                xmlns:icecore="http://icefaces.org/core"
+                xmlns:ice="http://www.icesoft.com/icefaces/component">
+
+    <ui:define name="breadCrumb">
+        <ice:menuItem value="Home" action="showMessages" />
+        <ice:menuItem value="Users you follow" action="showUsersYouFollow" />
+    </ui:define>
+
+    <ui:define name="content">
+        <div class="yui3-u-1 ui-widget ui-widget-content ui-corner-all">
+            <ice:form partialSubmit="true">
+                    <f:facet name="footer">
+                        <div style="text-align: right;">
+                            <ice:commandButton value="Unfollow" actionListener="#{usersBean.unfollow}" >
+                            </ice:commandButton>
+                        </div>
+                    </f:facet>
+
+                    <ice:dataTable id="tblUsers"
+                                 value="#{usersBean.users}"
+                                 var="item"
+                                 rows="5"
+                                 style="width: 100%">
+                        <ice:column>
+                            <f:facet name="header">
+                                <h:outputLabel value="#{msgs['user.username.label']}"/>
+                            </f:facet>
+                            <h:outputText value="#{item.username}"/>
+                        </ice:column>
+                        <ice:column>
+                            <f:facet name="header">
+                                <h:outputLabel value="#{msgs['user.post.count.label']}"/>
+                            </f:facet>
+                            <h:outputText value="#{item.messageCount}"/>
+                        </ice:column>
+                    </ice:dataTable>
+
+                <div class="yui3-u-1 btnPanel textCenter">
+                    <ice:commandButton value="#{msgs['default.button.search.label']}" action="searchUsers" />
+                </div>
+            </ice:form>
+        </div>
+    </ui:define>
+</ui:composition>

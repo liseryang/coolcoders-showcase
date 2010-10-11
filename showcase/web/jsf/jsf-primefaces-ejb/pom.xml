@@ -15,6 +15,10 @@
             <groupId>${project.groupId}</groupId>
             <artifactId>service-ejb</artifactId>
         </dependency>
+        <dependency>
+            <groupId>${project.groupId}</groupId>
+            <artifactId>jsf-common</artifactId>
+        </dependency>
 
         <dependency>
             <groupId>javax</groupId>

@@ -3,7 +3,7 @@
  * and open the template in the editor.
  */
 
-package net.coolcoders.showcase.web;
+    package net.coolcoders.showcase.web.icefaces;
 
     import net.coolcoders.showcase.model.User;
 

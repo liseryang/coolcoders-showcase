@@ -1,44 +1,51 @@
-<?xml version='1.0' encoding='UTF-8' ?>
-<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
-<html xmlns="http://www.w3.org/1999/xhtml"
-      xmlns:h="http://java.sun.com/jsf/html"
-      xmlns:f="http://java.sun.com/jsf/core"
-      xmlns:ui="http://java.sun.com/jsf/facelets"
-      xmlns:icecore="http://icefaces.org/core"
-      xmlns:ice="http://www.icesoft.com/icefaces/component">
+<ui:composition template="WEB-INF/templates/template.xhtml"
+                xmlns="http://www.w3.org/1999/xhtml"
+                xmlns:ui="http://java.sun.com/jsf/facelets"
+                xmlns:h="http://java.sun.com/jsf/html"
+                xmlns:f="http://java.sun.com/jsf/core"
+                xmlns:icecore="http://icefaces.org/core"
+                xmlns:ice="http://www.icesoft.com/icefaces/component">
 
-    <body>
+    <ui:define name="breadCrumb">
+        <ice:menuItem value="Login" action="login" />
+    </ui:define>
 
-        <ui:composition template="./WEB-INF/templates/template.xhtml">
+    <ui:define name="content">
+        <div class="yui3-u-1" style="padding-bottom: 10px;">
+            <h:form id="login">
+            <!--<ice:panelTabSet>-->
+                <!--<ice:panelTab label="Login">-->
+                        <div class="yui3-u-1 simpleMargin">
+                            <div class="formContainer center">
+                                <ice:messages id="msgs" showDetail="true"/>
+                                <ice:panelGrid columns="2">
+                                    <h:outputLabel value="Username:" styleClass="frmLabel" />
+                                    <h:inputText value="#{loginBean.username}" styleClass="frmInput"/>
+                                    <h:outputLabel value="Password:" styleClass="frmLabel" />
+                                    <h:inputSecret value="#{loginBean.password}" styleClass="frmInput"/>
+                                </ice:panelGrid>
+                            </div>
+                        </div>
+                        <div class="yui3-u-1 simpleMargin">
+                            <div class="formContainer center textCenter">
+                                <ice:commandButton value="Login" action="#{loginBean.login}" />
+                                <ice:commandButton value="Register" action="register" />
+                            </div>
+                        </div>
 
-            <ui:define name="content">
-                <ice:form id="login" partialSubmit="true">
-                    <ice:panelTabSet styleClass="span-24 last">
-                        <ice:panelTab label="Login">
-                            <center>
-                                <div class="ui-widget-content ui-corner-all" style="padding: 3px">
-                                    <h:panelGrid columns="2">
-                                        <h:outputLabel value="Username:" styleClass="label"/>
-                                        <h:inputText value="#{loginBean.username}" />
+                        <div class="yui3-u-1 simpleMargin">
+                            <div style="border: dashed;" class="formContainer center textCenter">
+                                <ice:outputText value="Following Users exists by default" style="font-weight:bold;"/><br/>
+                                <ice:outputText value="abaumgartner / test123"/><br/>
+                                <ice:outputText value="anerlich / test123"/><br/>
+                                <ice:outputText value="jmihelko / test123"/><br/>
+                                <ice:outputText value="pschneider-manzell / test123"/>
+                            </div>
+                        </div>
+            <!--</ice:panelTab>-->
+            <!--</ice:panelTabSet>-->
+        </h:form>
+        </div>
+    </ui:define>
 
-                                        <h:outputLabel value="Password:" styleClass="label"/>
-                                        <h:inputSecret value="#{loginBean.password}" />
-                                    </h:panelGrid>
-                                    <div>
-                                        <h:outputText value="${loginBean.message}" style="color: red;" />
-                                    </div>
-                                    <div>
-                                        <h:commandButton value="Login" action="#{loginBean.login}" />
-                                        <h:commandButton value="Register" action="register" />
-                                    </div>
-                                </div>
-                            </center>
-                        </ice:panelTab>
-                    </ice:panelTabSet>
-                </ice:form>
-            </ui:define>
-
-        </ui:composition>
-
-    </body>
-</html>
+</ui:composition>

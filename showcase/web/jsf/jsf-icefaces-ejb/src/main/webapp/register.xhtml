@@ -1,21 +1,19 @@
-<?xml version='1.0' encoding='UTF-8' ?>
-<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
-        "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
-<html xmlns="http://www.w3.org/1999/xhtml"
+<ui:composition template="./WEB-INF/templates/template.xhtml"
+      xmlns="http://www.w3.org/1999/xhtml"
       xmlns:h="http://java.sun.com/jsf/html"
       xmlns:f="http://java.sun.com/jsf/core"
       xmlns:ui="http://java.sun.com/jsf/facelets"
       xmlns:icecore="http://icefaces.org/core"
       xmlns:ice="http://www.icesoft.com/icefaces/component">
 
-<body>
+    <ui:define name="breadCrumb">
+        <ice:menuItem value="Login" action="login" />
+        <ice:menuItem value="Register" action="register" />
+    </ui:define>
 
-<ui:composition template="./WEB-INF/templates/template.xhtml">
 
     <ui:define name="content">
         <ice:form id="login" partialSubmit="true">
-            <ice:panelTabSet styleClass="span-24 last">
-                <ice:panelTab label="Register">
                     <center>
                         <div class="ui-widget-content ui-corner-all" style="padding: 3px">
                             <h:panelGrid columns="2">
@@ -49,12 +47,7 @@
                         </div>
                     </center>
 
-                </ice:panelTab>
-            </ice:panelTabSet>
         </ice:form>
     </ui:define>
 
 </ui:composition>
-
-</body>
-</html>

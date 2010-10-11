@@ -13,6 +13,12 @@
     <dependencyManagement>
         <dependencies>
 
+            <dependency>
+                <groupId>${project.groupId}</groupId>
+                <artifactId>jsf-common</artifactId>
+                <version>${project.version}</version>
+            </dependency>
+            
             <!-- Primefaces -->
             <dependency>
                 <groupId>org.primefaces</groupId>
@@ -51,6 +57,11 @@
                      </exclusion>
                  </exclusions>
              </dependency>
+            <dependency>
+                 <groupId>org.icepush</groupId>
+                 <artifactId>icepush</artifactId>
+                <version>2.0-Beta1</version>
+             </dependency>
 
         </dependencies>
     </dependencyManagement>
@@ -59,6 +70,7 @@
         <profile>
             <id>withJsfModules</id>
             <modules>
+                <module>jsf-common</module>
                 <module>jsf-mojarra-ejb</module>
                 <module>jsf-icefaces-ejb</module>
                 <module>jsf-primefaces-ejb</module>
