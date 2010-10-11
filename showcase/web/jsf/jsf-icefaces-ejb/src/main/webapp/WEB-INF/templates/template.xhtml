@@ -59,6 +59,11 @@
                             <f:selectItems value="#{sessionBean.themePaths}"/>
                         </ice:selectOneMenu>
                         <br/>
+                        <ice:commandLink value="#{sessionBean.currentUser.username}"
+                                       action="profile"
+                                       rendered="#{sessionBean.currentUser != null}"
+                                       />
+                        &nbsp;
                         <ice:commandButton value="Logout #{sessionBean.currentUser.username}"
                                            action="#{loginBean.logout}"
                                            rendered="#{sessionBean.currentUser != null}"/>
