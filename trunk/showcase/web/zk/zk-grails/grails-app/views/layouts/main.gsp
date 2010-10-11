@@ -68,7 +68,7 @@
   </div>
 
   <footer>
-    Grails Plain Showcase by <a href="http://www.cool-coders.net" target="_blank">Cool coders</a>
+    ZK based on Grails Showcase by <a href="http://www.cool-coders.net" target="_blank">Cool coders</a>
   </footer>
 </div> <!--! end of #container -->
 
