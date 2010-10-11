@@ -7,44 +7,40 @@
                 xmlns:ice="http://www.icesoft.com/icefaces/component">
 
     <ui:define name="breadCrumb">
-        <ice:menuItem value="Login" action="login" />
+        <ice:menuItem value="Login" action="login" styleClass="ui-breadcrumb ui-module ui-widget ui-widget-header ui-corner-all"/>
     </ui:define>
 
     <ui:define name="content">
-        <div class="yui3-u-1" style="padding-bottom: 10px;">
+        <div class="yui3-u-1 ui-widget ui-widget-content ui-corner-right ui-corner-bottom paddingContainer">
             <h:form id="login">
-            <!--<ice:panelTabSet>-->
-                <!--<ice:panelTab label="Login">-->
-                        <div class="yui3-u-1 simpleMargin">
-                            <div class="formContainer center">
-                                <ice:messages id="msgs" showDetail="true"/>
-                                <ice:panelGrid columns="2">
-                                    <h:outputLabel value="Username:" styleClass="frmLabel" />
-                                    <h:inputText value="#{loginBean.username}" styleClass="frmInput"/>
-                                    <h:outputLabel value="Password:" styleClass="frmLabel" />
-                                    <h:inputSecret value="#{loginBean.password}" styleClass="frmInput"/>
-                                </ice:panelGrid>
-                            </div>
-                        </div>
-                        <div class="yui3-u-1 simpleMargin">
-                            <div class="formContainer center textCenter">
-                                <ice:commandButton value="Login" action="#{loginBean.login}" />
-                                <ice:commandButton value="Register" action="register" />
-                            </div>
-                        </div>
+                <div class="yui3-u-1 simpleMargin">
+                    <div class="formContainer center">
+                        <ice:messages id="msgs" showDetail="true"/>
+                        <ice:panelGrid columns="2">
+                            <h:outputLabel value="Username:" styleClass="frmLabel"/>
+                            <h:inputText value="#{loginBean.username}" styleClass="frmInput"/>
+                            <h:outputLabel value="Password:" styleClass="frmLabel"/>
+                            <h:inputSecret value="#{loginBean.password}" styleClass="frmInput"/>
+                        </ice:panelGrid>
+                    </div>
+                </div>
+                <div class="yui3-u-1 simpleMargin">
+                    <div class="formContainer center textCenter">
+                        <ice:commandButton value="Login" action="#{loginBean.login}" styleClass="ui-button ui-widget ui-state-default ui-corner-all ui-button-text-only" style="margin-right: 5px;"/>
+                        <ice:commandButton value="Register" action="register" styleClass="ui-button ui-widget ui-state-default ui-corner-all ui-button-text-only"/>
+                    </div>
+                </div>
 
-                        <div class="yui3-u-1 simpleMargin">
-                            <div style="border: dashed;" class="formContainer center textCenter">
-                                <ice:outputText value="Following Users exists by default" style="font-weight:bold;"/><br/>
-                                <ice:outputText value="abaumgartner / test123"/><br/>
-                                <ice:outputText value="anerlich / test123"/><br/>
-                                <ice:outputText value="jmihelko / test123"/><br/>
-                                <ice:outputText value="pschneider-manzell / test123"/>
-                            </div>
-                        </div>
-            <!--</ice:panelTab>-->
-            <!--</ice:panelTabSet>-->
-        </h:form>
+                <div class="yui3-u-1 simpleMargin">
+                    <div style="border: dashed;" class="formContainer center textCenter">
+                        <ice:outputText value="Following Users exists by default" style="font-weight:bold;"/><br/>
+                        <ice:outputText value="abaumgartner / test123"/><br/>
+                        <ice:outputText value="anerlich / test123"/><br/>
+                        <ice:outputText value="jmihelko / test123"/><br/>
+                        <ice:outputText value="pschneider-manzell / test123"/>
+                    </div>
+                </div>
+            </h:form>
         </div>
     </ui:define>
 

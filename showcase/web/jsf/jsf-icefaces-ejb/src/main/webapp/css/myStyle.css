@@ -31,8 +31,13 @@
 }
 
 .contentPanel {
-    padding: 0; 
+    padding: 0;
     margin: 10px;
+}
+
+.paddingContainer {
+    padding-top: 10px;
+    padding-bottom: 10px;
 }
 
 /* Form */
@@ -49,17 +54,16 @@
 .col1 {
     width: 200px;
 }
+
 .col2 {
     width: 200px;
 }
+
 .col3 {
     width: 480px;
 }
 
 /* ICEfaces overrides */
-/*div.iceMnuBarItem, div.iceMnuBarVrtItem {*/
-    /*float: none;*/
-/*}*/
 
 .mnuItmLoginItem {
     width: 100px;

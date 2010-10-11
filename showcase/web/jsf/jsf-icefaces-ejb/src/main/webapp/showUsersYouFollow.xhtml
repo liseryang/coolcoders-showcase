@@ -12,11 +12,11 @@
     </ui:define>
 
     <ui:define name="content">
-        <div class="yui3-u-1 ui-widget ui-widget-content ui-corner-all">
+        <div class="yui3-u-1 ui-widget ui-widget-content ui-corner-right ui-corner-bottom paddingContainer">
             <ice:form partialSubmit="true">
                     <f:facet name="footer">
                         <div style="text-align: right;">
-                            <ice:commandButton value="Unfollow" actionListener="#{usersBean.unfollow}" >
+                            <ice:commandButton value="Unfollow" actionListener="#{usersBean.unfollow}" styleClass="ui-button ui-widget ui-state-default ui-corner-all ui-button-text-only" >
                             </ice:commandButton>
                         </div>
                     </f:facet>
@@ -41,7 +41,7 @@
                     </ice:dataTable>
 
                 <div class="yui3-u-1 btnPanel textCenter">
-                    <ice:commandButton value="#{msgs['default.button.search.label']}" action="searchUsers" />
+                    <ice:commandButton value="#{msgs['default.button.search.label']}" action="searchUsers" styleClass="ui-button ui-widget ui-state-default ui-corner-all ui-button-text-only"/>
                 </div>
             </ice:form>
         </div>
