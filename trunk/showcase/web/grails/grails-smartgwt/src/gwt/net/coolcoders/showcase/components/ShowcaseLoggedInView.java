@@ -1,13 +1,13 @@
 package net.coolcoders.showcase.components;
 
 import com.smartgwt.client.types.Alignment;
-import com.smartgwt.client.util.SC;
 import com.smartgwt.client.widgets.form.DynamicForm;
 import com.smartgwt.client.widgets.form.fields.LinkItem;
 import com.smartgwt.client.widgets.form.fields.events.ClickEvent;
 import com.smartgwt.client.widgets.form.fields.events.ClickHandler;
 import grails.plugins.gwt.client.GwtActionServiceAsync;
 import net.coolcoders.showcase.client.UserInfoResponse;
+import net.coolcoders.showcase.event.ShowViewEvent;
 
 /**
  * @author <a href="mailto:josip.mihelko@googlemail.com">Josip Mihelko</a>
@@ -31,7 +31,7 @@ public class ShowcaseLoggedInView extends ShowcaseBaseView {
         profileLink.setLinkTitle(userInfo.getFullname());
         profileLink.addClickHandler(new ClickHandler() {
             public void onClick(ClickEvent clickEvent) {
-                SC.say("to the profile !");
+                fireEvent(new ShowViewEvent(ShowViewEvent.SWITCHVIEW, ShowViewEvent.ViewToShow.PROFILE));
             }
         });
         LinkItem logoutLink = new LinkItem();
@@ -39,7 +39,7 @@ public class ShowcaseLoggedInView extends ShowcaseBaseView {
         logoutLink.setShowTitle(false);
         logoutLink.addClickHandler(new ClickHandler() {
             public void onClick(ClickEvent clickEvent) {
-                SC.say("logout !");
+                fireEvent(new ShowViewEvent(ShowViewEvent.SWITCHVIEW, ShowViewEvent.ViewToShow.LOGOUT));
             }
         });
         form.setFields(profileLink, logoutLink);

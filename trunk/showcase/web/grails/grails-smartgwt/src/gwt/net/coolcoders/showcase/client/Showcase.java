@@ -4,6 +4,7 @@ import com.google.gwt.core.client.EntryPoint;
 import com.google.gwt.user.client.rpc.AsyncCallback;
 import com.smartgwt.client.util.SC;
 import net.coolcoders.showcase.data.MessagesDataSource;
+import net.coolcoders.showcase.event.ShowViewEventHandler;
 import net.coolcoders.showcase.views.MessagesView;
 
 /**
@@ -31,6 +32,7 @@ public class Showcase extends BaseEntryPoint implements EntryPoint, AsyncCallbac
     public void onSuccess(UserInfoResponse result) {
         MessagesDataSource ds = MessagesDataSource.getInstance();
         MessagesView messagesView = new MessagesView(actionService, result, ds);
+        messagesView.addShowEventHandler(new ShowViewEventHandler());
         messagesView.draw();
     }
 }
