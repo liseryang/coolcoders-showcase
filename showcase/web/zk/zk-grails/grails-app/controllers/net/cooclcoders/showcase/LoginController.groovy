@@ -5,7 +5,7 @@ class LoginController {
   def index = {
     if (!session.currentUser) {
     }
-    else {
+    else {      
       redirect(controller: "message") 
     }  
   }         

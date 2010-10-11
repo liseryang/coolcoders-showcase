@@ -12,7 +12,7 @@
 
         <vbox>
             <box>
-                <textbox id="messageText" rows="5" cols="30" constraint="no empty"/>
+                <textbox id="messageText" rows="5" cols="30"/>
                 <button id="createNewPostButton" label="Post"/>
             </box>
             <div id="messageVBox" class="messageList"/>
@@ -21,6 +21,10 @@
                 <button id="nextButton" label="Next"/>
             </hbox>
         </vbox>
+        <label id="noMessagesErrorLabel"/>
+        <div>
+        <a href="user/following">View your friends</a>
+        </div>
     </window>
 
 </zk>
