@@ -89,4 +89,18 @@ class MessageComposer extends GrailsComposer {
     redraw()
   }
 
+  def onClick_createNewPostButton(MouseEvent me) {
+    Message messageInstance = new Message()
+    AppUser currentUser = AppUser.get(Executions.getCurrent().getSession().getAt("currentUser").id)
+    messageInstance.creator = currentUser
+    messageInstance.content = messageText.value
+    if(messageInstance.validate()) {
+      messageInstance.save(flush:true)
+      messageText.value = ""
+      currentOffset = 0
+      redraw()
+    }
+
+  }
+
 }
