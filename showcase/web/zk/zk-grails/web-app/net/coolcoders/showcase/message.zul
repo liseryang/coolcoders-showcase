@@ -12,7 +12,7 @@
 
         <vbox>
             <box>
-                <textbox id="messageText" rows="5" cols="30"/>
+                <textbox id="messageText" rows="5" cols="30" constraint="no empty"/>
                 <button id="createNewPostButton" label="Post"/>
             </box>
             <div id="messageVBox" class="messageList"/>

@@ -7,7 +7,7 @@ class LoginController {
     }
     else {
       redirect(controller: "message") 
-    } 
+    }  
   }         
 
 } 

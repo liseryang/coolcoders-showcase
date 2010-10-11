@@ -14,7 +14,7 @@
 <g:if test="${flash.error}">
   <div class="message">${flash.error}</div>
 </g:if>
-<div>
+<div class="center">
   <z:body zul="/net/coolcoders/showcase/message.zul"/>
 </div>
 
