@@ -13,7 +13,7 @@
         <class>net.coolcoders.showcase.model.Category</class>
         <class>net.coolcoders.showcase.model.Message</class>
         <properties>
-            <!--<property name="eclipselink.ddl-generation" value="drop-and-create-tables"/>-->
+            <property name="eclipselink.ddl-generation" value="drop-and-create-tables"/>
             <!--<property name="javax.persistence.jdbc.driver" value="org.apache.derby.jdbc.EmbeddedDriver"/>-->
             <!--<property name="eclipselink.target-database" value="DERBY"/>-->
         </properties>

@@ -17,6 +17,7 @@ import javax.faces.application.FacesMessage;
 import javax.faces.context.FacesContext;
 import javax.inject.Inject;
 import javax.inject.Named;
+import java.io.Serializable;
 
 /**
  *
@@ -24,7 +25,7 @@ import javax.inject.Named;
  */
 @Named
 @ViewScoped
-public class LoginBean {
+public class LoginBean implements Serializable {
 
     @EJB
     private UserService userService;
