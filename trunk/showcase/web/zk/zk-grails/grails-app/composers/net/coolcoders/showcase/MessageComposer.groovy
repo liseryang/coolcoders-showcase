@@ -17,6 +17,7 @@ class MessageComposer extends GrailsComposer {
   def createNewPostButton
   def nextButton
   def prevButton
+  def noMessagesErrorLabel
 
   int currentOffset = 0
   int pageSize = 10
@@ -28,33 +29,49 @@ class MessageComposer extends GrailsComposer {
     AppUser currentUser = AppUser.get(Executions.getCurrent().getSession().getAt("currentUser").id)
     totalSize = messageService.countAllMessagesOfFollowing(currentUser)
     redraw()
+
   }
 
   def redraw() {
     AppUser currentUser = AppUser.get(Executions.getCurrent().getSession().getAt("currentUser").id)
-
-    def childElements = []
-    childElements.addAll messageVBox.getChildren()
-    def messageInstanceList = messageService.findAllMessagesOfFollowing(currentUser, currentOffset, pageSize)
-    childElements.each {
-      messageVBox.removeChild(it)
-    }
-    messageVBox.append {
-      messageInstanceList.each {messageInstance ->
-        div(class: "messageEntry clearfix") {
-          div(class: "messageDate") {
-            label(value: df.format(messageInstance.created))
-          }
-          div(class: "messageUser") {
-            label(value: messageInstance.creator.username)
-          }
-          div(class: "messageContent") {
-            label(value: messageInstance.content)
+    if (totalSize) {
+      noMessagesErrorLabel.visible = false
+      messageVBox.visible = true
+      def childElements = []
+      childElements.addAll messageVBox.getChildren()
+      def messageInstanceList = messageService.findAllMessagesOfFollowing(currentUser, currentOffset, pageSize)
+      childElements.each {
+        messageVBox.removeChild(it)
+      }
+      messageVBox.append {
+        messageInstanceList.each {messageInstance ->
+          div(class: "messageEntry clearfix") {
+            div(class: "messageDate") {
+              label(value: df.format(messageInstance.created))
+            }
+            div(class: "messageUser") {
+              label(value: messageInstance.creator.username)
+            }
+            div(class: "messageContent") {
+              label(value: messageInstance.content)
+            }
           }
         }
       }
+      togglePagingVisibility()
     }
-    togglePagingVisibility()
+    else {
+      messageVBox.visible = false
+      nextButton.visible = false
+      prevButton.visible = false
+      if (currentUser.following) {
+         noMessagesErrorLabel.value = "Your friends are very layzy and have not written a single post yet!"
+      }
+      else {
+         noMessagesErrorLabel.value = "Currently you have no friends!"
+      }
+    }
+
   }
 
   def togglePagingVisibility() {
@@ -64,7 +81,7 @@ class MessageComposer extends GrailsComposer {
     else {
       prevButton.visible = true
     }
-    
+
     if (currentOffset + pageSize > totalSize) {
       nextButton.visible = false
     }
@@ -75,15 +92,15 @@ class MessageComposer extends GrailsComposer {
 
   def onClick_nextButton(MouseEvent me) {
     currentOffset = currentOffset + pageSize
-    if(currentOffset>totalSize) {
+    if (currentOffset > totalSize) {
       currentOffset = totalSize - pageSize
     }
-    redraw(currentOffset)
+    redraw()
   }
 
   def onClick_prevButton(MouseEvent me) {
     currentOffset = currentOffset - pageSize
-    if(currentOffset<0) {
+    if (currentOffset < 0) {
       currentOffset = 0
     }
     redraw()
@@ -94,8 +111,8 @@ class MessageComposer extends GrailsComposer {
     AppUser currentUser = AppUser.get(Executions.getCurrent().getSession().getAt("currentUser").id)
     messageInstance.creator = currentUser
     messageInstance.content = messageText.value
-    if(messageInstance.validate()) {
-      messageInstance.save(flush:true)
+    if (messageInstance.validate()) {
+      messageInstance.save(flush: true)
       messageText.value = ""
       currentOffset = 0
       redraw()
