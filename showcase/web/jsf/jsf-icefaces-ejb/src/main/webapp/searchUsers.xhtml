@@ -19,7 +19,7 @@
                     <h:inputText value="#{userSearchBean.searchString}" style="margin-right: 5px;"/>
                     <ice:commandButton value="#{msgs['default.button.search.label']}"
                                        action="#{userSearchBean.search}"
-                            styleClass="ui-button ui-widget ui-state-default ui-corner-all ui-button-text-only"/>
+                            styleClass="ui-button ui-widget ui-state-default ui-corner-all ui-button-text-only ccButton"/>
                 </div>
                 <ice:dataTable id="tblUsersSearch"
                                value="#{userSearchBean.users}"
@@ -47,7 +47,7 @@
                             <ice:commandButton value="#{msgs['default.button.follow.label']}"
                                                action="#{userSearchBean.follow}"
                                                style="margin-bottom: 5px;"
-                                               styleClass="ui-button ui-widget ui-state-default ui-corner-all ui-button-text-only"
+                                               styleClass="ui-button ui-widget ui-state-default ui-corner-all ui-button-text-only ccButton"
                                     >
                                 <f:setPropertyActionListener value="#{item}" target="#{userSearchBean.selectedUser}"/>
                             </ice:commandButton>

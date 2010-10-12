@@ -16,7 +16,8 @@
             <ice:form partialSubmit="true">
                     <f:facet name="footer">
                         <div style="text-align: right;">
-                            <ice:commandButton value="Unfollow" actionListener="#{usersBean.unfollow}" styleClass="ui-button ui-widget ui-state-default ui-corner-all ui-button-text-only" >
+                            <ice:commandButton value="Unfollow" actionListener="#{usersBean.unfollow}"
+                                               styleClass="ui-button ui-widget ui-state-default ui-corner-all ui-button-text-only ccButton" >
                             </ice:commandButton>
                         </div>
                     </f:facet>
@@ -41,7 +42,8 @@
                     </ice:dataTable>
 
                 <div class="yui3-u-1 btnPanel textCenter">
-                    <ice:commandButton value="#{msgs['default.button.search.label']}" action="searchUsers" styleClass="ui-button ui-widget ui-state-default ui-corner-all ui-button-text-only"/>
+                    <ice:commandButton value="#{msgs['default.button.search.label']}" action="searchUsers"
+                                       styleClass="ui-button ui-widget ui-state-default ui-corner-all ui-button-text-only ccButton"/>
                 </div>
             </ice:form>
         </div>
