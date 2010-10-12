@@ -8,18 +8,24 @@
     xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
     xsi:schemaLocation="http://www.zkoss.org/2005/zul http://www.zkoss.org/2005/zul/zul.xsd">
 
-    <window apply="net.coolcoders.showcase.FollowingComposer">
-        <listbox id="lstFollowing" width="100%" checkmark="false">
+    <window apply="net.coolcoders.showcase.FindfriendsComposer">
+
+
+        <vbox width="100%">
+            <hbox>
+                <label value="Username:"/>
+                <textbox id="searchText" name="searchText"/>
+                <button id="searchButton" label="Search"/>
+            </hbox>
+            <listbox id="lstUsers" width="100%" checkmark="false">
             <listhead sizable="true">
                 <listheader label="Username" sort="auto"/>
                 <listheader label="Posts" sort="auto"/>
                 <listheader label="Actions"/>
             </listhead>
         </listbox>
-        <paging id="pagFollowing" pageSize="30"/>
-        <div>
-            <a href="/user/search">Find new friends</a>
-        </div>
+        </vbox>
+
     </window>
 
 </zk>

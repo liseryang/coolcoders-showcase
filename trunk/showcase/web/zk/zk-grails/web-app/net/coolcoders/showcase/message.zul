@@ -15,6 +15,8 @@
                 <textbox id="messageText" rows="5" cols="30"/>
                 <button id="createNewPostButton" label="Post"/>
             </box>
+            <separator bar="true" spacing="20px"/>
+
             <div id="messageVBox" class="messageList"/>
             <hbox>
                 <button id="prevButton" label="Prev"/>

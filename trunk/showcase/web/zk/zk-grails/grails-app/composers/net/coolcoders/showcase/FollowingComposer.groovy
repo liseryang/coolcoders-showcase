@@ -37,7 +37,9 @@ class FollowingComposer extends GrailsComposer {
         listitem(value: userInstance) {
           listcell(label: userInstance.username)
           listcell(label: userInstance.messages.size())
-          listcell(label: "Follow!")
+          listcell{
+            a(href:"/user/unfollow/${userInstance.id}",label:"Unfollow")
+          }
         }
       }
     }

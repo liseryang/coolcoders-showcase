@@ -14,7 +14,7 @@
 <g:if test="${flash.error}">
   <div class="message">${flash.error}</div>
 </g:if>
-<div class="center">
+<div class="dialog center singleBorder searchUserBox">
   <z:body zul="/net/coolcoders/showcase/following.zul"/>
 </div>
 
