@@ -9,7 +9,7 @@
             <div class="formContainer simpleMargin center">
                 <p:messages/>
                 <ui:param name="editItem" value="#{editBean.user}"/>
-                <h:panelGrid columns="2">
+                <h:panelGrid columns="2" columnClasses="profileFrmLblCol,profileFrmLblVal">
                     <h:outputLabel for="username" value="Username: *" styleClass="label"/>
                     <h:inputText id="username" value="#{editItem.username}"/>
 
