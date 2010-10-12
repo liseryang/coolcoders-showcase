@@ -63,6 +63,14 @@
     width: 480px;
 }
 
+.profileFrmLblCol {
+    width: 100px;
+}
+
+.profileFrmLblVal {
+    width: 200px;
+}
+
 /* ICEfaces overrides */
 .mnuItmLoginItem {
     width: 100px;

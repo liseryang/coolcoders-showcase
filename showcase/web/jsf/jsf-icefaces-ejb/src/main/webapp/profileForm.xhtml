@@ -5,42 +5,47 @@
      xmlns:icecore="http://icefaces.org/core"
      xmlns:ice="http://www.icesoft.com/icefaces/component">
 
-    <div class="yui3-u-1 ui-widget ui-widget-content ui-corner-all">
-        <ice:form id="login" partialSubmit="true">
-            <center>
-                <div class="ui-widget-content ui-corner-all" style="padding: 3px">
-                    <h:panelGrid columns="2">
-                        <h:outputLabel for="fullname" value="Fullname:" styleClass="label"/>
-                        <h:inputText id="fullname" value="#{registerBean.user.fullname}"/>
+    <div class="yui3-u-1 ui-widget ui-widget-content ui-corner-right ui-corner-bottom">
+        <h:form id="register">
+            <div class="formContainer simpleMargin center">
+                <ice:messages />
+                <ui:param name="editItem" value="#{editBean.user}"/>
+                <h:panelGrid columns="2" columnClasses="profileFrmLblCol,profileFrmLblVal">
+                    <h:outputLabel for="username" value="Username: *" styleClass="label"/>
+                    <h:inputText id="username" value="#{editItem.username}"/>
 
-                        <h:outputLabel for="birthday" value="Birthday:" styleClass="label"/>
-                        <ice:selectInputDate id="birthday"
-                                             value="#{registerBean.user.birthday}"
-                                             renderAsPopup="true">
-                            <f:convertDateTime pattern="MM/dd/yyyy"/>
-                        </ice:selectInputDate>
+                    <h:outputLabel for="fullname" value="Fullname:" styleClass="label"/>
+                    <h:inputText id="fullname" value="#{editItem.fullname}"/>
 
-                        <h:outputLabel for="email" value="Email: *" styleClass="label"/>
-                        <h:inputText id="email" value="#{registerBean.user.email}" required="true"/>
+                    <h:outputLabel for="email" value="Email: *" styleClass="label"/>
+                    <h:inputText id="email" value="#{editItem.email}"/>
 
-                        <h:outputLabel for="username" value="Username: *" styleClass="label"/>
-                        <h:inputText id="username" value="#{registerBean.user.username}" required="true"/>
+                    <h:outputLabel for="gender" value="Gender:" styleClass="label"/>
+                    <h:selectOneRadio id="gender" value="#{editItem.gender}" layout="pageDirection">
+                        <f:selectItems value="#{registerBean.genderItems}"/>
+                    </h:selectOneRadio>
 
-                        <h:outputLabel for="password" value="Password: *" styleClass="label"/>
-                        <h:inputSecret id="password" value="#{registerBean.user.password}" required="true"/>
+                    <h:outputLabel for="password" value="Password: *" styleClass="label"/>
+                    <h:inputSecret id="password" value="#{editItem.password}"/>
 
-                        <h:outputLabel for="confirmPassword" value="Confirm Password: *"
-                                       styleClass="label"/>
-                        <h:inputSecret id="confirmPassword" value="#{registerBean.user.confirmPassword}"
-                                       required="true"/>
-                    </h:panelGrid>
-                    <h:messages style="color: red;"/>
-                    <h:commandButton value="Save" action="#{registerBean.save}" styleClass="ui-button ui-widget ui-state-default ui-corner-all ui-button-text-only"/>
-                    <h:commandButton value="Cancel" action="login" immediate="true" styleClass="ui-button ui-widget ui-state-default ui-corner-all ui-button-text-only"/>
+                    <h:outputLabel for="birthday" value="Birthday:" styleClass="label"/>
+                    <h:inputText id="birthday" value="#{editItem.birthday}">
+                        <f:convertDateTime pattern="MM/dd/yyyy"/>
+                    </h:inputText>
+
+                    <h:outputLabel for="categories" value="Categories:" styleClass="label"/>
+                    <h:selectManyCheckbox id="categories" value="#{editItem.categories}" layout="pageDirection"
+                                          converter="categoryConverter">
+                        <f:selectItems value="#{registerBean.categoryItems}"/>
+                    </h:selectManyCheckbox>
+                </h:panelGrid>
+
+                <div class="btnPanel textCenter">
+                    <ice:commandButton value="Save" action="#{editBean.save}" style="margin-right: 5px" styleClass="ui-button ui-widget ui-state-default ui-corner-all ui-button-text-only ccButton"/>
+                    <ice:commandButton value="Cancel" action="login" immediate="true" styleClass="ui-button ui-widget ui-state-default ui-corner-all ui-button-text-only ccButton"/>
                 </div>
-            </center>
-
-        </ice:form>
+            </div>
+        </h:form>
     </div>
 
 </div>
