@@ -76,12 +76,6 @@
                 <module>jsf-primefaces-ejb</module>
             </modules>
         </profile>
-        <profile>
-            <id>bambo</id>
-            <modules>
-                <module>jsf-primefaces-ejb-bambo</module>
-            </modules>
-        </profile>
     </profiles>
     
 </project>
