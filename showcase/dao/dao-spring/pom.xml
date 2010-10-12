@@ -6,9 +6,9 @@
         <artifactId>dao</artifactId>
         <version>1.0-SNAPSHOT</version>
     </parent>
-    <artifactId>dao-hibernate</artifactId>
+    <artifactId>dao-spring</artifactId>
     <packaging>jar</packaging>
-    <name>Showcase Dao Hibernate</name>
+    <name>Showcase Dao Spring</name>
 
     <dependencies>
         <dependency>
