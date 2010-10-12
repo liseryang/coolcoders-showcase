@@ -1,4 +1,4 @@
-package net.coolcoders.showcase
+package net.cooclcoders.showcase
 
 class LoginController {
 
@@ -7,9 +7,9 @@ class LoginController {
     }
     else {      
       redirect(controller: "message") 
-    }  
-  }         
+    }   
+  }
 
-} 
+}                                       
 
 
