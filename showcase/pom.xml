@@ -79,7 +79,7 @@
             </dependency>
             <dependency>
                 <groupId>${project.groupId}</groupId>
-                <artifactId>dao-jpa</artifactId>
+                <artifactId>dao-jee</artifactId>
                 <version>${project.version}</version>
             </dependency>
 

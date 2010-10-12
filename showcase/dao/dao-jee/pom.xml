@@ -6,9 +6,9 @@
         <artifactId>dao</artifactId>
         <version>1.0-SNAPSHOT</version>
     </parent>
-    <artifactId>dao-jpa</artifactId>
+    <artifactId>dao-jee</artifactId>
     <packaging>jar</packaging>
-    <name>Showcase Dao JPA</name>
+    <name>Showcase Dao JEE</name>
 
     <dependencies>
         <dependency>
