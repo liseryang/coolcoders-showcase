@@ -13,7 +13,7 @@
     <dependencies>
         <dependency>
             <groupId>${project.groupId}</groupId>
-            <artifactId>dao-jpa</artifactId>
+            <artifactId>dao-jee</artifactId>
         </dependency>
         
         <dependency>

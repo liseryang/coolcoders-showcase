@@ -12,7 +12,7 @@
 
     <modules>
         <module>dao-spring</module>
-        <module>dao-jpa</module>
+        <module>dao-jee</module>
     </modules>
 
 </project>
