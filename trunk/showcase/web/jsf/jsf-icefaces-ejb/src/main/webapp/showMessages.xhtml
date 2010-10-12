@@ -19,7 +19,8 @@
                                          style="width: 935px; height: 50px; overflow: hidden;"/>
                         <br/>
                         <ice:commandButton value="Send" action="#{messagesBean.saveMessage}"
-                                           style="margin-top: 5px;" styleClass="ui-button ui-widget ui-state-default ui-corner-all ui-button-text-only"/>
+                                           style="margin-top: 5px;"
+                                           styleClass="ui-button ui-widget ui-state-default ui-corner-all ui-button-text-only ccButton"/>
                     </div>
 
                 <div class="yui3-u-1">
@@ -72,18 +73,18 @@
                             <ice:commandButton value="#{msgs['default.paginate.prev']}"
                                                action="#{messagesBean.prevMessages}"
                                                rendered="#{messagesBean.renderPrev}"
-                                    styleClass="ui-button ui-widget ui-state-default ui-corner-all ui-button-text-only"/>
+                                    styleClass="ui-button ui-widget ui-state-default ui-corner-all ui-button-text-only ccButton"/>
                             <ice:commandButton value="#{msgs['default.paginate.next']}"
                                                action="#{messagesBean.nextMessages}"
                                                rendered="#{messagesBean.renderNext}"
-                                    styleClass="ui-button ui-widget ui-state-default ui-corner-all ui-button-text-only"/>
+                                    styleClass="ui-button ui-widget ui-state-default ui-corner-all ui-button-text-only ccButton"/>
                         </div>
                     </h:panelGroup>
 
                     <div class="btnPanel textCenter">
                         <ice:commandButton value="#{msgs['default.viewfriends.label']}"
                                            action="showUsersYouFollow"
-                                           styleClass="ui-button ui-widget ui-state-default ui-corner-all ui-button-text-only"
+                                           styleClass="ui-button ui-widget ui-state-default ui-corner-all ui-button-text-only ccButton"
                                 />
                     </div>
                 </div>
