@@ -23,7 +23,7 @@
         </vbox>
         <label id="noMessagesErrorLabel"/>
         <div>
-        <a href="user/following">View your friends</a>
+        <a href="/user/following">View your friends</a>
         </div>
     </window>
 
