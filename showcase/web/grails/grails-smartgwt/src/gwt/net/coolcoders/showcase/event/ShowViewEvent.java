@@ -10,7 +10,7 @@ public class ShowViewEvent extends GwtEvent<ShowViewEventHandler> {
     public static Type<ShowViewEventHandler> SWITCHVIEW = new Type<ShowViewEventHandler>();
 
     public enum ViewToShow {
-        PROFILE, LOGOUT, USERLIST
+        PROFILE, LOGOUT, USERLIST, MESSAGES;
     }
 
     private final ViewToShow viewToShow;
