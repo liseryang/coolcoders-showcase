@@ -3,15 +3,16 @@
  * and open the template in the editor.
  */
 
-package net.coolcoders.showcase.web;
+package net.coolcoders.showcase.web.mojarra;
 
 import net.coolcoders.showcase.model.Message;
 import net.coolcoders.showcase.service.MessageService;
+import net.coolcoders.showcase.web.scope.ViewScoped;
 
 import javax.ejb.EJB;
-import javax.enterprise.context.RequestScoped;
 import javax.inject.Inject;
 import javax.inject.Named;
+import java.io.Serializable;
 import java.util.List;
 
 /**
@@ -19,8 +20,8 @@ import java.util.List;
  * @author andreas
  */
 @Named
-@RequestScoped
-public class TweetsBean {
+@ViewScoped
+public class TweetsBean implements Serializable {
 
     @EJB
     private MessageService messageService;

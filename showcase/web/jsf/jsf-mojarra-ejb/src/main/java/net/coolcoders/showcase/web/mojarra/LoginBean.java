@@ -3,17 +3,18 @@
  * and open the template in the editor.
  */
 
-package net.coolcoders.showcase.web;
+package net.coolcoders.showcase.web.mojarra;
 
 import net.coolcoders.showcase.dao.generic.QueryParameter;
 import net.coolcoders.showcase.model.User;
 import net.coolcoders.showcase.model.User_;
 import net.coolcoders.showcase.service.UserService;
+import net.coolcoders.showcase.web.scope.ViewScoped;
 
 import javax.ejb.EJB;
-import javax.enterprise.context.RequestScoped;
 import javax.inject.Inject;
 import javax.inject.Named;
+import java.io.Serializable;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -22,8 +23,8 @@ import java.util.Map;
  * @author andreas
  */
 @Named
-@RequestScoped
-public class LoginBean {
+@ViewScoped
+public class LoginBean implements Serializable {
 
     @EJB
     private UserService userService;
