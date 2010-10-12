@@ -11,7 +11,7 @@
     <name>Showcase Dao</name>
 
     <modules>
-        <module>dao-hibernate</module>
+        <module>dao-spring</module>
         <module>dao-jpa</module>
     </modules>
 
