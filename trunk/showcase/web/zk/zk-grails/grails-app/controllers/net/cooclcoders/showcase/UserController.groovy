@@ -4,11 +4,15 @@ import net.coolcoders.showcase.AppUser
 
 class UserController {
 
-    def following = {    }
+  def following = {    }
 
-    def search = {  
-      
-    }
+  def search = {
+
+  }
+
+  def register = {
+
+  }
 
   def follow = {
     def userToFollow = AppUser.get(params.id)
