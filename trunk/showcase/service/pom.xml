@@ -11,7 +11,7 @@
     <name>Showcase Service</name>
 
     <modules>
-        <module>service-ejb</module>
+        <module>service-jee</module>
         <module>service-spring</module>
     </modules>
 </project>

@@ -90,7 +90,7 @@
             </dependency>
             <dependency>
                 <groupId>${project.groupId}</groupId>
-                <artifactId>service-ejb</artifactId>
+                <artifactId>service-jee</artifactId>
                 <version>${project.version}</version>
             </dependency>
             <dependency>
