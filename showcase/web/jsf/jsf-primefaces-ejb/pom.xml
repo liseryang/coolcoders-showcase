@@ -13,7 +13,7 @@
     <dependencies>
         <dependency>
             <groupId>${project.groupId}</groupId>
-            <artifactId>service-ejb</artifactId>
+            <artifactId>service-jee</artifactId>
         </dependency>
         <dependency>
             <groupId>${project.groupId}</groupId>
