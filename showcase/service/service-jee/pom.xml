@@ -6,9 +6,9 @@
         <artifactId>service</artifactId>
         <version>1.0-SNAPSHOT</version>
     </parent>
-    <artifactId>service-ejb</artifactId>
+    <artifactId>service-jee</artifactId>
     <packaging>jar</packaging>
-    <name>Showcase Service EJB</name>
+    <name>Showcase Service JEE</name>
 
     <dependencies>
         <dependency>
