@@ -1,11 +1,11 @@
 package net.coolcoders.showcase
 
 import org.zkoss.zkgrails.*
-import org.zkoss.zkplus.databind.DataBinder
 import org.zkoss.zk.ui.event.MouseEvent
+import org.zkoss.zkplus.databind.DataBinder
 import org.zkoss.zk.ui.Executions
 
-class RegisterComposer extends GrailsComposer {
+class ProfileComposer extends GrailsComposer {
 
   DataBinder binder = new DataBinder()
   String beanBindingName = "newUser"
@@ -22,15 +22,17 @@ class RegisterComposer extends GrailsComposer {
 
   def errorMessages
 
-  def register
+  def update
 
 
   def afterCompose = { window ->
 
+    AppUser userInstance = AppUser.get(Executions.getCurrent().getSession().getAt("currentUser").id)
+    userInstance.repassword = userInstance.password
     def categoryList = Category.list()
     categoryBox.append {
       categoryList.each {categoryInstance ->
-        def checkBoxInstance = checkbox(id:"category${categoryInstance.id}",label:categoryInstance.name)
+        def checkBoxInstance = checkbox(id: "category${categoryInstance.id}", label: categoryInstance.name, checked: userInstance.categories.any {it.id == categoryInstance.id})
         categoyCheckboxMap[categoryInstance.id] = checkBoxInstance
       }
     }
@@ -42,22 +44,23 @@ class RegisterComposer extends GrailsComposer {
     binder.addBinding(password, "value", "${beanBindingName}.password")
     binder.addBinding(repassword, "value", "${beanBindingName}.repassword")
     binder.addBinding(birthday, "value", "${beanBindingName}.birthday")
+    binder.bindBean(beanBindingName, userInstance)
+    binder.loadAll()
   }
 
 
-  def onClick_register(MouseEvent me) {
-    AppUser userInstance = new AppUser()
+  def onClick_update(MouseEvent me) {
+    AppUser userInstance = AppUser.get(Executions.getCurrent().getSession().getAt("currentUser").id)
     binder.bindBean(beanBindingName, userInstance)
     binder.saveAll()
     def selectedCategoryIDs = []
     categoyCheckboxMap.keySet().each { categoryId ->
       def checkBoxInstance = categoyCheckboxMap.get(categoryId)
-      if(checkBoxInstance.isChecked()) { 
+      if (checkBoxInstance.isChecked()) {
         selectedCategoryIDs.add(categoryId)
       }
     }
-    userInstance.categories = Category.getAll(selectedCategoryIDs)
-    alert("Selected categories: ${userInstance.categories}")
+
     if (!userInstance.validate()) {
       def errorMessageString = ""
       userInstance.errors.allErrors.each { errorInstance ->
@@ -66,9 +69,11 @@ class RegisterComposer extends GrailsComposer {
       errorMessages.value = errorMessageString
     }
     else {
-      userInstance.save()
+      AppUser.withTransaction {
+        userInstance.categories = Category.getAll(selectedCategoryIDs)
+        userInstance.save()
+      }
       Executions.getCurrent().sendRedirect("/")
     }
   }
-
 }

@@ -8,7 +8,7 @@
     xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
     xsi:schemaLocation="http://www.zkoss.org/2005/zul http://www.zkoss.org/2005/zul/zul.xsd">
 
-    <window apply="net.coolcoders.showcase.registerComposer">
+    <window apply="net.coolcoders.showcase.profileComposer">
 
         <vbox width="100%">
             <label id="errorMessages"/>
@@ -51,7 +51,7 @@
                     </vbox>
                 </row>
                 <row>
-                    <button id="register" label="Register"/>
+                    <button id="update" label="Update"/>
                     <button id="cancel" label="Cancel"/>
                 </row>
             </rows>
