@@ -8,7 +8,7 @@
     xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
     xsi:schemaLocation="http://www.zkoss.org/2005/zul http://www.zkoss.org/2005/zul/zul.xsd">
 
-    <window apply="net.coolcoders.showcase.LoginComposer">
+    <window apply="net.coolcoders.showcase.loginComposer">
 
       
 
@@ -29,8 +29,8 @@
                      <button id="login" label="Login"/> 
                   </row>
               </rows>
-
            </grid>
+           <label id="loginHelpText" multiline="true"/>
        </vbox>
 
     </window>
