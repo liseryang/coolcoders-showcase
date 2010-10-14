@@ -1,0 +1,23 @@
+#summary Showcase implemented in with ZK and Grails
+
+= Technologies = 
+
+== View ==
+ * [http://www.zkoss.org/ ZK 5.0.4]
+ * [http://www.grails.org Grails 1.3.4]
+
+== Service ==
+ * [http://www.grails.org Grails 1.3.4]
+
+== Persistence == 
+ * [http://www.grails.org Grails 1.3.4]
+
+= Start up help =
+
+ # Download and install [http://www.grails.org/Download Grails 1.3.4]
+ # Checkout project
+ # Open terminal and go to directory `web/zk/zk-grails/`
+ # Start the app with `grails run-app`
+ # Open your browser and go to http://localhost:8080/zk-grails
+
+ 
