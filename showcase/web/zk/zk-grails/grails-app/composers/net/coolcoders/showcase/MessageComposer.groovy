@@ -39,25 +39,28 @@ class MessageComposer extends GrailsComposer {
       messageVBox.visible = true
       def childElements = []
       childElements.addAll messageVBox.getChildren()
-      def messageInstanceList = messageService.findAllMessagesOfFollowing(currentUser, currentOffset, pageSize)
-      childElements.each {
-        messageVBox.removeChild(it)
-      }
-      messageVBox.append {
-        messageInstanceList.each {messageInstance ->
-          div(class: "messageEntry clearfix") {
-            div(class: "messageDate") {
-              label(value: df.format(messageInstance.created))
-            }
-            div(class: "messageUser") {
-              label(value: messageInstance.creator.username)
-            }
-            div(class: "messageContent") {
-              label(value: messageInstance.content)
+      Message.withTransaction {
+        def messageInstanceList = messageService.findAllMessagesOfFollowing(currentUser, currentOffset, pageSize)
+        childElements.each {
+          messageVBox.removeChild(it)
+        }
+        messageVBox.append {
+          messageInstanceList.each {messageInstance ->
+            div(class: "messageEntry clearfix") {
+              div(class: "messageDate") {
+                label(value: df.format(messageInstance.created))
+              }
+              div(class: "messageUser") {
+                label(value: messageInstance.creator.username)
+              }
+              div(class: "messageContent") {
+                label(value: messageInstance.content)
+              }
             }
           }
         }
       }
+
       togglePagingVisibility()
     }
     else {
@@ -65,10 +68,10 @@ class MessageComposer extends GrailsComposer {
       nextButton.visible = false
       prevButton.visible = false
       if (currentUser.following) {
-         noMessagesErrorLabel.value = "Your friends are very layzy and have not written a single post yet!"
+        noMessagesErrorLabel.value = "Your friends are very layzy and have not written a single post yet!"
       }
       else {
-         noMessagesErrorLabel.value = "Currently you have no friends!"
+        noMessagesErrorLabel.value = "Currently you have no friends!"
       }
     }
 
