@@ -1,0 +1,128 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:wicket="http://wicket.apache.org/dtds.data/wicket-xhtml1.3-strict.dtd"
+      xml:lang="en"
+      lang="en">
+<head>
+    <title>
+        <wicket:message key="default.register.label"/>
+    </title>
+    <meta name="layout" content="main"/>
+</head>
+<body>
+<wicket:extend>
+    <h2>
+        <wicket:message key="register.heading"/>
+    </h2>
+    <div>
+        <form wicket:id="registerForm">
+            <div class="dialog center singleBorder">
+                <table class="center">
+                    <tr>
+                        <td colspan="2">
+                            <div class="errors">
+                                <span id="feedback"></span>
+                            </div>
+                        </td>
+                    </tr>
+                    <tr class="prop">
+                        <td class="name">
+                            <label for="username">
+                                <wicket:message key="user.username.label"/>
+                            </label>
+                        </td>
+                        <td class="value ${hasErrors(bean: userInstance, field: 'username', 'errors')}">
+                            <input wicket:id="username" id="username">
+                        </td>
+                    </tr>
+                    <tr class="prop">
+                        <td class="name">
+                            <label for="fullname">
+                                <wicket:message key="user.fullname.label"/>
+                            </label>
+                        </td>
+                        <td class="value ${hasErrors(bean: userInstance, field: 'fullname', 'errors')}">
+                            <input wicket:id="fullname" id="fullname"/>
+                        </td>
+                    </tr>
+                    <tr class="prop">
+                        <td class="name">
+                            <label for="email">
+                                <wicket:message key="user.email.label"/>
+                            </label>
+                        </td>
+                        <td class="value ${hasErrors(bean: userInstance, field: 'email', 'errors')}">
+                            <input wicket:id="email" id="email"/>
+                        </td>
+                    </tr>
+                    <tr class="prop">
+                        <td class="name">
+                            <label for="email">
+                                <wicket:message key="user.gender.label"/>
+                            </label>
+                        </td>
+                        <td class="value ${hasErrors(bean: userInstance, field: 'gender', 'errors')}">
+                            <g:radioGroup name="gender" values="${Gender.values()}" labels="${Gender.values()*.i18nKey}"
+                                          value="${userInstance.gender}">
+                                <p>${it.radio}
+                                    <g:message code="${it.label}"/>
+                                </p>
+                            </g:radioGroup>
+                        </td>
+                    </tr>
+                    <tr class="prop">
+                        <td class="name">
+                            <label for="password">
+                                <wicket:message key="user.password.label"/>
+                            </label>
+                        </td>
+                        <td class="value ${hasErrors(bean: userInstance, field: 'password', 'errors')}">
+                            <input type="password" wicket:id="password" id="password">
+                        </td>
+                    </tr>
+                    <tr class="prop">
+                        <td class="name">
+                            <label for="passwordRep">
+                                <wicket:message key="user.repassword.label"/>
+                            </label>
+                        </td>
+                        <td class="value ${hasErrors(bean: userInstance, field: 'repassword', 'errors')}">
+                            <input type="password" wicket:id="passwordRep" id="passwordRep">
+                        </td>
+                    </tr>
+                    <tr class="prop">
+                        <td class="name">
+                            <label for="birthday">
+                                <wicket:message key="user.birthday.label"/>
+                            </label>
+                        </td>
+                        <td class="value ${hasErrors(bean: userInstance, field: 'birthday', 'errors')}">
+                            <input type="text" wicket:id="birthday" id="birthday"/>
+                        </td>
+                    </tr>
+                    <tr class="prop">
+                        <td class="name">
+                            <label for="categoryIds">
+                                <g:message code="user.categories.label"/>
+                            </label>
+                        </td>
+                        <td class="value ${hasErrors(bean: userInstance, field: 'categories', 'errors')}">
+                            <g:each in="${availableCategories}" var="categoryInstance">
+                                <p>
+                                    <g:checkBox name="categoryIds" value="${categoryInstance.id}"
+                                                checked="${userInstance.categories.any{it.id == categoryInstance.id}}"/>
+                                    &nbsp;${categoryInstance.name}
+                                </p>
+                            </g:each>
+                        </td>
+                    </tr>
+                </table>
+                <div class="pageActions">
+                    <actionSubmit value="Register" action="save"/>
+                </div>
+            </div>
+        </form>
+    </div>
+</wicket:extend>
+</body>
+</html>

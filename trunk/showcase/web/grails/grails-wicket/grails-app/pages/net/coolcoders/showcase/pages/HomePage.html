@@ -1,0 +1,66 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:wicket="http://wicket.apache.org/dtds.data/wicket-xhtml1.3-strict.dtd"
+      xml:lang="en"
+      lang="en">
+<head>
+    <title>Wicket Homepage</title>
+</head>
+<body>
+<wicket:extend>
+    <div class="login">
+        <div class="dialog center singleBorder">
+            <form wicket:id="loginForm">
+                <table width="100%">
+                    <tr class="prop">
+                        <td class="name">
+                            <label for="username">
+                                <wicket:message key="user.username.label"/>
+                                :
+                            </label>
+                        </td>
+                        <td class="value">
+                            <input wicket:id="username" id="username"/>
+                        </td>
+                    </tr>
+                    <tr class="prop">
+                        <td class="name">
+                            <label for="password">
+                                <wicket:message key="user.password.label"/>
+                                :</label></td>
+                        <td class="value">
+                            <input type="password" wicket:id="password" id="password"/>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td></td>
+                        <td style="text-align:left;">
+                            <input type="submit" wicket:message="value:default.login.label"/>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td colspan="2">
+                            <div class="loginHelp">
+                                <wicket:message key="login.help.message"/>
+                              <pre>
+                                abaumgartner / test123
+                                anerlich / test123
+                                jmihelko / test123
+                                pschneider-manzell / test123
+                              </pre>
+                            </div>
+                            <wicket:link>
+                                <a href="RegisterPage.html">
+                                    <wicket:message key="default.register.label"/>
+                                </a>
+                            </wicket:link>
+                        </td>
+                    </tr>
+                </table>
+            </form>
+        </div>
+    </div>
+</wicket:extend>
+</body>
+</html>
+
