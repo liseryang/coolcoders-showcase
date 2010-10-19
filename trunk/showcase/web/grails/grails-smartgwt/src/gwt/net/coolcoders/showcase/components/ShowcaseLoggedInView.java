@@ -1,5 +1,6 @@
 package net.coolcoders.showcase.components;
 
+import com.google.gwt.user.client.Window;
 import com.smartgwt.client.types.Alignment;
 import com.smartgwt.client.widgets.form.DynamicForm;
 import com.smartgwt.client.widgets.form.fields.LinkItem;
@@ -31,7 +32,7 @@ public class ShowcaseLoggedInView extends ShowcaseBaseView {
         profileLink.setLinkTitle(userInfo.getFullname());
         profileLink.addClickHandler(new ClickHandler() {
             public void onClick(ClickEvent clickEvent) {
-                fireEvent(new ShowViewEvent(ShowViewEvent.SWITCHVIEW, ShowViewEvent.ViewToShow.PROFILE));
+                fireEvent(new ShowViewEvent(ShowViewEvent.ViewToShow.PROFILE));
             }
         });
         LinkItem logoutLink = new LinkItem();
@@ -39,7 +40,7 @@ public class ShowcaseLoggedInView extends ShowcaseBaseView {
         logoutLink.setShowTitle(false);
         logoutLink.addClickHandler(new ClickHandler() {
             public void onClick(ClickEvent clickEvent) {
-                fireEvent(new ShowViewEvent(ShowViewEvent.SWITCHVIEW, ShowViewEvent.ViewToShow.LOGOUT));
+                Window.Location.assign("/smartgwtsc/logout");
             }
         });
         form.setFields(profileLink, logoutLink);

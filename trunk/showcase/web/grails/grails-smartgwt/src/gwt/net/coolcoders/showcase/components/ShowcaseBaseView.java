@@ -33,6 +33,8 @@ public abstract class ShowcaseBaseView extends VLayout implements HasHandlers {
         setWidth100();
         setAutoHeight();
         setDefaultLayoutAlign(Alignment.CENTER);
+        setAnimateFadeTime(1000);
+        setAnimateShowTime(1000);
         headerPanel.addMember(getGreetingsLabel());
         headerPanel.setWidth100();
         headerPanel.setStyleName("bottomBorder");
