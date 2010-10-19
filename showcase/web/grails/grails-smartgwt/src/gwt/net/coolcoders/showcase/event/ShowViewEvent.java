@@ -15,7 +15,7 @@ public class ShowViewEvent extends GwtEvent<ShowViewEventHandler> {
 
     private final ViewToShow viewToShow;
 
-    public ShowViewEvent(Type<ShowViewEventHandler> type, ViewToShow viewToShow) {
+    public ShowViewEvent(ViewToShow viewToShow) {
         this.viewToShow = viewToShow;
     }
 

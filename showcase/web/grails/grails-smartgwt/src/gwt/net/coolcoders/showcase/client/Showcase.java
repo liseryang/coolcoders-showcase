@@ -12,46 +12,61 @@ import net.coolcoders.showcase.views.ProfileView;
 import net.coolcoders.showcase.views.UserListView;
 
 import java.util.HashMap;
+import java.util.LinkedHashMap;
 import java.util.Map;
 
 /**
  * Entry point classes define <code>onModuleLoad()</code>.
  */
-public class Showcase extends BaseEntryPoint implements EntryPoint, AsyncCallback<UserInfoResponse> {
+public class Showcase extends BaseEntryPoint implements EntryPoint, AsyncCallback<LoadLookupDataResponse> {
+
+    private LinkedHashMap<String, String> categoriesMap;
+
     /**
      * This is the entry point method.
      */
     @Override
     public void onModuleLoad() {
         super.onModuleLoad();
-        getUserInfo();
+        loadLookupData();
     }
 
-    private void getUserInfo() {
-        UserInfoAction action = new UserInfoAction();
-        actionService.execute(action, this);
+    private void loadLookupData() {
+        LoadLookupDataAction loadLookupDataAction = new LoadLookupDataAction();
+        actionService.execute(loadLookupDataAction, this);
+
     }
 
     public void onFailure(Throwable caught) {
         SC.say("Oh fuck !" + caught.getMessage());
     }
 
-    public void onSuccess(UserInfoResponse result) {
-        MessagesDataSource ds = MessagesDataSource.getInstance();
-        MessagesView messagesView = new MessagesView(actionService, result, ds);
-        messagesView.draw();
-        ProfileView profileView = new ProfileView(actionService, result);
-        profileView.draw();
-        profileView.hide();
-        UserListView userListView = new UserListView(actionService, result);
-        userListView.draw();
-        userListView.hide();
+    public void onSuccess(LoadLookupDataResponse loadLookupDataResponse) {
+        categoriesMap = loadLookupDataResponse.getCategoriesMap();
 
-        Map<ShowViewEvent.ViewToShow, ShowcaseBaseView> theViews = new HashMap<ShowViewEvent.ViewToShow, ShowcaseBaseView>();
-        theViews.put(ShowViewEvent.ViewToShow.MESSAGES, messagesView);
-        theViews.put(ShowViewEvent.ViewToShow.PROFILE, profileView);
-        theViews.put(ShowViewEvent.ViewToShow.USERLIST, userListView);
-        new ShowViewEventHandler(theViews);
+        UserInfoAction action = new UserInfoAction();
+        actionService.execute(action, new AsyncCallback<UserInfoResponse>() {
+            public void onFailure(Throwable caught) {
+                SC.say("Oh fuck !" + caught.getMessage());
+            }
 
+            public void onSuccess(UserInfoResponse userInfoResponse) {
+                MessagesDataSource ds = MessagesDataSource.getInstance();
+                MessagesView messagesView = new MessagesView(actionService, userInfoResponse, ds);
+                messagesView.draw();
+                ProfileView profileView = new ProfileView(actionService, userInfoResponse, categoriesMap);
+                profileView.draw();
+                profileView.hide();
+                UserListView userListView = new UserListView(actionService, userInfoResponse);
+                userListView.draw();
+                userListView.hide();
+
+                Map<ShowViewEvent.ViewToShow, ShowcaseBaseView> theViews = new HashMap<ShowViewEvent.ViewToShow, ShowcaseBaseView>();
+                theViews.put(ShowViewEvent.ViewToShow.MESSAGES, messagesView);
+                theViews.put(ShowViewEvent.ViewToShow.PROFILE, profileView);
+                theViews.put(ShowViewEvent.ViewToShow.USERLIST, userListView);
+                new ShowViewEventHandler(theViews);
+            }
+        });
     }
 }

@@ -16,6 +16,33 @@ public interface ShowcaseConstants extends com.google.gwt.i18n.client.Constants 
   String birthday_label();
 
   /**
+   * Translated "Back".
+   * 
+   * @return translated "Back"
+   */
+  @DefaultStringValue("Back")
+  @Key("button.back")
+  String button_back();
+
+  /**
+   * Translated "Cancel".
+   * 
+   * @return translated "Cancel"
+   */
+  @DefaultStringValue("Cancel")
+  @Key("button.cancel")
+  String button_cancel();
+
+  /**
+   * Translated "Save".
+   * 
+   * @return translated "Save"
+   */
+  @DefaultStringValue("Save")
+  @Key("button.save")
+  String button_save();
+
+  /**
    * Translated "Send".
    * 
    * @return translated "Send"
