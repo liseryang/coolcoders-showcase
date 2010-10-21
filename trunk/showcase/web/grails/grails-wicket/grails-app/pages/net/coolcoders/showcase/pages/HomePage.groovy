@@ -7,7 +7,6 @@ import org.apache.wicket.PageParameters
 import org.apache.wicket.markup.html.form.Form
 import org.apache.wicket.markup.html.form.PasswordTextField
 import org.apache.wicket.markup.html.form.RequiredTextField
-import org.apache.wicket.markup.html.link.BookmarkablePageLink
 import org.apache.wicket.model.CompoundPropertyModel
 
 /**
@@ -49,7 +48,7 @@ public class HomePage extends BasePage {
         if (theUser && theUser.password == getPassword()) {
           ShowcaseSession.get().setUserId(theUser.getId())
           ShowcaseSession.get().setFullname(theUser.getFullname())
-          setResponsePage(MessagesPage.class)
+          setResponsePage(new MessagesPage(theUser.id))
         }
         else {
           info("Login failed !")

@@ -1,6 +1,6 @@
 package net.coolcoders.showcase
 
-class AppUser {
+class AppUser implements Serializable {
 
   String id
   String username
@@ -8,7 +8,7 @@ class AppUser {
   String password
   String repassword
   String email
-  net.coolcoders.showcase.Gender gender = net.coolcoders.showcase.Gender.MALE
+  Gender gender = Gender.MALE
   Date birthday
 
 

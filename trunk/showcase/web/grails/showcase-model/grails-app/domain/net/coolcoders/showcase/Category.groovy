@@ -1,6 +1,6 @@
 package net.coolcoders.showcase
 
-class Category {
+class Category implements Serializable {
 
   String id
   String name
