@@ -1,6 +1,6 @@
 package net.coolcoders.showcase
 
-class Message {
+class Message implements Serializable  {
 
   String id
   String content
