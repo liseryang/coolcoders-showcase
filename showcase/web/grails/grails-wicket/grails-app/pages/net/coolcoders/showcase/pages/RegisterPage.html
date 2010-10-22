@@ -18,13 +18,6 @@
         <form wicket:id="registerForm">
             <div class="dialog center singleBorder">
                 <table class="center">
-                    <tr>
-                        <td colspan="2">
-                            <div class="errors">
-                                <span id="feedback"></span>
-                            </div>
-                        </td>
-                    </tr>
                     <tr class="prop">
                         <td class="name">
                             <label for="username">
@@ -62,12 +55,14 @@
                             </label>
                         </td>
                         <td class="value ${hasErrors(bean: userInstance, field: 'gender', 'errors')}">
-                            <g:radioGroup name="gender" values="${Gender.values()}" labels="${Gender.values()*.i18nKey}"
-                                          value="${userInstance.gender}">
-                                <p>${it.radio}
-                                    <g:message code="${it.label}"/>
-                                </p>
-                            </g:radioGroup>
+                            <wicket:container wicket:id="gender">
+                                <input wicket:id="male" type="radio">
+                                <wicket:message key="gender.male"/>
+                                </input>
+                                <input wicket:id="female" type="radio">
+                                <wicket:message key="gender.female"/>
+                                </input>
+                            </wicket:container>
                         </td>
                     </tr>
                     <tr class="prop">
@@ -102,23 +97,22 @@
                     </tr>
                     <tr class="prop">
                         <td class="name">
-                            <label for="categoryIds">
-                                <g:message code="user.categories.label"/>
+                            <label>
+                                <wicket:message key="user.categories.label"/>
                             </label>
                         </td>
                         <td class="value ${hasErrors(bean: userInstance, field: 'categories', 'errors')}">
-                            <g:each in="${availableCategories}" var="categoryInstance">
-                                <p>
-                                    <g:checkBox name="categoryIds" value="${categoryInstance.id}"
-                                                checked="${userInstance.categories.any{it.id == categoryInstance.id}}"/>
-                                    &nbsp;${categoryInstance.name}
-                                </p>
-                            </g:each>
+                            <span wicket:id="categories">
+                            <p wicket:id="categoryList">
+                                <input type="checkbox" wicket:id="category">
+                                &nbsp;<span wicket:id="categoryName">category name</span>
+                            </p>
+                            </span>
                         </td>
                     </tr>
                 </table>
                 <div class="pageActions">
-                    <actionSubmit value="Register" action="save"/>
+                    <input type="submit" wicket:message="value:default.register.label"/>
                 </div>
             </div>
         </form>

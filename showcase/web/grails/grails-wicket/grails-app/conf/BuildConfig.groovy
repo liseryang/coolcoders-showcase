@@ -24,22 +24,22 @@ grails.project.dependency.resolution = {
     //mavenRepo "http://repository.jboss.com/maven2/"
   }
   dependencies {
-//    compile('org.apache.wicket:wicket:1.4.12') {
-//      excludes('junit')
-//      excludes('log4j')
-//    }
-//    compile('org.apache.wicket:wicket-extensions:1.4.12') {
-//      excludes('junit')
-//      excludes('log4j')
-//    }
-//    compile('org.apache.wicket:wicket-ioc:1.4.12') {
-//      excludes('junit')
-//      excludes('log4j')
-//    }
-//    compile('org.apache.wicket:wicket-spring:1.4.12') {
-//      excludes('spring')
-//      excludes('junit')
-//      excludes('log4j')
-//    }
+    compile('org.apache.wicket:wicket:1.4.12') {
+      excludes('junit')
+      excludes('log4j')
+    }
+    compile('org.apache.wicket:wicket-extensions:1.4.12') {
+      excludes('junit')
+      excludes('log4j')
+    }
+    compile('org.apache.wicket:wicket-ioc:1.4.12') {
+      excludes('junit')
+      excludes('log4j')
+    }
+    compile('org.apache.wicket:wicket-spring:1.4.12') {
+      excludes('spring')
+      excludes('junit')
+      excludes('log4j')
+    }
   }
 }
