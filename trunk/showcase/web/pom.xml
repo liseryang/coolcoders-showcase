@@ -12,6 +12,7 @@
 
     <modules>
         <module>jsf</module>
+        <module>vaadin-jee</module>
     </modules>
 
 </project>
