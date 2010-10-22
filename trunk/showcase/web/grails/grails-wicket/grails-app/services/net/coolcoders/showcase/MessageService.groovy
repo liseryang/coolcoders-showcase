@@ -8,7 +8,9 @@ class MessageService {
     log.debug "findAllMessagesOfFollowing( appUser=${userId}, offset=${offset}, pageSize=${pageSize} )"
     AppUser theUser = AppUser.get(userId)
     List<AppUser> following = []
-    following.addAll(theUser.following)
+    if (theUser.following) {
+      following.addAll(theUser.following)
+    }
     following.add(theUser)
     def criteria = Message.createCriteria()
     def messages = criteria.list(max: pageSize, offset: offset) {
