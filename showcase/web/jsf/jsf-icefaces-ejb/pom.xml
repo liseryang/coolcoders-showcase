@@ -6,9 +6,7 @@
         <artifactId>jsf</artifactId>
         <version>1.0-SNAPSHOT</version>
     </parent>
-    <groupId>net.cool-coders.showcase</groupId>
     <artifactId>jsf-icefaces-ejb</artifactId>
-    <version>1.0-SNAPSHOT</version>
     <packaging>war</packaging>
     <name>Showcase Web JSF ICEfaces EJB</name>
 
