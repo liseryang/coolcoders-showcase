@@ -3,6 +3,7 @@ package net.coolcoders.showcase.web.vaadin.panel;
 import com.vaadin.data.Property;
 import com.vaadin.terminal.Sizeable;
 import com.vaadin.ui.*;
+import net.coolcoders.showcase.web.vaadin.ShowcaseApplication;
 import net.coolcoders.showcase.web.vaadin.UiConstants;
 
 import java.util.Arrays;
@@ -17,11 +18,14 @@ public class HeaderPanel extends GridLayout {
 
     private static final List<String> THEMES = Arrays.asList("sunny", "redmond");
 
-    private String currentTheme = "sunny";
+    private ShowcaseApplication application;
 
-    public HeaderPanel(final Window mainWindow) {
+    private String currentTheme = "redmond";
+
+    public HeaderPanel(final ShowcaseApplication application) {
         super(2, 1);
-        mainWindow.setTheme(currentTheme);
+        this.application = application;
+        application.getMainWindow().setTheme(currentTheme);
 
         this.setStyleName(UiConstants.CSS_HEADER_PANEL + " marginTop");
         this.setWidth(UiConstants.CONTENT_WIDTH, Sizeable.UNITS_PIXELS);
@@ -38,10 +42,11 @@ public class HeaderPanel extends GridLayout {
             @Override
             public void valueChange(Property.ValueChangeEvent valueChangeEvent) {
                 currentTheme = (String) valueChangeEvent.getProperty().getValue();
-                mainWindow.setTheme(currentTheme);
+                application.getMainWindow().setTheme(currentTheme);
             }
         });
         themesBox.setImmediate(true);
+        themesBox.setNullSelectionAllowed(false);
         themesBoxPanel.addComponent(themesBox);
 
         this.addComponent(themesBoxPanel, 1, 0);

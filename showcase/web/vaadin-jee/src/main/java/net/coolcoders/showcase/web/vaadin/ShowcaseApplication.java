@@ -79,7 +79,7 @@ public class ShowcaseApplication extends Application {
     }
 
     private void initHeaderPanel() {
-        headerPanel = new HeaderPanel(mainWindow);
+        headerPanel = new HeaderPanel(this);
         mainPanel.addComponent(headerPanel);
         mainPanel.setComponentAlignment(headerPanel, Alignment.MIDDLE_CENTER);
     }
