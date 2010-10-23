@@ -1,4 +1,4 @@
-package net.coolcoders.showcase.web.vaadin;
+package net.coolcoders.showcase.web.vaadin.fieldFactory;
 
 import com.vaadin.data.Item;
 import com.vaadin.data.util.BeanItemContainer;
@@ -6,17 +6,18 @@ import com.vaadin.ui.*;
 import net.coolcoders.showcase.model.Category;
 import net.coolcoders.showcase.model.Gender;
 import net.coolcoders.showcase.service.CategoryService;
+import net.coolcoders.showcase.web.vaadin.UiConstants;
 
-import javax.ejb.EJB;
-import javax.ejb.Stateless;
 import java.util.Arrays;
 import java.util.List;
 
-@Stateless
 public class UserFieldFactory extends DefaultFieldFactory {
 
-    @EJB
     private CategoryService categoryService;
+
+    public UserFieldFactory(CategoryService categoryService) {
+        this.categoryService = categoryService;
+    }
 
     @Override
     public Field createField(Item item, Object propertyId,

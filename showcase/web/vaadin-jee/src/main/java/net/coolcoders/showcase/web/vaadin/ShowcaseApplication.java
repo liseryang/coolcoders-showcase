@@ -1,19 +1,20 @@
 package net.coolcoders.showcase.web.vaadin;
 
 import com.vaadin.Application;
-import com.vaadin.data.util.BeanItem;
 import com.vaadin.terminal.Sizeable;
-import com.vaadin.ui.*;
-import net.coolcoders.showcase.model.Message;
+import com.vaadin.ui.Alignment;
+import com.vaadin.ui.GridLayout;
+import com.vaadin.ui.VerticalLayout;
+import com.vaadin.ui.Window;
 import net.coolcoders.showcase.model.User;
 import net.coolcoders.showcase.service.CategoryService;
 import net.coolcoders.showcase.service.MessageService;
 import net.coolcoders.showcase.service.UserService;
+import net.coolcoders.showcase.web.vaadin.fieldFactory.UserFieldFactory;
+import net.coolcoders.showcase.web.vaadin.panel.*;
 
 import javax.ejb.EJB;
 import javax.enterprise.context.SessionScoped;
-import java.util.Arrays;
-import java.util.Date;
 
 /**
  * @author andreas
@@ -22,6 +23,8 @@ import java.util.Date;
 public class ShowcaseApplication extends Application {
 
     private static final long serialVersionUID = 6995787607833385105L;
+
+    private static final String WINDOW_CAPTION = "COOL CODERS SHOWCASE with Vaadin";
 
     private Window mainWindow;
 
@@ -35,8 +38,6 @@ public class ShowcaseApplication extends Application {
 
     private User currentUser = new User();
 
-    private Message message = new Message();
-
     @EJB
     private CategoryService categoryService;
 
@@ -46,7 +47,6 @@ public class ShowcaseApplication extends Application {
     @EJB
     private MessageService messageService;
 
-    @EJB
     private UserFieldFactory userFieldFactory;
 
     @Override
@@ -61,7 +61,7 @@ public class ShowcaseApplication extends Application {
     }
 
     private void initMainWindow() {
-        mainWindow = new Window("COOL CODERS SHOWCASE with Vaadin");
+        mainWindow = new Window(WINDOW_CAPTION);
         setMainWindow(mainWindow);
     }
 
@@ -93,104 +93,29 @@ public class ShowcaseApplication extends Application {
         mainPanel.setComponentAlignment(footerPanel, Alignment.MIDDLE_CENTER);
     }
 
-    private void initRegisterPanel() {
-        final Form registerForm = new Form();
-        registerForm.setStyleName("marginTop");
-        registerForm.setCaption("Register");
-        registerForm.setWidth(260, Sizeable.UNITS_PIXELS);
-
-        BeanItem<User> userItem = new BeanItem<User>(currentUser);
-        registerForm.setItemDataSource(userItem);
-        registerForm.setFormFieldFactory(userFieldFactory);
-        registerForm.setVisibleItemProperties(Arrays.asList("username", "fullname", "email", "gender", "password", "birthday", "categories"));
-
-        contentPanel.addComponent(registerForm);
-        contentPanel.setComponentAlignment(registerForm, Alignment.MIDDLE_CENTER);
-
-        // The cancel / apply btnPanel
-        HorizontalLayout btnPanel = new HorizontalLayout();
-        btnPanel.setStyleName("marginBottom");
-        btnPanel.setWidth(160, Sizeable.UNITS_PIXELS);
-        btnPanel.setSpacing(true);
-        Button okBtn = new Button("Ok", new Button.ClickListener() {
-            public void buttonClick(Button.ClickEvent event) {
-                registerForm.commit();
-                userService.persist(currentUser);
-                contentPanel.removeAllComponents();
-            }
-        });
-        btnPanel.addComponent(okBtn);
-        Button cancelBtn = new Button("Cancel", new Button.ClickListener() {
-            public void buttonClick(Button.ClickEvent event) {
-                goToLoginPanel();
-            }
-        });
-        btnPanel.addComponent(cancelBtn);
-        contentPanel.addComponent(btnPanel);
-        contentPanel.setComponentAlignment(btnPanel, Alignment.MIDDLE_CENTER);
-    }
-
-    private void initMessage() {
-        message = new Message();
-        message.setAuthor(currentUser);
-        message.setContent("");
-    }
-
-    private void initMessagesPanel() {
-        initMessage();
-
-        VerticalLayout layout = new VerticalLayout();
-        layout.setWidth(300, Sizeable.UNITS_PIXELS);
-        final TextArea textArea = new TextArea("What cool code are you hacking right now?");
-        textArea.setWidth(230, Sizeable.UNITS_PIXELS);
-        textArea.setHeight(50, Sizeable.UNITS_PIXELS);
-        textArea.setImmediate(true);
-        layout.addComponent(textArea);
-        layout.setComponentAlignment(textArea, Alignment.MIDDLE_CENTER);
-
-        Button btnSend = new Button("Send");
-        btnSend.addListener(new Button.ClickListener() {
-            @Override
-            public void buttonClick(Button.ClickEvent clickEvent) {
-                message.setCreated(new Date());
-                message.setContent((String) textArea.getValue());
-                messageService.persist(message);
-                initMessage();
-            }
-        });
-
-        layout.addComponent(btnSend);
-        layout.setComponentAlignment(btnSend, Alignment.MIDDLE_CENTER);
-
-        contentPanel.addComponent(layout);
-        contentPanel.setComponentAlignment(layout, Alignment.MIDDLE_CENTER);
-    }
-
     public void clearContentPanel() {
         contentPanel.removeAllComponents();
     }
 
     public void goToLoginPanel() {
         clearContentPanel();
-        VerticalLayout loginLayout = new LoginPanel(this);
-        contentPanel.addComponent(loginLayout);
+        contentPanel.addComponent(new LoginPanel(this));
     }
 
     public void goToRegisterPanel() {
         clearContentPanel();
-        initRegisterPanel();
+        contentPanel.addComponent(new RegisterPanel(this));
     }
 
     public void goToMessagesPanel() {
         clearContentPanel();
-        initMessagesPanel();
-    }
-
-    public UserService getUserService() {
-        return userService;
+        contentPanel.addComponent(new MessagesPanel(this));
     }
 
     public UserFieldFactory getUserFieldFactory() {
+        if(userFieldFactory == null) {
+            userFieldFactory = new UserFieldFactory(categoryService);
+        }
         return userFieldFactory;
     }
 
@@ -201,4 +126,13 @@ public class ShowcaseApplication extends Application {
     public void setCurrentUser(User currentUser) {
         this.currentUser = currentUser;
     }
+
+    public UserService getUserService() {
+        return userService;
+    }
+
+    public MessageService getMessageService() {
+        return messageService;
+    }
+
 }

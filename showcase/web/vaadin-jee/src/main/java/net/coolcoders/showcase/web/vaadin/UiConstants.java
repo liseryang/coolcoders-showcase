@@ -17,7 +17,4 @@ public class UiConstants {
 
     public static final String COMMON_FIELD_WIDTH = "12em";
 
-
-
-
 }

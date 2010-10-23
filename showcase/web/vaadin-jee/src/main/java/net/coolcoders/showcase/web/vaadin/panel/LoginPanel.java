@@ -1,4 +1,4 @@
-package net.coolcoders.showcase.web.vaadin;
+package net.coolcoders.showcase.web.vaadin.panel;
 
 import com.vaadin.data.util.BeanItem;
 import com.vaadin.terminal.Sizeable;
@@ -6,6 +6,7 @@ import com.vaadin.ui.*;
 import net.coolcoders.showcase.dao.generic.QueryParameter;
 import net.coolcoders.showcase.model.User;
 import net.coolcoders.showcase.model.User_;
+import net.coolcoders.showcase.web.vaadin.ShowcaseApplication;
 
 import java.util.Arrays;
 
