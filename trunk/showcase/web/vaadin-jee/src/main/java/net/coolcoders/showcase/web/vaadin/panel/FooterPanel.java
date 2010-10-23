@@ -1,9 +1,10 @@
-package net.coolcoders.showcase.web.vaadin;
+package net.coolcoders.showcase.web.vaadin.panel;
 
 import com.vaadin.terminal.Sizeable;
 import com.vaadin.ui.Alignment;
 import com.vaadin.ui.GridLayout;
 import com.vaadin.ui.Label;
+import net.coolcoders.showcase.web.vaadin.UiConstants;
 
 /**
  * @author <a href="mailto:andreas@bambo.it">Andreas Baumgartner, andreas@bambo.it</a>

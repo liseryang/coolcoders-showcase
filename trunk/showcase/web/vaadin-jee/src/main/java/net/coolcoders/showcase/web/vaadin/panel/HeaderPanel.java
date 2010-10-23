@@ -1,8 +1,9 @@
-package net.coolcoders.showcase.web.vaadin;
+package net.coolcoders.showcase.web.vaadin.panel;
 
 import com.vaadin.data.Property;
 import com.vaadin.terminal.Sizeable;
 import com.vaadin.ui.*;
+import net.coolcoders.showcase.web.vaadin.UiConstants;
 
 import java.util.Arrays;
 import java.util.List;
