@@ -6,7 +6,9 @@ import com.vaadin.ui.Alignment;
 import com.vaadin.ui.GridLayout;
 import com.vaadin.ui.VerticalLayout;
 import com.vaadin.ui.Window;
+import net.coolcoders.showcase.dao.generic.QueryParameter;
 import net.coolcoders.showcase.model.User;
+import net.coolcoders.showcase.model.User_;
 import net.coolcoders.showcase.service.CategoryService;
 import net.coolcoders.showcase.service.MessageService;
 import net.coolcoders.showcase.service.UserService;
@@ -57,7 +59,10 @@ public class ShowcaseApplication extends Application {
         initContentPanel();
         initFooterPanel();
 
-        goToLoginPanel();
+//        goToLoginPanel();
+
+        currentUser = userService.find(QueryParameter.with(User_.username, "anerlich"));
+        goToMessagesPanel();
     }
 
     private void initMainWindow() {

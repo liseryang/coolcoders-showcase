@@ -23,13 +23,16 @@ public class MessagesPanel extends VerticalLayout {
 
     public MessagesPanel(final ShowcaseApplication application) {
         this.application = application;
-        this.setWidth(300, Sizeable.UNITS_PIXELS);
+
+        VerticalLayout panelLayout = new VerticalLayout();
+        panelLayout.setWidth(300, Sizeable.UNITS_PIXELS);
+
         final TextArea textArea = new TextArea("What cool code are you hacking right now?");
         textArea.setWidth(230, Sizeable.UNITS_PIXELS);
         textArea.setHeight(50, Sizeable.UNITS_PIXELS);
         textArea.setImmediate(true);
-        this.addComponent(textArea);
-        this.setComponentAlignment(textArea, Alignment.MIDDLE_CENTER);
+        panelLayout.addComponent(textArea);
+        panelLayout.setComponentAlignment(textArea, Alignment.MIDDLE_CENTER);
 
         Button btnSend = new Button("Send");
         btnSend.addListener(new Button.ClickListener() {
@@ -42,9 +45,11 @@ public class MessagesPanel extends VerticalLayout {
             }
         });
 
-        this.addComponent(btnSend);
-        this.setComponentAlignment(btnSend, Alignment.MIDDLE_CENTER);
+        panelLayout.addComponent(btnSend);
+        panelLayout.setComponentAlignment(btnSend, Alignment.MIDDLE_CENTER);
 
+        this.addComponent(panelLayout);
+        this.setComponentAlignment(panelLayout, Alignment.MIDDLE_CENTER);
     }
 
     private void initMessage() {

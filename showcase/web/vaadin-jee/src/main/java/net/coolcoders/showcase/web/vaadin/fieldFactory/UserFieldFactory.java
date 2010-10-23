@@ -35,6 +35,7 @@ public class UserFieldFactory extends DefaultFieldFactory {
             tf.setRequiredError("Please enter your Password");
             tf.setWidth(UiConstants.COMMON_FIELD_WIDTH);
             tf.setNullRepresentation("");
+            tf.setSecret(true);
         } else if ("email".equals(propertyId)) {
             TextField tf = (TextField) f;
             tf.setRequired(true);
