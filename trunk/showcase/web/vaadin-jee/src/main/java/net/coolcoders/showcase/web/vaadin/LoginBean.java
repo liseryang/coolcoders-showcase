@@ -27,18 +27,7 @@ public class LoginBean extends Application {
 
     private static final long serialVersionUID = 6995787607833385105L;
 
-    private static final int MAIN_WIDTH = 820;
-
-    private static final int CONTENT_WIDTH = 800;
-
-    private static final String CSS_CONTENT_PANEL = "ui-widget ui-widget-content ui-corner-all ";
-
-    private static final String CSS_HEADER_PANEL = "ui-widget ui-widget-header ui-corner-all ";
-
     private static final List<String> THEMES = Arrays.asList("sunny", "redmond");
-
-    private static final String COMMON_FIELD_WIDTH = "12em";
-
 
     private String currentTheme = "sunny";
 
@@ -86,16 +75,16 @@ public class LoginBean extends Application {
     private void initMainPanel() {
         mainPanel = new VerticalLayout();
         mainWindow.addComponent(mainPanel);
-        mainPanel.addStyleName(CSS_CONTENT_PANEL);
-        mainPanel.setWidth(MAIN_WIDTH, Sizeable.UNITS_PIXELS);
+        mainPanel.addStyleName(UiConstants.CSS_CONTENT_PANEL);
+        mainPanel.setWidth(UiConstants.MAIN_WIDTH, Sizeable.UNITS_PIXELS);
         mainPanel.setSpacing(true);
     }
 
     private void initHeaderPanel() {
         headerPanel = new GridLayout(2, 1);
         headerPanel
-                .setStyleName(CSS_HEADER_PANEL + " marginTop");
-        headerPanel.setWidth(CONTENT_WIDTH, Sizeable.UNITS_PIXELS);
+                .setStyleName(UiConstants.CSS_HEADER_PANEL + " marginTop");
+        headerPanel.setWidth(UiConstants.CONTENT_WIDTH, Sizeable.UNITS_PIXELS);
 
         Label headerCaption = new Label("<h1>Cool Coders Showcase</h1>");
         headerCaption.setContentMode(Label.CONTENT_XHTML);
@@ -124,8 +113,8 @@ public class LoginBean extends Application {
 
     private void initContentPanel() {
         contentPanel = new VerticalLayout();
-        contentPanel.addStyleName(CSS_CONTENT_PANEL);
-        contentPanel.setWidth(CONTENT_WIDTH, Sizeable.UNITS_PIXELS);
+        contentPanel.addStyleName(UiConstants.CSS_CONTENT_PANEL);
+        contentPanel.setWidth(UiConstants.CONTENT_WIDTH, Sizeable.UNITS_PIXELS);
         mainPanel.addComponent(contentPanel);
         mainPanel.setComponentAlignment(contentPanel, Alignment.MIDDLE_CENTER);
     }
@@ -133,8 +122,8 @@ public class LoginBean extends Application {
     private void initFooterPanel() {
         footerPanel = new GridLayout(1, 1);
         footerPanel
-                .setStyleName(CSS_HEADER_PANEL + "marginTop marginBottom");
-        footerPanel.setWidth(CONTENT_WIDTH, Sizeable.UNITS_PIXELS);
+                .setStyleName(UiConstants.CSS_HEADER_PANEL + "marginTop marginBottom");
+        footerPanel.setWidth(UiConstants.CONTENT_WIDTH, Sizeable.UNITS_PIXELS);
 
         Label footerCaption = new Label("<h3><a href=\"http://vaadin.com/home\">Vaadin</a> Showcase by <a href=\"http://code.google.com/p/coolcoders-showcase/\">Cool Coders</a></h3>");
         footerCaption.setContentMode(Label.CONTENT_XHTML);
@@ -276,23 +265,23 @@ public class LoginBean extends Application {
                 TextField tf = (TextField) f;
                 tf.setRequired(true);
                 tf.setRequiredError("Please enter your Username");
-                tf.setWidth(COMMON_FIELD_WIDTH);
+                tf.setWidth(UiConstants.COMMON_FIELD_WIDTH);
                 tf.setNullRepresentation("");
             } else if ("password".equals(propertyId)) {
                 TextField tf = (TextField) f;
                 tf.setRequired(true);
                 tf.setRequiredError("Please enter your Password");
-                tf.setWidth(COMMON_FIELD_WIDTH);
+                tf.setWidth(UiConstants.COMMON_FIELD_WIDTH);
                 tf.setNullRepresentation("");
             } else if ("email".equals(propertyId)) {
                 TextField tf = (TextField) f;
                 tf.setRequired(true);
                 tf.setRequiredError("Please enter your Email");
-                tf.setWidth(COMMON_FIELD_WIDTH);
+                tf.setWidth(UiConstants.COMMON_FIELD_WIDTH);
                 tf.setNullRepresentation("");
             } else if ("fullname".equals(propertyId)) {
                 TextField tf = (TextField) f;
-                tf.setWidth(COMMON_FIELD_WIDTH);
+                tf.setWidth(UiConstants.COMMON_FIELD_WIDTH);
                 tf.setNullRepresentation("");
             } else if ("gender".equals(propertyId)) {
                 OptionGroup group = new OptionGroup("Gender", Arrays.asList(Gender.MALE, Gender.FEMALE));
