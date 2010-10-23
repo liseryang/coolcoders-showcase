@@ -4,10 +4,8 @@ import com.vaadin.Application;
 import com.vaadin.data.util.BeanItem;
 import com.vaadin.terminal.Sizeable;
 import com.vaadin.ui.*;
-import net.coolcoders.showcase.dao.generic.QueryParameter;
 import net.coolcoders.showcase.model.Message;
 import net.coolcoders.showcase.model.User;
-import net.coolcoders.showcase.model.User_;
 import net.coolcoders.showcase.service.CategoryService;
 import net.coolcoders.showcase.service.MessageService;
 import net.coolcoders.showcase.service.UserService;
@@ -21,7 +19,7 @@ import java.util.Date;
  * @author andreas
  */
 @SessionScoped
-public class LoginBean extends Application {
+public class ShowcaseApplication extends Application {
 
     private static final long serialVersionUID = 6995787607833385105L;
 
@@ -31,11 +29,11 @@ public class LoginBean extends Application {
 
     private GridLayout headerPanel;
 
-    private VerticalLayout contentPanel;
-
     private GridLayout footerPanel;
 
-    private User user = new User();
+    private VerticalLayout contentPanel;
+
+    private User currentUser = new User();
 
     private Message message = new Message();
 
@@ -59,8 +57,7 @@ public class LoginBean extends Application {
         initContentPanel();
         initFooterPanel();
 
-        initLoginForm();
-
+        goToLoginPanel();
     }
 
     private void initMainWindow() {
@@ -96,56 +93,13 @@ public class LoginBean extends Application {
         mainPanel.setComponentAlignment(footerPanel, Alignment.MIDDLE_CENTER);
     }
 
-
-    private void initLoginForm() {
-        final Form loginForm = new Form();
-        loginForm.setStyleName("marginTop");
-        loginForm.setCaption("Login");
-        loginForm.setWidth(260, Sizeable.UNITS_PIXELS);
-
-        BeanItem<User> userItem = new BeanItem<User>(user);
-        loginForm.setItemDataSource(userItem);
-        loginForm.setFormFieldFactory(userFieldFactory);
-        loginForm.setVisibleItemProperties(Arrays.asList("username", "password"));
-
-        contentPanel.addComponent(loginForm);
-        contentPanel.setComponentAlignment(loginForm, Alignment.MIDDLE_CENTER);
-
-        // The cancel / apply btnPanel
-        HorizontalLayout btnPanel = new HorizontalLayout();
-        btnPanel.setStyleName("marginBottom");
-        btnPanel.setWidth(160, Sizeable.UNITS_PIXELS);
-        btnPanel.setSpacing(true);
-        Button loginBtn = new Button("Login", new Button.ClickListener() {
-            public void buttonClick(Button.ClickEvent event) {
-                loginForm.commit();
-                User loggedInUser = userService.find(QueryParameter.with(User_.username, user.getUsername()).and(User_.password, user.getPassword()));
-                if(loggedInUser != null) {
-                    user = loggedInUser;
-                    contentPanel.removeAllComponents();
-                    initMessagesForm();
-                }
-            }
-        });
-        btnPanel.addComponent(loginBtn);
-        Button registerBtn = new Button("Register", new Button.ClickListener() {
-            public void buttonClick(Button.ClickEvent event) {
-                contentPanel.removeAllComponents();
-                initRegisterForm();
-            }
-        });
-        btnPanel.addComponent(registerBtn);
-        contentPanel.addComponent(btnPanel);
-        contentPanel.setComponentAlignment(btnPanel, Alignment.MIDDLE_CENTER);
-    }
-
-    private void initRegisterForm() {
+    private void initRegisterPanel() {
         final Form registerForm = new Form();
         registerForm.setStyleName("marginTop");
         registerForm.setCaption("Register");
         registerForm.setWidth(260, Sizeable.UNITS_PIXELS);
 
-        BeanItem<User> userItem = new BeanItem<User>(user);
+        BeanItem<User> userItem = new BeanItem<User>(currentUser);
         registerForm.setItemDataSource(userItem);
         registerForm.setFormFieldFactory(userFieldFactory);
         registerForm.setVisibleItemProperties(Arrays.asList("username", "fullname", "email", "gender", "password", "birthday", "categories"));
@@ -161,15 +115,14 @@ public class LoginBean extends Application {
         Button okBtn = new Button("Ok", new Button.ClickListener() {
             public void buttonClick(Button.ClickEvent event) {
                 registerForm.commit();
-                userService.persist(user);
+                userService.persist(currentUser);
                 contentPanel.removeAllComponents();
             }
         });
         btnPanel.addComponent(okBtn);
         Button cancelBtn = new Button("Cancel", new Button.ClickListener() {
             public void buttonClick(Button.ClickEvent event) {
-                contentPanel.removeAllComponents();
-                initLoginForm();
+                goToLoginPanel();
             }
         });
         btnPanel.addComponent(cancelBtn);
@@ -179,11 +132,11 @@ public class LoginBean extends Application {
 
     private void initMessage() {
         message = new Message();
-        message.setAuthor(user);
+        message.setAuthor(currentUser);
         message.setContent("");
     }
 
-    private void initMessagesForm() {
+    private void initMessagesPanel() {
         initMessage();
 
         VerticalLayout layout = new VerticalLayout();
@@ -213,8 +166,39 @@ public class LoginBean extends Application {
         contentPanel.setComponentAlignment(layout, Alignment.MIDDLE_CENTER);
     }
 
-    public CategoryService getCategoryService() {
-        return categoryService;
+    public void clearContentPanel() {
+        contentPanel.removeAllComponents();
     }
 
+    public void goToLoginPanel() {
+        clearContentPanel();
+        VerticalLayout loginLayout = new LoginPanel(this);
+        contentPanel.addComponent(loginLayout);
+    }
+
+    public void goToRegisterPanel() {
+        clearContentPanel();
+        initRegisterPanel();
+    }
+
+    public void goToMessagesPanel() {
+        clearContentPanel();
+        initMessagesPanel();
+    }
+
+    public UserService getUserService() {
+        return userService;
+    }
+
+    public UserFieldFactory getUserFieldFactory() {
+        return userFieldFactory;
+    }
+
+    public User getCurrentUser() {
+        return currentUser;
+    }
+
+    public void setCurrentUser(User currentUser) {
+        this.currentUser = currentUser;
+    }
 }

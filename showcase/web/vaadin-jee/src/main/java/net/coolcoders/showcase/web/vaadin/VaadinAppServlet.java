@@ -17,11 +17,11 @@ import javax.servlet.http.HttpServletRequest;
 public class VaadinAppServlet extends AbstractApplicationServlet {
 
     @Inject
-    LoginBean application;
+    ShowcaseApplication application;
 
     @Override
     protected Class<? extends Application> getApplicationClass() throws ClassNotFoundException {
-        return LoginBean.class;
+        return ShowcaseApplication.class;
     }
 
     @Override
