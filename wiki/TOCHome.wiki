@@ -6,6 +6,7 @@
     * [ShowcaseJSFIcefacesEJB JSF with Icefaces based on EJB]
     * [ShowcaseJSFPrimefacesEJB JSF with Primcefaces based on EJB]
     * [ShowcaseZKGrails ZK with Grails]
+    * [ShowcaseWicketGrails Wicket with Grails]
   * [UserStories Userstories]
     * [UserStoryLogin Login]
     * [UserStoryRegister Register]
