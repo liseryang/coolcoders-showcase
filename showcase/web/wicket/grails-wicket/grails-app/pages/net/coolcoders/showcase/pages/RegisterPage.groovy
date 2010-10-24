@@ -52,7 +52,7 @@ class RegisterPage extends BasePage {
   private void register() {
     println "${getRegisterData().getPassword()} / ${getRegisterData().getPasswordRep()}"
     if (!(getRegisterData().getPassword() == getRegisterData().getPasswordRep())) {
-      info("user.password.nomatch")
+      info(getMessage('user.password.nomatch'))
       return
     }
     else {
@@ -65,8 +65,7 @@ class RegisterPage extends BasePage {
       }
       else {
         newUser.errors.each {
-          println it
-          info(it.fieldError. code)
+          info(getErrorMessage(it.fieldError, newUser))
         }
       }
     }
