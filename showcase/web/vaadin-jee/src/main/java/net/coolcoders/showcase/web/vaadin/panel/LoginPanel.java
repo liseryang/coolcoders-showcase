@@ -7,6 +7,7 @@ import net.coolcoders.showcase.dao.generic.QueryParameter;
 import net.coolcoders.showcase.model.User;
 import net.coolcoders.showcase.model.User_;
 import net.coolcoders.showcase.web.vaadin.ShowcaseApplication;
+import net.coolcoders.showcase.web.vaadin.UiConstants;
 
 import java.util.Arrays;
 
@@ -17,7 +18,17 @@ import java.util.Arrays;
  */
 public class LoginPanel extends VerticalLayout {
 
+    final private ShowcaseApplication application;
+
+    private Form loginForm;
+
     public LoginPanel(final ShowcaseApplication application) {
+        this.application = application;
+        addLoginForm();
+        addUsersPanel();
+    }
+
+    private void addLoginForm() {
         final User currentUser = application.getCurrentUser();
         final Form loginForm = new Form();
         loginForm.setStyleName("marginTop");
@@ -32,7 +43,6 @@ public class LoginPanel extends VerticalLayout {
         this.addComponent(loginForm);
         this.setComponentAlignment(loginForm, Alignment.MIDDLE_CENTER);
 
-        // The cancel / apply btnPanel
         HorizontalLayout btnPanel = new HorizontalLayout();
         btnPanel.setStyleName("marginBottom");
         btnPanel.setWidth(160, Sizeable.UNITS_PIXELS);
@@ -44,7 +54,7 @@ public class LoginPanel extends VerticalLayout {
                         QueryParameter.with(User_.username, currentUser.getUsername()).
                                 and(User_.password, currentUser.getPassword()));
                 if(loggedInUser != null) {
-                    application.setUser(loggedInUser);
+                    application.setCurrentUser(loggedInUser);
                     application.goToMessagesPanel();
                 }
             }
@@ -59,4 +69,41 @@ public class LoginPanel extends VerticalLayout {
         this.addComponent(btnPanel);
         this.setComponentAlignment(btnPanel, Alignment.MIDDLE_CENTER);
     }
+
+    private void addUsersPanel() {
+        VerticalLayout usersLayout = new VerticalLayout();
+        usersLayout.setStyleName(UiConstants.CSS_CONTENT_PANEL + "marginBottom");
+        usersLayout.setWidth(270, Sizeable.UNITS_PIXELS);
+
+        Label lblUsersCaption = new Label("<h3>Following Users exists by default</h3>");
+        lblUsersCaption.setSizeUndefined();
+        lblUsersCaption.setContentMode(Label.CONTENT_XHTML);
+        usersLayout.addComponent(lblUsersCaption);
+        usersLayout.setComponentAlignment(lblUsersCaption, Alignment.MIDDLE_CENTER);
+
+        Label lblUser1 = new Label("abaumgartner / test123");
+        lblUser1.setSizeUndefined();
+        usersLayout.addComponent(lblUser1);
+        usersLayout.setComponentAlignment(lblUser1, Alignment.MIDDLE_CENTER);
+
+        Label lblUser2 = new Label("anerlich / test123");
+        lblUser2.setSizeUndefined();
+        usersLayout.addComponent(lblUser2);
+        usersLayout.setComponentAlignment(lblUser2, Alignment.MIDDLE_CENTER);
+
+        Label lblUser3 = new Label("jmihelko / test123");
+        lblUser3.setSizeUndefined();
+        usersLayout.addComponent(lblUser3);
+        usersLayout.setComponentAlignment(lblUser3, Alignment.MIDDLE_CENTER);
+
+        Label lblUser4 = new Label("pschneider-manzell / test123 ");
+        lblUser4.setSizeUndefined();
+        usersLayout.addComponent(lblUser4);
+        usersLayout.setComponentAlignment(lblUser4, Alignment.MIDDLE_CENTER);
+
+        this.addComponent(usersLayout);
+        this.setComponentAlignment(usersLayout, Alignment.MIDDLE_CENTER);
+
+    }
+
 }

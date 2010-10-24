@@ -47,6 +47,7 @@ public class HeaderPanel extends GridLayout {
         });
         themesBox.setImmediate(true);
         themesBox.setNullSelectionAllowed(false);
+        themesBox.select(currentTheme);
         themesBoxPanel.addComponent(themesBox);
 
         this.addComponent(themesBoxPanel, 1, 0);
