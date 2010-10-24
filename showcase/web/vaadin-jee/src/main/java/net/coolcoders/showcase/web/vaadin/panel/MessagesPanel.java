@@ -5,6 +5,8 @@ import com.vaadin.ui.*;
 import net.coolcoders.showcase.model.Message;
 import net.coolcoders.showcase.web.vaadin.ShowcaseApplication;
 import net.coolcoders.showcase.web.vaadin.UiConstants;
+import net.coolcoders.showcase.web.vaadin.template.HorizontalLayoutCentered;
+import net.coolcoders.showcase.web.vaadin.template.MyPanel;
 
 import java.text.SimpleDateFormat;
 import java.util.Date;
@@ -38,32 +40,13 @@ public class MessagesPanel extends VerticalLayout {
 
         addSendMessagePanel();
         addShowMessagesPanel();
-
-        Button btnFriends = new Button("Your Friends");
-        btnFriends.addListener(new Button.ClickListener() {
-            @Override
-            public void buttonClick(Button.ClickEvent clickEvent) {
-                application.goToFriendsPanel();
-            }
-        });
-        this.addComponent(btnFriends);
+        addNavPanel();
     }
 
     private void addSendMessagePanel() {
-        VerticalLayout sendMessagePanel = new VerticalLayout();
-        sendMessagePanel.setStyleName(UiConstants.CSS_CONTENT_PANEL + "marginTop");
-        sendMessagePanel.setWidth(300, Sizeable.UNITS_PIXELS);
-        sendMessagePanel.setSpacing(true);
-
-        // Send Message Caption
-        VerticalLayout sendMessageCaptionPanel = new VerticalLayout();
-        sendMessageCaptionPanel.setStyleName(UiConstants.CSS_HEADER_PANEL);
-        Label lblSendMessageCaption = new Label("What cool code are you hacking right now?");
-        lblSendMessageCaption.setSizeUndefined();
-        sendMessageCaptionPanel.addComponent(lblSendMessageCaption);
-        sendMessageCaptionPanel.setComponentAlignment(lblSendMessageCaption, Alignment.MIDDLE_CENTER);
-        sendMessagePanel.addComponent(sendMessageCaptionPanel);
-
+        MyPanel sendMessagePanel = new MyPanel("What cool code are you hacking right now?");
+        sendMessagePanel.setStyleName("marginTop");
+        
         final TextArea textArea = new TextArea();
         textArea.setWidth(230, Sizeable.UNITS_PIXELS);
         textArea.setHeight(50, Sizeable.UNITS_PIXELS);
@@ -156,6 +139,21 @@ public class MessagesPanel extends VerticalLayout {
         this.removeComponent(showMessagesPanel);
         messages = null;
         addShowMessagesPanel();
+    }
+
+    private void addNavPanel() {
+        HorizontalLayoutCentered navLayout = new HorizontalLayoutCentered(110);
+        navLayout.setStyleName("marginTop marginBottom");
+        Button btnFriends = new Button("Your Friends");
+        btnFriends.setSizeUndefined();
+        btnFriends.addListener(new Button.ClickListener() {
+            @Override
+            public void buttonClick(Button.ClickEvent clickEvent) {
+                application.goToFriendsPanel();
+            }
+        });
+        navLayout.getContentLayout().addComponent(btnFriends);
+        this.addComponent(navLayout);
     }
 
     private void initMessage() {

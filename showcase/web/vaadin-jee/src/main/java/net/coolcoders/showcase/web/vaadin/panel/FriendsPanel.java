@@ -3,10 +3,13 @@ package net.coolcoders.showcase.web.vaadin.panel;
 import com.vaadin.data.Property;
 import com.vaadin.data.util.BeanItemContainer;
 import com.vaadin.terminal.Sizeable;
-import com.vaadin.ui.*;
+import com.vaadin.ui.Button;
+import com.vaadin.ui.Table;
+import com.vaadin.ui.VerticalLayout;
 import net.coolcoders.showcase.model.User;
 import net.coolcoders.showcase.web.vaadin.ShowcaseApplication;
 import net.coolcoders.showcase.web.vaadin.UiConstants;
+import net.coolcoders.showcase.web.vaadin.template.HorizontalLayoutCentered;
 
 import java.util.List;
 
@@ -23,7 +26,7 @@ public class FriendsPanel extends VerticalLayout {
     private User selectedUser;
     private List<User> users;
     private Button btnUnfollow;
-    private HorizontalLayout btnLayout;
+    private HorizontalLayoutCentered btnLayout;
     private VerticalLayout friendsLayout;
 
     public FriendsPanel(final ShowcaseApplication application) {
@@ -35,10 +38,25 @@ public class FriendsPanel extends VerticalLayout {
         this.addComponent(friendsLayout);
         addFriendsTable();
 
-        btnLayout = new HorizontalLayout();
-        btnLayout.setSizeFull();
+        btnLayout = new HorizontalLayoutCentered(80);
         this.addComponent(btnLayout);
         addUnfollowButton();
+
+        addNavPanel();
+    }
+
+    private void addNavPanel() {
+        HorizontalLayoutCentered navLayout = new HorizontalLayoutCentered(160);
+        navLayout.setStyleName("marginTop marginBottom");
+
+        Button btnGotoMessages = new Button("Messages");
+        btnGotoMessages.addListener(new Button.ClickListener() {
+            @Override
+            public void buttonClick(Button.ClickEvent clickEvent) {
+                application.goToMessagesPanel();
+            }
+        });
+        navLayout.getContentLayout().addComponent(btnGotoMessages);
 
         Button btnGotoSearch = new Button("Search");
         btnGotoSearch.addListener(new Button.ClickListener() {
@@ -47,7 +65,9 @@ public class FriendsPanel extends VerticalLayout {
                 application.goToSearchUsersPanel();
             }
         });
-        btnLayout.addComponent(btnGotoSearch);
+        navLayout.getContentLayout().addComponent(btnGotoSearch);
+        
+        this.addComponent(navLayout);
     }
 
     private void addFriendsTable() {
@@ -83,6 +103,7 @@ public class FriendsPanel extends VerticalLayout {
     }
 
     private void addUnfollowButton() {
+
         btnUnfollow = new Button("Unfollow");
         btnUnfollow.setEnabled(selectedUser != null);
         btnUnfollow.addListener(new Button.ClickListener() {
@@ -95,12 +116,11 @@ public class FriendsPanel extends VerticalLayout {
             }
 
         });
-        btnLayout.addComponent(btnUnfollow);
-        btnLayout.setComponentAlignment(btnUnfollow, Alignment.MIDDLE_RIGHT);
+        btnLayout.getContentLayout().addComponent(btnUnfollow);
     }
 
     private void refreshUnfollowButton() {
-        btnLayout.removeComponent(btnUnfollow);
+        btnLayout.getContentLayout().removeComponent(btnUnfollow);
         addUnfollowButton();
     }
 

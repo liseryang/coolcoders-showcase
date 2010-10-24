@@ -9,6 +9,7 @@ import net.coolcoders.showcase.model.User;
 import net.coolcoders.showcase.model.User_;
 import net.coolcoders.showcase.web.vaadin.ShowcaseApplication;
 import net.coolcoders.showcase.web.vaadin.UiConstants;
+import net.coolcoders.showcase.web.vaadin.template.HorizontalLayoutCentered;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -32,20 +33,21 @@ public class SearchUsersPanel extends VerticalLayout {
 
     public SearchUsersPanel(ShowcaseApplication application) {
         this.application = application;
+
         addSearchPanel();
 
         usersLayout = new VerticalLayout();
         usersLayout.setStyleName(UiConstants.CSS_CONTENT_PANEL + "marginTop");
         this.addComponent(usersLayout);
-
         addUsersTable();
+
+        addNavPanel();
     }
 
     private void addSearchPanel() {
         VerticalLayout searchLayout = new VerticalLayout();
         this.addComponent(searchLayout);
         searchLayout.setStyleName(UiConstants.CSS_CONTENT_PANEL);
-
         VerticalLayout searchCaptionLayout = new VerticalLayout();
         searchCaptionLayout.setStyleName(UiConstants.CSS_HEADER_PANEL);
         Label lblSearchCaption = new Label("Search for user");
@@ -126,6 +128,22 @@ public class SearchUsersPanel extends VerticalLayout {
         usersLayout.removeAllComponents();
         addUsersTable();
     }
+
+    private void addNavPanel() {
+        HorizontalLayoutCentered navLayout = new HorizontalLayoutCentered(110);
+        navLayout.setStyleName("marginTop marginBottom");
+        
+        Button btnGotoSearch = new Button("Friends");
+        btnGotoSearch.addListener(new Button.ClickListener() {
+            @Override
+            public void buttonClick(Button.ClickEvent clickEvent) {
+                application.goToFriendsPanel();
+            }
+        });
+        navLayout.getContentLayout().addComponent(btnGotoSearch);
+        this.addComponent(navLayout);
+    }
+
 
     public void search(String searchString) {
         users = application.getUserService().list(QueryParameter.with(User_.username, QueryParameterEntry.Operator.STARTS, searchString),
