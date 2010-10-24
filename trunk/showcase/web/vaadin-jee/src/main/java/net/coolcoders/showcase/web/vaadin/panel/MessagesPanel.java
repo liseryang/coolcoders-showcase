@@ -39,7 +39,15 @@ public class MessagesPanel extends VerticalLayout {
         this.application = application;
 
         addSendMessagePanel();
+
+        showMessagesPanel = new VerticalLayout();
+        showMessagesPanel.setStyleName(UiConstants.CSS_CONTENT_PANEL + "marginTop marginBottom");
+        showMessagesPanel.setWidth(600, Sizeable.UNITS_PIXELS);
+        showMessagesPanel.setSpacing(true);
+        this.addComponent(showMessagesPanel);
+        this.setComponentAlignment(showMessagesPanel, Alignment.MIDDLE_CENTER);
         addShowMessagesPanel();
+        
         addNavPanel();
     }
 
@@ -79,11 +87,6 @@ public class MessagesPanel extends VerticalLayout {
     }
 
     private void addShowMessagesPanel() {
-        showMessagesPanel = new VerticalLayout();
-        showMessagesPanel.setStyleName(UiConstants.CSS_CONTENT_PANEL + "marginTop marginBottom");
-        showMessagesPanel.setWidth(600, Sizeable.UNITS_PIXELS);
-        showMessagesPanel.setSpacing(true);
-
         List<Message> messageList = getMessages();
         for (Message msg : messageList) {
             HorizontalLayout msgLayout = new HorizontalLayout();
@@ -130,13 +133,10 @@ public class MessagesPanel extends VerticalLayout {
 
         showMessagesPanel.addComponent(btnLayout);
         showMessagesPanel.setComponentAlignment(btnLayout, Alignment.MIDDLE_CENTER);
-
-        this.addComponent(showMessagesPanel);
-        this.setComponentAlignment(showMessagesPanel, Alignment.MIDDLE_CENTER);
     }
 
     private void reloadShowMessagesPanel() {
-        this.removeComponent(showMessagesPanel);
+        showMessagesPanel.removeAllComponents();
         messages = null;
         addShowMessagesPanel();
     }
