@@ -38,15 +38,33 @@ public class MessagesPanel extends VerticalLayout {
 
         addSendMessagePanel();
         addShowMessagesPanel();
+
+        Button btnFriends = new Button("Your Friends");
+        btnFriends.addListener(new Button.ClickListener() {
+            @Override
+            public void buttonClick(Button.ClickEvent clickEvent) {
+                application.goToFriendsPanel();
+            }
+        });
+        this.addComponent(btnFriends);
     }
 
     private void addSendMessagePanel() {
         VerticalLayout sendMessagePanel = new VerticalLayout();
-        sendMessagePanel.setStyleName("marginTop");
+        sendMessagePanel.setStyleName(UiConstants.CSS_CONTENT_PANEL + "marginTop");
         sendMessagePanel.setWidth(300, Sizeable.UNITS_PIXELS);
         sendMessagePanel.setSpacing(true);
 
-        final TextArea textArea = new TextArea("What cool code are you hacking right now?");
+        // Send Message Caption
+        VerticalLayout sendMessageCaptionPanel = new VerticalLayout();
+        sendMessageCaptionPanel.setStyleName(UiConstants.CSS_HEADER_PANEL);
+        Label lblSendMessageCaption = new Label("What cool code are you hacking right now?");
+        lblSendMessageCaption.setSizeUndefined();
+        sendMessageCaptionPanel.addComponent(lblSendMessageCaption);
+        sendMessageCaptionPanel.setComponentAlignment(lblSendMessageCaption, Alignment.MIDDLE_CENTER);
+        sendMessagePanel.addComponent(sendMessageCaptionPanel);
+
+        final TextArea textArea = new TextArea();
         textArea.setWidth(230, Sizeable.UNITS_PIXELS);
         textArea.setHeight(50, Sizeable.UNITS_PIXELS);
         textArea.setImmediate(true);
@@ -79,7 +97,7 @@ public class MessagesPanel extends VerticalLayout {
 
     private void addShowMessagesPanel() {
         showMessagesPanel = new VerticalLayout();
-        showMessagesPanel.setStyleName("marginTop marginBottom");
+        showMessagesPanel.setStyleName(UiConstants.CSS_CONTENT_PANEL + "marginTop marginBottom");
         showMessagesPanel.setWidth(600, Sizeable.UNITS_PIXELS);
         showMessagesPanel.setSpacing(true);
 
