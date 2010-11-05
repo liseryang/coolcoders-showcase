@@ -55,26 +55,28 @@
                         </wicket:container>
                     </td>
                 </tr>
-                <tr class="prop">
-                    <td class="name">
-                        <label for="password">
-                            <wicket:message key="user.password.label"/>
-                        </label>
-                    </td>
-                    <td class="value ${hasErrors(bean: userInstance, field: 'password', 'errors')}">
-                        <input type="password" wicket:id="password" id="password">
-                    </td>
-                </tr>
-                <tr class="prop">
-                    <td class="name">
-                        <label for="passwordRep">
-                            <wicket:message key="user.repassword.label"/>
-                        </label>
-                    </td>
-                    <td class="value ${hasErrors(bean: userInstance, field: 'repassword', 'errors')}">
-                        <input type="password" wicket:id="passwordRep" id="passwordRep">
-                    </td>
-                </tr>
+                <wicket:container wicket:id="pwdContainer">
+                    <tr class="prop">
+                        <td class="name">
+                            <label for="password">
+                                <wicket:message key="user.password.label"/>
+                            </label>
+                        </td>
+                        <td class="value ${hasErrors(bean: userInstance, field: 'password', 'errors')}">
+                            <input type="password" wicket:id="password" id="password">
+                        </td>
+                    </tr>
+                    <tr class="prop">
+                        <td class="name">
+                            <label for="passwordRep">
+                                <wicket:message key="user.repassword.label"/>
+                            </label>
+                        </td>
+                        <td class="value ${hasErrors(bean: userInstance, field: 'repassword', 'errors')}">
+                            <input type="password" wicket:id="passwordRep" id="passwordRep">
+                        </td>
+                    </tr>
+                </wicket:container>
                 <tr class="prop">
                     <td class="name">
                         <label for="birthday">
@@ -103,7 +105,9 @@
             </table>
         </div>
         <div class="pageActions">
-            <input wicket:id="submitButton" type="submit" wicket:message="value:default.register.label"/>
+            <input type="submit" wicket:id="registerButton" wicket:message="value:default.register.label"/>
+            <input type="submit" wicket:id="updateButton" wicket:message="value:default.button.update.label"/>
+            <input wicket:id="cancelButton" type="submit" wicket:message="value:default.cancel.label"/>
         </div>
     </form>
 </wicket:panel>

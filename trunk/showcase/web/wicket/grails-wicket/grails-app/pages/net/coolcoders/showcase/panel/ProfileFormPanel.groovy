@@ -1,8 +1,12 @@
 package net.coolcoders.showcase.panel
 
+import net.coolcoders.showcase.AppUser
 import net.coolcoders.showcase.Category
 import net.coolcoders.showcase.Gender
+import net.coolcoders.showcase.pages.HomePage
+import net.coolcoders.showcase.pages.MessagesPage
 import org.apache.wicket.extensions.markup.html.form.DateTextField
+import org.apache.wicket.markup.html.WebMarkupContainer
 import org.apache.wicket.markup.html.basic.Label
 import org.apache.wicket.markup.html.list.ListItem
 import org.apache.wicket.markup.html.list.ListView
@@ -16,29 +20,38 @@ import org.apache.wicket.markup.html.form.*
  */
 abstract class ProfileFormPanel extends Panel {
   private ProfileData profileData = new ProfileData();
+  private WebMarkupContainer pwdContainer = new WebMarkupContainer("pwdContainer") {
 
-  public ProfileFormPanel(String id, Button button) {
+    @Override
+    def boolean isVisible() {
+      return getUser() == null
+    }
+
+  }
+  private AppUser appUser;
+
+  public ProfileFormPanel(String id) {
     super(id)
     CompoundPropertyModel<ProfileData> formModel = new CompoundPropertyModel<ProfileData>(profileData)
     Form<ProfileData> form = new Form<ProfileData>("registerForm", formModel) {
-
+      @Override
       protected void onSubmit() {
         onDataSubmitted()
       }
-
     }
     form.add(new RequiredTextField<String>("username"))
     form.add(new RequiredTextField<String>("email"))
     form.add(new RequiredTextField<String>("fullname"))
-    form.add(new PasswordTextField<String>("password"))
-    form.add(new PasswordTextField<String>("passwordRep"))
+    pwdContainer.add(new PasswordTextField("password"))
+    pwdContainer.add(new PasswordTextField("passwordRep"))
+    form.add(pwdContainer)
     RadioGroup<Gender> radioGroup = new RadioGroup<Gender>("gender")
     radioGroup.add(new Radio<Gender>("male", new Model(Gender.MALE)))
     radioGroup.add(new Radio<Gender>("female", new Model(Gender.FEMALE)))
+    radioGroup.setRequired(true)
     form.add(radioGroup)
     form.add(new DateTextField("birthday"))
     CheckGroup<Category> categoryGroup = new CheckGroup<Category>("categories", profileData.getCategories())
-
     ListView<Category> categoryList = new ListView<Category>("categoryList", Category.findAll()) {
       protected void populateItem(ListItem<Category> item) {
         Category category = item.getModelObject();
@@ -48,19 +61,52 @@ abstract class ProfileFormPanel extends Panel {
     }
     categoryGroup.add(categoryList)
     form.add(categoryGroup)
-    form.add(button)
+    Button cancelButton = new Button("cancelButton") {
+      def void onSubmit() {
+        if (getUser() != null) {
+          setResponsePage(MessagesPage.class)
+        }
+        else {
+          setResponsePage(HomePage.class)
+        }
+      }
+    }
+    cancelButton.setDefaultFormProcessing(false)
+    form.add(cancelButton)
+    form.add(new Button("registerButton") {
+      @Override
+      def boolean isVisible() {
+        return getUser() == null
+      }
+    })
+    form.add(new Button("updateButton") {
+      @Override
+      def boolean isVisible() {
+        return getUser() != null
+      }
+    })
     add(form)
   }
 
-  public ProfileData getProfileData() {
+  public final ProfileData getProfileData() {
     return profileData
   }
 
-  public void setProfileData(ProfileData profileData1) {
-    this.profileData = profileData
+  public final void setUser(AppUser user) {
+    this.appUser = user
+    profileData.setUsername(appUser.username)
+    profileData.setFullname(appUser.fullname)
+    profileData.setEmail(appUser.email)
+    profileData.setGender(appUser.gender)
+    profileData.setBirthday(appUser.birthday)
+    profileData.setCategories(appUser.categories.asList())
   }
 
-  public abstract void onDataSubmitted()
+  private AppUser getUser() {
+    return appUser
+  }
+
+  public void onDataSubmitted() {}
 
 
   class ProfileData implements Serializable {
@@ -137,5 +183,4 @@ abstract class ProfileFormPanel extends Panel {
       this.categories = categories
     }
   }
-
 }

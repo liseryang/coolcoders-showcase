@@ -48,7 +48,7 @@ public class HomePage extends BasePage {
         if (theUser && theUser.password == getPassword()) {
           ShowcaseSession.get().setUserId(theUser.getId())
           ShowcaseSession.get().setFullname(theUser.getFullname())
-          setResponsePage(new MessagesPage(theUser.id))
+          setResponsePage(MessagesPage.class)
         }
         else {
           info("Login failed !")
