@@ -21,8 +21,8 @@ class MessagesPage extends BasePage {
   private String newMessage
   private List<Message> messages;
 
-  public MessagesPage(String userId) {
-    this.userId = userId
+  public MessagesPage() {
+    this.userId = ShowcaseSession.get().getUserId()
     messages = messageService.findAllMessagesOfFollowing(userId, 0, 10)
     addTheForm();
     addTheList();
