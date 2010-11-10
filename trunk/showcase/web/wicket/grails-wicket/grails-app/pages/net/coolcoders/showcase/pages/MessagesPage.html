@@ -9,7 +9,7 @@
 </head>
 <body>
 <wicket:extend>
-    <div class="login">
+    <div>
         <div class="dialog center singleBorder">
             <form wicket:id="createMessageForm">
                 <p>
@@ -27,6 +27,12 @@
             <div wicket:id="singleMessage">
                 singleMEssagePanel here...
             </div>
+        </div>
+        <div wicket:id="paginator" class="pageActions"></div>
+        <div class="pageActions">
+            <wicket:link>
+                <a href="FriendsPage.html"><wicket:message key="default.viewfriends.label"/></a>
+            </wicket:link>
         </div>
     </div>
 </wicket:extend>

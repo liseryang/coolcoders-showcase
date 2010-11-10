@@ -3,10 +3,14 @@ package net.coolcoders.showcase.pages
 import net.coolcoders.showcase.Message
 import net.coolcoders.showcase.ShowcaseSession
 import net.coolcoders.showcase.panel.SingleMessagePanel
+import org.apache.wicket.extensions.markup.html.repeater.util.SortableDataProvider
 import org.apache.wicket.markup.html.form.Form
 import org.apache.wicket.markup.html.form.RequiredTextField
-import org.apache.wicket.markup.html.list.ListItem
-import org.apache.wicket.markup.html.list.ListView
+import org.apache.wicket.markup.html.navigation.paging.PagingNavigator
+import org.apache.wicket.markup.repeater.Item
+import org.apache.wicket.markup.repeater.data.DataView
+import org.apache.wicket.model.IModel
+import org.apache.wicket.model.Model
 import org.apache.wicket.model.PropertyModel
 import org.apache.wicket.spring.injection.annot.SpringBean
 
@@ -40,21 +44,41 @@ class MessagesPage extends BasePage {
     PropertyModel<String> formModel = new PropertyModel<String>(this, "newMessage")
     Form<String> form = new Form<String>("createMessageForm", formModel) {
       protected void onSubmit() {
-        println "onSubmit ${getNewMessage()}"
+        addMessage();
       }
     }
     form.add(new RequiredTextField<String>("newMessage", formModel))
     add(form)
   }
 
-  private void addTheList(String userId) {
+  private void addMessage() {
+    messageService.addMessage(userId, newMessage);
+    newMessage = ""
+  }
 
-    ListView<Message> messagesList = new ListView<Message>("messageList", messages) {
-      protected void populateItem(ListItem<Message> item) {
+  private void addTheList(String userId) {
+    DataView<Message> messagesList = new DataView<Message>("messageList", new MessagesProvider(), 10) {
+      protected void populateItem(Item<Message> item) {
         Message theMessage = item.getModelObject()
         item.add(new SingleMessagePanel("singleMessage", theMessage));
       }
     }
     add(messagesList);
+    add(new PagingNavigator("paginator", messagesList))
+  }
+
+  class MessagesProvider extends SortableDataProvider<Message> {
+    Iterator<? extends Message> iterator(int first, int count) {
+      return messageService.findAllMessagesOfFollowing(userId, first, count).iterator();
+    }
+
+    int size() {
+      return messageService.numberOfAllMessagesOfFollowing(userId);
+    }
+
+    IModel<Message> model(Message t) {
+      return new Model(Message.get(t.id));
+    }
+
   }
 }
