@@ -51,7 +51,7 @@
 
     <filter-mapping>
         <filter-name>openSessionInViewFilter</filter-name>
-        <url-pattern>/*</url-pattern>
+        <url-pattern>/app/*</url-pattern>
     </filter-mapping>
 
     <listener>

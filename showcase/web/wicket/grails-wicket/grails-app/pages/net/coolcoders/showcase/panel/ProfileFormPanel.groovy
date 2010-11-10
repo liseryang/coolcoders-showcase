@@ -52,13 +52,15 @@ abstract class ProfileFormPanel extends Panel {
     form.add(radioGroup)
     form.add(new DateTextField("birthday"))
     CheckGroup<Category> categoryGroup = new CheckGroup<Category>("categories", profileData.getCategories())
+    categoryGroup.setRe
     ListView<Category> categoryList = new ListView<Category>("categoryList", Category.findAll()) {
       protected void populateItem(ListItem<Category> item) {
         Category category = item.getModelObject();
         item.add(new Label("categoryName", category.name))
-        item.add(new Check("category", item.getModel()))
+        item.add(new Check("category", item.getModel(), categoryGroup))
       }
     }
+    categoryList.setReuseItems(true)
     categoryGroup.add(categoryList)
     form.add(categoryGroup)
     Button cancelButton = new Button("cancelButton") {
@@ -100,6 +102,7 @@ abstract class ProfileFormPanel extends Panel {
     profileData.setGender(appUser.gender)
     profileData.setBirthday(appUser.birthday)
     profileData.setCategories(appUser.categories.asList())
+    profileData.setPassword(appUser.password)
   }
 
   private AppUser getUser() {
@@ -182,5 +185,11 @@ abstract class ProfileFormPanel extends Panel {
     public List<Category> setCategories(List<Category> categories) {
       this.categories = categories
     }
+
+    def String toString() {
+      return "ProfileData[username=${getUsername()} fullname=${getFullname()} email=${getEmail()} categories=${getCategories()}";
+    }
+
+
   }
 }

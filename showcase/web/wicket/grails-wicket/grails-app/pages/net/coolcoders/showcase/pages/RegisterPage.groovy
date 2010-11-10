@@ -3,11 +3,14 @@ package net.coolcoders.showcase.pages
 import net.coolcoders.showcase.AppUser
 import net.coolcoders.showcase.ShowcaseSession
 import net.coolcoders.showcase.panel.ProfileFormPanel
+import org.apache.wicket.spring.injection.annot.SpringBean
 
 /**
  * @author <a href="mailto:josip.mihelko@googlemail.com">Josip Mihelko</a>
  */
 class RegisterPage extends BasePage {
+  @SpringBean(name = "appUserService")
+  def transient appUserService
   ProfileFormPanel profileForm
 
   public RegisterPage() {
@@ -26,13 +29,13 @@ class RegisterPage extends BasePage {
       return
     }
     else {
-      AppUser newUser = new AppUser()
-      newUser.properties = profileForm.getProfileData().properties
-      if (newUser.validate() && newUser.save(flush: true)) {
-        addDefaultFollowing(newUser)
-        ShowcaseSession.get().setUserId(newUser.id)
+      def map = appUserService.registerUser(profileForm.getProfileData())
+      AppUser newUser = map.user
+      println"success: ${map.success}"
+      if (map.success) {
+        ShowcaseSession.get().setUserId(newUser.getId())
         ShowcaseSession.get().setFullname(newUser.getFullname())
-        setResponsePage(new MessagesPage(newUser.id))
+        setResponsePage(MessagesPage.class)
       }
       else {
         newUser.errors.each {
@@ -43,10 +46,5 @@ class RegisterPage extends BasePage {
   }
 
   private void addDefaultFollowing(AppUser user) {
-    AppUser abaumgartner = AppUser.findByUsername("abaumgartner")
-    AppUser anerlich = AppUser.findByUsername("anerlich")
-    AppUser jmihelko = AppUser.findByUsername("jmihelko")
-    AppUser pschneidermanzell = AppUser.findByUsername("pschneider-manzell")
-    user.addToFollowing(abaumgartner).addToFollowing(anerlich).addToFollowing(jmihelko).addToFollowing(pschneidermanzell)
   }
 }

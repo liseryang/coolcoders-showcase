@@ -3,11 +3,14 @@ package net.coolcoders.showcase.pages
 import net.coolcoders.showcase.AppUser
 import net.coolcoders.showcase.ShowcaseSession
 import net.coolcoders.showcase.panel.ProfileFormPanel
+import org.apache.wicket.spring.injection.annot.SpringBean
 
 /**
  * @author <a href="mailto:josip.mihelko@googlemail.com">Josip Mihelko</a>
  */
 class ProfilePage extends BasePage {
+  @SpringBean(name = "appUserService")
+  def transient appUserService
   private ProfileFormPanel profileForm;
 
   public ProfilePage() {
@@ -17,11 +20,23 @@ class ProfilePage extends BasePage {
       }
     }
     AppUser theUser = AppUser.get(ShowcaseSession.get().getUserId())
+    println "User.categories: ${theUser.categories}"
     profileForm.setUser(theUser)
     add(profileForm)
   }
 
   private void update() {
-    println "${profileForm.getProfileData()}"
+    net.coolcoders.showcase.panel.ProfileFormPanel.ProfileData data = profileForm.getProfileData();
+    String userId = ShowcaseSession.get().getUserId()
+    def map = appUserService.updateUser(userId, data)
+    if (map.success) {
+      setResponsePage(MessagesPage.class)
+    }
+    else {
+      AppUser theUser = map.user
+      theUser.errors.each {
+        info(getErrorMessage(it.fieldError, theUser))
+      }
+    }
   }
 }

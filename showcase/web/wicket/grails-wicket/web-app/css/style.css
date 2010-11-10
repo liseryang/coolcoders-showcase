@@ -759,8 +759,10 @@ td.errors input {
     border-spacing: 10px;
     border-radius: 5px;
     padding: 10px;
-
 }
 
+#main {
+    margin-top: 20px;
+}
 
 
