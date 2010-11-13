@@ -11,12 +11,14 @@
         <class>net.coolcoders.showcase.model.Message</class>
 
         <properties>
-            <property name="hibernate.hbm2ddl.auto" value="create-drop" />
+            <property name="hibernate.hbm2ddl.auto" value="create" />
 
             <property name="javax.persistence.jdbc.driver" value="org.hsqldb.jdbcDriver" />
             <property name="javax.persistence.jdbc.url" value="jdbc:hsqldb:mem:mymemdb" />
+            <!--<property name="javax.persistence.jdbc.url" value="jdbc:hsqldb:hsql://localhost/xdb" />-->
             <property name="javax.persistence.jdbc.user" value="sa" />
             <property name="javax.persistence.jdbc.password" value="" />
+            
         </properties>
     </persistence-unit>
 </persistence>
