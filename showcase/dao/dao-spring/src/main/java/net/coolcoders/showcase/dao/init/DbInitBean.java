@@ -6,8 +6,8 @@ import net.coolcoders.showcase.model.Gender;
 import net.coolcoders.showcase.model.Message;
 import net.coolcoders.showcase.model.User;
 import org.springframework.stereotype.Repository;
+import org.springframework.transaction.annotation.Transactional;
 
-import javax.annotation.PostConstruct;
 import javax.annotation.Resource;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
@@ -23,12 +23,12 @@ import java.util.List;
  * To change this template use File | Settings | File Templates.
  */
 @Repository
+@Transactional
 public class DbInitBean {
 
     @Resource
     private GenericDao genericDao;
 
-    @PostConstruct
     public void initDb() {
         System.out.println("Start init DB");
         List<User> users = new ArrayList<User>();
@@ -83,8 +83,6 @@ public class DbInitBean {
         } catch (ParseException e) {
             throw new RuntimeException(e);
         }
-
-        genericDao.persistAll(users);
     }
 
     private void createDummyMessages(User u, int count, Date startDate, int timeStep) {
