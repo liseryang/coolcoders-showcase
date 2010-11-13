@@ -1,0 +1,41 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:wicket="http://wicket.apache.org/dtds.data/wicket-xhtml1.3-strict.dtd"
+      xml:lang="en"
+      lang="en">
+<head>
+    <title>Wicket Homepage</title>
+    <meta name="layout" content="main"/>
+</head>
+<body>
+<wicket:extend>
+    <div>
+        <div class="dialog center singleBorder">
+            <form wicket:id="createMessageForm">
+                <p>
+                    <wicket:message key="message.create.label"/>
+                </p>
+                <input wicket:id="newMessage"/>
+
+                <p>
+                    <input type="submit" wicket:message="value:button.send"/>
+                </p>
+
+            </form>
+        </div>
+        <div wicket:id="messageList" id="messageList">
+            <div wicket:id="singleMessage">
+                singleMEssagePanel here...
+            </div>
+        </div>
+        <div wicket:id="paginator" class="pageActions"></div>
+        <div class="pageActions">
+            <wicket:link>
+                <a href="FriendsPage.html"><wicket:message key="default.viewfriends.label"/></a>
+            </wicket:link>
+        </div>
+    </div>
+</wicket:extend>
+</body>
+</html>
+

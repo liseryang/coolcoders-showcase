@@ -1,7 +1,5 @@
 package net.coolcoders.showcase
 
-import net.coolcoders.showcase.panel.ProfileFormPanel.ProfileData
-
 class AppUserService {
 
   static transactional = true
@@ -10,11 +8,6 @@ class AppUserService {
     log.debug("registerUser( ${profileData} )")
     AppUser newUser = new AppUser()
     newUser.properties = profileData.properties
-//    profileData.getCategories().each {
-//      it = Category.get(it.id)
-//      newUser.addToCategories(it)
-//    }
-    log.info("${newUser.categories}")
     if (newUser.validate() && newUser.save(flush: true)) {
       //add standard followings
       AppUser following = AppUser.findByUsername("abaumgartner")
@@ -37,14 +30,24 @@ class AppUserService {
     AppUser theUser = AppUser.get(userId)
     theUser.properties = profileData.properties
     theUser.categories.clear()
-//    profileData.getCategories().each {
-//      Category theCategory = Category.get(it.id)
-//      theUser.addToCategories(theCategory)
-//    }
-
     if (theUser.validate() && theUser.save()) {
       return [success: true, user: theUser]
     }
     return [success: false, user: theUser]
+  }
+
+  def findFollowing(String userId, String sortAttribute, boolean ascending) {
+    AppUser theUser = AppUser.get(userId)
+    def following = AppUser.createCriteria().list() {
+      'in'('id', theUser.following.id)
+      if (ascending) {
+        order(sortAttribute, 'asc')
+      }
+      else {
+        order(sortAttribute, 'desc')
+      }
+    }
+    log.info "${theUser} is following:  ${following}"
+    following
   }
 }
