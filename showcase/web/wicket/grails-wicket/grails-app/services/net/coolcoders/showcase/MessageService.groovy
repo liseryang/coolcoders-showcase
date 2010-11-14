@@ -35,7 +35,6 @@ class MessageService {
         countDistinct "id"
       }
     }
-    log.debug "Number of Messages :  ${number}"
     number
   }
 
