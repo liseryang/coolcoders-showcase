@@ -5,39 +5,40 @@
       lang="en">
 <body>
 <wicket:panel>
-    <div class="dialog center singleBorder searchUserBox">
-        <table style="width:400px;">
-            <thead>
-            <tr>
-                <th>
-                    <wicket:message key="user.username.label"/>
-                </th>
-                <th>
-                    <wicket:message key="user.post.count.label"/>
-                </th>
-                <th>
-                    <wicket:message key="default.actions.label"/>
-                </th>
-            </tr>
-            </thead>
-            <tbody>
-            <tr wicket:id="friendsList">
-                <td>
-                    <span wicket:id="username">username</span>
-                </td>
-                <td>
-                    <span wicket:id="fullname">full</span>
-                </td>
-                <td>
-                    <span wicket:id="messageCount">messageCount</span>
-                </td>
-                <td>
-                    <wicket:message code="default.button.unfollow.label"/>
-                </td>
-            </tr>
-            </tbody>
-        </table>
-    </div>
+    <table style="width:400px;">
+        <thead>
+        <tr>
+            <th wicket:id="orderByUsername">
+                <wicket:message key="user.username.label"/>
+            </th>
+            <th wicket:id="orderByFullname">
+                <wicket:message key="user.fullname.label"/>
+            </th>
+            <th>
+                <wicket:message key="user.post.count.label"/>
+            </th>
+            <th>
+                <wicket:message key="default.actions.label"/>
+            </th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr wicket:id="userList">
+            <td>
+                <span wicket:id="username">username</span>
+            </td>
+            <td>
+                <span wicket:id="fullname">full</span>
+            </td>
+            <td>
+                <span wicket:id="messageCount">messageCount</span>
+            </td>
+            <td>
+                <wicket:message key="default.button.unfollow.label"/>
+            </td>
+        </tr>
+        </tbody>
+    </table>
 </wicket:panel>
 </body>
 </html>

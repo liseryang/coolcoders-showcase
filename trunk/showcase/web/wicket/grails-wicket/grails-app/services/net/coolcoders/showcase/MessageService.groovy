@@ -4,7 +4,7 @@ class MessageService {
 
   static transactional = true
 
-  def findAllMessagesOfFollowing(String userId, int offset, int pageSize) {
+  public List<AppUser> findAllMessagesOfFollowing(String userId, int offset, int pageSize) {
     log.debug "findAllMessagesOfFollowing( appUser=${userId}, offset=${offset}, pageSize=${pageSize} )"
     AppUser theUser = AppUser.get(userId)
     List<AppUser> following = []
@@ -20,7 +20,7 @@ class MessageService {
     messages
   }
 
-  def numberOfAllMessagesOfFollowing(String userId) {
+  public Long numberOfAllMessagesOfFollowing(String userId) {
     log.debug("numberOfAllMessagesOfFollowing( ${userId} )")
     AppUser theUser = AppUser.get(userId)
     List<AppUser> following = []
@@ -32,13 +32,13 @@ class MessageService {
     def number = criteria.get() {
       'in'('creator', following)
       projections {
-        countDistinct "id"
+        countDistinct("id")
       }
     }
     number
   }
 
-  def addMessage(String userId, String newMessage) {
+  public Message addMessage(String userId, String newMessage) {
     log.debug("addMessage( ${userId}, ${newMessage} )")
     AppUser theUser = AppUser.get(userId)
     Message theMessage = new Message(creator: theUser, content: newMessage, created: new Date()).save()

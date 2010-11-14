@@ -1,30 +1,48 @@
 package net.coolcoders.showcase.pages
 
-import org.apache.wicket.extensions.markup.html.repeater.util.SortableDataProvider
 import net.coolcoders.showcase.AppUser
+import net.coolcoders.showcase.AppUserService
+import net.coolcoders.showcase.ShowcaseSession
+import net.coolcoders.showcase.panel.UserTablePanel
+import org.apache.wicket.extensions.markup.html.repeater.util.SortParam
+import org.apache.wicket.extensions.markup.html.repeater.util.SortableDataProvider
 import org.apache.wicket.model.IModel
+import org.apache.wicket.model.Model
+import org.apache.wicket.spring.injection.annot.SpringBean
 
 /**
  * @author <a href="mailto:josip.mihelko@googlemail.com">Josip Mihelko</a>
  */
-class FriendsPage extends BasePage{
+class FriendsPage extends BasePage {
+  @SpringBean(name = "appUserService")
+  transient AppUserService appUserService
 
-  public FriendsPage(){
-
+  public FriendsPage() {
+    UserTablePanel panel = new UserTablePanel("friendsTable", new FriendsDataProvider())
+    add(panel)
   }
 
-  class FriendsDataProvider extends SortableDataProvider<AppUser>{
+  class FriendsDataProvider extends SortableDataProvider<AppUser> {
+
+    public FriendsDataProvider() {
+      setSort(new SortParam("username", true))
+    }
 
     Iterator<? extends AppUser> iterator(int i, int i1) {
-      return null;
+      String currentUserId = ShowcaseSession.get().getUserId()
+      String sortParam = getSort().getProperty()
+      boolean isAscending = getSort().isAscending()
+      return appUserService.findFollowing(currentUserId, sortParam, isAscending).iterator()
     }
 
     int size() {
-      return 0;
+      String currentUserId = ShowcaseSession.get().getUserId()
+      return appUserService.numberOfFollowing(currentUserId)
     }
 
     IModel<AppUser> model(AppUser t) {
-      return null;
+      t = AppUser.get(t.id)
+      return new Model(t);
     }
   }
 }

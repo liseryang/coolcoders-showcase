@@ -15,6 +15,15 @@ class AppUserServiceTests extends GrailsUnitTestCase {
     assertEquals("expected 'anerlich' following!, got ${following.get(0).username}!", 'anerlich', following.get(0).username)
   }
 
+  void testNumberOfFollowing() {
+    String userId = AppUser.findByUsername('jmihelko').id
+    Integer numberOfFollowing = appUserService.numberOfFollowing(userId)
+    assertEquals("Expected 1 following, got ${numberOfFollowing}", 1, numberOfFollowing)
+    userId = AppUser.findByUsername('user1').id
+    numberOfFollowing = appUserService.numberOfFollowing(userId)
+    assertEquals("Expected 0 following, got ${numberOfFollowing}", 0, numberOfFollowing)
+  }
+
   void testRegisterUser() {
     ProfileData data = new ProfileData()
     assertFalse(appUserService.registerUser(data).success)

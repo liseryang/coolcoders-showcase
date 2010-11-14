@@ -9,31 +9,8 @@
 </head>
 <body>
 <wicket:extend>
-    <div>
-        <div class="dialog center singleBorder">
-            <form wicket:id="createMessageForm">
-                <p>
-                    <wicket:message key="message.create.label"/>
-                </p>
-                <input wicket:id="newMessage"/>
-
-                <p>
-                    <input type="submit" wicket:message="value:button.send"/>
-                </p>
-
-            </form>
-        </div>
-        <div wicket:id="messageList" id="messageList">
-            <div wicket:id="singleMessage">
-                singleMEssagePanel here...
-            </div>
-        </div>
-        <div wicket:id="paginator" class="pageActions"></div>
-        <div class="pageActions">
-            <wicket:link>
-                <a href="FriendsPage.html"><wicket:message key="default.viewfriends.label"/></a>
-            </wicket:link>
-        </div>
+    <div class="dialog center singleBorder">
+        <div wicket:id="friendsTable"></div>
     </div>
 </wicket:extend>
 </body>

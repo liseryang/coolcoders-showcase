@@ -36,7 +36,7 @@ class AppUserService {
     return [success: false, user: theUser]
   }
 
-  def findFollowing(String userId, String sortAttribute, boolean ascending) {
+  List<AppUser> findFollowing(String userId, String sortAttribute, boolean ascending) {
     AppUser theUser = AppUser.get(userId)
     def following = AppUser.createCriteria().list() {
       'in'('id', theUser.following.id)
@@ -49,5 +49,19 @@ class AppUserService {
     }
     log.info "${theUser} is following:  ${following}"
     following
+  }
+
+  public Long numberOfFollowing(String userId) {
+    AppUser theUser = AppUser.get(userId)
+    if (!theUser.following) {
+      return 0
+    }
+    def numberOfFollowing = AppUser.createCriteria().get() {
+      'in'('id', theUser.following.id)
+      projections {
+        countDistinct('id')
+      }
+    }
+    numberOfFollowing
   }
 }
