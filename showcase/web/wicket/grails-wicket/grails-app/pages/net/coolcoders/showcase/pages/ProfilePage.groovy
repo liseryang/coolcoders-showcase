@@ -1,6 +1,7 @@
 package net.coolcoders.showcase.pages
 
 import net.coolcoders.showcase.AppUser
+import net.coolcoders.showcase.ProfileData
 import net.coolcoders.showcase.ShowcaseSession
 import net.coolcoders.showcase.panel.ProfileFormPanel
 import org.apache.wicket.spring.injection.annot.SpringBean
@@ -26,7 +27,7 @@ class ProfilePage extends BasePage {
   }
 
   private void update() {
-    net.coolcoders.showcase.panel.ProfileFormPanel.ProfileData data = profileForm.getProfileData();
+    ProfileData data = profileForm.getProfileData();
     String userId = ShowcaseSession.get().getUserId()
     def map = appUserService.updateUser(userId, data)
     if (map.success) {
