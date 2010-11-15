@@ -226,10 +226,10 @@
 
             <dependency>
                 <groupId>ch.qos.logback</groupId>
-                <artifactId>logback-core</artifactId>
+                <artifactId>logback-classic</artifactId>
                 <version>0.9.24</version>
             </dependency>
-            
+
             <!-- Test Dependencies -->
             <dependency>
                 <groupId>junit</groupId>
