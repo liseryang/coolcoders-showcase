@@ -14,7 +14,8 @@ import java.util.Set;
 
 /**
  *
- * @author andreas
+ * @author <a href="mailto:andreas@bambo.it">Andreas Baumgartner, andreas@bambo.it</a>
+ *
  */
 @Entity
 public class Category extends AbstractBaseEntity {

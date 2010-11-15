@@ -6,11 +6,9 @@ import java.io.Serializable;
 import java.util.UUID;
 
 /**
- * Created by IntelliJ IDEA.
- * User: andreas
- * Date: 16.09.2010
- * Time: 17:58:39
- * To change this template use File | Settings | File Templates.
+ *
+ * @author <a href="mailto:andreas@bambo.it">Andreas Baumgartner, andreas@bambo.it</a>
+ * 
  */
 @MappedSuperclass
 public class AbstractBaseEntity implements Serializable {

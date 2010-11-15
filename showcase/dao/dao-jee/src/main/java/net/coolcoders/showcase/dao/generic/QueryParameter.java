@@ -5,11 +5,9 @@ import java.util.ArrayList;
 import java.util.List;
 
 /**
- * Created by IntelliJ IDEA.
- * User: andreas
- * Date: 21.09.2010
- * Time: 18:53:13
- * To change this template use File | Settings | File Templates.
+ *
+ * @author <a href="mailto:andreas@bambo.it">Andreas Baumgartner, andreas@bambo.it</a>
+ *
  */
 public class QueryParameter {
 

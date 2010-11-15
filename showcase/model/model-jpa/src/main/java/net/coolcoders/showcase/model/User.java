@@ -5,6 +5,8 @@
 
 package net.coolcoders.showcase.model;
 
+import net.coolcoders.showcase.model.constraint.Email;
+
 import javax.persistence.*;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Pattern;
@@ -15,7 +17,8 @@ import java.util.Set;
 
 /**
  *
- * @author andreas
+ * @author <a href="mailto:andreas@bambo.it">Andreas Baumgartner, andreas@bambo.it</a>
+ *
  */
 @Entity
 @Table(name="USER_TABLE")

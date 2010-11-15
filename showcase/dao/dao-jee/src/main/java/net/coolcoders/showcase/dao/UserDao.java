@@ -19,7 +19,9 @@ import javax.persistence.criteria.SetJoin;
 import java.util.List;
 
 /**
- * @author andreas
+ *
+ * @author <a href="mailto:andreas@bambo.it">Andreas Baumgartner, andreas@bambo.it</a>
+ *
  */
 @Stateless
 @TransactionAttribute(TransactionAttributeType.MANDATORY)

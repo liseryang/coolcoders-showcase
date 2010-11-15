@@ -6,11 +6,9 @@ import java.util.HashMap;
 import java.util.Map;
 
 /**
- * Created by IntelliJ IDEA.
- * User: andreas
- * Date: 29.09.2010
- * Time: 21:33:05
- * To change this template use File | Settings | File Templates.
+ *
+ * @author <a href="mailto:andreas@bambo.it">Andreas Baumgartner, andreas@bambo.it</a>
+ *
  */
 public class QueryFetch {
 
