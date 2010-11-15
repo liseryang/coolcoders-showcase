@@ -3,17 +3,15 @@ package net.coolcoders.showcase.dao.generic;
 import javax.persistence.metamodel.SingularAttribute;
 
 /**
- * Created by IntelliJ IDEA.
- * User: andreas
- * Date: 23.09.2010
- * Time: 19:57:51
- * To change this template use File | Settings | File Templates.
+ *
+ * @author <a href="mailto:andreas@bambo.it">Andreas Baumgartner, andreas@bambo.it</a>
+ * 
  */
 public class QueryParameterEntry<X, T> {
 
     public enum Operator {
-        EQ, GT, GE, LT, LE, STARTS, CONTAINS, ENDS;
-    };
+        EQ, GT, GE, LT, LE, STARTS, CONTAINS, ENDS
+    }
 
     private SingularAttribute<X, T> attribute;
 

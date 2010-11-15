@@ -5,6 +5,8 @@ import net.coolcoders.showcase.model.Category;
 import net.coolcoders.showcase.model.Gender;
 import net.coolcoders.showcase.model.Message;
 import net.coolcoders.showcase.model.User;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 import javax.annotation.PostConstruct;
 import javax.ejb.EJB;
@@ -17,22 +19,22 @@ import java.util.Date;
 import java.util.List;
 
 /**
- * Created by IntelliJ IDEA.
- * User: andreas
- * Date: 16.09.2010
- * Time: 17:03:49
- * To change this template use File | Settings | File Templates.
+ *
+ * @author <a href="mailto:andreas@bambo.it">Andreas Baumgartner, andreas@bambo.it</a>
+ *
  */
 @Singleton
 @Startup
 public class DbInitBean {
+
+    private final Logger log = LoggerFactory.getLogger(getClass());
 
     @EJB
     private GenericDao genericDao;
 
     @PostConstruct
     public void initDb() {
-        System.out.println("Start init DB");
+        log.info("Start init DB");
         List<User> users = new ArrayList<User>();
         SimpleDateFormat sdf = new SimpleDateFormat("dd.MM.yyyy");
         try {
@@ -48,13 +50,6 @@ public class DbInitBean {
             Category gwt = new Category("GWT");
             categories.add(gwt);
             genericDao.persistAll(categories);
-
-//            new UserBuilder().withFullname("Andreas Baumgartner")
-//                    .withUsername("abaumgartner")
-//                    .withPassword("test123")
-//                    .withEmail("andreas@bambo.it")
-//                    .withGender(Gender.MALE)
-//                    .withBirthday(sdf.parse("15.09.1979")).build();
 
             User bambo = new User("Andreas Baumgartner", "abaumgartner", "test123", "andreas@bambo.it", Gender.MALE, sdf.parse("15.09.1979"));
             users.add(bambo);

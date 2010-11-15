@@ -13,7 +13,8 @@ import java.util.Date;
 
 /**
  *
- * @author andreas
+ * @author <a href="mailto:andreas@bambo.it">Andreas Baumgartner, andreas@bambo.it</a>
+ *
  */
 @Entity
 public class Message extends AbstractBaseEntity {

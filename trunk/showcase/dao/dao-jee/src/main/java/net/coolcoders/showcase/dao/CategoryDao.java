@@ -14,7 +14,8 @@ import javax.ejb.TransactionAttributeType;
 
 /**
  *
- * @author andreas
+ * @author <a href="mailto:andreas@bambo.it">Andreas Baumgartner, andreas@bambo.it</a>
+ *
  */
 @Stateless
 @TransactionAttribute(TransactionAttributeType.MANDATORY)

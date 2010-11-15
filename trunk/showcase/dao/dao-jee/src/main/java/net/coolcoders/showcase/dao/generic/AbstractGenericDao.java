@@ -16,7 +16,9 @@ import java.util.ArrayList;
 import java.util.List;
 
 /**
- * @author andreas
+ *
+ * @author <a href="mailto:andreas@bambo.it">Andreas Baumgartner, andreas@bambo.it</a>
+ *
  */
 public abstract class AbstractGenericDao<T, PK extends Serializable> {
 
@@ -48,7 +50,7 @@ public abstract class AbstractGenericDao<T, PK extends Serializable> {
         return query;
     }
 
-    // Get Methods; returns List<T>
+    // List Methods; returns List<T>
     public List<T> listAll(QueryFetch... queryFetches) {
         return list(null, null, queryFetches);
     }
@@ -133,43 +135,59 @@ public abstract class AbstractGenericDao<T, PK extends Serializable> {
             if (QueryParameterEntry.Operator.EQ.equals(entry.getOperator())) {
                 predicate = cb.equal(path, value);
             } else if (value instanceof Number) {
-                Number number = (Number) value;
-                if (QueryParameterEntry.Operator.GT.equals(entry.getOperator())) {
-                    predicate = cb.gt(path, number);
-                } else if (QueryParameterEntry.Operator.GE.equals(entry.getOperator())) {
-                    predicate = cb.ge(path, number);
-                } else if (QueryParameterEntry.Operator.LT.equals(entry.getOperator())) {
-                    predicate = cb.lt(path, number);
-                } else if (QueryParameterEntry.Operator.LE.equals(entry.getOperator())) {
-                    predicate = cb.le(path, number);
-                }
+                predicate = createPredicateForNumber(cb, entry, path, (Number) value);
             } else if (value instanceof String) {
-                String string = (String) value;
-                if (QueryParameterEntry.Operator.STARTS.equals(entry.getOperator())) {
-                    predicate = cb.like(path, string + "%");
-                } else if (QueryParameterEntry.Operator.CONTAINS.equals(entry.getOperator())) {
-                    predicate = cb.like(path, "%" + string + "%");
-                } else if (QueryParameterEntry.Operator.ENDS.equals(entry.getOperator())) {
-                    predicate = cb.like(path, "%" + string);
-                }
+                predicate = createPredicateForString(cb, entry, path, (String) value);
             } else if (value instanceof Comparable) {
-                Comparable comp = (Comparable) value;
-                if (QueryParameterEntry.Operator.GT.equals(entry.getOperator())) {
-                    predicate = cb.greaterThan(path, comp);
-                } else if (QueryParameterEntry.Operator.GE.equals(entry.getOperator())) {
-                    predicate = cb.greaterThanOrEqualTo(path, comp);
-                } else if (QueryParameterEntry.Operator.LT.equals(entry.getOperator())) {
-                    predicate = cb.lessThan(path, comp);
-                } else if (QueryParameterEntry.Operator.LE.equals(entry.getOperator())) {
-                    predicate = cb.lessThanOrEqualTo(path, comp);
-                }
+                predicate = createPredicateForComparable(cb, entry, path, (Comparable) value);
             }
-            
             if (predicate != null) {
                 predicates.add(predicate);
             }
         }
         return predicates;
+    }
+
+    private Predicate createPredicateForNumber(CriteriaBuilder cb, QueryParameterEntry entry, Expression<? extends Number> path, Number number) {
+        Predicate predicate = null;
+        if (QueryParameterEntry.Operator.GT.equals(entry.getOperator())) {
+            predicate = cb.gt(path, number);
+        } else if (QueryParameterEntry.Operator.GE.equals(entry.getOperator())) {
+            predicate = cb.ge(path, number);
+        } else if (QueryParameterEntry.Operator.LT.equals(entry.getOperator())) {
+            predicate = cb.lt(path, number);
+        } else if (QueryParameterEntry.Operator.LE.equals(entry.getOperator())) {
+            predicate = cb.le(path, number);
+        }
+        return predicate;
+    }
+
+    private Predicate createPredicateForString(CriteriaBuilder cb, QueryParameterEntry entry, Expression<String> path, String string) {
+        Predicate predicate = null;
+        if (QueryParameterEntry.Operator.STARTS.equals(entry.getOperator())) {
+            predicate = cb.like(path, string + "%");
+        } else if (QueryParameterEntry.Operator.CONTAINS.equals(entry.getOperator())) {
+            predicate = cb.like(path, "%" + string + "%");
+        } else if (QueryParameterEntry.Operator.ENDS.equals(entry.getOperator())) {
+            predicate = cb.like(path, "%" + string);
+        } else {
+            predicate = createPredicateForComparable(cb, entry, path, string);
+        }
+        return predicate;
+    }
+
+    private Predicate createPredicateForComparable(CriteriaBuilder cb, QueryParameterEntry entry, Expression<? extends Comparable> path, Comparable comp) {
+        Predicate predicate = null;
+        if (QueryParameterEntry.Operator.GT.equals(entry.getOperator())) {
+            predicate = cb.greaterThan(path, comp);
+        } else if (QueryParameterEntry.Operator.GE.equals(entry.getOperator())) {
+            predicate = cb.greaterThanOrEqualTo(path, comp);
+        } else if (QueryParameterEntry.Operator.LT.equals(entry.getOperator())) {
+            predicate = cb.lessThan(path, comp);
+        } else if (QueryParameterEntry.Operator.LE.equals(entry.getOperator())) {
+            predicate = cb.lessThanOrEqualTo(path, comp);
+        }
+        return predicate;
     }
 
     protected T findCriteriaQueryResult(CriteriaQuery<T> criteriaQuery) {

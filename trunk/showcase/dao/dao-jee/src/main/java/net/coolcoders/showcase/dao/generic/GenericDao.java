@@ -17,7 +17,9 @@ import java.util.List;
 import java.util.Map;
 
 /**
- * @author andreas
+ *
+ * @author <a href="mailto:andreas@bambo.it">Andreas Baumgartner, andreas@bambo.it</a>
+ *
  */
 @Stateless
 public class GenericDao {
@@ -44,7 +46,7 @@ public class GenericDao {
         return query;
     }
 
-    // Get Methods; returns List<T>
+    // List Methods; returns List<T>
     public <T> List<T> listAll(Class<T> clazz, QueryFetch... queryFetches) {
         return list(clazz, null, null, queryFetches);
     }
@@ -105,6 +107,71 @@ public class GenericDao {
         }
     }
 
+    private <T> List<Predicate> createPredicates(CriteriaBuilder cb, Root<T> root, QueryParameter queryParameter) {
+        List<Predicate> predicates = new ArrayList<Predicate>();
+        for (QueryParameterEntry entry : queryParameter.parameters()) {
+            Expression path = root.get(entry.getAttribute());
+
+            Object value = entry.getValue();
+            Predicate predicate = null;
+            if (QueryParameterEntry.Operator.EQ.equals(entry.getOperator())) {
+                predicate = cb.equal(path, value);
+            } else if (value instanceof Number) {
+                predicate = createPredicateForNumber(cb, entry, path, (Number) value);
+            } else if (value instanceof String) {
+                predicate = createPredicateForString(cb, entry, path, (String) value);
+            } else if (value instanceof Comparable) {
+                predicate = createPredicateForComparable(cb, entry, path, (Comparable) value);
+            }
+            if (predicate != null) {
+                predicates.add(predicate);
+            }
+        }
+        return predicates;
+    }
+
+    private Predicate createPredicateForNumber(CriteriaBuilder cb, QueryParameterEntry entry, Expression<? extends Number> path, Number number) {
+        Predicate predicate = null;
+        if (QueryParameterEntry.Operator.GT.equals(entry.getOperator())) {
+            predicate = cb.gt(path, number);
+        } else if (QueryParameterEntry.Operator.GE.equals(entry.getOperator())) {
+            predicate = cb.ge(path, number);
+        } else if (QueryParameterEntry.Operator.LT.equals(entry.getOperator())) {
+            predicate = cb.lt(path, number);
+        } else if (QueryParameterEntry.Operator.LE.equals(entry.getOperator())) {
+            predicate = cb.le(path, number);
+        }
+        return predicate;
+    }
+
+    private Predicate createPredicateForString(CriteriaBuilder cb, QueryParameterEntry entry, Expression<String> path, String string) {
+        Predicate predicate = null;
+        if (QueryParameterEntry.Operator.STARTS.equals(entry.getOperator())) {
+            predicate = cb.like(path, string + "%");
+        } else if (QueryParameterEntry.Operator.CONTAINS.equals(entry.getOperator())) {
+            predicate = cb.like(path, "%" + string + "%");
+        } else if (QueryParameterEntry.Operator.ENDS.equals(entry.getOperator())) {
+            predicate = cb.like(path, "%" + string);
+        } else {
+            predicate = createPredicateForComparable(cb, entry, path, string);
+        }
+        return predicate;
+    }
+
+    private Predicate createPredicateForComparable(CriteriaBuilder cb, QueryParameterEntry entry, Expression<? extends Comparable> path, Comparable comp) {
+        Predicate predicate = null;
+        if (QueryParameterEntry.Operator.GT.equals(entry.getOperator())) {
+            predicate = cb.greaterThan(path, comp);
+        } else if (QueryParameterEntry.Operator.GE.equals(entry.getOperator())) {
+            predicate = cb.greaterThanOrEqualTo(path, comp);
+        } else if (QueryParameterEntry.Operator.LT.equals(entry.getOperator())) {
+            predicate = cb.lessThan(path, comp);
+        } else if (QueryParameterEntry.Operator.LE.equals(entry.getOperator())) {
+            predicate = cb.lessThanOrEqualTo(path, comp);
+        }
+        return predicate;
+    }
+
     private <T> List<Order> createOrders(CriteriaBuilder cb, Root<T> root, QueryOrder queryOrder) {
         List<Order> orders = new ArrayList<Order>();
         for (SingularAttribute attribute : queryOrder.statements().keySet()) {
@@ -116,54 +183,6 @@ public class GenericDao {
             }
         }
         return orders;
-    }
-
-    private <T> List<Predicate> createPredicates(CriteriaBuilder cb, Root<T> root, QueryParameter queryParameter) {
-        List<Predicate> predicates = new ArrayList<Predicate>();
-        for (QueryParameterEntry entry : queryParameter.parameters()) {
-            Expression path = root.get(entry.getAttribute());
-
-            Object value = entry.getValue();
-            Predicate predicate = null;
-            if (QueryParameterEntry.Operator.EQ.equals(entry.getOperator())) {
-                predicate = cb.equal(path, value);
-            } else if (value instanceof Number) {
-                Number number = (Number) value;
-                if (QueryParameterEntry.Operator.GT.equals(entry.getOperator())) {
-                    predicate = cb.gt(path, number);
-                } else if (QueryParameterEntry.Operator.GE.equals(entry.getOperator())) {
-                    predicate = cb.ge(path, number);
-                } else if (QueryParameterEntry.Operator.LT.equals(entry.getOperator())) {
-                    predicate = cb.lt(path, number);
-                } else if (QueryParameterEntry.Operator.LE.equals(entry.getOperator())) {
-                    predicate = cb.le(path, number);
-                }
-            } else if (value instanceof Comparable) {
-                Comparable comp = (Comparable) value;
-                if (QueryParameterEntry.Operator.GT.equals(entry.getOperator())) {
-                    predicate = cb.greaterThan(path, comp);
-                } else if (QueryParameterEntry.Operator.GE.equals(entry.getOperator())) {
-                    predicate = cb.greaterThanOrEqualTo(path, comp);
-                } else if (QueryParameterEntry.Operator.LT.equals(entry.getOperator())) {
-                    predicate = cb.lessThan(path, comp);
-                } else if (QueryParameterEntry.Operator.LE.equals(entry.getOperator())) {
-                    predicate = cb.lessThanOrEqualTo(path, comp);
-                }
-            } else if (value instanceof String) {
-                String string = (String) value;
-                if (QueryParameterEntry.Operator.STARTS.equals(entry.getOperator())) {
-                    predicate = cb.like(path, string + "%");
-                } else if (QueryParameterEntry.Operator.CONTAINS.equals(entry.getOperator())) {
-                    predicate = cb.like(path, "%" + string + "%");
-                } else if (QueryParameterEntry.Operator.ENDS.equals(entry.getOperator())) {
-                    predicate = cb.like(path, "%" + string);
-                }
-            }
-            if (predicate != null) {
-                predicates.add(predicate);
-            }
-        }
-        return predicates;
     }
 
     protected <T> T findCriteriaQueryResult(CriteriaQuery<T> criteriaQuery) {

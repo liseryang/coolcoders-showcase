@@ -22,7 +22,8 @@ import java.util.List;
 
 /**
  *
- * @author andreas
+ * @author <a href="mailto:andreas@bambo.it">Andreas Baumgartner, andreas@bambo.it</a>
+ *
  */
 @Stateless
 @TransactionAttribute(TransactionAttributeType.MANDATORY)
@@ -33,14 +34,6 @@ public class MessageDao extends AbstractGenericDao<Message, String> {
     }
 
     public List<Message> list(String userId, int first, int max) {
-//        return em.createQuery("SELECT following.messages " +
-//                "FROM User u left join u.following as following " +
-//                "WHERE u.id = :userId" )
-//                .setParameter("userId", userId)
-//                .setFirstResult(first)
-//                .setMaxResults(max)
-//                .getResultList();
-
         CriteriaBuilder cb = em.getCriteriaBuilder();
         CriteriaQuery<Message> query = cb.createQuery(Message.class);
         Root<User> root = query.from(User.class);
