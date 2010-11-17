@@ -34,11 +34,17 @@
                 <span wicket:id="messageCount">messageCount</span>
             </td>
             <td>
-                <wicket:message key="default.button.unfollow.label"/>
+                <a wicket:id="unfollowLink">
+                    <wicket:message key="default.button.unfollow.label"/>
+                </a>
+                <a wicket:id="followLink">
+                    <wicket:message key="default.button.follow.label"/>
+                </a>
             </td>
         </tr>
         </tbody>
     </table>
+    <div wicket:id="paginator" class="pageActions"></div>
 </wicket:panel>
 </body>
 </html>

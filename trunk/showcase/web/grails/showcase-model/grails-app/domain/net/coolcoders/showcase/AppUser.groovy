@@ -24,11 +24,21 @@ class AppUser implements Serializable {
 
   static transients = ['repassword']
 
+  static mapping = {
+    id generator: 'uuid'
+  }
+
   public String toString() {
     "username: $username, email: $email"
   }
 
-  static mapping = {
-    id generator: 'uuid'
+  def boolean equals(Object o) {
+    return id?.equals(o?.id)
   }
+
+  def int hashCode() {
+    return id?.hashCode();
+  }
+
+
 }

@@ -8,7 +8,7 @@ class AppUserServiceTests extends GrailsUnitTestCase {
 
   void testFindFollowing() {
     String userId = AppUser.findByUsername('jmihelko').id
-    List<AppUser> following = appUserService.findFollowing(userId, 'username', true)
+    List<AppUser> following = appUserService.findFollowing(userId, 'username', true, 0, 100)
     assertNotNull("null-following", following)
     assertFalse("emtpy following", following.isEmpty())
     assertEquals("expected 1 following!, got ${following.size()}!", 1, following.size())
@@ -50,4 +50,29 @@ class AppUserServiceTests extends GrailsUnitTestCase {
     assertEquals("Name not updated", 'Barack Obama', AppUser.get(userId).fullname)
   }
 
+  void testFollowUser() {
+    AppUser josip = AppUser.findByUsername("jmihelko")
+    AppUser abaumgartner = AppUser.findByUsername("abaumgartner")
+    assertFalse("already following abaumgartner!", josip.following.contains(abaumgartner))
+    appUserService.followUser(josip.id, abaumgartner.id)
+    josip = AppUser.findByUsername("jmihelko")
+    assertTrue("not following abaumgartner!", josip.following.contains(abaumgartner))
+  }
+
+  void testUnfollowUser() {
+    AppUser josip = AppUser.findByUsername("jmihelko")
+    AppUser anerlich = AppUser.findByUsername("anerlich")
+    assertTrue("not following anerlich!", josip.following.contains(anerlich))
+    appUserService.unfollowUser(josip.id, anerlich.id)
+    josip = AppUser.findByUsername("jmihelko")
+    assertFalse("not following abaumgartner!", josip.following.contains(anerlich))
+  }
+
+  void testIsFollowing() {
+    AppUser josip = AppUser.findByUsername("jmihelko")
+    AppUser anerlich = AppUser.findByUsername("anerlich")
+    AppUser abaumgartner = AppUser.findByUsername("abaumgartner")
+    assertTrue("not following anerlich?", appUserService.isFollowing(josip.id, anerlich.id))
+    assertFalse("following abaumgartner?", appUserService.isFollowing(josip.id, abaumgartner.id))
+  }
 }
