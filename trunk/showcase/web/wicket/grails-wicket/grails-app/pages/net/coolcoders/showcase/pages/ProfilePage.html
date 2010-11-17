@@ -11,6 +11,22 @@
 </head>
 <body>
 <wicket:extend>
+    <div class="nav">
+        <span class="menuButton">
+            <wicket:link>
+                <a class="home" href="MessagesPage.html">
+                    <wicket:message key="default.message.label"/>
+                </a>
+            </wicket:link>
+        </span>
+        <span class="menuButton">
+            <wicket:link>
+                <a class="profile" href="ProfilePage.html">
+                    <wicket:message key="default.profile.label"/>
+                </a>
+            </wicket:link>
+        </span>
+    </div>
     <h2>
         <wicket:message key="profile.heading"/>
     </h2>

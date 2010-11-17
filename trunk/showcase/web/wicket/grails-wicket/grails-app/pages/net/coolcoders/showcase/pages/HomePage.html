@@ -10,6 +10,15 @@
 </head>
 <body>
 <wicket:extend>
+    <div class="nav">
+        <span class="menuButton">
+            <wicket:link>
+                <a class="home" href="HomePage.html">
+                    <wicket:message key="default.login.label"/>
+                </a>
+            </wicket:link>
+        </span>
+    </div>
     <div class="login">
         <div class="dialog center singleBorder">
             <form wicket:id="loginForm">

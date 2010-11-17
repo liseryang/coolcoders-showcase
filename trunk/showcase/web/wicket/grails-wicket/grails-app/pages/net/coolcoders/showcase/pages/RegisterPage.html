@@ -11,6 +11,23 @@
 </head>
 <body>
 <wicket:extend>
+    <div class="nav">
+        <span class="menuButton">
+        <wicket:link>
+            <a class="home" href="HomePage.html">
+                <wicket:message key="default.login.label"/>
+            </a>
+        </wicket:link>
+        </span>
+        <span class="menuButton">
+            <wicket:link>
+                <a class="register" href="RegisterPage.html">
+                    <wicket:message key="default.register.label"/>
+                </a>
+            </wicket:link>
+        </span>
+    </div>
+
     <h2>
         <wicket:message key="register.heading"/>
     </h2>
