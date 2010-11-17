@@ -12,7 +12,7 @@ import org.apache.wicket.spring.injection.annot.SpringBean
 /**
  * @author <a href="mailto:josip.mihelko@googlemail.com">Josip Mihelko</a>
  */
-class FriendsPage extends BasePage {
+class FriendsPage extends BaseLoggedinPage {
   @SpringBean(name = "appUserService")
   def transient appUserService
 
