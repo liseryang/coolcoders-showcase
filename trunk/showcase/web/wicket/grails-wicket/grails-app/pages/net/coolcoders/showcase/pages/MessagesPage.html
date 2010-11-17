@@ -18,14 +18,14 @@
             </wicket:link>
         </span>
     </div>
+    <span wicket:id="feedback" class="errors"/>
     <div>
         <div class="dialog center singleBorder">
             <form wicket:id="createMessageForm">
                 <p>
                     <wicket:message key="message.create.label"/>
                 </p>
-                <input wicket:id="newMessage"/>
-
+                <textarea wicket:id="newMessage" rows="3" cols="45"></textarea>
                 <p>
                     <input type="submit" wicket:message="value:button.send"/>
                 </p>
