@@ -1,7 +1,6 @@
 package net.coolcoders.showcase.pages
 
 import net.coolcoders.showcase.AppUser
-import net.coolcoders.showcase.AppUserService
 import net.coolcoders.showcase.ShowcaseSession
 import net.coolcoders.showcase.panel.UserTablePanel
 import org.apache.wicket.extensions.markup.html.repeater.util.SortParam
@@ -15,10 +14,10 @@ import org.apache.wicket.spring.injection.annot.SpringBean
  */
 class FriendsPage extends BasePage {
   @SpringBean(name = "appUserService")
-  transient AppUserService appUserService
+  def transient appUserService
 
   public FriendsPage() {
-    UserTablePanel panel = new UserTablePanel("friendsTable", new FriendsDataProvider())
+    UserTablePanel panel = new UserTablePanel("friendsTable", new FriendsDataProvider(), appUserService)
     add(panel)
   }
 
@@ -28,11 +27,11 @@ class FriendsPage extends BasePage {
       setSort(new SortParam("username", true))
     }
 
-    Iterator<? extends AppUser> iterator(int i, int i1) {
+    Iterator<? extends AppUser> iterator(int first, int count) {
       String currentUserId = ShowcaseSession.get().getUserId()
       String sortParam = getSort().getProperty()
       boolean isAscending = getSort().isAscending()
-      return appUserService.findFollowing(currentUserId, sortParam, isAscending).iterator()
+      return appUserService.findFollowing(currentUserId, sortParam, isAscending, first, count).iterator()
     }
 
     int size() {

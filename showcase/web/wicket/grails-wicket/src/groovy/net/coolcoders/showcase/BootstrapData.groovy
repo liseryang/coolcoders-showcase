@@ -38,7 +38,7 @@ class BootstrapData {
       AppUser pschneidermanzell = createDummyUser("pschneider-manzell", "Peter Schneider-Manzell", "pschneider-manzell@coolcoders.net", Gender.MALE)
       AppUser abaumgartner = createDummyUser("abaumgartner", "Andreas Baumgartner", "abaumgartner@coolcoders.net", Gender.MALE)
       AppUser jmihelko = createDummyUser("jmihelko", "Josip Mihelko", "jmihelko@coolcoders.net", Gender.MALE)
-      AppUser anerlich = createDummyUser("anerlich", "Andreas Baumgartner", "anerlich@coolcoders.net", Gender.MALE)
+      AppUser anerlich = createDummyUser("anerlich", "Andreas Nerlich", "anerlich@coolcoders.net", Gender.MALE)
 
       abaumgartner.addToFollowing(pschneidermanzell)
       jmihelko.addToFollowing(anerlich)
