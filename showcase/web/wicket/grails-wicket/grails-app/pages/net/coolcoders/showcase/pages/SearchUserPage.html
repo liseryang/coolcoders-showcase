@@ -9,6 +9,22 @@
 </head>
 <body>
 <wicket:extend>
+    <div class="nav">
+        <span class="menuButton">
+            <wicket:link>
+                <a class="home" href="MessagesPage.html">
+                    <wicket:message key="default.message.label"/>
+                </a>
+            </wicket:link>
+        </span>
+        <span class="menuButton">
+            <wicket:link>
+                <a class="following" href="SearchUserPage.html">
+                    <wicket:message key="default.following.label"/>
+                </a>
+            </wicket:link>
+        </span>
+    </div>
     <div class="dialog center singleBorder searchUserBox">
         <form wicket:id="searchForm">
             <label>

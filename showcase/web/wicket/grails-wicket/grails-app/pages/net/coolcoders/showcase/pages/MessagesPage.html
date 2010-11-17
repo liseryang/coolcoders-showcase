@@ -9,6 +9,15 @@
 </head>
 <body>
 <wicket:extend>
+    <div class="nav">
+        <span class="menuButton">
+            <wicket:link>
+                <a class="home" href="MessagesPage.html">
+                    <wicket:message key="default.message.label"/>
+                </a>
+            </wicket:link>
+        </span>
+    </div>
     <div>
         <div class="dialog center singleBorder">
             <form wicket:id="createMessageForm">
@@ -31,7 +40,9 @@
         <div wicket:id="paginator" class="pageActions"></div>
         <div class="pageActions">
             <wicket:link>
-                <a href="FriendsPage.html"><wicket:message key="default.viewfriends.label"/></a>
+                <a href="FriendsPage.html">
+                    <wicket:message key="default.viewfriends.label"/>
+                </a>
             </wicket:link>
         </div>
     </div>
