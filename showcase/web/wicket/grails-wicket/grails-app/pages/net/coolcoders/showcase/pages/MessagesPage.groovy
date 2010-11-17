@@ -5,7 +5,7 @@ import net.coolcoders.showcase.ShowcaseSession
 import net.coolcoders.showcase.panel.SingleMessagePanel
 import org.apache.wicket.extensions.markup.html.repeater.util.SortableDataProvider
 import org.apache.wicket.markup.html.form.Form
-import org.apache.wicket.markup.html.form.RequiredTextField
+import org.apache.wicket.markup.html.form.TextArea
 import org.apache.wicket.markup.html.navigation.paging.PagingNavigator
 import org.apache.wicket.markup.repeater.Item
 import org.apache.wicket.markup.repeater.data.DataView
@@ -47,7 +47,9 @@ class MessagesPage extends BasePage {
         addMessage();
       }
     }
-    form.add(new RequiredTextField<String>("newMessage", formModel))
+    form.add(
+            new TextArea<String>("newMessage", formModel).setRequired(true)
+    )
     add(form)
   }
 
