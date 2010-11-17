@@ -17,7 +17,7 @@ import org.apache.wicket.spring.injection.annot.SpringBean
 /**
  * @author <a href="mailto:josip.mihelko@googlemail.com">Josip Mihelko</a>
  */
-class MessagesPage extends BasePage {
+class MessagesPage extends BaseLoggedinPage {
 
   @SpringBean(name = "messageService")
   def transient messageService

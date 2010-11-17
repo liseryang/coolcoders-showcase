@@ -9,7 +9,7 @@ import org.apache.wicket.spring.injection.annot.SpringBean
 /**
  * @author <a href="mailto:josip.mihelko@googlemail.com">Josip Mihelko</a>
  */
-class ProfilePage extends BasePage {
+class ProfilePage extends BaseLoggedinPage {
   @SpringBean(name = "appUserService")
   def transient appUserService
   private ProfileFormPanel profileForm;

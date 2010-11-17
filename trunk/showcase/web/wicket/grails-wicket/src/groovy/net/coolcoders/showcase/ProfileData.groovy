@@ -33,7 +33,7 @@ class ProfileData implements Serializable {
     this.password = user.password
     this.gender = user.gender
     this.birthday = user.birthday
-    this.categories = user.categories.asList()
+    this.categories = user.categories?.asList()
   }
 
   public String getUsername() {
