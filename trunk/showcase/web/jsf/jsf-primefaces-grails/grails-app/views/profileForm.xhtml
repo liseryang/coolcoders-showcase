@@ -1,0 +1,52 @@
+<div xmlns="http://www.w3.org/1999/xhtml"
+     xmlns:ui="http://java.sun.com/jsf/facelets"
+     xmlns:h="http://java.sun.com/jsf/html"
+     xmlns:f="http://java.sun.com/jsf/core"
+     xmlns:p="http://primefaces.prime.com.tr/ui">
+
+    <div class="yui3-u-1 ui-widget ui-widget-content ui-corner-all">
+        <h:form id="register">
+            <div class="formContainer simpleMargin center">
+                <p:messages/>
+                <ui:param name="editItem" value="#{editBean.user}"/>
+                <h:panelGrid columns="2" columnClasses="profileFrmLblCol,profileFrmLblVal">
+                    <h:outputLabel for="username" value="Username: *" styleClass="label"/>
+                    <h:inputText id="username" value="#{editItem.username}"/>
+
+                    <h:outputLabel for="fullname" value="Fullname:" styleClass="label"/>
+                    <h:inputText id="fullname" value="#{editItem.fullname}"/>
+
+                    <h:outputLabel for="email" value="Email: *" styleClass="label"/>
+                    <h:inputText id="email" value="#{editItem.email}"/>
+
+                    <h:outputLabel for="gender" value="Gender:" styleClass="label"/>
+                    <h:selectOneRadio id="gender" value="#{editItem.gender}" layout="pageDirection">
+                        <f:selectItems value="#{registerBean.genderItems}"/>
+                    </h:selectOneRadio>
+
+                    <h:outputLabel for="password" value="Password: *" styleClass="label"/>
+                    <h:inputSecret id="password" value="#{editItem.password}"/>
+
+                    <h:outputLabel for="repassword" value="Repeat password: *" styleClass="label"/>
+                    <h:inputSecret id="repassword" value="#{editItem.repassword}"/>
+
+                    <h:outputLabel for="birthday" value="Birthday:" styleClass="label"/>
+                    <h:inputText id="birthday" value="#{editItem.birthday}">
+                        <f:convertDateTime pattern="MM/dd/yyyy"/>
+                    </h:inputText>
+
+                    <h:outputLabel for="categories" value="Categories:" styleClass="label"/>
+                    <h:selectManyCheckbox id="categories" value="#{editItem.categories}" layout="pageDirection" converter="categoryConverter">
+                        <f:selectItems value="#{registerBean.categoryItems}" itemLabel="#{category.name}" itemValue="#{category.id}" var="category"/>
+                    </h:selectManyCheckbox>
+                </h:panelGrid>
+
+                <div class="btnPanel textCenter">
+                    <p:commandButton value="Save" action="#{editBean.save}" style="margin-right: 5px" ajax="false"/>
+                    <p:commandButton value="Cancel" action="login" immediate="true" ajax="false"/>
+                </div>
+            </div>
+        </h:form>
+    </div>
+
+</div>
