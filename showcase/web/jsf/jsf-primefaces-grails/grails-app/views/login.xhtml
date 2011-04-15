@@ -1,0 +1,46 @@
+<ui:composition template="layouts/layout.xhtml"
+                xmlns="http://www.w3.org/1999/xhtml"
+                xmlns:ui="http://java.sun.com/jsf/facelets"
+                xmlns:h="http://java.sun.com/jsf/html"
+                xmlns:p="http://primefaces.prime.com.tr/ui">
+
+    <ui:define name="breadCrumb">
+        <p:menuitem value="Login" action="login" ajax="false"/>
+        <p:menuitem value="Login" action="login" ajax="false"/>
+    </ui:define>
+
+    <ui:define name="content">
+        <div class="yui3-u-1 ui-widget ui-widget-content ui-corner-all" style="padding-bottom: 10px;">
+            <h:form id="login">
+                <div class="yui3-u-1 simpleMargin">
+                    <div class="formContainer center">
+                        <p:messages id="msgs" showDetail="true"/>
+                        <h:panelGrid columns="2">
+                            <h:outputLabel value="Username:" styleClass="frmLabel" />
+                            <h:inputText value="#{loginBean.username}" styleClass="frmInput"/>
+                            <h:outputLabel value="Password:" styleClass="frmLabel" />
+                            <h:inputSecret value="#{loginBean.password}" styleClass="frmInput"/>
+                        </h:panelGrid>
+                    </div>
+                </div>
+                <div class="yui3-u-1 simpleMargin">
+                    <div class="formContainer center textCenter">
+                        <p:commandButton value="Login" action="#{loginBean.login}" ajax="false"/>
+                        <p:commandButton value="Register" action="register" ajax="false" />
+                    </div>
+                </div>
+
+                <div class="yui3-u-1 simpleMargin">
+                    <div style="border: dashed;" class="formContainer center textCenter">
+                        <h:outputText value="Following Users exists by default" style="font-weight:bold;"/><br/>
+                        <h:outputText value="abaumgartner / test123"/><br/>
+                        <h:outputText value="anerlich / test123"/><br/>
+                        <h:outputText value="jmihelko / test123"/><br/>
+                        <h:outputText value="pschneider-manzell / test123"/>
+                    </div>
+                </div>
+            </h:form>
+        </div>
+    </ui:define>
+
+</ui:composition>
